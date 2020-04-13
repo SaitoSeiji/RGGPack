@@ -1,7 +1,3 @@
-id t1
-	flagNum 0
-id t2
-	flagNum 0
-id unko
+id testFlag1
 	flagNum 0
 end

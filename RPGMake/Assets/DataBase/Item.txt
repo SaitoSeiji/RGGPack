@@ -3,9 +3,4 @@
 	explanation データの登録テストです
 	maxNum 20
 	haveNum 0
-id test2
-	displayName テスト２
-	explanation データの登録テストです2
-	maxNum 0
-	haveNum 0
 end

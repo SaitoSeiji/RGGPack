@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fe3ebab538d2a04c959e623e5a35824, type: 3}
-  m_Name: ItemDB
+  m_Script: {fileID: 11500000, guid: cc4ef72bf658a6f4f821d8c79c8c104c, type: 3}
+  m_Name: housou_in
   m_EditorClassIdentifier: 
-  savePath: Item
-  dataList:
-  - {fileID: 11400000, guid: aa6bf4d53e8fa9047a1cb6261240da68, type: 2}
+  _codeData:
+    _text: $#map[housou]
+    _nextEventCode: {fileID: 0}
+    coalTerm:
+      _termList: []
+      _orMode: 0

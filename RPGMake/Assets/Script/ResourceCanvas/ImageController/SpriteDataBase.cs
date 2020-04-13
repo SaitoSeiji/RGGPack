@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-[CreateAssetMenu(menuName = "MyGame/Create SpriteDataBase", fileName = "SpriteDataBase")]
+[CreateAssetMenu(menuName = "DataBases/DataBase/Create SpriteDataBase", fileName = "SpriteDataBase")]
 public class SpriteDataBase : ScriptableObject
 {
     [System.Serializable]
