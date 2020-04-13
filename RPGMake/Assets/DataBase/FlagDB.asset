@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   savePath: Flag
   _dataList:
-  - {fileID: 11400000, guid: 5e080d4d3c4f65f4d80d0d867cad9898, type: 2}
-  - {fileID: 11400000, guid: 2f82466c83b39fb458f5c12f70a0f231, type: 2}
+  - {fileID: 11400000, guid: 5ff26c70cd5816548b34b061297c37b0, type: 2}

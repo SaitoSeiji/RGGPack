@@ -137,11 +137,18 @@ public class Player : SingletonMonoBehaviour<Player>
     {
         if (check)
         {
-            _headIcon.sprite = checkSprite;
-            if (submit)
+            var checkEvent = _frontCollier._nowHitCollider.GetComponent<EventDataMonoBehaviour>();
+            if (checkEvent.CheckCoalEnable())
             {
-                var checkEvent= _frontCollier._nowHitCollider.GetComponent<EventDataMonoBehaviour>();
-                EventController.Instance.CoalEvent(checkEvent);
+                _headIcon.sprite = checkSprite;
+                if (submit)
+                {
+                    EventController.Instance.CoalEvent(checkEvent);
+                }
+            }
+            else
+            {
+                _headIcon.sprite = null;
             }
         }
         else

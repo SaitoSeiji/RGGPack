@@ -47,6 +47,7 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
         foreach(var d in data._memberSet)
         {
             SetData<T>(data._id, d.memberName, d.data);
+            //Debug.Log(d.data+":"+d.memberName);
         }
         SetMemberSet();
     }
@@ -96,13 +97,15 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
             }
         }
     }
-    
+
     public int GetData<T>(DataMemberInspector data)
         where T : AbstractDB
     {
         foreach(var mem in data._memberSet)
         {
-            return GetData<T>(data._id, mem.memberName);
+            var result= GetData<T>(data._id, mem.memberName);
+            //Debug.Log(result+":"+mem.memberName);
+            return result;
         }
         return -1;
     }
@@ -165,6 +168,7 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
         {
             _saveDataList[db.name]= JsonSaver.LoadAction_list<DBData>(db.name);
         }
+        SetMemberSet();
     }
 
     [ContextMenu("InitsaveTest")]
@@ -183,7 +187,6 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
     void TestLoad()
     {
         LoadAction();
-        SetMemberSet();
     }
 
     [ContextMenu("valueChengeTest")]

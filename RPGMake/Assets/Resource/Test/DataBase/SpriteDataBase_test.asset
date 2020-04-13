@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73c51ac1664e8054982b47cb5d6ef959, type: 3}
+  m_Name: SpriteDataBase_test
+  m_EditorClassIdentifier: 
+  _spriteDataList:
+  - setName: back
+    _dataList:
+    - {fileID: 21300000, guid: b1c106a4f33dfbf4696bf410b3308e61, type: 3}
+  - setName: kyoko
+    _dataList:
+    - {fileID: 21300000, guid: 4c61a9de0d03962409925595866bb519, type: 3}
+    - {fileID: 21300000, guid: 27ea23e176068b54f9c5a46ae4a4e274, type: 3}
+    - {fileID: 21300000, guid: 2fc8ef9c8ba98df4cb22d0a46862d936, type: 3}

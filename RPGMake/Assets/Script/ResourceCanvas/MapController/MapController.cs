@@ -9,6 +9,7 @@ public class MapController : SingletonMonoBehaviour<MapController>
     MapData_mono _nowMapObject;
     LoadCanvas _loadCanvas;
 
+    string _beforeMapName;
     string _nextMapName;
     public bool _mapChengeNow { get; private set; }
 
@@ -57,10 +58,9 @@ public class MapController : SingletonMonoBehaviour<MapController>
             Debug.Log("MapController:mapName is not exist:"+mapName);
             return;
         }
-
         DestoryMap();
         _nowMapObject = CreatMapObject(data).GetComponent<MapData_mono>();
-        _nowMapObject.SetPlayerPos();
+        _nowMapObject.SetPlayerPos(_beforeMapName);
     }
 
     GameObject CreatMapObject(MapDataBase.MapData data)
@@ -72,11 +72,12 @@ public class MapController : SingletonMonoBehaviour<MapController>
     void DestoryMap()
     {
         if (_nowMapObject == null) return;
-        Destroy(_nowMapObject);
+        Destroy(_nowMapObject.gameObject);
     }
 
     public void ChengeMap(string mapName)
     {
+        _beforeMapName = _nextMapName;
         _nextMapName = mapName;
         _mapChengeNow = true;
     }

@@ -63,7 +63,7 @@ public class TextData : CodeData
 
     public TextData(TextCovertedData code)
     {
-        name = code._head;
+        name = code._data;
         data = code._text;
     }
 
@@ -103,8 +103,15 @@ public class FlagCode : CodeData
 
         for (int i = 1; i < texts.Length; i++)
         {
-            var text = texts[i].Split(' ');
-            result.Add(text[0], int.Parse(text[1]));
+            try
+            {
+                var text = texts[i].Split(' ');
+                result.Add(text[0], int.Parse(text[1]));
+            }
+            catch (System.IndexOutOfRangeException)
+            {
+
+            }
         }
         return result;
     }
@@ -175,12 +182,12 @@ public class MapCode : CodeData
 
     public override void CodeAction()
     {
-        Debug.Log(mapName);
         MapController.Instance.ChengeMap(mapName);
     }
 
     public override bool IsEndCode()
     {
+
         return !MapController.Instance._mapChengeNow;
     }
 }
@@ -277,7 +284,7 @@ public class ImageCode : CodeData
             var d = data._data.Split(',');
             setName = d[0];
             number = int.Parse(d[1]);
-            imagePos = GetImagePos(data._text);
+            imagePos = GetImagePos(data._text.Trim());
         }
     }
 
