@@ -1,0 +1,22 @@
+{
+    "saveList": [
+        {
+            "_serchId": "t1",
+            "_memberSet_st": {
+                
+            },
+            "_memberSet_int": {
+                "flagNum": 0
+            }
+        },
+        {
+            "_serchId": "t2",
+            "_memberSet_st": {
+                
+            },
+            "_memberSet_int": {
+                "flagNum": 0
+            }
+        }
+    ]
+}

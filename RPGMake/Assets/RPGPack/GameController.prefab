@@ -1,0 +1,386 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &449800203706299988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 449800203706299995}
+  - component: {fileID: 449800203706299994}
+  - component: {fileID: 449800203706299989}
+  - component: {fileID: 449800203706299993}
+  - component: {fileID: 449800203706299992}
+  - component: {fileID: 704945695}
+  - component: {fileID: 704945690}
+  - component: {fileID: 704945691}
+  - component: {fileID: 704945692}
+  - component: {fileID: 704945693}
+  - component: {fileID: 704945694}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &449800203706299995
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449800203706299988}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &449800203706299994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449800203706299988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141c0749c20069f44b942c981c2dd50b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstEvent: {fileID: 0}
+--- !u!114 &449800203706299989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449800203706299988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152b1df6b052cc24d8ef2be01d2d29fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &449800203706299993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449800203706299988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06e727180c67abc4bbfb74b591625167, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textDisplayer: {fileID: 449800203706299992}
+  _branchDisplayer: {fileID: 704945691}
+  _spriteCanvas: {fileID: 0}
+  _readStop: 0
+--- !u!114 &449800203706299992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449800203706299988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41edb7e0a3814b4429231ee0288005d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _displayTextArea: {fileID: 0}
+  _textPanel: {fileID: 0}
+  charWaitTime: 0.05
+--- !u!82 &704945695
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449800203706299988}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &704945690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449800203706299988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035a80922c9140848b94e5681577673c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mapChenger:
+    _mapData: {fileID: 11400000, guid: 6ae11170e01ec6a46b956e1a92418af2, type: 2}
+  testMapName: 
+--- !u!114 &704945691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449800203706299988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959589ef482a6d84ba504e3f1ce8de31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectButtonParent: {fileID: 0}
+  selectButtonPrefab: {fileID: 4551018998337200306, guid: 8347dd03d8e3e7c49bbc092b105c09a8,
+    type: 3}
+  selectedData: 
+  testSelect: 
+--- !u!114 &704945692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449800203706299988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b86735cef27184cb0813f46b27691d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flagRegistar: {fileID: 11400000, guid: b8fa027704d43084d874e3276f286247, type: 2}
+  itemRegistar: {fileID: 11400000, guid: 0facdc0ea0c4dfe459f4c2cf6bda2d3d, type: 2}
+  processSaveData:
+    nowProcess: 0
+  flagSaveData:
+  - _flagName: doorQuestion1
+    _flagCount: 0
+  - _flagName: doorQuestion2
+    _flagCount: 0
+  - _flagName: doorOpen
+    _flagCount: 0
+  - _flagName: readDiary1
+    _flagCount: 0
+  - _flagName: readDiary2
+    _flagCount: 0
+  - _flagName: readDiary3
+    _flagCount: 0
+  - _flagName: readDiary4
+    _flagCount: 0
+  - _flagName: readDiaryAll
+    _flagCount: 0
+  - _flagName: normalFlag
+    _flagCount: 0
+  - _flagName: goodFlag
+    _flagCount: 0
+  itemSaveData:
+  - itemKey: benkyo
+    itemName: "\u52C9\u5F37\u306E\u8A18\u61B6"
+    haveCount: 0
+    itemLimit: 1
+    itemExplanation: "\r\u653E\u8AB2\u5F8C\u306F\u4E00\u7DD2\u306B\u52C9\u5F37\u3092\u3057\u305F"
+  - itemKey: kega
+    itemName: "\u3051\u304C\u306E\u8A18\u61B6"
+    haveCount: 0
+    itemLimit: 1
+    itemExplanation: "\r\u4F53\u80B2\u306E\u6642\u9593\u306B\u3051\u304C\u3092\u3057\u305F\u5F7C\u5973\u3092\u904B\u3093\u3060"
+  - itemKey: suki
+    itemName: "\u597D\u304D\u306A\u4EBA\u306E\u8A18\u61B6"
+    haveCount: 0
+    itemLimit: 1
+    itemExplanation: "\r\u5065\u541B\u306E\u3053\u3068\u304C\u597D\u304D\u3060\u3068\u805E\u3053\u3048\u3066\u3057\u307E\u3063\u305F"
+  - itemKey: prace
+    itemName: "\u544A\u767D\u5834\u6240\u306E\u8A18\u61B6"
+    haveCount: 0
+    itemLimit: 1
+    itemExplanation: "\u653E\u8AB2\u5F8C\u306E\u6559\u5BA4\u3067\u544A\u767D\u3057\u305F"
+  - itemKey: lanch
+    itemName: "\u663C\u98DF\u306E\u8A18\u61B6"
+    haveCount: 0
+    itemLimit: 1
+    itemExplanation: "\u4E00\u7DD2\u306B\u5F01\u5F53\u3092\u98DF\u3079\u3066\u3044\u305F"
+  - itemKey: library
+    itemName: "\u56F3\u66F8\u9928\u306E\u8A18\u61B6"
+    haveCount: 0
+    itemLimit: 1
+    itemExplanation: "\u56F3\u66F8\u59D4\u54E1\u306E\u5F7C\u5973\u306B\u58F0\u3092\u304B\u3051\u305F"
+  - itemKey: lookme
+    itemName: "\u8996\u7DDA\u306E\u8A18\u61B6"
+    haveCount: 0
+    itemLimit: 1
+    itemExplanation: "\u5F7C\u5973\u306F\u7AEF\u3063\u3053\u306E\u5E2D\u3067\u3044\u3064\u3082\u3053\u3063\u3061\u3092\u898B\u3066\u3044\u305F\n\u5C11\u3057\u6016\u304B\u3063\u305F"
+  - itemKey: letter
+    itemName: "\u624B\u7D19\u306E\u8A18\u61B6"
+    haveCount: 0
+    itemLimit: 1
+    itemExplanation: "\u5F7C\u5973\u304B\u3089\u5927\u91CF\u306E\u30E9\u30D6\u30EC\u30BF\u30FC\u3092\u3082\u3089\u3063\u305F\n\u6C17\u6301\u3061\u60AA\u304B\u3063\u305F"
+  - itemKey: rest
+    itemName: "\u4F11\u61A9\u306E\u8A18\u61B6"
+    haveCount: 0
+    itemLimit: 1
+    itemExplanation: "\r\u4F53\u8ABF\u304C\u60AA\u304F\u3066\u4F11\u3093\u3067\u3044\u305F\u3089\u4F11\u61A9\u6642\u9593\u306B\u898B\u306B\u6765\u3066\u304F\u308C\u305F"
+  - itemKey: book
+    itemName: "\u672C\u306E\u8A18\u61B6"
+    haveCount: 0
+    itemLimit: 1
+    itemExplanation: "\u5F7C\u5973\u306F\u3044\u3064\u3082\u4E00\u4EBA\u3067\u672C\u3092\u8AAD\u3093\u3067\u3044\u305F\n"
+  - itemKey: soudan
+    itemName: "\u76F8\u8AC7\u306E\u8A18\u61B6"
+    haveCount: 0
+    itemLimit: 1
+    itemExplanation: "\r\u5F7C\u5973\u306F\u4FDD\u5065\u5BA4\u306E\u5148\u751F\u306B\u4F55\u304B\u3092\u76F8\u8AC7\u3057\u3066\u3044\u305F"
+  - itemKey: diarymemory_reasonTakeru
+    itemName: "\u65E5\u8A18\u306E\u8A18\u61B63"
+    haveCount: 0
+    itemLimit: 1
+    itemExplanation: "\u4EAC\u5B50\u306E\u65E5\u8A18\u306B\u66F8\u3044\u3066\u3042\u3063\u305F\u3053\u3068\n\r\u81EA\u5206\u306F\u4EAC\u5B50\u306E\u660E\u308B\u3044\u6027\u683C\u304C\u597D\u304D\u3060"
+  - itemKey: diarymemory_reasonKyoko
+    itemName: "\u65E5\u8A18\u306E\u8A18\u61B64"
+    haveCount: 0
+    itemLimit: 1
+    itemExplanation: "\u4EAC\u5B50\u306E\u65E5\u8A18\u306B\u66F8\u3044\u3066\u3042\u3063\u305F\u3053\u3068\n\r\u4EAC\u5B50\u306F\u81EA\u5206\u306E\u512A\u3057\u3044\u6027\u683C\u304C\u597D\u304D\u3060"
+  - itemKey: diarymemory_happy
+    itemName: "\u65E5\u8A18\u306E\u8A18\u61B61"
+    haveCount: 0
+    itemLimit: 1
+    itemExplanation: "\u4EAC\u5B50\u306E\u65E5\u8A18\u306B\u66F8\u3044\u3066\u3042\u3063\u305F\u3053\u3068\n\r\u4EAC\u5B50\u306F\u544A\u767D\u3055\u308C\u305F\u3068\u304D\u3046\u308C\u3057\u304B\u3063\u305F"
+  - itemKey: diarymemory_soccer
+    itemName: "\u65E5\u8A18\u306E\u8A18\u61B62"
+    haveCount: 0
+    itemLimit: 1
+    itemExplanation: "\u4EAC\u5B50\u306E\u65E5\u8A18\u306B\u66F8\u3044\u3066\u3042\u3063\u305F\u3053\u3068\n\r\u4EAC\u5B50\u306F\u5065\u304C\u30B5\u30C3\u30AB\u30FC\u3092\u3057\u3066\u3044\u308B\u306E\u3092\u898B\u5B66\u3057\u305F"
+  _maxItemCount: 5
+  _overItemAction:
+    m_PersistentCalls:
+      m_Calls: []
+  overItemData: {fileID: 11400000, guid: 36b0d96cc1641ce43b0729e6d25b13af, type: 2}
+  phoneCanvas: {fileID: 0}
+--- !u!114 &704945693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449800203706299988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fabf524a6f1aed46949df74bc50018f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _autoSetMode: 1
+  _flagSetList:
+  - flagTerm: {fileID: 11400000, guid: 6117b1e8d2aaca446bfd396ffdd42f25, type: 2}
+    TargetflagName: doorQuestion1
+  - flagTerm: {fileID: 11400000, guid: e87fa04f9ccfe874fb9ebf873f34a6f6, type: 2}
+    TargetflagName: doorQuestion2
+  - flagTerm: {fileID: 11400000, guid: a9c73e034e4317b4299f9eb283b11aad, type: 2}
+    TargetflagName: readDiaryAll
+  - flagTerm: {fileID: 11400000, guid: 2371e3943b770fa4ba0572299847945b, type: 2}
+    TargetflagName: goodFlag
+  - flagTerm: {fileID: 11400000, guid: 8d11304454c8da743b4c1a84c4c15697, type: 2}
+    TargetflagName: normalFlag
+--- !u!114 &704945694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449800203706299988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fc65af85f88f114294c35808c8d9a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data: {fileID: 11400000, guid: da1b250ba109b9c468813d44a7b4177b, type: 2}
+  _se: {fileID: 11400000, guid: 26813c1caf03e470f99b4eafc81eef9d, type: 2}
+  source: {fileID: 704945695}
+  _fadeTime: 1
+  _testKey: 

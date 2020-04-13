@@ -1,0 +1,26 @@
+{
+    "saveList": [
+        {
+            "_serchId": "test1",
+            "_memberSet_st": {
+                "displayName": "default",
+                "explanation": "default"
+            },
+            "_memberSet_int": {
+                "maxNum": 0,
+                "haveNum": 0
+            }
+        },
+        {
+            "_serchId": "test2",
+            "_memberSet_st": {
+                "displayName": "default",
+                "explanation": "default"
+            },
+            "_memberSet_int": {
+                "maxNum": 0,
+                "haveNum": 0
+            }
+        }
+    ]
+}
