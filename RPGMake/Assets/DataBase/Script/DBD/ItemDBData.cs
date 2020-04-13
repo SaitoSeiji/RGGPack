@@ -43,7 +43,7 @@ public class ItemDBData : AbstractDBData
     }
 
 
-    public override void CheckValueCorrect(DBData data)
+    public override void DataUpdateAction(DBData data)
     {
         var maxNum = data._memberSet_int["maxNum"];
         var haveNum = data._memberSet_int["haveNum"];

@@ -94,7 +94,7 @@ public abstract class AbstractDBData : ScriptableObject
     }
 
     //マイナスになってはいけないデータの確認など
-    public virtual void CheckValueCorrect(DBData data)
+    public virtual void DataUpdateAction(DBData data)
     {
 
     }
