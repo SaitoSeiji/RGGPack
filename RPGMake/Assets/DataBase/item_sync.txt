@@ -1,0 +1,6 @@
+id test1
+	displayName default
+	explanation default
+	maxNum 0
+	haveNum 0
+end
