@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(
-  fileName = "FlagDBD",
-  menuName = "DataBases/Data/FlagData",
-  order = 0)
-]
+[CreateAssetMenu(fileName = "FlagDBD",menuName = "DataBases/Data/FlagData",order = 0)]
 public class FlagDBData : AbstractDBData
 {
     protected override Dictionary<string, string> InitMember_st()

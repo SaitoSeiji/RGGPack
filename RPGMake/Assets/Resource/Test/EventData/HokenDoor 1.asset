@@ -10,25 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1137b94782ead1546b627a40848cc0b7, type: 3}
-  m_Name: TestBranch
+  m_Name: HokenDoor 1
   m_EditorClassIdentifier: 
   _codeData:
-    _text: '$#branch
-
-      a
-
-      b'
+    _text: "$\n\u79FB\u52D5\u3057\u3088\u3046\uFF01\n$#branch\n\u79FB\u52D5\u3059\u308B\n\u3084\u3063\u3071\u3084\u3081\u308B"
     _nextEventCode: {fileID: 0}
     coalTerm:
       _termList: []
       _orMode: 0
   _branchCodeList:
-  - _text: a
-    _nextEventCode: {fileID: 11400000, guid: 7b08bc867480013458ac747980c1f4a4, type: 2}
+  - _text: '#map[hoken1]'
+    _nextEventCode: {fileID: 0}
     coalTerm:
       _termList: []
       _orMode: 0
-  - _text: b
+  - _text: 
     _nextEventCode: {fileID: 0}
     coalTerm:
       _termList: []

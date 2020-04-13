@@ -28,6 +28,6 @@ public class EventController : SingletonMonoBehaviour<EventController>
 
     public bool GetReadNow()
     {
-        return EventCodeReadController.getIsReadNow;
+        return EventCodeReadController._getIsReadNow;
     }
 }

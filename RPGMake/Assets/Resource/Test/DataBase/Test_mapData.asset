@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 776b6b8e9da0b6f4fa4fa01b20b22322, type: 3}
+  m_Name: Test_mapData
+  m_EditorClassIdentifier: 
+  mapDataList:
+  - _mapName: hoken1
+    _mapObject: {fileID: 1901663832047763859, guid: dcff73e8f05c7124e80a9c748cff15b1,
+      type: 3}
+  - _mapName: hoken2
+    _mapObject: {fileID: 1901663832047763859, guid: dda578a11dfc23a46a60baa3028cb0ff,
+      type: 3}

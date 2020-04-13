@@ -10,34 +10,48 @@ public abstract class CodeData
     public abstract void CodeAction();
     public abstract bool IsEndCode();
 
-    public CodeData CreateCodeData(TextCovertedData data, EventCodeScriptable scr)
+    public static CodeData CreateCodeData(TextCovertedData data, EventCodeScriptable scr)
     {
         if (data == null) return new EndCode();
-        _targetScr = scr;
+        CodeData result = null;
         switch (data._head)
         {
             case "flag"://flag[flagName] 5
-                return new FlagCode(data);
+                result= new FlagCode(data);
+                break;
             case "map"://map[mapName]
-                return new MapCode(data);
+                result = new MapCode(data);
+                break;
             case "item"://item[itemName] 1
-                return new ItemCode(data);
+                result = new ItemCode(data);
+                break;
             case "wait"://wait[500]
-                return new WaitCode(data);
+                result = new WaitCode(data);
+                break;
             case "image"://image[setName,num] back (center)
-                return new ImageCode(data);
+                result = new ImageCode(data);
+                break;
             case "load"://load[black] 500
-                return new LoadCode(data);
+                result = new LoadCode(data);
+                break;
             case "music"://music[0]
-                return new AudioCode(data);
+                result = new AudioCode(data);
+                break;
             case "":
             case "name":
-                return new TextData(data);
+                result = new TextData(data);
+                break;
             case "branch":
-                return new BranchCode(data);
+                result = new BranchCode(data);
+                break;
+            case "empty":
+                result = new EndCode();
+                break;
             default:
                 return null;
         }
+        result._targetScr = scr;
+        return result;
     }
 }
 
@@ -139,7 +153,7 @@ public class BranchCode : CodeData
     {
         if (BranchDisplayer.Instance.CheckIsSelected())
         {
-            _targetScr.SetFlashData("select", BranchDisplayer.Instance._SelectedData.ToString());
+            _targetScr._codeData.SetFlashData("select", BranchDisplayer.Instance._SelectedData.ToString());
             BranchDisplayer.Instance.EndBranch();
             return true;
         }
@@ -167,7 +181,7 @@ public class MapCode : CodeData
 
     public override bool IsEndCode()
     {
-        throw new System.NotImplementedException();
+        return !MapController.Instance._mapChengeNow;
     }
 }
 
@@ -418,7 +432,7 @@ public class EndCode : CodeData
 public class EventCodeReadController : SingletonMonoBehaviour<EventCodeReadController>
 {
     static bool _readNow = false;
-    public static bool getIsReadNow { get { return _readNow; } }
+    public static bool _getIsReadNow { get { return _readNow; } }
     Queue<CodeData> _codeList = new Queue<CodeData>();
     CodeData _nowCodeData;
     EventCodeScriptable _nowScriptable;
@@ -446,7 +460,7 @@ public class EventCodeReadController : SingletonMonoBehaviour<EventCodeReadContr
                 else//nextEVがなければ終了
                 {
                     var next= _nowScriptable.GetNextCode();
-                    if (next == null)
+                    if (next == null||string.IsNullOrEmpty( next.GetData()))
                     {
                         EndEvent();
                     }
@@ -464,11 +478,16 @@ public class EventCodeReadController : SingletonMonoBehaviour<EventCodeReadContr
 
     public void SetEventData(EventCodeScriptable data)
     {
+        if (data == null)
+        {
+            Debug.Log("SetEventData: data is null");
+            return;
+        }
         _nowScriptable = data;
         var dataList= TextConverter.Convert(data.GetData());
         foreach(var d in dataList)
         {
-            _codeList.Enqueue(new EndCode().CreateCodeData(d,data));
+            _codeList.Enqueue(CodeData.CreateCodeData(d,data));
         }
     }
     
