@@ -42,14 +42,15 @@ public abstract class AbstractDB : ScriptableObject
         return result;
     }
     
-    public void CheckDataCorrect(DBData dbData)
+    //今のところデータの変更が行われたときに呼ばれる
+    public void DataUpdateAction(DBData dbData)
     {
         var list = GetDataList();
         foreach(var data in list)
         {
             if (data._Data._serchId == dbData._serchId)
             {
-                data.CheckValueCorrect(dbData);
+                data.DataUpdateAction(dbData);
                 break;
             }
         }
