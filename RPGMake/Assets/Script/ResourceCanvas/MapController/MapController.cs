@@ -6,7 +6,7 @@ using System.Linq;
 public class MapController : SingletonMonoBehaviour<MapController>
 {
     [SerializeField] MapDataBase _mapData;
-    GameObject _nowMapObject;
+    MapData_mono _nowMapObject;
     LoadCanvas _loadCanvas;
 
     string _nextMapName;
@@ -59,7 +59,8 @@ public class MapController : SingletonMonoBehaviour<MapController>
         }
 
         DestoryMap();
-        _nowMapObject = CreatMapObject(data);
+        _nowMapObject = CreatMapObject(data).GetComponent<MapData_mono>();
+        _nowMapObject.SetPlayerPos();
     }
 
     GameObject CreatMapObject(MapDataBase.MapData data)

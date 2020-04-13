@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class MapData_mono : MonoBehaviour
 {
-    public Transform _firstPos;
-    public Vector2 _firstDirection;
+    [SerializeField] Transform _firstPos;
+    [SerializeField] Player.DIRECTION _firstDirection;
+
+    public void SetPlayerPos()
+    {
+        Player.Instance.SetPosition(_firstPos.position, _firstDirection);
+    }
 }

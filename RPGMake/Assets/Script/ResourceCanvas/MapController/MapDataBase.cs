@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "MyGame/Create MapDataBase", fileName = "MapDataBase")]
+[CreateAssetMenu(menuName = "DataBases/DataBase/Create MapDataBase", fileName = "MapDataBase")]
 public class MapDataBase : ScriptableObject
 {
     [System.Serializable]

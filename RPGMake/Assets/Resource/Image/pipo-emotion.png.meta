@@ -1,0 +1,8047 @@
+fileFormatVersion: 2
+guid: efe4411c929ef1649ae60df8c1d5fa53
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6155997769173100304
+    second: pipo-emotion_0
+  - first:
+      213: -1963588985985309013
+    second: pipo-emotion_1
+  - first:
+      213: -1193710742537364058
+    second: pipo-emotion_2
+  - first:
+      213: 6591516410726297426
+    second: pipo-emotion_3
+  - first:
+      213: 4481518419135603140
+    second: pipo-emotion_4
+  - first:
+      213: 1726572677118631723
+    second: pipo-emotion_5
+  - first:
+      213: 5463640080657106034
+    second: pipo-emotion_6
+  - first:
+      213: -989258292181973498
+    second: pipo-emotion_7
+  - first:
+      213: -1033184812352424153
+    second: pipo-emotion_8
+  - first:
+      213: -2206149168335772383
+    second: pipo-emotion_9
+  - first:
+      213: 1031112761426782759
+    second: pipo-emotion_10
+  - first:
+      213: -6230322104562625285
+    second: pipo-emotion_11
+  - first:
+      213: 6364230247519335522
+    second: pipo-emotion_12
+  - first:
+      213: -541433843067420460
+    second: pipo-emotion_13
+  - first:
+      213: 8755554519538810171
+    second: pipo-emotion_14
+  - first:
+      213: 947879371193781249
+    second: pipo-emotion_15
+  - first:
+      213: 4000661884017646320
+    second: pipo-emotion_16
+  - first:
+      213: -214154687393926026
+    second: pipo-emotion_17
+  - first:
+      213: 2694045605762039426
+    second: pipo-emotion_18
+  - first:
+      213: 6507667314286467243
+    second: pipo-emotion_19
+  - first:
+      213: -1287169561382566591
+    second: pipo-emotion_20
+  - first:
+      213: 5252532089725406865
+    second: pipo-emotion_21
+  - first:
+      213: 7001849137976693632
+    second: pipo-emotion_22
+  - first:
+      213: 4162955706481447197
+    second: pipo-emotion_23
+  - first:
+      213: -1799032195391319532
+    second: pipo-emotion_24
+  - first:
+      213: 5330919867250572550
+    second: pipo-emotion_25
+  - first:
+      213: 2585868783372055719
+    second: pipo-emotion_26
+  - first:
+      213: -7278298091848153596
+    second: pipo-emotion_27
+  - first:
+      213: 2288286739977056652
+    second: pipo-emotion_28
+  - first:
+      213: -5364979394733237313
+    second: pipo-emotion_29
+  - first:
+      213: 5068176325511859520
+    second: pipo-emotion_30
+  - first:
+      213: -4706810909626108295
+    second: pipo-emotion_31
+  - first:
+      213: 3895217370077504130
+    second: pipo-emotion_32
+  - first:
+      213: -4045633283545255992
+    second: pipo-emotion_33
+  - first:
+      213: 521607875455108956
+    second: pipo-emotion_34
+  - first:
+      213: 3157200043875338823
+    second: pipo-emotion_35
+  - first:
+      213: 9136916097846503452
+    second: pipo-emotion_36
+  - first:
+      213: -3670326585695024685
+    second: pipo-emotion_37
+  - first:
+      213: 2053172648877767290
+    second: pipo-emotion_38
+  - first:
+      213: -6333980489237942303
+    second: pipo-emotion_39
+  - first:
+      213: 3872927764110143554
+    second: pipo-emotion_40
+  - first:
+      213: -2875317024944666694
+    second: pipo-emotion_41
+  - first:
+      213: -4863069131943002901
+    second: pipo-emotion_42
+  - first:
+      213: -1060911603883595394
+    second: pipo-emotion_43
+  - first:
+      213: -6618475569340575982
+    second: pipo-emotion_44
+  - first:
+      213: 9199633891361390500
+    second: pipo-emotion_45
+  - first:
+      213: -3199063222654417608
+    second: pipo-emotion_46
+  - first:
+      213: -4749773300220821054
+    second: pipo-emotion_47
+  - first:
+      213: -3552103424088108149
+    second: pipo-emotion_48
+  - first:
+      213: -8927882588091850840
+    second: pipo-emotion_49
+  - first:
+      213: 1932588533664442239
+    second: pipo-emotion_50
+  - first:
+      213: 3470703311056153200
+    second: pipo-emotion_51
+  - first:
+      213: 4401945717614600835
+    second: pipo-emotion_52
+  - first:
+      213: 3949482337969860826
+    second: pipo-emotion_53
+  - first:
+      213: 765895307710206612
+    second: pipo-emotion_54
+  - first:
+      213: -7603136759428238603
+    second: pipo-emotion_55
+  - first:
+      213: 9019438581205034161
+    second: pipo-emotion_56
+  - first:
+      213: 2018651163297930831
+    second: pipo-emotion_57
+  - first:
+      213: -6436156068256701535
+    second: pipo-emotion_58
+  - first:
+      213: -1670117430930975874
+    second: pipo-emotion_59
+  - first:
+      213: 3456401945044663621
+    second: pipo-emotion_60
+  - first:
+      213: 8247332137402154020
+    second: pipo-emotion_61
+  - first:
+      213: 571173222631742744
+    second: pipo-emotion_62
+  - first:
+      213: 6398400293912015375
+    second: pipo-emotion_63
+  - first:
+      213: 6212099267732730495
+    second: pipo-emotion_64
+  - first:
+      213: 2296252020630180515
+    second: pipo-emotion_65
+  - first:
+      213: 4864515396885190828
+    second: pipo-emotion_66
+  - first:
+      213: 8553757571178387247
+    second: pipo-emotion_67
+  - first:
+      213: -8455904107403548477
+    second: pipo-emotion_68
+  - first:
+      213: -702299592880222512
+    second: pipo-emotion_69
+  - first:
+      213: 54383449620066919
+    second: pipo-emotion_70
+  - first:
+      213: 3904596408411983386
+    second: pipo-emotion_71
+  - first:
+      213: 8117247178485372632
+    second: pipo-emotion_72
+  - first:
+      213: 931471324152108253
+    second: pipo-emotion_73
+  - first:
+      213: -5303529607941876832
+    second: pipo-emotion_74
+  - first:
+      213: 2097946122409984170
+    second: pipo-emotion_75
+  - first:
+      213: -6491110129347744660
+    second: pipo-emotion_76
+  - first:
+      213: -2359723066783371463
+    second: pipo-emotion_77
+  - first:
+      213: 3100548444792212472
+    second: pipo-emotion_78
+  - first:
+      213: 3988749838624416375
+    second: pipo-emotion_79
+  - first:
+      213: -8743160319950017128
+    second: pipo-emotion_80
+  - first:
+      213: 2572740618800611003
+    second: pipo-emotion_81
+  - first:
+      213: -2935385713444008190
+    second: pipo-emotion_82
+  - first:
+      213: 8409530165144752316
+    second: pipo-emotion_83
+  - first:
+      213: -3060993421556033906
+    second: pipo-emotion_84
+  - first:
+      213: -8042199382148428935
+    second: pipo-emotion_85
+  - first:
+      213: 2984087845490636480
+    second: pipo-emotion_86
+  - first:
+      213: -2062432067374055237
+    second: pipo-emotion_87
+  - first:
+      213: 1162913737315972169
+    second: pipo-emotion_88
+  - first:
+      213: 2625730432478878688
+    second: pipo-emotion_89
+  - first:
+      213: 8967506014601259032
+    second: pipo-emotion_90
+  - first:
+      213: 2972165351870821607
+    second: pipo-emotion_91
+  - first:
+      213: 6655263341555768915
+    second: pipo-emotion_92
+  - first:
+      213: 4701822546525431100
+    second: pipo-emotion_93
+  - first:
+      213: 7476405521051828181
+    second: pipo-emotion_94
+  - first:
+      213: 4839167470025949487
+    second: pipo-emotion_95
+  - first:
+      213: 4160771093706360541
+    second: pipo-emotion_96
+  - first:
+      213: 6579029343715583816
+    second: pipo-emotion_97
+  - first:
+      213: 7456240277014171618
+    second: pipo-emotion_98
+  - first:
+      213: -7686722013445435553
+    second: pipo-emotion_99
+  - first:
+      213: 7558060062507365547
+    second: pipo-emotion_100
+  - first:
+      213: -6603178931616563047
+    second: pipo-emotion_101
+  - first:
+      213: -8698183016875350941
+    second: pipo-emotion_102
+  - first:
+      213: 1115907116693319000
+    second: pipo-emotion_103
+  - first:
+      213: -8213421171997588508
+    second: pipo-emotion_104
+  - first:
+      213: -5650434894004813804
+    second: pipo-emotion_105
+  - first:
+      213: -3677946171492269815
+    second: pipo-emotion_106
+  - first:
+      213: 4692208600762406606
+    second: pipo-emotion_107
+  - first:
+      213: -8269964827755900032
+    second: pipo-emotion_108
+  - first:
+      213: 2311836277617250998
+    second: pipo-emotion_109
+  - first:
+      213: -6979410271361152544
+    second: pipo-emotion_110
+  - first:
+      213: -2407427219732580268
+    second: pipo-emotion_111
+  - first:
+      213: 4343743124514057940
+    second: pipo-emotion_112
+  - first:
+      213: 5065213809024391063
+    second: pipo-emotion_113
+  - first:
+      213: 6401426435352214881
+    second: pipo-emotion_114
+  - first:
+      213: -7398733616782248963
+    second: pipo-emotion_115
+  - first:
+      213: 2716009102763005325
+    second: pipo-emotion_116
+  - first:
+      213: 7309606176990598450
+    second: pipo-emotion_117
+  - first:
+      213: 6990464380417647698
+    second: pipo-emotion_118
+  - first:
+      213: 5759546591802495132
+    second: pipo-emotion_119
+  - first:
+      213: -1951429069176950295
+    second: pipo-emotion_120
+  - first:
+      213: -5976505438767894573
+    second: pipo-emotion_121
+  - first:
+      213: -1736616567616191148
+    second: pipo-emotion_122
+  - first:
+      213: 6621579840995132534
+    second: pipo-emotion_123
+  - first:
+      213: -7398886345229418013
+    second: pipo-emotion_124
+  - first:
+      213: -3033868641444522735
+    second: pipo-emotion_125
+  - first:
+      213: -4670246635983157431
+    second: pipo-emotion_126
+  - first:
+      213: -4236336655580021559
+    second: pipo-emotion_127
+  - first:
+      213: -1292711036635400758
+    second: pipo-emotion_128
+  - first:
+      213: -6450312344924040500
+    second: pipo-emotion_129
+  - first:
+      213: -233637509646683092
+    second: pipo-emotion_130
+  - first:
+      213: 8497036353239826104
+    second: pipo-emotion_131
+  - first:
+      213: 4483993176165035259
+    second: pipo-emotion_132
+  - first:
+      213: -4925675021224701002
+    second: pipo-emotion_133
+  - first:
+      213: 4602951247750893041
+    second: pipo-emotion_134
+  - first:
+      213: 1027046025298722365
+    second: pipo-emotion_135
+  - first:
+      213: 6811253304840451882
+    second: pipo-emotion_136
+  - first:
+      213: -5291724180014978824
+    second: pipo-emotion_137
+  - first:
+      213: 792239018029089827
+    second: pipo-emotion_138
+  - first:
+      213: 2972396554744679433
+    second: pipo-emotion_139
+  - first:
+      213: -5510851214833986730
+    second: pipo-emotion_140
+  - first:
+      213: 5193324110778436066
+    second: pipo-emotion_141
+  - first:
+      213: -4175681433721109466
+    second: pipo-emotion_142
+  - first:
+      213: -2398238345143797500
+    second: pipo-emotion_143
+  - first:
+      213: 516781193544357298
+    second: pipo-emotion_144
+  - first:
+      213: 6857186810067913939
+    second: pipo-emotion_145
+  - first:
+      213: 4029948914303569957
+    second: pipo-emotion_146
+  - first:
+      213: 2732286101284287133
+    second: pipo-emotion_147
+  - first:
+      213: -934231927857021772
+    second: pipo-emotion_148
+  - first:
+      213: -781531440445995047
+    second: pipo-emotion_149
+  - first:
+      213: -7083436386960941361
+    second: pipo-emotion_150
+  - first:
+      213: 6945112840997833593
+    second: pipo-emotion_151
+  - first:
+      213: 25092420743742952
+    second: pipo-emotion_152
+  - first:
+      213: -3370744376371568864
+    second: pipo-emotion_153
+  - first:
+      213: 6738381469204847582
+    second: pipo-emotion_154
+  - first:
+      213: -5203155184082573750
+    second: pipo-emotion_155
+  - first:
+      213: 3792271702172416334
+    second: pipo-emotion_156
+  - first:
+      213: -6225424747557520441
+    second: pipo-emotion_157
+  - first:
+      213: 5097055415498471623
+    second: pipo-emotion_158
+  - first:
+      213: 8319646825200580450
+    second: pipo-emotion_159
+  - first:
+      213: 550424244042597900
+    second: pipo-emotion_160
+  - first:
+      213: -7256037477463013468
+    second: pipo-emotion_161
+  - first:
+      213: -159290912524302550
+    second: pipo-emotion_162
+  - first:
+      213: -1431047206679613756
+    second: pipo-emotion_163
+  - first:
+      213: 5248942353150057992
+    second: pipo-emotion_164
+  - first:
+      213: -8497138882056829816
+    second: pipo-emotion_165
+  - first:
+      213: -4560317190167665013
+    second: pipo-emotion_166
+  - first:
+      213: -6330267933485889896
+    second: pipo-emotion_167
+  - first:
+      213: 2936462018963485358
+    second: pipo-emotion_168
+  - first:
+      213: 3926578041935496355
+    second: pipo-emotion_169
+  - first:
+      213: 1908671238772310712
+    second: pipo-emotion_170
+  - first:
+      213: -4097991507307095051
+    second: pipo-emotion_171
+  - first:
+      213: 2310568598577538747
+    second: pipo-emotion_172
+  - first:
+      213: 8158001823736389235
+    second: pipo-emotion_173
+  - first:
+      213: 5704140746312819766
+    second: pipo-emotion_174
+  - first:
+      213: -5552602388516506555
+    second: pipo-emotion_175
+  - first:
+      213: 108708594998166031
+    second: pipo-emotion_176
+  - first:
+      213: -1845770622276099964
+    second: pipo-emotion_177
+  - first:
+      213: 7594574129066313147
+    second: pipo-emotion_178
+  - first:
+      213: 3593803394330212718
+    second: pipo-emotion_179
+  - first:
+      213: -4147169312875199325
+    second: pipo-emotion_180
+  - first:
+      213: -2508153557464128070
+    second: pipo-emotion_181
+  - first:
+      213: 1692307463349565860
+    second: pipo-emotion_182
+  - first:
+      213: 443970787980533487
+    second: pipo-emotion_183
+  - first:
+      213: -7669685440615918459
+    second: pipo-emotion_184
+  - first:
+      213: -4580788060982577493
+    second: pipo-emotion_185
+  - first:
+      213: -6479873607172427948
+    second: pipo-emotion_186
+  - first:
+      213: -242561550118141628
+    second: pipo-emotion_187
+  - first:
+      213: 7004320842780765321
+    second: pipo-emotion_188
+  - first:
+      213: -1211255043411649122
+    second: pipo-emotion_189
+  - first:
+      213: -2503441327944554139
+    second: pipo-emotion_190
+  - first:
+      213: -4043727277208581776
+    second: pipo-emotion_191
+  - first:
+      213: 7815564827498408585
+    second: pipo-emotion_192
+  - first:
+      213: -7497691728794481219
+    second: pipo-emotion_193
+  - first:
+      213: -3020501129602003391
+    second: pipo-emotion_194
+  - first:
+      213: -8058727104435561554
+    second: pipo-emotion_195
+  - first:
+      213: 6369411304355787344
+    second: pipo-emotion_196
+  - first:
+      213: 2426079187191645724
+    second: pipo-emotion_197
+  - first:
+      213: 7204843907399321035
+    second: pipo-emotion_198
+  - first:
+      213: 1719905666058335992
+    second: pipo-emotion_199
+  - first:
+      213: 6922749166046895385
+    second: pipo-emotion_200
+  - first:
+      213: 3545478385731722591
+    second: pipo-emotion_201
+  - first:
+      213: -8021786109289305886
+    second: pipo-emotion_202
+  - first:
+      213: 1923448535015679899
+    second: pipo-emotion_203
+  - first:
+      213: 5325630987996969323
+    second: pipo-emotion_204
+  - first:
+      213: 3195554293086704549
+    second: pipo-emotion_205
+  - first:
+      213: -2719831199090948659
+    second: pipo-emotion_206
+  - first:
+      213: -4473781907641519517
+    second: pipo-emotion_207
+  - first:
+      213: 4079561483983585228
+    second: pipo-emotion_208
+  - first:
+      213: -2315701639094985694
+    second: pipo-emotion_209
+  - first:
+      213: -3397608815863593559
+    second: pipo-emotion_210
+  - first:
+      213: -8358889743508276629
+    second: pipo-emotion_211
+  - first:
+      213: 3213186044386920698
+    second: pipo-emotion_212
+  - first:
+      213: 350105790706865419
+    second: pipo-emotion_213
+  - first:
+      213: 8994064605634829595
+    second: pipo-emotion_214
+  - first:
+      213: 3321513628227636187
+    second: pipo-emotion_215
+  - first:
+      213: -6118962271087495941
+    second: pipo-emotion_216
+  - first:
+      213: -206389049728971043
+    second: pipo-emotion_217
+  - first:
+      213: 4728463551811953251
+    second: pipo-emotion_218
+  - first:
+      213: -384088917011642470
+    second: pipo-emotion_219
+  - first:
+      213: -3693261791251199248
+    second: pipo-emotion_220
+  - first:
+      213: -138308816107454157
+    second: pipo-emotion_221
+  - first:
+      213: -390551002298131980
+    second: pipo-emotion_222
+  - first:
+      213: 3886707717662190713
+    second: pipo-emotion_223
+  - first:
+      213: -2169854750761902400
+    second: pipo-emotion_224
+  - first:
+      213: 1874536987396129371
+    second: pipo-emotion_225
+  - first:
+      213: -6039003277307373606
+    second: pipo-emotion_226
+  - first:
+      213: -5243994104813640727
+    second: pipo-emotion_227
+  - first:
+      213: 3215012490445648574
+    second: pipo-emotion_228
+  - first:
+      213: 3018916388777857117
+    second: pipo-emotion_229
+  - first:
+      213: 6481209460934404241
+    second: pipo-emotion_230
+  - first:
+      213: -3043899049893117438
+    second: pipo-emotion_231
+  - first:
+      213: 8795572259994772648
+    second: pipo-emotion_232
+  - first:
+      213: 2584569022586495888
+    second: pipo-emotion_233
+  - first:
+      213: 3468918589578035216
+    second: pipo-emotion_234
+  - first:
+      213: -8282882433467395990
+    second: pipo-emotion_235
+  - first:
+      213: 1703589759058148824
+    second: pipo-emotion_236
+  - first:
+      213: 2518318322062475047
+    second: pipo-emotion_237
+  - first:
+      213: -5080913682856251103
+    second: pipo-emotion_238
+  - first:
+      213: -2132647873184956900
+    second: pipo-emotion_239
+  - first:
+      213: -7598027799620223243
+    second: pipo-emotion_240
+  - first:
+      213: -3015724615764103447
+    second: pipo-emotion_241
+  - first:
+      213: 6906825695653695440
+    second: pipo-emotion_242
+  - first:
+      213: -7121023016400195935
+    second: pipo-emotion_243
+  - first:
+      213: 7692720005571136825
+    second: pipo-emotion_244
+  - first:
+      213: 880670212708128282
+    second: pipo-emotion_245
+  - first:
+      213: 5958776479312601976
+    second: pipo-emotion_246
+  - first:
+      213: 3543312848873559770
+    second: pipo-emotion_247
+  - first:
+      213: 7363829457446771129
+    second: pipo-emotion_248
+  - first:
+      213: 4083747425157975341
+    second: pipo-emotion_249
+  - first:
+      213: 4311879726685836999
+    second: pipo-emotion_250
+  - first:
+      213: -2994513357798042538
+    second: pipo-emotion_251
+  - first:
+      213: 3153605584331054284
+    second: pipo-emotion_252
+  - first:
+      213: 6722127415338316114
+    second: pipo-emotion_253
+  - first:
+      213: -7971864623886540445
+    second: pipo-emotion_254
+  - first:
+      213: -2667436441094440054
+    second: pipo-emotion_255
+  - first:
+      213: 4562443728091375697
+    second: pipo-emotion_256
+  - first:
+      213: 4848500451550437627
+    second: pipo-emotion_257
+  - first:
+      213: -805635632075747186
+    second: pipo-emotion_258
+  - first:
+      213: 3285166176462976035
+    second: pipo-emotion_259
+  - first:
+      213: 8800302376398843328
+    second: pipo-emotion_260
+  - first:
+      213: 4865995570474757918
+    second: pipo-emotion_261
+  - first:
+      213: 8589856327107911955
+    second: pipo-emotion_262
+  - first:
+      213: 957162600630376695
+    second: pipo-emotion_263
+  - first:
+      213: 3652779471878683074
+    second: pipo-emotion_264
+  - first:
+      213: -437220804055636242
+    second: pipo-emotion_265
+  - first:
+      213: -7770065139084206082
+    second: pipo-emotion_266
+  - first:
+      213: 2210086084385394421
+    second: pipo-emotion_267
+  - first:
+      213: 2515321358817873995
+    second: pipo-emotion_268
+  - first:
+      213: 2654165260868207851
+    second: pipo-emotion_269
+  - first:
+      213: -282750937118841155
+    second: pipo-emotion_270
+  - first:
+      213: 1879802624072404333
+    second: pipo-emotion_271
+  - first:
+      213: 39692531057254866
+    second: pipo-emotion_272
+  - first:
+      213: -4439492995595731454
+    second: pipo-emotion_273
+  - first:
+      213: -2963834658347934137
+    second: pipo-emotion_274
+  - first:
+      213: 3020643509387583106
+    second: pipo-emotion_275
+  - first:
+      213: -7995054150013620316
+    second: pipo-emotion_276
+  - first:
+      213: 2344260247076727196
+    second: pipo-emotion_277
+  - first:
+      213: -2952862270721466088
+    second: pipo-emotion_278
+  - first:
+      213: 6049270874307690825
+    second: pipo-emotion_279
+  - first:
+      213: -1219065732579709540
+    second: pipo-emotion_280
+  - first:
+      213: 8711714951911172298
+    second: pipo-emotion_281
+  - first:
+      213: 3365443797727877704
+    second: pipo-emotion_282
+  - first:
+      213: -4076404206831758220
+    second: pipo-emotion_283
+  - first:
+      213: 5270071948021870603
+    second: pipo-emotion_284
+  - first:
+      213: -6686095859563513827
+    second: pipo-emotion_285
+  - first:
+      213: -4459849085723792564
+    second: pipo-emotion_286
+  - first:
+      213: -3179900418246893079
+    second: pipo-emotion_287
+  - first:
+      213: 2332373436442872164
+    second: pipo-emotion_288
+  - first:
+      213: 7752905745860760854
+    second: pipo-emotion_289
+  - first:
+      213: -9141453253641114841
+    second: pipo-emotion_290
+  - first:
+      213: 8521903358337305635
+    second: pipo-emotion_291
+  - first:
+      213: -6182455222375455430
+    second: pipo-emotion_292
+  - first:
+      213: -924474514004351804
+    second: pipo-emotion_293
+  - first:
+      213: -3593849193857150977
+    second: pipo-emotion_294
+  - first:
+      213: 5510321524400701152
+    second: pipo-emotion_295
+  - first:
+      213: 7968228768097723635
+    second: pipo-emotion_296
+  - first:
+      213: 4625567285528320444
+    second: pipo-emotion_297
+  - first:
+      213: -4230172609233533458
+    second: pipo-emotion_298
+  - first:
+      213: 4141025196563297142
+    second: pipo-emotion_299
+  - first:
+      213: 9208720546508764416
+    second: pipo-emotion_300
+  - first:
+      213: 7636125434609462805
+    second: pipo-emotion_301
+  - first:
+      213: 8325594047595136176
+    second: pipo-emotion_302
+  - first:
+      213: -4281583016111111449
+    second: pipo-emotion_303
+  - first:
+      213: 1622040286999707311
+    second: pipo-emotion_304
+  - first:
+      213: -7463072338257848586
+    second: pipo-emotion_305
+  - first:
+      213: 9188723076931662628
+    second: pipo-emotion_306
+  - first:
+      213: -8577201886968765387
+    second: pipo-emotion_307
+  - first:
+      213: 8640782657703087482
+    second: pipo-emotion_308
+  - first:
+      213: 24600320714225347
+    second: pipo-emotion_309
+  - first:
+      213: -8743652100187578
+    second: pipo-emotion_310
+  - first:
+      213: -5330240868601648808
+    second: pipo-emotion_311
+  - first:
+      213: 6305396793811803326
+    second: pipo-emotion_312
+  - first:
+      213: 3327315521391345566
+    second: pipo-emotion_313
+  - first:
+      213: -7330014822621632899
+    second: pipo-emotion_314
+  - first:
+      213: 9164140637623155049
+    second: pipo-emotion_315
+  - first:
+      213: -801601812406354684
+    second: pipo-emotion_316
+  - first:
+      213: -8203359364024847240
+    second: pipo-emotion_317
+  - first:
+      213: -4612077453188465116
+    second: pipo-emotion_318
+  - first:
+      213: -8856336856188697353
+    second: pipo-emotion_319
+  - first:
+      213: -5272845347991668589
+    second: pipo-emotion_320
+  - first:
+      213: -5560904595964607525
+    second: pipo-emotion_321
+  - first:
+      213: -4198086049362032340
+    second: pipo-emotion_322
+  - first:
+      213: -2814800284328254524
+    second: pipo-emotion_323
+  - first:
+      213: 8739491244734598087
+    second: pipo-emotion_324
+  - first:
+      213: 7351734503299987701
+    second: pipo-emotion_325
+  - first:
+      213: -1445293258924287594
+    second: pipo-emotion_326
+  - first:
+      213: -4782122516338395532
+    second: pipo-emotion_327
+  - first:
+      213: 5512565304142817926
+    second: pipo-emotion_328
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: pipo-emotion_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 257
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b81e9c53ea8ea0743955a1a0aea23cc3
+      internalID: -6155997769173100304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_1
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 256
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1800ba79d76bb6b49b3e427da890ed3c
+      internalID: -1963588985985309013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_2
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 257
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a4bf64e810c79c45bca84593c37dd9a
+      internalID: -1193710742537364058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_3
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 257
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57a8537981270d847940f115394dc296
+      internalID: 6591516410726297426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_4
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 256
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3c9825fb987d2c4bb2f81829135baa2
+      internalID: 4481518419135603140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_5
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 257
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87a34325f178d0f469eab004ddc5706b
+      internalID: 1726572677118631723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_6
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 257
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdb2c871f8bb43c4ebfef64352d65ee1
+      internalID: 5463640080657106034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_7
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 256
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c36053879f132d4bbac7291b87c0dbc
+      internalID: -989258292181973498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_8
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 257
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be8ab83d4b8d58f4f963013efdd0f4c5
+      internalID: -1033184812352424153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_9
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 257
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1654c57101009c4ca26a3493ab17d3d
+      internalID: -2206149168335772383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_10
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 256
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4af62981e0d40e040bbb424ac172a173
+      internalID: 1031112761426782759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_11
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 257
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdce1c5e7ef44924fbed4e8c2bd5c814
+      internalID: -6230322104562625285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_12
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 257
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 184ed7617fbf2f74ba668788d137253d
+      internalID: 6364230247519335522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_13
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 256
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6936d12b916d6a0479f95689024c4639
+      internalID: -541433843067420460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_14
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 257
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a8b39955289497449f7ff3ad45cb20a
+      internalID: 8755554519538810171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_15
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 257
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d28effa866bb67141a751de49ecc9bf0
+      internalID: 947879371193781249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_16
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 256
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2742d7fe243ac794c95727fde7d0cb14
+      internalID: 4000661884017646320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_17
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 257
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9d9779c306a827408380927c11576d2
+      internalID: -214154687393926026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_18
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 257
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48f9acd0cf6b9694ebba7853e826f803
+      internalID: 2694045605762039426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_19
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 256
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab5aaf8ffc47c794fb933bd5ec045136
+      internalID: 6507667314286467243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_20
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 257
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e11eee7e374d6341818574b069f43c6
+      internalID: -1287169561382566591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_21
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 257
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 360a8bae07f8dd74abdd5d074295d478
+      internalID: 5252532089725406865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_22
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 256
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8f6d9dc895d66a4e85820f99430b0e6
+      internalID: 7001849137976693632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_23
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 257
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e41f700f257a414d97713f2aedf9639
+      internalID: 4162955706481447197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_24
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 257
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27587b3fa7558d84d894d06bf9a35e88
+      internalID: -1799032195391319532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_25
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 256
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75b60956c954a8b44b7b2da6d1b0b4b6
+      internalID: 5330919867250572550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_26
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 257
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db447c8ac72e39b45bc57907541909ac
+      internalID: 2585868783372055719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_27
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 257
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 197ab76590960fc4cae70f531511cda9
+      internalID: -7278298091848153596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_28
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 256
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f3282cd50d44fc4aa8300297c1e1ade
+      internalID: 2288286739977056652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_29
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 257
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16c03a71133cf144c8d15897d981ab48
+      internalID: -5364979394733237313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_30
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 225
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf20027363e774c4bad2ceee5a70535c
+      internalID: 5068176325511859520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_31
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 224
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4197642dbd94bb64cb8d3f7b857df5a8
+      internalID: -4706810909626108295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_32
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 225
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08f9b8f74da73584983ff7b7d7d98974
+      internalID: 3895217370077504130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_33
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 225
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcff4d2bbedc3d14d91d4ed1882ec749
+      internalID: -4045633283545255992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_34
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 224
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b635ff3253080094b9cc6ca0e346dcf9
+      internalID: 521607875455108956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_35
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 225
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ee8a33ca2c7e2a408edb58500ce60a0
+      internalID: 3157200043875338823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_36
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 225
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 813c7e42bc73504409fea30d42f39de4
+      internalID: 9136916097846503452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_37
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 224
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc2087da0c3f35142abf0a5d5b0753d8
+      internalID: -3670326585695024685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_38
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 225
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f61bd1d4a338824289bfe6facc5239e
+      internalID: 2053172648877767290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_39
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 225
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 105aa8f483af9be4083e18aa006a97ce
+      internalID: -6333980489237942303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_40
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 224
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cf02d7c29bbba84081962a55a7b80f0
+      internalID: 3872927764110143554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_41
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 225
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b946eb77f21f591438ec83da453288aa
+      internalID: -2875317024944666694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_42
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 225
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54bf7e83ed7e74848b30ffb40a5476bc
+      internalID: -4863069131943002901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_43
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 224
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fee0c316312370e4798eea27180547b5
+      internalID: -1060911603883595394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_44
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 225
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad47e78c01172284b8ed6d2e545dea36
+      internalID: -6618475569340575982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_45
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 225
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cb0efe71762f364a979ae40127e5018
+      internalID: 9199633891361390500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_46
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 224
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88fec6103db6f1c4a97af67aceb0f327
+      internalID: -3199063222654417608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_47
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 225
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b2142ba92fed354ba4b7ab484815d04
+      internalID: -4749773300220821054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_48
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 225
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfa9f4f80777b2543a67d1ea56f4e80a
+      internalID: -3552103424088108149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_49
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 224
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51a99f20fee4b1a45992cf5536b85af7
+      internalID: -8927882588091850840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_50
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 225
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f60000e5540870e47979004c3e1aeda8
+      internalID: 1932588533664442239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_51
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 225
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b31b83f2d77ae4e47854e159a2f1f7c6
+      internalID: 3470703311056153200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_52
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 224
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f926af707020f8345ae0851f8642e6f4
+      internalID: 4401945717614600835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_53
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 225
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38c4065cb44b2f24991712ca041361ae
+      internalID: 3949482337969860826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_54
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 225
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c74a4bec142df2439b649a2cb694172
+      internalID: 765895307710206612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_55
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 224
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77c22b0b8d1c0804f895d96314fbd38f
+      internalID: -7603136759428238603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_56
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 225
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f63a3a9a53dfc904f8c3826b392ba35e
+      internalID: 9019438581205034161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_57
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 225
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 860871df62ce53241945fb3fa89f16d3
+      internalID: 2018651163297930831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_58
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 224
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b39b570c574c9f4fa8e503ab360924a
+      internalID: -6436156068256701535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_59
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 225
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5c42914bfc4e9942bd0b25d8df3c415
+      internalID: -1670117430930975874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_60
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 193
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a767f27bf5902f4d9b02b34fe3256e9
+      internalID: 3456401945044663621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_61
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 192
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7785020de31ad134892f3d950f4e913c
+      internalID: 8247332137402154020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_62
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 193
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9a026a392e93dc4a99510635d92f83f
+      internalID: 571173222631742744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_63
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 193
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 335039033b51f0747ac1bd1112138910
+      internalID: 6398400293912015375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_64
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 192
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a44f4e03c4f773c44aacda6ad13d5bd4
+      internalID: 6212099267732730495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_65
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 193
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c41b5c93b5f42e04fa08d9c094da3537
+      internalID: 2296252020630180515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_66
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 193
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51ab9243410c147448842dcd7e3b5e91
+      internalID: 4864515396885190828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_67
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 192
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87484517ad57f19419aec9462b1aaa2c
+      internalID: 8553757571178387247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_68
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 193
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb605d4aae37f3743a34f411147b8c3a
+      internalID: -8455904107403548477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_69
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 193
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a1be3f7ae18c464cad5444e472802f5
+      internalID: -702299592880222512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_70
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 192
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f16d1847eab7c3b41aed42533c995f83
+      internalID: 54383449620066919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_71
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 193
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9132c91f714c97147920aa1199ace1a0
+      internalID: 3904596408411983386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_72
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 193
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 406deb9a148515f49b3fe84c39aadba5
+      internalID: 8117247178485372632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_73
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 192
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5a9c6200963d8d4c8afad324a2129ff
+      internalID: 931471324152108253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_74
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 193
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5508286f312b8a4781ace930a66b004
+      internalID: -5303529607941876832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_75
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 193
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9c4d0b892a5f4544b62b0b4e48efe7d
+      internalID: 2097946122409984170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_76
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 192
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4f2b3c8861fd4d418dea0c7afcb18d8
+      internalID: -6491110129347744660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_77
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 193
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52263a14e624c7c428200f8c5b32fe9a
+      internalID: -2359723066783371463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_78
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 193
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 313510050f08da14dae7d5c890f38c94
+      internalID: 3100548444792212472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_79
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 192
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff0d3eb4706ff5d4089de95c5e8f9442
+      internalID: 3988749838624416375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_80
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 193
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da8202b08c75a81418f89498aff569ba
+      internalID: -8743160319950017128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_81
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 193
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d0bdbc75bea4c44caceb8174f39600c
+      internalID: 2572740618800611003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_82
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 192
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc835be4ea7b0fb44aa8f3861e6f5261
+      internalID: -2935385713444008190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_83
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 193
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c54931fd2bffeca4bb31bd8ae87afeaf
+      internalID: 8409530165144752316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_84
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 193
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bddad0568de38674798cdf42bde04b62
+      internalID: -3060993421556033906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_85
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 192
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4005273eb29810a49b6e47a3f45f6b02
+      internalID: -8042199382148428935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_86
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 193
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf077c4c717e3c040b657833686ce309
+      internalID: 2984087845490636480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_87
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 193
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a37b44a350bebff44b16dc4c7a959c8a
+      internalID: -2062432067374055237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_88
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 192
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abff1563f4fe9ea4c9b1b490e0948c8a
+      internalID: 1162913737315972169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_89
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 193
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e37c6feadbb80c4ab50204078985b45
+      internalID: 2625730432478878688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_90
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 161
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3fe31a03848cfc4397a31114dc01c32
+      internalID: 8967506014601259032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_91
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 160
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02ddfcbff9a3726498178adb401699b3
+      internalID: 2972165351870821607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_92
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 161
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be61e13a31178b0449013c8d0ddd157d
+      internalID: 6655263341555768915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_93
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 161
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad71b65f69b03354f8bc824240727bc0
+      internalID: 4701822546525431100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_94
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 160
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d876053da8d48b743a804489e4e6d2fb
+      internalID: 7476405521051828181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_95
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 161
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84363fa4acdc4c94db44ef9e5f9ac600
+      internalID: 4839167470025949487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_96
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 161
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 877e9eea988909441a020d0f698978fa
+      internalID: 4160771093706360541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_97
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 160
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91ff5390aa40d6c43999c799dd5e0e39
+      internalID: 6579029343715583816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_98
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 161
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42d36d6f7d2a84f4b872200b5030e79c
+      internalID: 7456240277014171618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_99
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 161
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37653879ec3cb614981e4adccf9e60a1
+      internalID: -7686722013445435553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_100
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 160
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2a74862b92630b4ca16e939771825f2
+      internalID: 7558060062507365547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_101
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 161
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9ed1066125bd0345ad7b769fedddeb7
+      internalID: -6603178931616563047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_102
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 161
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7da9704360d7adb4593ec127a16cc211
+      internalID: -8698183016875350941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_103
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 160
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7736734563315e4490cbe2d5bc8f2a5
+      internalID: 1115907116693319000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_104
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 161
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3594f13050acad44bcbd6b43cf15963
+      internalID: -8213421171997588508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_105
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 161
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00c9308841d52184698ad8b46c45efbd
+      internalID: -5650434894004813804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_106
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 160
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3635b6c9fc17b90438c97fa3d85008b9
+      internalID: -3677946171492269815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_107
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 161
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3902279ab1fed374c88e0f96a1f964d4
+      internalID: 4692208600762406606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_108
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 161
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7077f0be5c4b1149bd101b338d96073
+      internalID: -8269964827755900032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_109
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 160
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0c9f8294c3c6d945bb9a6039bad6519
+      internalID: 2311836277617250998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_110
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 161
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1011328986468f64682b31d5625450d5
+      internalID: -6979410271361152544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_111
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 161
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f377a58c9a23e7d42b94b4eebe3f4e35
+      internalID: -2407427219732580268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_112
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 160
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a98492c41260104693bcb1452d6caac
+      internalID: 4343743124514057940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_113
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 161
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01e0d9f96c2340541b7df09db779e2d8
+      internalID: 5065213809024391063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_114
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 161
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a96f143d26f6b734c9dbb9f5789b1298
+      internalID: 6401426435352214881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_115
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 160
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2715b98be8ecce488bad37475634506
+      internalID: -7398733616782248963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_116
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 161
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3445c9bdd87a4e54780a37d18ff5275c
+      internalID: 2716009102763005325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_117
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 161
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9a5d15862db3874ba67e91488484317
+      internalID: 7309606176990598450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_118
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 160
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 796a9773e636fd34eb3b11a2b4716e29
+      internalID: 6990464380417647698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_119
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 161
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c451602d71ec19147bd2475488263e50
+      internalID: 5759546591802495132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_120
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 129
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8682655771320104fa1ac48ef0f8d210
+      internalID: -1951429069176950295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_121
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 128
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e73a443093c1814ab2c861632f290ff
+      internalID: -5976505438767894573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_122
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 129
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43bdd5340b224474f95da81e3727f76f
+      internalID: -1736616567616191148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_123
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 129
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a2bd6f3de150c94e8bbfc595f41934e
+      internalID: 6621579840995132534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_124
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 128
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bd130516f04ef44b8f5b1fc9ac375f5
+      internalID: -7398886345229418013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_125
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 129
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccb9a49dae3be254eb5c52b8c7f1b385
+      internalID: -3033868641444522735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_126
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 129
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c180b6cab6911fd4c81ee32acb159933
+      internalID: -4670246635983157431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_127
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 128
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0510261d0da9f36498ead5261520176f
+      internalID: -4236336655580021559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_128
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 129
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caecb936d077d77429bee678e879ce55
+      internalID: -1292711036635400758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_129
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 129
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96762a241d08a9741a931bfd109bb693
+      internalID: -6450312344924040500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_130
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 128
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43df87ed72cc5814098580f0443c6e8f
+      internalID: -233637509646683092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_131
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 129
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f931a2938392f1c43b19555d90926685
+      internalID: 8497036353239826104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_132
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 129
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae43748ea2d20ad4a9f6b62226956406
+      internalID: 4483993176165035259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_133
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 128
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49cb5ca281270544bb0946a35872892e
+      internalID: -4925675021224701002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_134
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 129
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f0acf5873cf5204da602c172285f7c1
+      internalID: 4602951247750893041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_135
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 129
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d452ed62d45bf6b44886bcb880c295df
+      internalID: 1027046025298722365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_136
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 128
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16e6e1d734dea854c9cc2e3fb9f866de
+      internalID: 6811253304840451882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_137
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 129
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a96898298c4eb44b9c431b43bb44030
+      internalID: -5291724180014978824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_138
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 129
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 057544f7a9fe06e468c46ac128a98be0
+      internalID: 792239018029089827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_139
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 128
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f77e3e15ec7f5243b3c3fa89c62642f
+      internalID: 2972396554744679433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_140
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 129
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02ad8855f083b8f4d8f81ec159622275
+      internalID: -5510851214833986730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_141
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 129
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d372c584b638b4147baece735d6e8670
+      internalID: 5193324110778436066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_142
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 128
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13b07e720e117f04f9c8ae118516acbe
+      internalID: -4175681433721109466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_143
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 129
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93e2efb4b73995c4086afe314d7707da
+      internalID: -2398238345143797500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_144
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 129
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac844912d01c9614ba448c46a335b19f
+      internalID: 516781193544357298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_145
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 128
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec72109adcb84e14594d9f82e945b3e7
+      internalID: 6857186810067913939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_146
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 129
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24c873df9df72a04f954acd48dc85309
+      internalID: 4029948914303569957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_147
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 129
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73b5ea6f670ea314fb410b0162377ecc
+      internalID: 2732286101284287133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_148
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 128
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc4d5819db0f2d541831ee0a39f1583a
+      internalID: -934231927857021772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_149
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 129
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54a77ad7003580547be7e081e80fcf49
+      internalID: -781531440445995047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_150
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 97
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5e652290a8352e498b4829e56aa42bd
+      internalID: -7083436386960941361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_151
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 69
+        width: 23
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aa01572769083943a4565006a96e602
+      internalID: 6945112840997833593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_152
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 97
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2efee34e2a12d2d4a848d544063299ad
+      internalID: 25092420743742952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_153
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 97
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aecaeb4e88d95e940a7bb01ef1319bdb
+      internalID: -3370744376371568864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_154
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 96
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 722bdd6689e752a4ab20b67701b25b31
+      internalID: 6738381469204847582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_155
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 97
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8459bb7c70e9cfd458e5615f8fd38f5d
+      internalID: -5203155184082573750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_156
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 97
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6986c4a363e7eb748b5bed82de23d91d
+      internalID: 3792271702172416334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_157
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 96
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f000274a32424fd4ca5a78e48a86ae87
+      internalID: -6225424747557520441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_158
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 97
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fac04ceb538adb944a35d62e6771f924
+      internalID: 5097055415498471623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_159
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 97
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bee2c7acf4cbda4d8b74975aa09ba62
+      internalID: 8319646825200580450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_160
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 96
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b24c5fda6a81664dbdb7563c47962b8
+      internalID: 550424244042597900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_161
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 97
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c76afd3c998b22646a32dfa4a212ede8
+      internalID: -7256037477463013468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_162
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 97
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea184c81bdab5dc4f84d80f50af05559
+      internalID: -159290912524302550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_163
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 96
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 519d8b6f9b8a9504bba927cfcc30e8be
+      internalID: -1431047206679613756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_164
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 97
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc5bd54c81bc89a42b704c9ba2fa3448
+      internalID: 5248942353150057992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_165
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 97
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e04ce595201615d43bd647a51d174f14
+      internalID: -8497138882056829816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_166
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 96
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 471bcd94aa215404c9918e414920a13b
+      internalID: -4560317190167665013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_167
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 97
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80511342feb7beb418da2e021cb6bc72
+      internalID: -6330267933485889896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_168
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 97
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2846fdf91928794468eef3a7b3f26dcd
+      internalID: 2936462018963485358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_169
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 96
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23785b7ca4ba4894c9ff067c337ceac6
+      internalID: 3926578041935496355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_170
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 97
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 419180cf7d6d95641a455562a1c45fa9
+      internalID: 1908671238772310712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_171
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 97
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66b8e5624b34a5445aea0bcaec41e1c7
+      internalID: -4097991507307095051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_172
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 96
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 961fa977b08b51d42bdf568ac6921e9b
+      internalID: 2310568598577538747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_173
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 97
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70f1ed4aab423034bb00ea3ed423f6ce
+      internalID: 8158001823736389235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_174
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 97
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf902245fd4c608429cc909bed25a107
+      internalID: 5704140746312819766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_175
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 96
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eff787d2cd0dc284f93e0c9c4d6b45e0
+      internalID: -5552602388516506555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_176
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 97
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4963546cb4da3d248891f52227af9165
+      internalID: 108708594998166031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_177
+      rect:
+        serializedVersion: 2
+        x: 868
+        y: 97
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 788d31199b5e1b14cb9a1508bd810582
+      internalID: -1845770622276099964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_178
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 96
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d54e71e000684e94cacbdfa43c17d135
+      internalID: 7594574129066313147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_179
+      rect:
+        serializedVersion: 2
+        x: 932
+        y: 97
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d64b63da1e9d104e9f91e42c98ace4e
+      internalID: 3593803394330212718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_180
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 66
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a369c65c8dfd1344860556496cff71d
+      internalID: -4147169312875199325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_181
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 66
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f952e436a67d2a4dbfa8438b2018e66
+      internalID: -2508153557464128070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_182
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 68
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa0795952e948574980460bd099aae08
+      internalID: 1692307463349565860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_183
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 65
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7f156af877fd2a4ea0a1a6f2f2cbc6b
+      internalID: 443970787980533487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_184
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 68
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce5125243aa93eb49a2dfa3f014af01f
+      internalID: -7669685440615918459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_185
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 70
+        width: 26
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d058144dd53d9a47bb81532dd051399
+      internalID: -4580788060982577493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_186
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 70
+        width: 26
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47131bb0b48696e4ab6268bebcbd2e99
+      internalID: -6479873607172427948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_187
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 70
+        width: 26
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da58371275df7cd4d81eef19d2c86efa
+      internalID: -242561550118141628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_188
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 70
+        width: 26
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a502bd09fa871b43a796835c41ebb70
+      internalID: 7004320842780765321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_189
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 70
+        width: 26
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de3c1a586e8ea374e8e98dc7b496d5c3
+      internalID: -1211255043411649122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_190
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 70
+        width: 26
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9adf042550033e4487d5022339919a1
+      internalID: -2503441327944554139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_191
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 69
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d64d176acecb2b4ebf20372460e88c2
+      internalID: -4043727277208581776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_192
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 72
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50413a216e22bbf4e97743dfc26bdaa9
+      internalID: 7815564827498408585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_193
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 69
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a62e3f0fd255bc54c9ef669051214c27
+      internalID: -7497691728794481219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_194
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 69
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7526e8f70ae067049a1eaacce66d31c2
+      internalID: -3020501129602003391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_195
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 72
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5870935dea9c4704ca83f3f950336e81
+      internalID: -8058727104435561554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_196
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 69
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bb7ea0983393fe4898886e98bc7402e
+      internalID: 6369411304355787344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_197
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 70
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98194a9129f3ed94fb230001d3234219
+      internalID: 2426079187191645724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_198
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 67
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3d70051b8dabcb498a31499ef32e348
+      internalID: 7204843907399321035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_199
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 70
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6181d9c7ebca1224995c4c8ec2837cee
+      internalID: 1719905666058335992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_200
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 70
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11b993a8c0ab6bf44a9c2de9f15c46b5
+      internalID: 6922749166046895385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_201
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 67
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c24dba01c886ea4eae873d76ac6d27b
+      internalID: 3545478385731722591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_202
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 70
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9422ae18885dbd46b71e92709bdcc51
+      internalID: -8021786109289305886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_203
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 68
+        width: 25
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5aab143eda8d71e41b504b5fb9f6bf88
+      internalID: 1923448535015679899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_204
+      rect:
+        serializedVersion: 2
+        x: 803
+        y: 65
+        width: 25
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9ceca67352a2fd40a21af39a9ea1292
+      internalID: 5325630987996969323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_205
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 68
+        width: 25
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34509850d27797241ad8a923690f4cb8
+      internalID: 3195554293086704549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_206
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 68
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2ed64a9cb94f1146bd5d336bf6ad3cf
+      internalID: -2719831199090948659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_207
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 65
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1936199030db314782fe7c90cda7dfc
+      internalID: -4473781907641519517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_208
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 68
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 041d1d4ac866f7d4a8f792f33e0d16dd
+      internalID: 4079561483983585228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_209
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 45
+        width: 23
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 312eb650c9f61e94d903cf9f97cbe3db
+      internalID: -2315701639094985694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_210
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 45
+        width: 23
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ad8842433822144c9af289927a35000
+      internalID: -3397608815863593559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_211
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 45
+        width: 23
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a082f12a9260e0d41af8d1646635b699
+      internalID: -8358889743508276629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_212
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 45
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39951b195164e2948a8996ed6ab1b4f6
+      internalID: 3213186044386920698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_213
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 45
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e445c9f0bf68d8b4c8d03b296711c934
+      internalID: 350105790706865419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_214
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 45
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d47311df2aaea6409944e1455b5f51a
+      internalID: 8994064605634829595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_215
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 45
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5c1605c84f1edc41872a72f938aaf47
+      internalID: 3321513628227636187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_216
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 45
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b02f375b245518d48b8fda3cf4d36bfe
+      internalID: -6118962271087495941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_217
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 45
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d60b6fb59abc28446a805434bda0a1e2
+      internalID: -206389049728971043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_218
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 45
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b94c3bd674710664da71df46e346ef41
+      internalID: 4728463551811953251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_219
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 45
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08efdd2a544af0d4eab7a64113ea0269
+      internalID: -384088917011642470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_220
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 45
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2874ad8277a33d3468bd5f28082e826d
+      internalID: -3693261791251199248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_221
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 45
+        width: 25
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7245bc583807cd0488314003f5788968
+      internalID: -138308816107454157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_222
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 45
+        width: 25
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 779c11d5821857642a7b4c64afe57cd6
+      internalID: -390551002298131980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_223
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 45
+        width: 25
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7de562c33ac4c19449197bf5aff08f8a
+      internalID: 3886707717662190713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_224
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 45
+        width: 22
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe989dacd2c4157448c3b4d209341131
+      internalID: -2169854750761902400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_225
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 45
+        width: 22
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd6d84b214d982f40a9ece7036a7f760
+      internalID: 1874536987396129371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_226
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 45
+        width: 22
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4068534be8d849d48b3e3016df4ffdf7
+      internalID: -6039003277307373606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_227
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 45
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1ff136a675813243995847f738952d4
+      internalID: -5243994104813640727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_228
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 45
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5601244dd6fa90d458cfea37ea08991c
+      internalID: 3215012490445648574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_229
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 45
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1366ce7d46e4e0142a4d604196f4c467
+      internalID: 3018916388777857117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_230
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 45
+        width: 25
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6db06742cc98274eb333e3361a37304
+      internalID: 6481209460934404241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_231
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 45
+        width: 25
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f01d82af751a6c14bb7571e211a21f3f
+      internalID: -3043899049893117438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_232
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 45
+        width: 25
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 216edcf807682364f859d884a389ad85
+      internalID: 8795572259994772648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_233
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 45
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79d93e9286ae8414580bc534bcfda802
+      internalID: 2584569022586495888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_234
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 45
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1afb3de7ae3357647b7822b80681b8d3
+      internalID: 3468918589578035216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_235
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 45
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caac8ce6e9d15204ab22728e3f9a318c
+      internalID: -8282882433467395990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_236
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 45
+        width: 31
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af9a1ab12e155014f898a2b82639a76b
+      internalID: 1703589759058148824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_237
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 45
+        width: 31
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e301a7430717a5a458c053b5288f6e75
+      internalID: 2518318322062475047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_238
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 45
+        width: 31
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9c48ce380d1ec347b7cbcce0f7b0a8e
+      internalID: -5080913682856251103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_239
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 36
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a773ebcd143cd1b4db1fc77c7a6f2b1c
+      internalID: -2132647873184956900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_240
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 34
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4eeaf994c23879f42ae84a7268f5ffc1
+      internalID: -7598027799620223243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_241
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 36
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b36c3fb2e73eeeb4cbc21fdec094ac07
+      internalID: -3015724615764103447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_242
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 36
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddbd6a790beaedb4993e69df7c4a33cf
+      internalID: 6906825695653695440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_243
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 34
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d8ee57f0ac6c384b924aa024748ac62
+      internalID: -7121023016400195935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_244
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 36
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ab5dfcd77691054d8569db4fffa86f7
+      internalID: 7692720005571136825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_245
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 36
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 101be2c7019c52e4b99df95f9693bee1
+      internalID: 880670212708128282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_246
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 34
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d2a6293864db2444a808d7c277774d4
+      internalID: 5958776479312601976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_247
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 36
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ceef983d5bfb9d9458c4b71ecab51a73
+      internalID: 3543312848873559770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_248
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 36
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39eb4b918f656a84091828ae9cac2ec5
+      internalID: 7363829457446771129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_249
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 34
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8072a55eedb410140b05c225b51a7b73
+      internalID: 4083747425157975341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_250
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 36
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f252ee49e5b0c740b05d9866ee1608a
+      internalID: 4311879726685836999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_251
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 36
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1eef36e2b46d0f45ac90e8fcf04bd85
+      internalID: -2994513357798042538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_252
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 34
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 107c50cec4b970d4d91fef690712ff47
+      internalID: 3153605584331054284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_253
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 36
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dadd184296a19e40bd225834d9fb5d3
+      internalID: 6722127415338316114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_254
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 36
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3464ea8987be9d948810adb5b881a36f
+      internalID: -7971864623886540445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_255
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 34
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d83f7680712faa4b8cfd610b855299f
+      internalID: -2667436441094440054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_256
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 36
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09dd37be07448df4fa99ae824afadd28
+      internalID: 4562443728091375697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_257
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 36
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5de0cbaecd9ac948a815636bc95dc0f
+      internalID: 4848500451550437627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_258
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 34
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33aa43baeb6714b4ebb03b2f8a9ae4d3
+      internalID: -805635632075747186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_259
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 36
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9ab9cc32e687fb4a98b43c32752d8af
+      internalID: 3285166176462976035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_260
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 36
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a9fb3fd1f4ff9143b865ae1f2511c21
+      internalID: 8800302376398843328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_261
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 34
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 811eedaf3641c6e449b31ad123570624
+      internalID: 4865995570474757918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_262
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 36
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4938586aa5b441348848f592babdf9d7
+      internalID: 8589856327107911955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_263
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 36
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d03849ddd744aa4890c6828fd655bd5
+      internalID: 957162600630376695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_264
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 34
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ba7d548f0b1b0e4a848aea0918b6a28
+      internalID: 3652779471878683074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_265
+      rect:
+        serializedVersion: 2
+        x: 842
+        y: 36
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 312a434104737154f81e7566cb462ed5
+      internalID: -437220804055636242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_266
+      rect:
+        serializedVersion: 2
+        x: 874
+        y: 36
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9276a0dfe06d3b24889a26742e42d2e3
+      internalID: -7770065139084206082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_267
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 34
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c859b274e40e1d343b691eb0b70523ca
+      internalID: 2210086084385394421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_268
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 36
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f50ccf859ef33894faf0007095094727
+      internalID: 2515321358817873995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_269
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 13
+        width: 23
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb3827864a4815047a62f4cec18c3443
+      internalID: 2654165260868207851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_270
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 13
+        width: 23
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b61ec934e4b9ba4298469173468ce6a
+      internalID: -282750937118841155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_271
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 13
+        width: 23
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b7373eaffc36af408ab74ca2acd87bb
+      internalID: 1879802624072404333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_272
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 13
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c55eecaa64b81d49886c795cd2fe8ee
+      internalID: 39692531057254866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_273
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 13
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 502eac5f6b927a147bf1eac8a06cee6e
+      internalID: -4439492995595731454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_274
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 13
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d898cfe46e801b44b1757c014c70ecd
+      internalID: -2963834658347934137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_275
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 13
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7a4e6aa31f64f44c9b1c686f447126c
+      internalID: 3020643509387583106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_276
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 13
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7699000d5d7f9424b807a283a289a49a
+      internalID: -7995054150013620316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_277
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 13
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2fdc20f91477a34e806bdc591f876c5
+      internalID: 2344260247076727196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_278
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 13
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08b116415e6373a49a038a79b5c891a4
+      internalID: -2952862270721466088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_279
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 13
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27e8aadd10e15b5449505a7ed8c214d4
+      internalID: 6049270874307690825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_280
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 13
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efc7a26ecaba0fd4db635ab9f7b5de43
+      internalID: -1219065732579709540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_281
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 13
+        width: 25
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36efc334d08c1a74c8486e081842946c
+      internalID: 8711714951911172298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_282
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 13
+        width: 25
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 242a03ce2c607f949999c60130646e7e
+      internalID: 3365443797727877704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_283
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 13
+        width: 25
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 090aae0d0882db142ae2e86e65833148
+      internalID: -4076404206831758220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_284
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 13
+        width: 22
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb866f2b8ff04e24d9ee540aceb9bcd8
+      internalID: 5270071948021870603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_285
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 13
+        width: 22
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26609303da908a846a7c06619e66cc85
+      internalID: -6686095859563513827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_286
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 13
+        width: 22
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5085d5ff569d2b1458471efc47564907
+      internalID: -4459849085723792564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_287
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 13
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e1c60999f8fe084fb8061a2db7ca08e
+      internalID: -3179900418246893079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_288
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 13
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92daf8cf129f04644bc1d6b72d6fbe8b
+      internalID: 2332373436442872164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_289
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 13
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b39242f9de1f0b949a4dbd3e96b931d8
+      internalID: 7752905745860760854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_290
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 13
+        width: 25
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 501c6935eae2b294496b82b2f3860e10
+      internalID: -9141453253641114841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_291
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 13
+        width: 25
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68efd8a8fb0998e47ad353e79082c5d2
+      internalID: 8521903358337305635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_292
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 13
+        width: 25
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e2a4b216ef2a21448838ceb471958d9
+      internalID: -6182455222375455430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_293
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 13
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20391b0dfe229e84286844767dac30ed
+      internalID: -924474514004351804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_294
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 13
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17e237f6379174447bafa318748884c0
+      internalID: -3593849193857150977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_295
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 13
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4073921a23f12684dbcf7b9ae65d28d6
+      internalID: 5510321524400701152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_296
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 13
+        width: 31
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74f6c7cb8763f2c45b67ce0b54c40a1c
+      internalID: 7968228768097723635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_297
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 13
+        width: 31
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64c804f9a19cdf24e94d14d5b0fe67f1
+      internalID: 4625567285528320444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_298
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 13
+        width: 31
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed6a7bce845f6cf4ab097b4aea2a202c
+      internalID: -4230172609233533458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_299
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 4
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5dea0365f50e7e4b8c9597970079b4e
+      internalID: 4141025196563297142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_300
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 2
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 522aeba0008dea44682231dc48d0268a
+      internalID: 9208720546508764416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_301
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 4
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 647b2089a6ae53b49b8eb72c8f9ab9fc
+      internalID: 7636125434609462805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_302
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 4
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0c6a404573de034cbd29e6bec0dd1ea
+      internalID: 8325594047595136176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_303
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 2
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24fdd78b8e984114795c1d96972d0f87
+      internalID: -4281583016111111449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_304
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 4
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 634ab0d0730a1f74f992c51bb7715967
+      internalID: 1622040286999707311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_305
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 4
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bdc9bbbe0a0dd5438d419ff1aeb9edb
+      internalID: -7463072338257848586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_306
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 2
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1953f1c41335e04f81d3d6a25128ab3
+      internalID: 9188723076931662628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_307
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 4
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba0fbaba12f724a44b38c81dee74643f
+      internalID: -8577201886968765387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_308
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 4
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1da7fb3b25e8daf468acc47d99ee225b
+      internalID: 8640782657703087482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_309
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 2
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 141702afaa466c541b80b50bd09df819
+      internalID: 24600320714225347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_310
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 4
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 398ce6eeb4631cb4188f2c12ba7af08d
+      internalID: -8743652100187578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_311
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 4
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d79da7acaf3ae5c46a6361cf89ac54c9
+      internalID: -5330240868601648808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_312
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 2
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 648c93f64cbfb99429a5c57d98528dab
+      internalID: 6305396793811803326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_313
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 4
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ee36f90cd0a32f498bd7a63fa5bd992
+      internalID: 3327315521391345566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_314
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 4
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43a0d19ae7db06d459beae3692bc316e
+      internalID: -7330014822621632899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_315
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 2
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41dfdf304fffd554cb3dc95c595faa64
+      internalID: 9164140637623155049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_316
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 4
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f123d0b4e14bc9469e4f22cef38136f
+      internalID: -801601812406354684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_317
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 4
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df84fc3d976a7064387283784a59f097
+      internalID: -8203359364024847240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_318
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 2
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b276869a0a9d088498a6e3198dfe0218
+      internalID: -4612077453188465116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_319
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 4
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3966d61414ad214b94852a3884c2dae
+      internalID: -8856336856188697353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_320
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 4
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 236f2755b9f7f3548802504aeb506a12
+      internalID: -5272845347991668589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_321
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 2
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc3a38196d672fb48bba34e823ccfb62
+      internalID: -5560904595964607525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_322
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 4
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e33040c7a3ccef547b4be10e2661cc33
+      internalID: -4198086049362032340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_323
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 4
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd702f2cf71368d43b0afd49448edf73
+      internalID: -2814800284328254524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_324
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 2
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e7b898ad14f7fd4abdc0f34ef36d76c
+      internalID: 8739491244734598087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_325
+      rect:
+        serializedVersion: 2
+        x: 842
+        y: 4
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 038cb62a163418c4382cd36df5e96b18
+      internalID: 7351734503299987701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_326
+      rect:
+        serializedVersion: 2
+        x: 874
+        y: 4
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b72ae938b625c6f4c9ba455c499ce306
+      internalID: -1445293258924287594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_327
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 2
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50551bc9b9255624a9d88504e996afc3
+      internalID: -4782122516338395532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-emotion_328
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 4
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f84153589dcacc4a8eaad4487e53601
+      internalID: 5512565304142817926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
