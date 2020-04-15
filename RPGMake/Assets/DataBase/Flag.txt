@@ -1,3 +1,0 @@
-id testFlag1
-	flagNum 0
-end

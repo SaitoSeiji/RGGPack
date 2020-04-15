@@ -392,12 +392,12 @@ PrefabInstance:
     - target: {fileID: 5032891466902743808, guid: 3f737770d1fdcce40a6309bf9c223b8c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.18
+      value: -0.04
       objectReference: {fileID: 0}
     - target: {fileID: 5032891466902743808, guid: 3f737770d1fdcce40a6309bf9c223b8c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.9
+      value: 2.47
       objectReference: {fileID: 0}
     - target: {fileID: 5032891466902743808, guid: 3f737770d1fdcce40a6309bf9c223b8c,
         type: 3}
@@ -448,8 +448,13 @@ PrefabInstance:
         type: 3}
       propertyPath: _eventData
       value: 
-      objectReference: {fileID: 11400000, guid: cb58cc366bb224b4a84ffd61c53a77f4,
+      objectReference: {fileID: 11400000, guid: e75a87a75a13a3d49bb723a24d3b4f6a,
         type: 2}
+    - target: {fileID: 3977937411785128911, guid: 3f737770d1fdcce40a6309bf9c223b8c,
+        type: 3}
+      propertyPath: _eventDataId
+      value: tosyo_hongaesi
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f737770d1fdcce40a6309bf9c223b8c, type: 3}
 --- !u!4 &6200872098762023168 stripped
@@ -529,8 +534,13 @@ PrefabInstance:
         type: 3}
       propertyPath: _eventData
       value: 
-      objectReference: {fileID: 11400000, guid: f6a4f5cac8939d54880eea69fb568500,
+      objectReference: {fileID: 11400000, guid: 65e5cb76226673842be389adcd90b74b,
         type: 2}
+    - target: {fileID: 3977937411785128911, guid: 3f737770d1fdcce40a6309bf9c223b8c,
+        type: 3}
+      propertyPath: _eventDataId
+      value: door_tosyo
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f737770d1fdcce40a6309bf9c223b8c, type: 3}
 --- !u!4 &1912907312705569569 stripped

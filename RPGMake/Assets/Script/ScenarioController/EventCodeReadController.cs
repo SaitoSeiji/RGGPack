@@ -10,42 +10,54 @@ public abstract class CodeData
     public abstract void CodeAction();
     public abstract bool IsEndCode();
 
-    public static CodeData CreateCodeData(TextCovertedData data, EventCodeScriptable scr)
+    //次のデータが吸収できるデータなら吸収する
+    public virtual bool CheckChain(TextCovertedData data)
+    {
+        return false;
+    }
+
+    public virtual Queue<CodeData> GetNextCode()
+    {
+        return null;
+    }
+
+    public CodeData CreateCodeData(TextCovertedData data, EventCodeScriptable scr)
     {
         if (data == null) return new EndCode();
+        if (CheckChain(data))
+        {
+            return this;
+        }
         CodeData result = null;
         switch (data._head)
         {
+            case "":
+            case "name"://name[name]
+                result = new TextData(data);
+                break;
+            case "branch"://branch \nbranchName \n $#1...
+                result = new BranchCode(data);
+                break;
             case "flag"://flag[flagName] 5
                 result= new FlagCode(data);
-                break;
-            case "map"://map[mapName]
-                result = new MapCode(data);
                 break;
             case "item"://item[itemName] 1
                 result = new ItemCode(data);
                 break;
-            case "wait"://wait[500]
-                result = new WaitCode(data);
+            case "map"://map[mapName]
+                result = new MapCode(data);
                 break;
             case "image"://image[setName,num] back (center)
                 result = new ImageCode(data);
                 break;
+            case "music"://music[setName,0]
+                result = new AudioCode(data);
+                break;
             case "load"://load[black] 500
                 result = new LoadCode(data);
                 break;
-            case "music"://music[0]
-                result = new AudioCode(data);
-                break;
-            case "":
-            case "name":
-                result = new TextData(data);
-                break;
-            case "branch":
-                result = new BranchCode(data);
-                break;
-            case "empty":
-                result = new EndCode();
+            case "wait"://wait[500]
+                result = new WaitCode(data);
                 break;
             default:
                 return null;
@@ -58,24 +70,25 @@ public abstract class CodeData
 [System.Serializable]
 public class TextData : CodeData
 {
-    public string name;
-    public string data = "";
+    public List<(string name, string txt)> dataList = new List<(string name, string txt)>();
 
     public TextData(TextCovertedData code)
     {
-        name = code._data;
-        data = code._text;
+        dataList.Add((code._data, code._text));
     }
 
     public override void CodeAction()
     {
-        if (string.IsNullOrEmpty(name))
+        foreach(var data in dataList)
         {
-            TextDisplayer.Instance.SetTextData(data);
-        }
-        else
-        {
-            TextDisplayer.Instance.SetTextData(data, name);
+            if (string.IsNullOrEmpty(data.name))
+            {
+                TextDisplayer.Instance.SetTextData(data.txt);
+            }
+            else
+            {
+                TextDisplayer.Instance.SetTextData(data.txt,data.name);
+            }
         }
         TextDisplayer.Instance.StartEvent();
     }
@@ -83,6 +96,19 @@ public class TextData : CodeData
     public override bool IsEndCode()
     {
         return !TextDisplayer.Instance._readNow;
+    }
+
+    public override bool CheckChain(TextCovertedData data)
+    {
+        if (data._head == "" || data._head == "name")
+        {
+            dataList.Add((data._data, data._text));
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
 
@@ -135,9 +161,16 @@ public class FlagCode : CodeData
 public class BranchCode : CodeData
 {
     List<string> _selectList;
+    Queue<CodeData>[] _nextCodes;
+    int _selectNumber=-1;
     public BranchCode(TextCovertedData data)
     {
         _selectList = GetSelectList(data);
+        _nextCodes = new Queue<CodeData>[_selectList.Count];
+        for(int i=0;i<_nextCodes.Length;i++)
+        {
+            _nextCodes[i] = new Queue<CodeData>();
+        }
     }
 
     List<string> GetSelectList(TextCovertedData data)
@@ -160,7 +193,8 @@ public class BranchCode : CodeData
     {
         if (BranchDisplayer.Instance.CheckIsSelected())
         {
-            _targetScr._codeData.SetFlashData("select", BranchDisplayer.Instance._SelectedData.ToString());
+            EventCodeReadController.Instance.SetFlashData("select", BranchDisplayer.Instance._SelectedData.ToString());
+            _selectNumber =(int) BranchDisplayer.Instance._SelectedData;
             BranchDisplayer.Instance.EndBranch();
             return true;
         }
@@ -168,6 +202,27 @@ public class BranchCode : CodeData
         {
             return false;
         }
+    }
+    public override bool CheckChain(TextCovertedData data)
+    {
+        if (string.IsNullOrEmpty(data._head)) return false;
+        var head = data._head.Substring(0, 1);
+        if (int.TryParse(head, out int select))
+        {
+            var newData = new TextCovertedData(data._head.Substring(1),data._data,data._text);
+            var next = new EndCode().CreateCodeData(newData, this._targetScr);
+            if (!_nextCodes[select-1].Contains(next))
+            {
+                _nextCodes[select-1].Enqueue(next);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public override Queue<CodeData> GetNextCode()
+    {
+        return _nextCodes[_selectNumber];
     }
 }
 
@@ -230,6 +285,7 @@ public class ItemCode : CodeData
             //var data = SaveDataHolder.Instance.GetItem(d.Key, d.Value);
             var key = ItemDBData.AddHaveNum(d.Key, d.Value);
             SaveDataController.Instance.SetData<ItemDB>(key);
+            EventCodeReadController.Instance.SetFlashData("getItem",d.Key);
         }
     }
 
@@ -269,7 +325,7 @@ public class ImageCode : CodeData
     bool reset = false;
     public enum ImagePos
     {
-        CENTER, BACK
+        CENTER, BACK,LEFT,RIGHT
     }
     ImagePos imagePos;
 
@@ -278,6 +334,7 @@ public class ImageCode : CodeData
         if (data._data == "reset")
         {
             reset = true;
+            imagePos = GetImagePos(data._text.Trim());
         }
         else
         {
@@ -308,6 +365,10 @@ public class ImageCode : CodeData
                 return ImagePos.CENTER;
             case "back":
                 return ImagePos.BACK;
+            case "left":
+                return ImagePos.LEFT;
+            case "right":
+                return ImagePos.RIGHT;
             default:
                 return ImagePos.CENTER;
         }
@@ -443,7 +504,9 @@ public class EventCodeReadController : SingletonMonoBehaviour<EventCodeReadContr
     Queue<CodeData> _codeList = new Queue<CodeData>();
     CodeData _nowCodeData;
     EventCodeScriptable _nowScriptable;
-    
+
+    public Dictionary<string, List<string>> _flashData = new Dictionary<string, List<string>>();
+
     [SerializeField] TextDisplayer _textDisplayer;
     [SerializeField] BranchDisplayer _branchDisplayer;
     [SerializeField] SpriteCanvas _spriteCanvas;
@@ -459,6 +522,11 @@ public class EventCodeReadController : SingletonMonoBehaviour<EventCodeReadContr
         {
             if (_nowCodeData.IsEndCode())
             {
+                var get = _nowCodeData.GetNextCode();
+                if (get != null)
+                {
+                    _codeList = InsertQueue(get);
+                }
                 if (_codeList.Count > 0)//継続
                 {
                     _nowCodeData = _codeList.Dequeue();
@@ -467,9 +535,12 @@ public class EventCodeReadController : SingletonMonoBehaviour<EventCodeReadContr
                 else//nextEVがなければ終了
                 {
                     var next= _nowScriptable.GetNextCode();
-                    if (next == null||string.IsNullOrEmpty( next.GetData()))
+                    if (next == null
+                        ||string.IsNullOrEmpty(next.GetData())
+                        ||!next.CoalEnable())
                     {
                         EndEvent();
+                        ResetFlashData();
                     }
                     else
                     {
@@ -492,9 +563,14 @@ public class EventCodeReadController : SingletonMonoBehaviour<EventCodeReadContr
         }
         _nowScriptable = data;
         var dataList= TextConverter.Convert(data.GetData());
-        foreach(var d in dataList)
+        CodeData nowCode=new EndCode();
+        while (dataList.Count != 0)
         {
-            _codeList.Enqueue(CodeData.CreateCodeData(d,data));
+            var target = dataList.Dequeue();
+            var nextCode=nowCode.CreateCodeData(target,data);
+            if (nextCode.Equals(nowCode)) continue;
+            nowCode = nextCode;
+            _codeList.Enqueue(nextCode);
         }
     }
     
@@ -508,12 +584,59 @@ public class EventCodeReadController : SingletonMonoBehaviour<EventCodeReadContr
     public void StartEvent()
     {
         _readNow = true;
-        _nowCodeData = _codeList.Dequeue();
-        _nowCodeData.CodeAction();
+
+        try
+        {
+            _nowCodeData = _codeList.Dequeue();
+            _nowCodeData.CodeAction();
+        }
+        catch (System.InvalidOperationException)
+        {
+            _nowCodeData = new EndCode();
+        }
     }
     void EndEvent()
     {
         _readNow = false;
     }
+
+    Queue<CodeData> InsertQueue(Queue<CodeData> insert)
+    {
+        var newQueue = new Queue<CodeData>(insert);
+        foreach(var data in _codeList)
+        {
+            newQueue.Enqueue(data);
+        }
+        return newQueue;
+    }
+    #region flash
+    public void SetFlashData(string key,string data)
+    {
+        if (_flashData.ContainsKey(key))
+        {
+            _flashData[key].Add(data);
+        }
+        else
+        {
+            _flashData.Add(key, new List<string>());
+            _flashData[key].Add(data);
+        }
+    }
+
+    public List<string> GetFlashData(string key)
+    {
+        return _flashData[key];
+    }
+
+    public void RemoveFlashData(string key)
+    {
+        _flashData.Remove(key);
+    }
+
+    void ResetFlashData()
+    {
+        _flashData = new Dictionary<string, List<string>>();
+    }
+    #endregion
 
 }

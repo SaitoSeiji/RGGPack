@@ -25,8 +25,8 @@ public class FlagDBData : AbstractDBData
 
     public static DataMemberInspector SetFlagNum(string id,int Num)
     {
-        var result = new DataMemberInspector();
-        result.AddData(id,"flagNum", Num);
+        var result = new DataMemberInspector(id);
+        result.AddData("flagNum", Num);
         return result;
     }
 }

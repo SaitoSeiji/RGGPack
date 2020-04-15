@@ -399,7 +399,9 @@ PrefabInstance:
     - target: {fileID: 4053868393883940533, guid: 3008399e896d22d48a27755b776e825a,
         type: 3}
       propertyPath: data.Array.data[0]
-      value: aaaaaaaaaaaa
+      value: '
+
+        aa[x]cc'
       objectReference: {fileID: 0}
     - target: {fileID: 4053868393883940533, guid: 3008399e896d22d48a27755b776e825a,
         type: 3}
@@ -520,6 +522,7 @@ GameObject:
   - component: {fileID: 1832705900}
   - component: {fileID: 1832705901}
   - component: {fileID: 1832705902}
+  - component: {fileID: 1832705903}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -553,12 +556,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b969fccc39ac11741a9096b2a8192b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data: '$#branch
-
-    sss
-
-    sss'
-  _rgx: \\(.*)
+  _data: '{{a}{b}}'
+  _rgx: '{.*{.*}.*({.*})+.*}'
   _code: {fileID: 11400000, guid: 7b08bc867480013458ac747980c1f4a4, type: 2}
 --- !u!114 &1832705901
 MonoBehaviour:
@@ -590,6 +589,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152b1df6b052cc24d8ef2be01d2d29fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1832705903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832705898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab42a5aebfff3f4f93c8a57d435bb08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtname: Event_test
+  eventDb: {fileID: 11400000, guid: c32eff852fba8844397d0fcf0176a52e, type: 2}
 --- !u!1001 &1900569901
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -393,8 +393,13 @@ PrefabInstance:
         type: 3}
       propertyPath: _eventData
       value: 
-      objectReference: {fileID: 11400000, guid: 4bc0b98d88c05784093576deb2324d5f,
+      objectReference: {fileID: 11400000, guid: 5602a682e7cd8a942a044aa841dc8831,
         type: 2}
+    - target: {fileID: 3977937411785128911, guid: 3f737770d1fdcce40a6309bf9c223b8c,
+        type: 3}
+      propertyPath: _eventDataId
+      value: door_housou_out
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f737770d1fdcce40a6309bf9c223b8c, type: 3}
 --- !u!4 &2564220400446273382 stripped

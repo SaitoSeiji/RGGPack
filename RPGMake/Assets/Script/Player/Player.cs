@@ -18,8 +18,10 @@ public class Player : SingletonMonoBehaviour<Player>
 
     bool _actEnable = true;
     ChengeFlag _chengeFlag = new ChengeFlag();
-    
-    void Start()
+
+    bool _inited = false;
+
+    public void Init()
     {
         _plTr = transform;
         rb = GetComponent<Rigidbody2D>();
@@ -27,12 +29,14 @@ public class Player : SingletonMonoBehaviour<Player>
         _frontCollier.Init(transform);
 
         _chengeFlag.SetFlag(EventCodeReadController._getIsReadNow);
-        _chengeFlag.SetAction(true,()=>StopMove());
-        _chengeFlag.SetAction(false,()=>StartMove());
+        _chengeFlag.SetAction(true, () => StopMove());
+        _chengeFlag.SetAction(false, () => StartMove());
+
+        _inited = true;
     }
-    
     void Update()
     {
+        if (!_inited) return;
         _chengeFlag.CheckFlag(EventCodeReadController._getIsReadNow);
         if (!_actEnable)
         {

@@ -1,0 +1,11 @@
+id testFlag1
+	flagNum 0
+id goHosousitu_kyokasyo
+	flagNum 0
+id goHosousitu_hon
+	flagNum 0
+id goHosousitu_hoken
+	flagNum 0
+id doorOpened
+	flagNum 0
+end
