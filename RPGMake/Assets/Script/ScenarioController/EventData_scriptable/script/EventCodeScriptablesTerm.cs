@@ -1,16 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [System.Serializable]
 public class EventCodeScriptablesTerm
 {
-    [SerializeField]List<DataMemberInspector> _termList;
-    [SerializeField] bool _orMode = false;//trueだと１つでも条件を満たしていたらtrue
+    [SerializeField]public List<DataMemberInspector> _termList=new List<DataMemberInspector>();
+    [SerializeField]public bool _orMode = false;//trueだと１つでも条件を満たしていたらtrue
 
     public bool CoalEnable()
     {
         return CheckSatisfyTerm();
+    }
+
+    public void ResetTerm()
+    {
+        _termList = new List<DataMemberInspector>();
+    }
+
+    public void AddTerm(string id,string member,int data,DataMemberInspector.HIKAKU hikaku)
+    {
+        var target= _termList.Where(x => x._id == id).FirstOrDefault();
+        if (target == null)
+        {
+            target = new DataMemberInspector(id);
+        }
+        target.AddData(member, data, hikaku);
+        _termList.Add(target);
     }
 
     //そのうち分離and設定しやすくする

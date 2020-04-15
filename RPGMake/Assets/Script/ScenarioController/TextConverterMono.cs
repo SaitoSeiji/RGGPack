@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using System.Text.RegularExpressions;
 using System.Linq;
 
@@ -29,10 +30,10 @@ public static class TextConverter
     static string _checkIsHeadRGX = @"#(.*)";
     static string _checkHaveDataRGX = @"#(.*)\[(.*)\]";
 
-    public static List<TextCovertedData> Convert(string input)
+    public static Queue<TextCovertedData> Convert(string input)
     {
         var dataList = CreateBlockList(input);
-        var result = new List<TextCovertedData>();
+        var result = new Queue<TextCovertedData>();
         foreach(var d in dataList)
         {
             string head = "";
@@ -49,12 +50,12 @@ public static class TextConverter
                 head = GetHead(d);
             }
             text=TrimTextData(d);
-            result.Add( new TextCovertedData(head, data, text));
+            result.Enqueue( new TextCovertedData(head, data, text));
         }
         return result;
     }
 
-    public static List<TextCovertedData> DebugInfo(string input)
+    public static Queue<TextCovertedData> DebugInfo(string input)
     {
         var data = Convert(input);
         foreach(var d in data)
@@ -69,6 +70,7 @@ public static class TextConverter
         var d = input.Split('$');
         return d.Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x)).ToList();
     }
+    
 
     #region check
     static bool CheckIsHead(string input)
@@ -124,17 +126,17 @@ public class TextConverterMono: MonoBehaviour
     [ContextMenu("_rgx_dataDebug")]
     void Dip()
     {
-        Regex rgx = new Regex(_rgx);
+        //Regex rgx = new Regex(_rgx);
 
-        var match = rgx.Match(_data);
+        var match = Regex.Match(_data,_rgx,RegexOptions.Singleline);
 
         if (match.Success)
         {
-            Debug.Log(match.Index + ":" + match.Value);
+            Debug.Log(match.Groups.Count + ":" + match.Value);
 
             foreach (Group m in match.Groups)
             {
-                Debug.Log(m.Value);
+                Debug.Log(m.Value.Trim());
             }
         }
         else
@@ -167,6 +169,48 @@ public class TextConverterMono: MonoBehaviour
         }
     }
 
+    [ContextMenu("replaceTest")]
+    void ReplaceData()
+    {
+
+        Regex rgx = new Regex(_rgx);
+
+        var match = rgx.Match(_data);
+
+        if (match.Success)
+        {
+            var result=rgx.Replace(_data,"replace");
+            Debug.Log(result);
+        }
+        else
+        {
+            Debug.Log("miss");
+        }
+    }
+    [ContextMenu("EventDataTest")]
+    void ChainRGX()
+    {
+        var datas = _data.Split(
+            new string[] { "id:" }, StringSplitOptions.RemoveEmptyEntries)
+            .Select(x => x = "id:" + x);
+        foreach (var data in datas)
+        {
+            string idBrox = @"id: (.+?)\n(.+)";
+            var match = Regex.Match(data, idBrox,RegexOptions.Singleline);
+            Debug.Log("head:" + match.Groups[1].Value.Trim());
+            Debug.Log("content:" + match.Groups[2].Value.Trim());
+            string content = match.Groups[2].Value;
+            string branket = "(.+?){(.+?)}";
+            var matches2 = Regex.Matches(content, branket, RegexOptions.Singleline);
+            foreach (Match ma2 in matches2)
+            {
+                Debug.Log("head:" + ma2.Groups[1].Value.Trim());
+                Debug.Log(" content:" + ma2.Groups[2].Value.Trim());
+            }
+        }
+
+    }
+    
     List<string> WindowBlock(string input)
     {
         var d = input.Split('$');

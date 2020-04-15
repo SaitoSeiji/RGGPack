@@ -1,15 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class EventController : SingletonMonoBehaviour<EventController>
 {
-    [SerializeField] EventDataMonoBehaviour firstEvent;
-
-    private void Start()
-    {
-        if (firstEvent != null) firstEvent.EventAction();
-    }
+    [SerializeField] EventDB _eventDataBase;
 
     public bool CoalEvent(EventDataMonoBehaviour data)
     {
@@ -29,5 +25,10 @@ public class EventController : SingletonMonoBehaviour<EventController>
     public bool GetReadNow()
     {
         return EventCodeReadController._getIsReadNow;
+    }
+
+    public EventCodeScriptable GetEventData(string id)
+    {
+        return _eventDataBase._scriptableList.Where(x => x.name == id).FirstOrDefault();
     }
 }

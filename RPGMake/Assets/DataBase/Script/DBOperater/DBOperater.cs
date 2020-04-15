@@ -102,6 +102,60 @@ public class DBListCreator
     }
 }
 
+//DB関連の入出力処理
+public static class DBIO
+{
+    public static string CreateSavePath_txt(string saveKey)
+    {
+        return Application.dataPath + "/DataBase/" + saveKey + ".txt";
+    }
+
+    public static string CreateSavePath_asset(string saveKey,string key)
+    {
+        return ("Assets/Resources/DataBase/" + saveKey + "/" + key + ".asset");
+    }
+    
+    public static string CreateAssetDirectoryPath(string saveKey)
+    {
+        return ("Assets/Resources/DataBase/" + saveKey);
+    }
+
+    public static bool CheckDir(string path)
+    {
+        return Directory.Exists(path);
+    }
+
+    public static void CreateDir(string path)
+    {
+        Directory.CreateDirectory(path);
+        AssetDatabase.Refresh();
+    }
+
+    public static string ReadText(string path)
+    {
+        string rawdata = "";
+        using (StreamReader sr = new StreamReader(path))
+        {
+            rawdata = sr.ReadToEnd();
+        }
+        return rawdata;
+    }
+
+
+    public static void WriteText(List<string> data, string path)
+    {
+        WriteText(string.Join("\n", data), path);
+    }
+    public static void WriteText(string data, string path)
+    {
+        using (StreamWriter sw = new StreamWriter(path))
+        {
+            data = data.Trim('\r', '\n', '\t');
+            sw.WriteLine(data);
+        }
+    }
+}
+
 //データベースの操作を行うクラス
 public class DBOperater<T,K>
     where T:AbstractDBData
@@ -117,58 +171,6 @@ public class DBOperater<T,K>
         _saveKey = saveKey;
         _database = db;
     }
-    #region path
-    string CreateSavePath_txt()
-    {
-        return Application.dataPath + "/DataBase/" + _saveKey + ".txt";
-    }
-    string CreateSavePath_txtAsset()
-    {
-        return Application.dataPath + "/DataBase/" + _saveKey + ".asset";
-    }
-
-    string CreateSavePath_asset(string key)
-    {
-        return ("Assets/Resources/DataBase/"+_saveKey+"/" + key + ".asset");
-    }
-
-    #endregion
-    #region io
-
-    string ReadText(string path)
-    {
-        string rawdata = "";
-        using (StreamReader sr = new StreamReader(CreateSavePath_txt()))
-        {
-            rawdata = sr.ReadToEnd();
-        }
-        return rawdata;
-    }
-
-    List<string> ReadText2List(string path)
-    {
-        string rawdata = "";
-        using (StreamReader sr = new StreamReader(CreateSavePath_txt()))
-        {
-            rawdata = sr.ReadToEnd();
-        }
-        return rawdata.Split('\n').Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x)).ToList();
-    }
-    
-    void WriteText(List<string> data, string path)
-    {
-        WriteText(string.Join("\n", data), path);
-    }
-    void WriteText(string data, string path)
-    {
-        using (StreamWriter sw = new StreamWriter(CreateSavePath_txt()))
-        {
-            data=data.Trim('\r', '\n','\t');
-            sw.WriteLine(data);
-        }
-    }
-
-    #endregion
     #region debug
     static void DebugMessage_success(string content)
     {
@@ -181,7 +183,6 @@ public class DBOperater<T,K>
 #endregion
     public void AddDBD(string name)
     {
-        if (!CheckFile()) CreateFile();
         var dataList = _database.GetDataList();
         if (dataList.Where(x=>x._Data._serchId==name).FirstOrDefault()!=null)
         {
@@ -190,11 +191,11 @@ public class DBOperater<T,K>
         }
         //scriptableObjectの追加
         var scriptable = AbstractDBData.GetInstance<T>();
-        AssetDatabase.CreateAsset(scriptable, CreateSavePath_asset(name));
+        AssetDatabase.CreateAsset(scriptable, DBIO.CreateSavePath_asset(_saveKey,name));
         scriptable.InitData();
         dataList.Add(scriptable);
         //txtデータ書き込み
-        WriteText(_database.CreateDataTxt(), CreateSavePath_txt());
+        DBIO.WriteText(_database.CreateDataTxt(), DBIO.CreateSavePath_txt(_saveKey));
         AssetDatabase.Refresh();
         DebugMessage_success("Add");
     }
@@ -213,7 +214,7 @@ public class DBOperater<T,K>
         dataList.Remove(scrData);
         AssetDatabase.MoveAssetToTrash(AssetDatabase.GetAssetPath(scrData));
         //txtの更新
-        WriteText(_database.CreateDataTxt(), CreateSavePath_txt());
+        DBIO.WriteText(_database.CreateDataTxt(), DBIO.CreateSavePath_txt(_saveKey));
         AssetDatabase.Refresh();
         DebugMessage_success("Remove");
     }
@@ -238,11 +239,11 @@ public class DBOperater<T,K>
             return;
         }
         //scriptableObjectの更新
-        AssetDatabase.RenameAsset(CreateSavePath_asset(oldName), data._serchId);
+        AssetDatabase.RenameAsset(DBIO.CreateSavePath_asset(_saveKey,oldName), data._serchId);
         targetData.UpdateData(data);
         EditorUtility.SetDirty(targetData);
         //txtの更新
-        WriteText(_database.CreateDataTxt(), CreateSavePath_txt());
+        DBIO.WriteText(_database.CreateDataTxt(), DBIO.CreateSavePath_txt(_saveKey));
         AssetDatabase.Refresh();
         DebugMessage_success("Update");
     }
@@ -250,7 +251,7 @@ public class DBOperater<T,K>
     public void SyncDataByTxt()
     {
         var creator = new DBListCreator(AbstractDBData.GetInstance<T>());
-        var txtDataList = creator.CreateDBListBytxt(ReadText(CreateSavePath_txt()));
+        var txtDataList = creator.CreateDBListBytxt(DBIO.ReadText(DBIO.CreateSavePath_txt(_saveKey)));
         var assetDBList = _database.GetDataList();
         //txtに書いてないものを削除
         for(int i=assetDBList.Count-1;i>=0;i--)
@@ -268,7 +269,7 @@ public class DBOperater<T,K>
             if (target == null)
             {
                 target = AbstractDBData.GetInstance<T>();
-                AssetDatabase.CreateAsset(target, CreateSavePath_asset(data._serchId));
+                AssetDatabase.CreateAsset(target,DBIO.CreateSavePath_asset(_saveKey,data._serchId));
                 _database.GetDataList().Add(target);
             }
             target.UpdateData(data);
@@ -283,16 +284,8 @@ public class DBOperater<T,K>
     public void SyncTxtByData()
     {
         string write = _database.CreateDataTxt();
-        WriteText(write, CreateSavePath_txt());
-    }
-    bool CheckFile()
-    {
-        return File.Exists(CreateSavePath_txt());
+        DBIO.WriteText(write, DBIO.CreateSavePath_txt(_saveKey));
     }
 
-    void CreateFile()
-    {
-        File.Create(CreateSavePath_txt());
-        AssetDatabase.Refresh();
-    }
 }
+

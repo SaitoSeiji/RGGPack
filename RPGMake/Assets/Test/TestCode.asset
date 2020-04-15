@@ -16,5 +16,7 @@ MonoBehaviour:
     _text: $#empty
     _nextEventCode: {fileID: 0}
     coalTerm:
-      _termList: []
+      _termList:
+      - _id: 
+        _memberSet: []
       _orMode: 0

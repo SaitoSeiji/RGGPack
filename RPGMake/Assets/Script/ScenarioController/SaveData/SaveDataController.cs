@@ -31,10 +31,11 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
         {
             foreach (var data in dataList.Value)
             {
-                var temp = new DataMemberInspector();
+                DataMemberInspector temp = null;
                 foreach (var st in data._memberSet_int)
                 {
-                    temp.AddData(data._serchId, st.Key, st.Value);
+                    temp = new DataMemberInspector(data._serchId);
+                    temp.AddData(st.Key, st.Value,DataMemberInspector.HIKAKU.NONE);
                 }
                 _memberSet.Add(temp);
             }
@@ -96,6 +97,50 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
                 return;
             }
         }
+    }
+
+    public string GetText<T>(string id, string memberName)
+        where T:AbstractDB
+    {
+        string name = "";
+        foreach (var db in _variableDbList)
+        {
+            if (db is T)
+            {
+                name = db.name;
+                break;
+            }
+        }
+        if (string.IsNullOrEmpty(name))
+        {
+            Debug.Log("SaveDataController:SetData:name is null");
+            return "";
+        }
+
+        foreach (var saveData in _saveDataList)
+        {
+            if (saveData.Key == name)
+            {
+                foreach (var unit in saveData.Value)
+                {
+                    if (unit._serchId == id)
+                    {
+                        if (unit._memberSet_st.ContainsKey(memberName))
+                        {
+                            return unit._memberSet_st[memberName];
+                        }
+                        else
+                        {
+                            Debug.Log("SaveDataController:SetData:memberName is uncorrect:"+memberName);
+                        }
+                        return "";
+                    }
+                }
+                Debug.Log("SaveDataController:SetData:id is uncorrect");
+                return "";
+            }
+        }
+        return "";
     }
 
     public int GetData<T>(DataMemberInspector data)

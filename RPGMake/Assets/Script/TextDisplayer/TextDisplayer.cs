@@ -2,11 +2,71 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-
+using System.Text.RegularExpressions;
 
 public class TextDisplayer:SingletonMonoBehaviour<TextDisplayer>
 {
+    public static class TextReplacer
+    {
+        static string _replaceTextDataRGX = @"\[(.+)\]";//[text]
+        static string _kakkoNakaRGX = @"(.+),(.+)";//head,data
+
+        public static string CheckReplace(string data)
+        {
+            var rgx = new Regex(_replaceTextDataRGX);
+            var match = rgx.Match(data);
+            if (match.Success)
+            {
+                return match.Groups[1].Value;
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        public static string ReplaceText(string data, string replace)
+        {
+            var rgx = new Regex(_replaceTextDataRGX);
+            return rgx.Replace(data, replace);
+        }
+
+
+        public static string GetReplaceContent(string target)
+        {
+            string result = target;
+            var rgx = new Regex(_kakkoNakaRGX);
+            var match = rgx.Match(target);
+            if (match.Success)
+            {
+                string head = match.Groups[1].Value;
+                string data = match.Groups[2].Value;
+                switch (head)
+                {
+                    case "item":
+                        result = ItemReplace(data);
+                        break;
+                }
+            }
+            else
+            {
+
+            }
+            return result;
+        }
+
+        static string ItemReplace(string data)
+        {
+            switch (data)
+            {
+                case "getItem":
+                    var key= EventCodeReadController.Instance.GetFlashData(data)[0];
+                    EventCodeReadController.Instance.RemoveFlashData(data);
+                    return SaveDataController.Instance.GetText<ItemDB>(key.ToString(), "displayName");
+            }
+            return "";
+        }
+    }
 
     [SerializeField] Text _displayTextArea;
     [SerializeField] GameObject _textPanel;
@@ -33,8 +93,6 @@ public class TextDisplayer:SingletonMonoBehaviour<TextDisplayer>
 
     private void Update()
     {
-
-
         if (_readNow)
         {
             if (_charWaitFlag._waitNow)
@@ -49,8 +107,7 @@ public class TextDisplayer:SingletonMonoBehaviour<TextDisplayer>
                     {
                         if (IsEndAll())
                         {
-                            _readNow = false;
-                            _endWaitFlag.WaitStart();
+                            EndEvent();
                         }
                         else
                         {
@@ -64,15 +121,6 @@ public class TextDisplayer:SingletonMonoBehaviour<TextDisplayer>
                     _charWaitFlag.WaitStart();
                 }
 
-            }
-        }
-        else
-        {
-            //読み込みが終了してから一瞬間をおいて、追加のテキストを入れることができる
-            //無理やりすぎるので直したい
-            if (!_endWaitFlag._waitNow)
-            {
-                EndEvent();
             }
         }
     }
@@ -109,15 +157,17 @@ public class TextDisplayer:SingletonMonoBehaviour<TextDisplayer>
     string GetNextRead()
     {
         _displayTextArea.text = "";
-        return _textData.Dequeue();
+        var data= _textData.Dequeue();
+        data = RepalceData(data);
+        return data;
     }
-
 
     void EndEvent()
     {
         if (!_textPanel.activeInHierarchy) return;
         _displayTextArea.text = "";
         _textPanel.SetActive(false);
+        _readNow = false;
     }
 
     bool SubmitInput()
@@ -135,21 +185,29 @@ public class TextDisplayer:SingletonMonoBehaviour<TextDisplayer>
         return _nowTextData == _displayTextArea.text;
     }
 
+    //表示テキストの更新
     static string GetUpdateText(string displayText,string targetText)
     {
         string result = displayText;
         int nowCharCount = result.Length;
         result += targetText[nowCharCount];
         return result;
-
-        //string nowDisplayText = _displayTextArea.text;
-        //string nowData = _textData.Data[_nowTextDataIndex];
-        //int nowCharCount = nowDisplayText.Length;
-
-        //nowDisplayText += nowData[nowCharCount];
-        //return nowDisplayText;
+    }
+    #region repalace
+    string RepalceData(string text)
+    {
+        var tempText = text;
+        string check = TextReplacer.CheckReplace(tempText);
+        while (!string.IsNullOrEmpty(check))
+        {
+            var replace = TextReplacer.GetReplaceContent(check);
+            tempText = TextReplacer.ReplaceText(tempText, replace);
+            check = TextReplacer.CheckReplace(tempText);
+        }
+        return tempText;
     }
 
+    #endregion
     //test======================
 
     [ContextMenu("testDisplay")]

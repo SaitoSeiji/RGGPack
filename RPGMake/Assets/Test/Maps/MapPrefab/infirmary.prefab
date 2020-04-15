@@ -446,12 +446,12 @@ PrefabInstance:
     - target: {fileID: 5032891466902743808, guid: 3f737770d1fdcce40a6309bf9c223b8c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.64
+      value: -3.63
       objectReference: {fileID: 0}
     - target: {fileID: 5032891466902743808, guid: 3f737770d1fdcce40a6309bf9c223b8c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.81
+      value: 0.95
       objectReference: {fileID: 0}
     - target: {fileID: 5032891466902743808, guid: 3f737770d1fdcce40a6309bf9c223b8c,
         type: 3}
@@ -502,8 +502,13 @@ PrefabInstance:
         type: 3}
       propertyPath: _eventData
       value: 
-      objectReference: {fileID: 11400000, guid: e8bf5f20ecef4cd45a86d31a135b663c,
+      objectReference: {fileID: 11400000, guid: 83b66e04ba3b3bd4a9ee993ab16b80c2,
         type: 2}
+    - target: {fileID: 3977937411785128911, guid: 3f737770d1fdcce40a6309bf9c223b8c,
+        type: 3}
+      propertyPath: _eventDataId
+      value: hoken_bansoukou
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f737770d1fdcce40a6309bf9c223b8c, type: 3}
 --- !u!4 &3745931860583538052 stripped
@@ -583,8 +588,13 @@ PrefabInstance:
         type: 3}
       propertyPath: _eventData
       value: 
-      objectReference: {fileID: 11400000, guid: 3ea0beddcc6e67b4e9af82448e54f82a,
+      objectReference: {fileID: 11400000, guid: 9d59ba5c848b8a14797995fc6260894a,
         type: 2}
+    - target: {fileID: 3977937411785128911, guid: 3f737770d1fdcce40a6309bf9c223b8c,
+        type: 3}
+      propertyPath: _eventDataId
+      value: door_hoken
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f737770d1fdcce40a6309bf9c223b8c, type: 3}
 --- !u!4 &3651970770600355889 stripped

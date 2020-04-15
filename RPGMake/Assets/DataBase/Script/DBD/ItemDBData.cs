@@ -36,9 +36,9 @@ public class ItemDBData : AbstractDBData
 
     public static DataMemberInspector AddHaveNum(string id,int num)
     {
-        var result = new DataMemberInspector();
+        var result = new DataMemberInspector(id);
         var have= SaveDataController.Instance.GetData<ItemDB>(id, "haveNum");
-        result.AddData(id, "haveNum", have+num);
+        result.AddData( "haveNum", have+num);
         return result;
     }
 

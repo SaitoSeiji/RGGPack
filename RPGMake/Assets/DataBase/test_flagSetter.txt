@@ -1,6 +1,0 @@
-id flagID//flag‚ÌID‚Æ‚¨‚È‚¶ID
-	satisfyFlagNum 1
-	unSatisfyFlagNum -1
-	needFlagID flagID=0&&flagID=1&&?
-	needItemID num
-end
