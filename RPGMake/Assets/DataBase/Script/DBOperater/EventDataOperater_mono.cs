@@ -1,14 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 public class EventDataOperater_mono : MonoBehaviour
 {
-    [SerializeField,HideInInspector]public TextAsset _textAsset;
-    [SerializeField] string _txtname;
+    [SerializeField,HideInInspector] string _txtname;
     [SerializeField] EventDB eventDb;
 
     //[ContextMenu("createTest")]
@@ -28,24 +24,9 @@ public class EventDataOperater_mono : MonoBehaviour
         EventDataOperater.SyncDataByTxt(eventDb,txt.replaced,_txtname);
     }
 
-#if UNITY_EDITOR
-    [CustomEditor(typeof(EventDataOperater_mono))]
-    public class EventDataOperater_mono_editor:Editor
+    public void SetReadFileName(string fileName)
     {
-        public override void OnInspectorGUI()
-        {
-            DrawDefaultInspector();
-            var script = target as EventDataOperater_mono;
-
-            EditorGUI.BeginChangeCheck();
-            script._textAsset = EditorGUILayout.ObjectField(
-                "テキストデータ", script._textAsset, typeof(TextAsset), true)
-                as TextAsset;
-            if (EditorGUI.EndChangeCheck()&& script._textAsset!=null)
-            {
-                script._txtname = script._textAsset.name;
-            }
-        }
+        _txtname = fileName;
     }
-#endif
+    
 }

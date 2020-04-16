@@ -4,7 +4,7 @@ id test1
 	explanation データの登録テストです
 	maxNum 20
 	haveNum 0
-id test3
+id test2
 	displayName テスト1
 	explanation データの登録テストです
 	maxNum 20
