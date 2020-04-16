@@ -507,10 +507,6 @@ public class EventCodeReadController : SingletonMonoBehaviour<EventCodeReadContr
 
     public Dictionary<string, List<string>> _flashData = new Dictionary<string, List<string>>();
 
-    [SerializeField] TextDisplayer _textDisplayer;
-    [SerializeField] BranchDisplayer _branchDisplayer;
-    [SerializeField] SpriteCanvas _spriteCanvas;
-
     private void Start()
     {
     }

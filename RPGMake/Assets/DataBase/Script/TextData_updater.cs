@@ -27,6 +27,7 @@ public class TextData_updater : MonoBehaviour
             _dbOperater.SetReadFileName(data.name);
             _dbOperater.SyncDBTxt();
         }
+        SaveDataController.Instance.TestInitSave();
     }
     
     void Init()

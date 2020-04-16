@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-[CreateAssetMenu(menuName = "MyGame/Data/Create AudioDataBase", fileName = "AudioDataBase")]
+[CreateAssetMenu(menuName = "DataBases/DataBase/AudioDataBase", fileName = "AudioDataBase")]
 public class AudioDataBase : ScriptableObject
 {
     [System.Serializable]
