@@ -1,5 +1,5 @@
 Type(Flag)
-id testFlag1
+id testFlag
 	flagNum 0
 id preEvent
 	flagNum 0

@@ -1,39 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 [RequireComponent(typeof(DBOperater_mono), typeof(EventDataOperater_mono))]
 public class TextData_updater : MonoBehaviour
 {
-    [SerializeField] DBOperater_mono _dbOperater;
-    [SerializeField] EventDataOperater_mono _eventOperater;
+    [SerializeField,HideInInspector] DBOperater_mono _dbOperater;
+    [SerializeField,HideInInspector] EventDataOperater_mono _eventOperater;
+    
+    [SerializeField]List<TextAsset> _dataBaseText = new List<TextAsset>();
+    [SerializeField] TextAsset _eventDataText;
 
-    [SerializeField, HideInInspector] string _beforeDBText;
-    [SerializeField, HideInInspector] string _beforeEventText;
-    public void DataUpdate()
+    public void DataUpdate_ev()
     {
-        bool chenged = false;
-        if (DBChenged())
-        {
-            _dbOperater.SyncDBTxt();
-            SaveDataController.Instance.TestInitSave();
-            chenged = true;
-        }
-        if (EventChenged())
-        {
-            _eventOperater.SyncDatabyTxt();
-            chenged = true;
-        }
+        _eventOperater.SetReadFileName(_eventDataText.name);
+        _eventOperater.SyncDatabyTxt();
+    }
 
-        if (!chenged)
+    public void DataUpdate_db()
+    {
+        foreach (var data in _dataBaseText)
         {
-            Debug.Log("data is not Chenged");
-        }
-        else
-        {
-            Debug.Log("data update is end");
+            _dbOperater.SetReadFileName(data.name);
+            _dbOperater.SyncDBTxt();
         }
     }
     
@@ -48,33 +40,6 @@ public class TextData_updater : MonoBehaviour
             _eventOperater = FindObjectOfType<EventDataOperater_mono>();
         }
     }
-
-    bool DBChenged()
-    {
-        bool result = false;
-        string path = DBIO.CreateSavePath_txt(_dbOperater._txtFile.name);
-        string text = DBIO.ReadText(path);
-        if (!text.Equals(_beforeDBText))
-        {
-            result = true;
-        }
-        _beforeDBText = text;
-        return result;
-    }
-
-    bool EventChenged()
-    {
-        bool result = false;
-        string path = DBIO.CreateSavePath_txt(_eventOperater._textAsset.name);
-        string text = DBIO.ReadText(path);
-        if (!text.Equals(_beforeEventText))
-        {
-            result = true;
-        }
-        _beforeEventText = text;
-        return result;
-    }
-
 #if UNITY_EDITOR
     [CustomEditor(typeof(TextData_updater))]
     public class TextData_updater_editor : Editor
@@ -86,7 +51,8 @@ public class TextData_updater : MonoBehaviour
             if (GUILayout.Button("UpdateData"))
             {
                 script.Init();
-                script.DataUpdate();
+                script.DataUpdate_db();
+                script.DataUpdate_ev();
             }
         }
     }

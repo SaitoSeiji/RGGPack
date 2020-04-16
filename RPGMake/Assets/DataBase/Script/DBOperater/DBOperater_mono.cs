@@ -2,14 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 public class DBOperater_mono : MonoBehaviour
 {
     [SerializeField,HideInInspector] string _fileName;
-    [SerializeField,HideInInspector]public TextAsset _txtFile;
     [SerializeField] List<AbstractDB> _dataBaseList=new List<AbstractDB>();
     //現在一時利用停止中
     [SerializeField, Space(10),HideInInspector] string oldName;
@@ -38,11 +34,6 @@ public class DBOperater_mono : MonoBehaviour
     AbstractDB GetDB(System.Type type)
     {
         return _dataBaseList.Where(x => x.GetType() == type).FirstOrDefault();
-    }
-    
-    void SetFileName()
-    {
-        _fileName = _txtFile.name;
     }
     //[ContextMenu("add Data")]
     public void AddDB()
@@ -134,7 +125,6 @@ public class DBOperater_mono : MonoBehaviour
         }
         else if(type == typeof(FlagDB))
         {
-
             var op = new DBOperater<FlagDBData, FlagDB>(db as FlagDB, _fileName);
             op.SyncDataByTxt(ReadFile(_fileName).text);
         }
@@ -158,25 +148,8 @@ public class DBOperater_mono : MonoBehaviour
         }
     }
 
-#if UNITY_EDITOR
-    [CustomEditor(typeof(DBOperater_mono))]
-    public class DBOperater_mono_editor : Editor
+    public void SetReadFileName(string fileName)
     {
-        public override void OnInspectorGUI()
-        {
-            var script = target as DBOperater_mono;
-            EditorGUI.BeginChangeCheck();
-            script._txtFile = EditorGUILayout.ObjectField(
-                "テキストデータ", script._txtFile, typeof(TextAsset), true)
-                as TextAsset;
-            if (EditorGUI.EndChangeCheck()&&script._txtFile!=null)
-            {
-                script._fileName = script._txtFile.name;
-            }
-            DrawDefaultInspector();
-        }
-
+        _fileName = fileName;
     }
-
-#endif
 }

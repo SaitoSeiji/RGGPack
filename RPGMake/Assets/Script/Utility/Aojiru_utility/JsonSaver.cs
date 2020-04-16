@@ -67,6 +67,11 @@ public class JsonSaver
     {
         return Application.dataPath + "/" + _saveDataPath + path+".json";
     }
+
+    public static bool CheckExsitFile(string path)
+    {
+        return File.Exists(GetPath(path));
+    }
 }
 
 public static class StringSerializationAPI
