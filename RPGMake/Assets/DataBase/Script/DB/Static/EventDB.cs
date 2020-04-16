@@ -11,7 +11,6 @@ using System.Linq;
 public class EventDB : ScriptableObject
 {
     [SerializeField]public List<EventCodeScriptable> _scriptableList=new List<EventCodeScriptable>();
-    [SerializeField] public string saveFileName;
 
     public void UpdateNextEvent()
     {

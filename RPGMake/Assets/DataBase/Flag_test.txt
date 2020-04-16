@@ -1,3 +1,4 @@
+Type(Flag)
 id testFlag1
 	flagNum 0
 id preEvent

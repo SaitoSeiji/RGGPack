@@ -1,4 +1,5 @@
-﻿id: testevent2
+﻿Type(Event)
+id: testevent
 	text{
 		$
 		text22

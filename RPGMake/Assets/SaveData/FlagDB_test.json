@@ -10,12 +10,21 @@
             }
         },
         {
+            "_serchId": "preEvent",
+            "_memberSet_st": {
+                
+            },
+            "_memberSet_int": {
+                "flagNum": 0
+            }
+        },
+        {
             "_serchId": "goHosousitu_kyokasyo",
             "_memberSet_st": {
                 
             },
             "_memberSet_int": {
-                "flagNum": 1
+                "flagNum": 0
             }
         },
         {
@@ -24,7 +33,7 @@
                 
             },
             "_memberSet_int": {
-                "flagNum": 1
+                "flagNum": 0
             }
         },
         {
@@ -33,7 +42,7 @@
                 
             },
             "_memberSet_int": {
-                "flagNum": 1
+                "flagNum": 0
             }
         },
         {
@@ -43,15 +52,6 @@
             },
             "_memberSet_int": {
                 "flagNum": 0
-            }
-        },
-        {
-            "_serchId": "preEvent",
-            "_memberSet_st": {
-                
-            },
-            "_memberSet_int": {
-                "flagNum": 1
             }
         }
     ]

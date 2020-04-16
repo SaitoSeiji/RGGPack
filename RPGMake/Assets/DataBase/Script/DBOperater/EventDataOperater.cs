@@ -101,8 +101,13 @@ public class EventDataOperater
     //=====================================
 
 
-    public static void SyncDataByTxt(EventDB _database,string text)
+    public static void SyncDataByTxt(EventDB _database,string text,string dirName)
     {
+        if (!DBIO.CheckDir(DBIO.CreateAssetDirectoryPath(dirName)))
+        {
+            DBIO.CreateDir(DBIO.CreateAssetDirectoryPath(dirName));
+        }
+
         var txtlist = GetConverted(text);
         var assetDBList = _database._scriptableList;
         //txtに書いてないものを削除
@@ -124,6 +129,7 @@ public class EventDataOperater
             }
         }
         //txtに書いてあるけどデータがないものを追加
+        
         foreach (var data in txtlist)
         {
             var target = assetDBList.Where(x => x.name == data.id).FirstOrDefault();
@@ -137,7 +143,7 @@ public class EventDataOperater
             {
                 //target = ScriptableObject.CreateInstance<EventCodeScriptable>();
                 target =make;
-                AssetDatabase.CreateAsset(target, DBIO.CreateSavePath_asset(_database.saveFileName, data.id));
+                AssetDatabase.CreateAsset(target, DBIO.CreateSavePath_asset(dirName, data.id));
                 assetDBList.Add(target);
             }
             target.UpdateData(data.id,data.dataSet);

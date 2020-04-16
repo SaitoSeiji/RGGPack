@@ -71,7 +71,6 @@ public static class TextConverter
         return d.Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x)).ToList();
     }
     
-
     #region check
     static bool CheckIsHead(string input)
     {

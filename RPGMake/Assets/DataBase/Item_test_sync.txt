@@ -1,6 +1,0 @@
-id test1
-	displayName テスト1
-	explanation データの登録テストです
-	maxNum 20
-	haveNum 0
-end

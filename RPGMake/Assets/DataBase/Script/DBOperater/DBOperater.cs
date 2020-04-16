@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -20,12 +21,12 @@ public class DBListCreator
         _dataLinesSize = data.GetTxtMemberCount();
     }
 
-    DBData CreateDBData(string id, string data)
+    DBData CreateDBData(string id, string txt)
     {
         Dictionary<string, string> dic_st= new Dictionary<string, string>(_template._memberSet_st);
         Dictionary<string, int> dic_int= new Dictionary<string, int>(_template._memberSet_int);
         
-        var lines = data.Split('\n');
+        var lines = new List<string>( txt.Split('\n'));
         foreach (var line in lines)
         {
             line.Trim();
@@ -141,6 +142,25 @@ public static class DBIO
         return rawdata;
     }
 
+    public static (string type,string replaced) TrimType(string txt)
+    {
+        string type="";
+        string replaced="";
+        string rgx = @"Type\((.+?)\)";
+        Match match = Regex.Match(txt, rgx, RegexOptions.Singleline);
+        if (match.Success)
+        {
+            type = match.Groups[1].Value;
+            replaced = Regex.Replace(txt, rgx, "", RegexOptions.Singleline);
+        }
+        else
+        {
+            Debug.Log("miss");
+            replaced = txt;
+        }
+        return (type, replaced.Trim());
+    }
+
 
     public static void WriteText(List<string> data, string path)
     {
@@ -161,14 +181,14 @@ public class DBOperater<T,K>
     where T:AbstractDBData
     where K:AbstractDB
 {
-    string _saveKey;
+    string _dirName;
     K _database;
 
     DBData _tempData;
 
-    public DBOperater(K db,string saveKey)
+    public DBOperater(K db,string dirName)
     {
-        _saveKey = saveKey;
+        _dirName = dirName;
         _database = db;
     }
     #region debug
@@ -181,6 +201,7 @@ public class DBOperater<T,K>
         Debug.Log("DBOperater : miss :" + content);
     }
 #endregion
+    //Add~Updateは現在使用不可
     public void AddDBD(string name)
     {
         var dataList = _database.GetDataList();
@@ -191,15 +212,14 @@ public class DBOperater<T,K>
         }
         //scriptableObjectの追加
         var scriptable = AbstractDBData.GetInstance<T>();
-        AssetDatabase.CreateAsset(scriptable, DBIO.CreateSavePath_asset(_saveKey,name));
+        AssetDatabase.CreateAsset(scriptable, DBIO.CreateSavePath_asset(_dirName,name));
         scriptable.InitData();
         dataList.Add(scriptable);
         //txtデータ書き込み
-        DBIO.WriteText(_database.CreateDataTxt(), DBIO.CreateSavePath_txt(_saveKey));
+        DBIO.WriteText(_database.CreateDataTxt(), DBIO.CreateSavePath_txt(_dirName));
         AssetDatabase.Refresh();
         DebugMessage_success("Add");
     }
-
     public void RemoveDBD(string name)
     {
         
@@ -214,7 +234,7 @@ public class DBOperater<T,K>
         dataList.Remove(scrData);
         AssetDatabase.MoveAssetToTrash(AssetDatabase.GetAssetPath(scrData));
         //txtの更新
-        DBIO.WriteText(_database.CreateDataTxt(), DBIO.CreateSavePath_txt(_saveKey));
+        DBIO.WriteText(_database.CreateDataTxt(), DBIO.CreateSavePath_txt(_dirName));
         AssetDatabase.Refresh();
         DebugMessage_success("Remove");
     }
@@ -229,7 +249,6 @@ public class DBOperater<T,K>
         else DebugMessage_success("Edit");
         return new DBData( data.First()._Data,name);
     }
-
     public void UpdateDBD(DBData data,string oldName)
     {
         var targetData = _database.GetDataList().Where(x => x._Data._serchId == oldName).FirstOrDefault();
@@ -239,19 +258,23 @@ public class DBOperater<T,K>
             return;
         }
         //scriptableObjectの更新
-        AssetDatabase.RenameAsset(DBIO.CreateSavePath_asset(_saveKey,oldName), data._serchId);
+        AssetDatabase.RenameAsset(DBIO.CreateSavePath_asset(_dirName,oldName), data._serchId);
         targetData.UpdateData(data);
         EditorUtility.SetDirty(targetData);
         //txtの更新
-        DBIO.WriteText(_database.CreateDataTxt(), DBIO.CreateSavePath_txt(_saveKey));
+        DBIO.WriteText(_database.CreateDataTxt(), DBIO.CreateSavePath_txt(_dirName));
         AssetDatabase.Refresh();
         DebugMessage_success("Update");
     }
-
-    public void SyncDataByTxt()
+    public void SyncDataByTxt(string txt)
     {
+        if (!DBIO.CheckDir(DBIO.CreateAssetDirectoryPath(_dirName)))
+        {
+            DBIO.CreateDir(DBIO.CreateAssetDirectoryPath(_dirName));
+        }
+
         var creator = new DBListCreator(AbstractDBData.GetInstance<T>());
-        var txtDataList = creator.CreateDBListBytxt(DBIO.ReadText(DBIO.CreateSavePath_txt(_saveKey)));
+        var txtDataList = creator.CreateDBListBytxt(txt);
         var assetDBList = _database.GetDataList();
         //txtに書いてないものを削除
         for(int i=assetDBList.Count-1;i>=0;i--)
@@ -269,7 +292,7 @@ public class DBOperater<T,K>
             if (target == null)
             {
                 target = AbstractDBData.GetInstance<T>();
-                AssetDatabase.CreateAsset(target,DBIO.CreateSavePath_asset(_saveKey,data._serchId));
+                AssetDatabase.CreateAsset(target,DBIO.CreateSavePath_asset(_dirName,data._serchId));
                 _database.GetDataList().Add(target);
             }
             target.UpdateData(data);
@@ -284,7 +307,7 @@ public class DBOperater<T,K>
     public void SyncTxtByData()
     {
         string write = _database.CreateDataTxt();
-        DBIO.WriteText(write, DBIO.CreateSavePath_txt(_saveKey));
+        DBIO.WriteText(write, DBIO.CreateSavePath_txt(_dirName));
     }
 
 }

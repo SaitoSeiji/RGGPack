@@ -217,7 +217,7 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
     }
 
     [ContextMenu("InitsaveTest")]
-    void TestInitSave()
+    public void TestInitSave()
     {
         InitSaveDataList();
         SaveAction();

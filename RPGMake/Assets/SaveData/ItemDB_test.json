@@ -10,6 +10,17 @@
                 "maxNum": 20,
                 "haveNum": 0
             }
+        },
+        {
+            "_serchId": "test3",
+            "_memberSet_st": {
+                "displayName": "テスト1",
+                "explanation": "データの登録テストです"
+            },
+            "_memberSet_int": {
+                "maxNum": 20,
+                "haveNum": 0
+            }
         }
     ]
 }

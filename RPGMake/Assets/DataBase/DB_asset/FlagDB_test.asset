@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37cee416af16798418f08820f68f6566, type: 3}
   m_Name: FlagDB_test
   m_EditorClassIdentifier: 
-  savePath: Flag_test
   _dataList:
   - {fileID: 11400000, guid: 803edafe8332f104c81ed302f65ef4c8, type: 2}
+  - {fileID: 11400000, guid: 2e0d3823b4085ab4186fca5a3cd8831b, type: 2}
   - {fileID: 11400000, guid: 5e34c681e11eb4b469d7e2f8cef841ce, type: 2}
   - {fileID: 11400000, guid: 041cff2c4f202a449ab0aca03c443c41, type: 2}
   - {fileID: 11400000, guid: c8f41319081c7344ab26cea81c05bfdd, type: 2}
   - {fileID: 11400000, guid: 65936090730e89a4bbd2dceffbe5c560, type: 2}
-  - {fileID: 11400000, guid: 2e0d3823b4085ab4186fca5a3cd8831b, type: 2}

@@ -14,12 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableList:
   - {fileID: 11400000, guid: b92762ef98d6bdc44b1a9c6cc59727a8, type: 2}
-  - {fileID: 11400000, guid: 004c67a26138a824d98f3bc43c6219a0, type: 2}
-  - {fileID: 11400000, guid: 9d59ba5c848b8a14797995fc6260894a, type: 2}
-  - {fileID: 11400000, guid: 65e5cb76226673842be389adcd90b74b, type: 2}
-  - {fileID: 11400000, guid: 79fb33e0baf94084697801c842cf27f0, type: 2}
-  - {fileID: 11400000, guid: 5602a682e7cd8a942a044aa841dc8831, type: 2}
-  - {fileID: 11400000, guid: da5cd242bd66a3241aa87da6b8ffc549, type: 2}
   - {fileID: 11400000, guid: 70a3f459852ad5140ad5503324873f7c, type: 2}
   - {fileID: 11400000, guid: b643ea207a5bf04488cda6aba3b1f423, type: 2}
   - {fileID: 11400000, guid: e75a87a75a13a3d49bb723a24d3b4f6a, type: 2}
@@ -28,4 +22,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3c689f134792d234fa7e496be85fb35d, type: 2}
   - {fileID: 11400000, guid: 5b53a4c732bd21349ba03b080b40012c, type: 2}
   - {fileID: 11400000, guid: 1503b56d88a63434f96b1ea8e7ae5cbb, type: 2}
-  saveFileName: Event_test
+  - {fileID: 11400000, guid: 004c67a26138a824d98f3bc43c6219a0, type: 2}
+  - {fileID: 11400000, guid: 9d59ba5c848b8a14797995fc6260894a, type: 2}
+  - {fileID: 11400000, guid: 65e5cb76226673842be389adcd90b74b, type: 2}
+  - {fileID: 11400000, guid: 79fb33e0baf94084697801c842cf27f0, type: 2}
+  - {fileID: 11400000, guid: 5602a682e7cd8a942a044aa841dc8831, type: 2}
+  - {fileID: 11400000, guid: 5c8947b76dabfb644b12e519db29dc01, type: 2}

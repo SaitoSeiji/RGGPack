@@ -5,8 +5,6 @@ using System.Linq;
 
 public abstract class AbstractDB : ScriptableObject
 {
-    [SerializeField] string savePath;//txtの名前とasset/DB下のファイル名（存在しない場合はエラー）
-    public string SavePath { get { return savePath; } }
 
     //後で治す：AbstractDBをジェネリックにしたくなかったために、dataBaseのListがどのデータでも入るようになってしまっている
     //不具合が出次第修正

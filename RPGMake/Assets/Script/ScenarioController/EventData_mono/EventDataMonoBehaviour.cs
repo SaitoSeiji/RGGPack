@@ -56,8 +56,8 @@ public class EventDataMonoBehaviour : MonoBehaviour
             //eventDataを更新したときに参照切れを起こす問題の対策
 
             //データを登録したら自動でstringで保存する
-            DrawDefaultInspector();
             var script = target as EventDataMonoBehaviour;
+            DrawDefaultInspector();
             EditorGUI.BeginChangeCheck();
             script._eventData = EditorGUILayout.ObjectField(
                 "イベントデータ", script._eventData, typeof(EventCodeScriptable), true)

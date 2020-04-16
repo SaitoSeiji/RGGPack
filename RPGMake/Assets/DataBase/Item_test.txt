@@ -1,4 +1,10 @@
-﻿id test1
+﻿Type(Item)
+id test1
+	displayName テスト1
+	explanation データの登録テストです
+	maxNum 20
+	haveNum 0
+id test3
 	displayName テスト1
 	explanation データの登録テストです
 	maxNum 20

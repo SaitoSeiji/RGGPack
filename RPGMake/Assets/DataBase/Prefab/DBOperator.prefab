@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1156514040800366290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1156514040800366300}
+  - component: {fileID: 1156514040800366302}
+  - component: {fileID: 1156514040800366303}
+  - component: {fileID: 1156514040800366301}
+  m_Layer: 0
+  m_Name: DBOperator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1156514040800366300
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156514040800366290}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.5895064, y: 2.213973, z: -1.8007977}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1156514040800366302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156514040800366290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc30f0796fd79f14fba3c8a8b9b09e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fileName: Flag_test
+  _txtFile: {fileID: 0}
+  _dataBaseList: []
+  oldName: 
+  _data:
+    _serchId: 
+--- !u!114 &1156514040800366303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156514040800366290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab42a5aebfff3f4f93c8a57d435bb08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textAsset: {fileID: 0}
+  _txtname: Event_test
+  eventDb: {fileID: 0}
+--- !u!114 &1156514040800366301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156514040800366290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e20bc7fca4bbd824f8e8939a9c0491e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dbOperater: {fileID: 1156514040800366302}
+  _eventOperater: {fileID: 1156514040800366303}
+  _beforeDBText: "Type(Flag)\r\nid testFlag1\r\n\tflagNum 0\r\nid preEvent\r\n\tflagNum
+    0\r\nid goHosousitu_kyokasyo\r\n\tflagNum 0\r\nid goHosousitu_hon\r\n\tflagNum
+    0\r\nid goHosousitu_hoken\r\n\tflagNum 0\r\nid doorOpened\r\n\tflagNum 0\r\nend\r\n"
+  _beforeEventText: "Type(Event)\r\nid: testevent\r\n\ttext{\r\n\t\t$\r\n\t\ttext22\r\n\t\ttext2\r\n\t\t$\r\n\t}\r\n\tterm{\r\n\t\tormode
+    true\r\n\t\tid memeber 1 less\r\n\t\tflagId flagNum 0 more\r\n\t\titemId haveNum
+    1 equal\r\n\t}\r\n\tnext{\r\n\t\tmoveToClass\r\n\t\tdoor_class\r\n\t}\r\nid: moveToClass\r\n\ttext{\r\n\t\t$#map[class]\r\n\t}\r\n\tnext
+    {\r\n\t\tfirstEvent\r\n\t}\r\nid: firstEvent\r\n\ttext{\r\n\t\t$#name[\u305F\u304B\u3057]\r\n\t\t\u7528\u4E8B\u3092\u6E08\u307E\u305B\u305F\u3089\u653E\u9001\u5BA4\u306B\u5411\u304B\u304A\u3046\uFF01\r\n\t\t$#name[\u305F\u304B\u3057]\r\n\t\t\u3084\u3089\u306A\u3051\u308C\u3070\u3044\u3051\u306A\u3044\u7528\u4E8B\u306F\r\n\t\t$#name[\u305F\u304B\u3057]\r\n\t\t1.\u6559\u5BA4\u3067\u6559\u79D1\u66F8\u3092\u56DE\u53CE\u3059\u308B\r\n\t\t2.\u56F3\u66F8\u9928\u306B\u672C\u3092\u8FD4\u3059\r\n\t\t3.\u4FDD\u5065\u5BA4\u3067\u7D46\u5275\u818F\u3092\u3082\u3089\u3046\u3000\u3060\r\n\t\t$#name[\u305F\u304B\u3057]\r\n\t\t\u305D\u308C\u3067\u306F\u884C\u52D5\u958B\u59CB\r\n\t}term{\r\n\t\tpreEvent
+    flagNum 0 equal\r\n\t}\r\nid: class_kyoukasyo\r\n\ttext{\r\n\t\t$#name[\u305F\u304B\u3057]\r\n\t\t\u3048\u30FC\u3063\u3068...\u5FC5\u8981\u306A\u6559\u79D1\u66F8\u306F\u3063\u3068\r\n\t\t$#name[\u305F\u304B\u3057]\r\n\t\t...\r\n\t\t$#name[\u305F\u304B\u3057]\r\n\t\t\u3088\u3057\u3001\u6559\u79D1\u66F8\u3092\u56DE\u53CE\u3057\u305F\u305E\uFF01\r\n\t\t$#flag[goHosousitu_kyokasyo]
+    1\r\n\t}\r\n\tterm{\r\n\t\tgoHosousitu_kyokasyo flagNum 0 equal\r\n\t}\r\nid:
+    tosyo_hongaesi\r\n\ttext{\r\n\t\t$#name[\u305F\u304B\u3057]\r\n\t\t\u305F\u3057\u304B\u3053\u306E\u3042\u305F\u308A\u3060\u3063\u305F\u306A...\r\n\t\t$#name[\u305F\u304B\u3057]\r\n\t\t...\r\n\t\t$#name[\u305F\u304B\u3057]\r\n\t\t\u3088\u3057\uFF01\u672C\u3092\u8FD4\u3057\u7D42\u308F\u3063\u305F\u305E\r\n\t\t$#flag[goHosousitu_hon]
+    1\r\n\t}\r\n\tterm{\r\n\t\tgoHosousitu_hon flagNum 0 equal\r\n\t}\r\nid: hoken_bansoukou\r\n\ttext{\r\n\t\t$#name[\u305F\u304B\u3057]\r\n\t\t\u7D46\u5275\u818F\u306F\u3069\u3053\u304B\u306A\uFF5E\r\n\t\t$#name[\u305F\u304B\u3057]\r\n\t\t...\r\n\t\t$#name[\u305F\u304B\u3057]\r\n\t\t\u3088\u3057\u3042\u3063\u305F\uFF01\r\n\t\t\u7D46\u5275\u818F\u3092\u624B\u306B\u5165\u308C\u305F\u305E\uFF01\r\n\t\t$#flag[goHosousitu_hoken]
+    1\r\n\t}term{\r\n\t\tgoHosousitu_hoken flagNum 0 equal\r\n\t}\r\n//=======================================\r\nid:
+    housou_check\r\n\tnext{\r\n\t\thousou_check_opened\r\n\t\thousou_check_clear\r\n\t\thousou_check_miss\r\n\t}\r\nid:
+    housou_check_opened\r\n\ttext{\r\n\t\t$#map[housou]\r\n\t}\r\n\tterm{\r\n\t\tdoorOpened
+    flagNum 1 equal\r\n\t}\r\nid: housou_check_clear\r\n\ttext{\r\n\t\t$#name[\u305F\u304B\u3057]\r\n\t\t\u7528\u4E8B\u3082\u7D42\u308F\u3063\u3066\u3044\u308B\u3057\u653E\u9001\u5BA4\u306B\u5411\u304B\u304A\u3046\uFF01\r\n\t\t$#flag[doorOpened]
+    1\r\n\t\t$#map[housou]\r\n\t}term{\r\n\t\tgoHosousitu_kyokasyo flagNum 1 equal\r\n\t\tgoHosousitu_hon
+    flagNum 1 equal\r\n\t\tgoHosousitu_hoken flagNum 1 equal\r\n\t}\r\nid: housou_check_miss\r\n\ttext{\r\n\t\t$#name[\u305F\u304B\u3057]\r\n\t\t\u7528\u4E8B\u304C\u307E\u3060\u7D42\u308F\u3063\u3066\u306A\u3044\u306A\r\n\t}\r\n//=======================================\r\n//\u3053\u3053\u304B\u3089\u30C9\u30A2\r\nid:
+    door_class\r\n\ttext{\r\n\t\t$\r\n\t\t\u79FB\u52D5\u3057\u3088\u3046\r\n\t\t$#branch\r\n\t\t\u4FDD\u5065\u5BA4\r\n\t\t\u56F3\u66F8\u5BA4\r\n\t\t\u653E\u9001\u5BA4\r\n\t\t\u3084\u3081\u308B\r\n\t\t$#1map[hoken]\r\n\t\t$#2map[tosyo]\r\n\t\t$#3map[housou_mae]\r\n\t}\r\nid:
+    door_hoken\r\n\ttext{\r\n\t\t$\r\n\t\t\u79FB\u52D5\u3057\u3088\u3046\r\n\t\t$#branch\r\n\t\t\u6559\u5BA4\r\n\t\t\u56F3\u66F8\u5BA4\r\n\t\t\u653E\u9001\u5BA4\r\n\t\t\u3084\u3081\u308B\r\n\t\t$#1map[class]\r\n\t\t$#2map[tosyo]\r\n\t\t$#3map[housou_mae]\r\n\t}\r\nid:
+    door_tosyo\r\n\ttext{\r\n\t\t$\r\n\t\t\u79FB\u52D5\u3057\u3088\u3046\r\n\t\t$#branch\r\n\t\t\u4FDD\u5065\u5BA4\r\n\t\t\u6559\u5BA4\r\n\t\t\u653E\u9001\u5BA4\r\n\t\t\u3084\u3081\u308B\r\n\t\t$#1map[hoken]\r\n\t\t$#2map[class]\r\n\t\t$#3map[housou_mae]\r\n\t}\r\nid:
+    door_housou\r\n\ttext{\r\n\t\t$\r\n\t\t\u79FB\u52D5\u3057\u3088\u3046\r\n\t\t$#branch\r\n\t\t\u4FDD\u5065\u5BA4\r\n\t\t\u56F3\u66F8\u5BA4\r\n\t\t\u6559\u5BA4\r\n\t\t\u3084\u3081\u308B\r\n\t\t$#1map[hoken]\r\n\t\t$#2map[tosyo]\r\n\t\t$#3map[class]\r\n\t}\r\nid:
+    door_housou_out\r\n\ttext{\r\n\t\t$#map[housou_mae]\r\n\t}"
