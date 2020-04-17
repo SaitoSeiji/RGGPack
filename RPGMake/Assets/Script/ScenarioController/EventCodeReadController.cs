@@ -327,21 +327,28 @@ public class ImageCode : CodeData
     {
         CENTER, BACK,LEFT,RIGHT
     }
-    ImagePos imagePos;
+    ImagePos _imagePos;
+    public enum ImageDirection
+    {
+        Origin,Reverse
+    }
+    ImageDirection _imageDirection=ImageDirection.Origin;
 
     public ImageCode(TextCovertedData data)
     {
         if (data._data == "reset")
         {
             reset = true;
-            imagePos = GetImagePos(data._text.Trim());
+            _imagePos = GetImagePos(data._text.Trim());
         }
         else
         {
             var d = data._data.Split(',');
             setName = d[0];
             number = int.Parse(d[1]);
-            imagePos = GetImagePos(data._text.Trim());
+            var text = data._text.Split(' ');
+            _imagePos = GetImagePos(text[0].Trim());
+            if (text.Length>=2)_imageDirection=GetImageDir(text[1].Trim());
         }
     }
 
@@ -349,11 +356,12 @@ public class ImageCode : CodeData
     {
         if (reset)
         {
-            CoalImagePosAction_reset(imagePos);
+            SpriteCanvas.Instance.ResetImage(_imagePos);
         }
         else
         {
-            CoalImagePosAction_set(imagePos);
+            SpriteCanvas.Instance.SetImage(setName, number, _imagePos);
+            SpriteCanvas.Instance.SetDirection(_imagePos, _imageDirection);
         }
     }
 
@@ -373,29 +381,16 @@ public class ImageCode : CodeData
                 return ImagePos.CENTER;
         }
     }
-
-    void CoalImagePosAction_set(ImagePos pos)
+    ImageDirection GetImageDir(string code)
     {
-        switch (pos)
+        switch (code)
         {
-            case ImagePos.CENTER:
-                SpriteCanvas.Instance.SetImageCenter(setName, number);
-                break;
-            case ImagePos.BACK:
-                SpriteCanvas.Instance.SetImageBack(setName, number);
-                break;
-        }
-    }
-    void CoalImagePosAction_reset(ImagePos pos)
-    {
-        switch (pos)
-        {
-            case ImagePos.CENTER:
-                SpriteCanvas.Instance.ResetImage_Center();
-                break;
-            case ImagePos.BACK:
-                SpriteCanvas.Instance.ResetImage_Back();
-                break;
+            case "r":
+                return ImageDirection.Reverse;
+            case "o":
+                return ImageDirection.Origin;
+            default:
+                return ImageDirection.Origin;
         }
     }
 
