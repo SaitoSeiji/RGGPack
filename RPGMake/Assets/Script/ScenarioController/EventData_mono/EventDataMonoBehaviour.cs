@@ -37,7 +37,14 @@ public class EventDataMonoBehaviour : MonoBehaviour
     //editor====================
     void SetEventID()
     {
-        _eventDataId = _eventData.name;
+        if (_eventData == null)
+        {
+            _eventDataId = "";
+        }
+        else
+        {
+            _eventDataId = _eventData.name;
+        }
     }
 
     bool SetEventData()

@@ -9,6 +9,7 @@ public class Player : SingletonMonoBehaviour<Player>
         NONE,UP,DOWN,LEFT,RIGHT
     }
     [SerializeField] DIRECTION _nowDirection;
+    [SerializeField] ColliderMessanger _bodyCollider;
     [SerializeField] ColliderMessanger _frontCollier;
     [SerializeField] SpriteRenderer _headIcon;
     Transform _plTr;
@@ -25,8 +26,10 @@ public class Player : SingletonMonoBehaviour<Player>
     {
         _plTr = transform;
         rb = GetComponent<Rigidbody2D>();
-        _frontCollier.AddTag("Check");
+        _frontCollier.AddTag("CheckEvent");
         _frontCollier.Init(transform);
+        _bodyCollider.AddTag("HitEvent");
+        _bodyCollider.Init(transform);
 
         _chengeFlag.SetFlag(EventCodeReadController._getIsReadNow);
         _chengeFlag.SetAction(true, () => StopMove());
@@ -49,6 +52,7 @@ public class Player : SingletonMonoBehaviour<Player>
         MoveUpdate(tate,yoko);
         _nowDirection = GetDirection(rb.velocity);
         DirectionUpdate(_nowDirection);
+        HitUpdate(_bodyCollider.CheckHitNow());
         CheckUpdate(_frontCollier.CheckHitNow(),submit);
     }
     #region 有効無効
@@ -161,4 +165,17 @@ public class Player : SingletonMonoBehaviour<Player>
         }
     }
     #endregion
+
+    //毎フレームGetComponentしかねないので改善したい
+    void HitUpdate(bool hit)
+    {
+        if (hit)
+        {
+            var hitEvent = _bodyCollider._nowHitCollider.GetComponent<EventDataMonoBehaviour>();
+            if (hitEvent.CheckCoalEnable())
+            {
+                EventController.Instance.CoalEvent(hitEvent);
+            }
+        }
+    }
 }

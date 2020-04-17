@@ -100,15 +100,11 @@ public static class TextConverter
     static string TrimTextData(string input)
     {
         if (!CheckIsHead(input)) return input;
-        try
-        {
-            string headRemain = input.Split('\n')[0].Split(' ')[1];
-            return headRemain + '\n' + input.Substring(input.Split('\n')[0].Length).Trim();
-        }
-        catch (System.IndexOutOfRangeException)
-        {
-            return input.Substring(input.Split('\n')[0].Length).Trim();
-        }
+        var heads = new List<string>(input.Split('\n')[0].Split(' '));
+        if (heads.Count < 2) return input.Substring(input.Split('\n')[0].Length).Trim();
+        heads.RemoveAt(0);
+        return string.Join(" ", heads) + '\n' + input.Substring(input.Split('\n')[0].Length).Trim();
+
     }
     #endregion
 }
