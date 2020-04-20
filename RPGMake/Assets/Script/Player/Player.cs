@@ -18,7 +18,8 @@ public class Player : SingletonMonoBehaviour<Player>
     [SerializeField] Sprite checkSprite;
 
     bool _actEnable = true;
-    ChengeFlag _chengeFlag = new ChengeFlag();
+    ChengeFlag _eventChengeFlag = new ChengeFlag();
+    ChengeFlag _uiChengeFlag = new ChengeFlag();
 
     bool _inited = false;
 
@@ -30,17 +31,14 @@ public class Player : SingletonMonoBehaviour<Player>
         _frontCollier.Init(transform);
         _bodyCollider.AddTag("HitEvent");
         _bodyCollider.Init(transform);
-
-        _chengeFlag.SetFlag(EventCodeReadController._getIsReadNow);
-        _chengeFlag.SetAction(true, () => StopMove());
-        _chengeFlag.SetAction(false, () => StartMove());
+        SetPlayerMoveFlag();
 
         _inited = true;
     }
     void Update()
     {
         if (!_inited) return;
-        _chengeFlag.CheckFlag(EventCodeReadController._getIsReadNow);
+        MoveFlagUpdate();
         if (!_actEnable)
         {
             return;
@@ -66,6 +64,23 @@ public class Player : SingletonMonoBehaviour<Player>
     void StartMove()
     {
         WaitAction.Instance.CoalWaitAction(() => _actEnable = true, 0.1f);
+    }
+
+    void SetPlayerMoveFlag()
+    {
+        _eventChengeFlag.SetFlag(EventCodeReadController._getIsReadNow);
+        _eventChengeFlag.SetAction(true, () => StopMove());
+        _eventChengeFlag.SetAction(false, () => StartMove());
+        _uiChengeFlag.SetFlag(UIController.Instance._PlayerMoveEnable);
+        _uiChengeFlag.SetAction(false, () => StopMove());
+        _uiChengeFlag.SetAction(true, () => StartMove());
+    }
+
+    void MoveFlagUpdate()
+    {
+
+        _eventChengeFlag.CheckFlag(EventCodeReadController._getIsReadNow);
+        _uiChengeFlag.CheckFlag(UIController.Instance._PlayerMoveEnable);
     }
     #endregion
     #region 移動
