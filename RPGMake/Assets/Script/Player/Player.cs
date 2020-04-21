@@ -18,8 +18,7 @@ public class Player : SingletonMonoBehaviour<Player>
     [SerializeField] Sprite checkSprite;
 
     bool _actEnable = true;
-    ChengeFlag _eventChengeFlag = new ChengeFlag();
-    ChengeFlag _uiChengeFlag = new ChengeFlag();
+    ChengeFlag _gmCheckFlag = new ChengeFlag();
 
     bool _inited = false;
 
@@ -68,19 +67,15 @@ public class Player : SingletonMonoBehaviour<Player>
 
     void SetPlayerMoveFlag()
     {
-        _eventChengeFlag.SetFlag(EventCodeReadController._getIsReadNow);
-        _eventChengeFlag.SetAction(true, () => StopMove());
-        _eventChengeFlag.SetAction(false, () => StartMove());
-        _uiChengeFlag.SetFlag(UIController.Instance._PlayerMoveEnable);
-        _uiChengeFlag.SetAction(false, () => StopMove());
-        _uiChengeFlag.SetAction(true, () => StartMove());
+        _gmCheckFlag.SetFlag(GameContoller.Instance._AnyOperate);
+        _gmCheckFlag.SetAction(true, () => StopMove());
+        _gmCheckFlag.SetAction(false, () => StartMove());
     }
 
     void MoveFlagUpdate()
     {
 
-        _eventChengeFlag.CheckFlag(EventCodeReadController._getIsReadNow);
-        _uiChengeFlag.CheckFlag(UIController.Instance._PlayerMoveEnable);
+        _gmCheckFlag.CheckFlag(GameContoller.Instance._AnyOperate);
     }
     #endregion
     #region 移動

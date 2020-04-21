@@ -6,7 +6,7 @@ public class InputKeyOperator : AbstractUIOperator
 {
     public enum InputType
     {
-        SUBMIT,CANCEL
+       NONE,SUBMIT,CANCEL
     }
     [SerializeField] InputType _inputType;
 

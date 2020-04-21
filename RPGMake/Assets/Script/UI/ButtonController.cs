@@ -8,9 +8,9 @@ using UnityEngine.UI;
 public class ButtonController : MonoBehaviour
 {
     [SerializeField]private GameObject firstSelect;
+    [SerializeField, NonEditable] GameObject _nowSelect;
     private CanvasGroup canvasGroup;
 
-    [SerializeField] GameObject _nowSelect;
 
     WaitFlag _inputWaitFlag = new WaitFlag();
     public bool _InputEnable
@@ -29,12 +29,18 @@ public class ButtonController : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        _nowSelect = null;
+    }
+
     public void SetButtonActive(bool flag)
     {
         canvasGroup.interactable = flag;
         if (flag)
         {
-            EventSystem.current.SetSelectedGameObject(firstSelect);
+            if(_nowSelect!=null) EventSystem.current.SetSelectedGameObject(_nowSelect);
+            else EventSystem.current.SetSelectedGameObject(firstSelect);
         }
     }
 

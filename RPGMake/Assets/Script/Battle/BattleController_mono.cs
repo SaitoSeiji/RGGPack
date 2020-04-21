@@ -8,9 +8,10 @@ public class BattleChar
     [SerializeField] int _hp;
     public int _Hp { get { return _hp; } }
     [SerializeField]int _attack;
+    [SerializeField] int _guard;
     BattleChar _enemy;
 
-    public BattleChar(int hp, int attack)
+    public BattleChar(int hp, int attack,int guard)
     {
         _hp = hp;
         _attack = attack;
@@ -28,7 +29,8 @@ public class BattleChar
 
     public void SetDamage(int damage)
     {
-        _hp -= damage;
+        _hp -=CalcDamage(damage);
+        if (_hp < 0) _hp = 0;
     }
 
     public bool IsAlive()
@@ -40,6 +42,13 @@ public class BattleChar
     public BattleChar GetTarget()
     {
         return _enemy;
+    }
+
+    int CalcDamage(int attack)
+    {
+        var result= attack - _guard;
+        if (result <= 0) result = 1;
+        return result;
     }
 }
 

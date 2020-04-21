@@ -17,16 +17,19 @@ public class UIController : SingletonMonoBehaviour<UIController>
     {
         get
         {
-            return !_chengeInterbalFlag._waitNow && !EventController.Instance.GetReadNow();
+            if (_chengeInterbalFlag._waitNow) return false;
+            else if (_OperateNow) return true;
+            else if (GameContoller.Instance._AnyOperate) return false;
+            else return true;
         }
     }
 
-    public bool _PlayerMoveEnable
+    public bool _OperateNow
     {
         get
         {
-            if (_opnedUIList.Count == 0) return true;
-            return _opnedUIList.Peek()._PermitPlayerMove;
+            if (_opnedUIList.Count == 0) return false;
+            return _opnedUIList.Peek()._IsOperateUI;
         }
     }
     //===============================================
@@ -36,6 +39,7 @@ public class UIController : SingletonMonoBehaviour<UIController>
         AddUI(_firstUI,ignore:true);
     }
 
+    #region UI操作
     /// <summary>
     /// 追加でnextを開く
     /// </summary>
@@ -54,7 +58,6 @@ public class UIController : SingletonMonoBehaviour<UIController>
 
         _chengeInterbalFlag.WaitStart();
     }
-    #region UI操作
     /// <summary>
     /// targetまで閉じる（targetは閉じる）
     /// </summary>
@@ -98,7 +101,7 @@ public class UIController : SingletonMonoBehaviour<UIController>
         _chengeInterbalFlag.WaitStart();
     }
     #endregion
-
+    #region flashData
     public void SetFlashData(string key,DBData data)
     {
         _flashDBData.Add(key, data);
@@ -117,4 +120,5 @@ public class UIController : SingletonMonoBehaviour<UIController>
             return null;
         }
     }
+    #endregion
 }
