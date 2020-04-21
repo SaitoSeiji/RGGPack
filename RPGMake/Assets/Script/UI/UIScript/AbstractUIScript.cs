@@ -16,28 +16,25 @@ public abstract class AbstractUIScript : MonoBehaviour,IChengeUIState
             return _myUIBase;
         }
     }
-
-
-    protected abstract List<ButtonData> CreateMyButtonData();
-    protected virtual void ChengedUIStateAction(UIBase.UIState chenged)
+    private void ChengedUIStateAction(UIBase.UIState chenged)
     {
         switch (chenged)
         {
             case UIBase.UIState.ACTIVE:
-                var list = CreateMyButtonData();
-                if (list != null)
-                {
-                    _MyUIBase.ResetButtonData();
-                    _MyUIBase.AddButtonData(list);
-                    _MyUIBase.SyncButtonToText();
-                }
+                ChengeState_toActive();
                 break;
             case UIBase.UIState.SLEEP:
+                ChengeState_toSleep();
                 break;
             case UIBase.UIState.CLOSE:
+                ChengeState_toClose();
                 break;
         }
     }
+
+    protected virtual void ChengeState_toActive() { }
+    protected virtual void ChengeState_toSleep() { }
+    protected virtual void ChengeState_toClose() { }
 
     void IChengeUIState.RecieveChenge(UIBase.UIState changed)
     {

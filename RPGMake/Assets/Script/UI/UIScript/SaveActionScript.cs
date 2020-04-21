@@ -2,14 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SaveActionScript : AbstractUIScript
+public class SaveActionScript : AbstractUIScript_onclick
 {
-    protected override List<ButtonData> CreateMyButtonData()
-    {
-        return null;
-    }
-
-    public void Onclick_saveAction()
+    public override void OnclickAction()
     {
         SaveDataController.Instance.SaveAction();
     }

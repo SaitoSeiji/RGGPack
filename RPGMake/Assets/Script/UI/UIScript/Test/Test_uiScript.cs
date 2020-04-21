@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Test_uiScript : AbstractUIScript
+public class Test_uiScript : AbstractUIScript_button
 {
     [SerializeField] UIBase _nextUIBase;
 
