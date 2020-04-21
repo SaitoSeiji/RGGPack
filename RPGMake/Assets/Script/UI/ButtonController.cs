@@ -12,8 +12,14 @@ public class ButtonController : MonoBehaviour
 
     [SerializeField] GameObject _nowSelect;
 
-    WaitFlag _inputWaitFlag;
-    public bool _InputEnable { get { return !_inputWaitFlag._waitNow; } }
+    WaitFlag _inputWaitFlag = new WaitFlag();
+    public bool _InputEnable
+    {
+        get
+        {
+            return !_inputWaitFlag._waitNow;
+        }
+    }
 
     void OnEnable()
     {
@@ -59,9 +65,8 @@ public class ButtonController : MonoBehaviour
 
     void ButtonChengeAction()
     {
-        if (_inputWaitFlag == null)
+        if (!_inputWaitFlag._endSetUp)
         {
-            _inputWaitFlag = new WaitFlag();
             _inputWaitFlag.SetWaitLength(0.2f);
         }
         _inputWaitFlag.WaitStart();

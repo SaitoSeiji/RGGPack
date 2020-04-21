@@ -13,11 +13,36 @@ MonoBehaviour:
   m_Name: testevent
   m_EditorClassIdentifier: 
   _codeData:
-    _text: 
+    _text: '$
+
+      text22
+
+      text2
+
+      $'
     _nextEventName: 
     _nextEventCode: {fileID: 0}
     coalTerm:
-      _termList: []
-      _orMode: 0
-  _nextEventNameList: []
-  _nextEventList: []
+      _termList:
+      - _id: id
+        _memberSet:
+        - memberName: memeber
+          data: 1
+          _hikaku: 2
+      - _id: flagId
+        _memberSet:
+        - memberName: flagNum
+          data: 0
+          _hikaku: 3
+      - _id: itemId
+        _memberSet:
+        - memberName: haveNum
+          data: 1
+          _hikaku: 1
+      _orMode: 1
+  _nextEventNameList:
+  - moveToClass
+  - door_class
+  _nextEventList:
+  - {fileID: 11400000, guid: 3f1fd97e3fa56af448955d4c1cc5e1e1, type: 2}
+  - {fileID: 11400000, guid: 0176809affe98714799a2a2ff19c8e79, type: 2}

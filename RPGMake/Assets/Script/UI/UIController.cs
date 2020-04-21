@@ -8,9 +8,10 @@ public class UIController : SingletonMonoBehaviour<UIController>
     int _TopSortOrder { get { return _opnedUIList.Count; } }
     [SerializeField] UIBase _firstUI;
 
+    WaitFlag _chengeInterbalFlag = new WaitFlag();
+    Dictionary<string, DBData> _flashDBData=new Dictionary<string, DBData>();
     //ここから設定。増えたら分離
     [SerializeField] float _chengeInterbal;
-    WaitFlag _chengeInterbalFlag = new WaitFlag();
     
     bool _OperateEnablbe
     {
@@ -28,7 +29,7 @@ public class UIController : SingletonMonoBehaviour<UIController>
             return _opnedUIList.Peek()._PermitPlayerMove;
         }
     }
-
+    //===============================================
     public void Start()
     {
         _chengeInterbalFlag.SetWaitLength(_chengeInterbal);
@@ -53,7 +54,7 @@ public class UIController : SingletonMonoBehaviour<UIController>
 
         _chengeInterbalFlag.WaitStart();
     }
-
+    #region UI操作
     /// <summary>
     /// targetまで閉じる（targetは閉じる）
     /// </summary>
@@ -95,5 +96,25 @@ public class UIController : SingletonMonoBehaviour<UIController>
 
 
         _chengeInterbalFlag.WaitStart();
+    }
+    #endregion
+
+    public void SetFlashData(string key,DBData data)
+    {
+        _flashDBData.Add(key, data);
+    }
+
+    public DBData GetFlashData(string key)
+    {
+        if (_flashDBData.ContainsKey(key))
+        {
+            var data = _flashDBData[key];
+            _flashDBData.Remove(key);
+            return data;
+        }
+        else
+        {
+            return null;
+        }
     }
 }

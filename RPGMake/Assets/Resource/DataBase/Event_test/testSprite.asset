@@ -15,7 +15,7 @@ MonoBehaviour:
   _codeData:
     _text: "$#image[back,0] back\n$#image[kyoko,0] left\n$#image[kyoko,1] right\n$\n2\u4EBA\u306B\u306A\u3063\u3061\u3083\u3063\u305F\u305C\n$#image[reset]
       right\n$#image[reset] left\n$\n\u53CD\u8EE2\u30C6\u30B9\u30C8\n$#image[kyoko,2]
-      left r\n$#image[kyoko,2] right r\n$#branch\ntest1\ntest2"
+      left r\n$#image[kyoko,2] right r"
     _nextEventName: 
     _nextEventCode: {fileID: 0}
     coalTerm:

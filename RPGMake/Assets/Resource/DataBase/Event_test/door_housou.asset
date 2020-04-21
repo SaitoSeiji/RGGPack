@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: door_housou
   m_EditorClassIdentifier: 
   _codeData:
-    _text: 
+    _text: "$\n\u79FB\u52D5\u3057\u3088\u3046\n$#branch\n\u4FDD\u5065\u5BA4\n\u56F3\u66F8\u5BA4\n\u6559\u5BA4\n\u3084\u3081\u308B\n$#1map[hoken]\n$#2map[tosyo]\n$#3map[class]"
     _nextEventName: 
     _nextEventCode: {fileID: 0}
     coalTerm:

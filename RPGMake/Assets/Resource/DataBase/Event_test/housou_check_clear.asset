@@ -13,9 +13,25 @@ MonoBehaviour:
   m_Name: housou_check_clear
   m_EditorClassIdentifier: 
   _codeData:
-    _text: 
+    _text: "$#name[\u305F\u304B\u3057]\n\u7528\u4E8B\u3082\u7D42\u308F\u3063\u3066\u3044\u308B\u3057\u653E\u9001\u5BA4\u306B\u5411\u304B\u304A\u3046\uFF01\n$#flag[doorOpened]
+      1\n$#map[housou]"
     _nextEventName: 
     _nextEventCode: {fileID: 0}
     coalTerm:
-      _termList: []
+      _termList:
+      - _id: goHosousitu_kyokasyo
+        _memberSet:
+        - memberName: flagNum
+          data: 1
+          _hikaku: 1
+      - _id: goHosousitu_hon
+        _memberSet:
+        - memberName: flagNum
+          data: 1
+          _hikaku: 1
+      - _id: goHosousitu_hoken
+        _memberSet:
+        - memberName: flagNum
+          data: 1
+          _hikaku: 1
       _orMode: 0

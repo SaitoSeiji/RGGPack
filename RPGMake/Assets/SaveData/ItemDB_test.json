@@ -8,18 +8,73 @@
             },
             "_memberSet_int": {
                 "maxNum": 20,
-                "haveNum": 0
+                "haveNum": 1
             }
         },
         {
             "_serchId": "test2",
             "_memberSet_st": {
-                "displayName": "テスト1",
+                "displayName": "テスト2",
                 "explanation": "データの登録テストです"
             },
             "_memberSet_int": {
                 "maxNum": 20,
                 "haveNum": 0
+            }
+        },
+        {
+            "_serchId": "test3",
+            "_memberSet_st": {
+                "displayName": "テスト3",
+                "explanation": "データの登録テストです"
+            },
+            "_memberSet_int": {
+                "maxNum": 20,
+                "haveNum": 1
+            }
+        },
+        {
+            "_serchId": "test4",
+            "_memberSet_st": {
+                "displayName": "テスト4",
+                "explanation": "データの登録テストです"
+            },
+            "_memberSet_int": {
+                "maxNum": 20,
+                "haveNum": 0
+            }
+        },
+        {
+            "_serchId": "test5",
+            "_memberSet_st": {
+                "displayName": "テスト5",
+                "explanation": "データの登録テストです"
+            },
+            "_memberSet_int": {
+                "maxNum": 20,
+                "haveNum": 1
+            }
+        },
+        {
+            "_serchId": "test6",
+            "_memberSet_st": {
+                "displayName": "テスト6",
+                "explanation": "データの登録テストです"
+            },
+            "_memberSet_int": {
+                "maxNum": 20,
+                "haveNum": 1
+            }
+        },
+        {
+            "_serchId": "test7",
+            "_memberSet_st": {
+                "displayName": "テスト7",
+                "explanation": "データの登録テストです"
+            },
+            "_memberSet_int": {
+                "maxNum": 20,
+                "haveNum": 1
             }
         }
     ]

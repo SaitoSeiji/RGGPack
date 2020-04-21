@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: test1
   m_EditorClassIdentifier: 
   _data:
-    _serchId: 
-  _displayName: 
-  _maxNum: 0
-  _explanation: 
+    _serchId: test1
+  _displayName: "\u30C6\u30B9\u30C81"
+  _maxNum: 20
+  _explanation: "\u30C7\u30FC\u30BF\u306E\u767B\u9332\u30C6\u30B9\u30C8\u3067\u3059"

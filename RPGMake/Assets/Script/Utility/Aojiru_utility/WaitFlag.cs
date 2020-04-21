@@ -6,6 +6,13 @@ public class WaitFlag
 {
     float _waitLength;
     float _waitStartTime;
+
+    public bool _endSetUp { get; private set; }
+
+    public WaitFlag()
+    {
+        _endSetUp = false;
+    }
     
 
     public bool _waitNow
@@ -26,5 +33,6 @@ public class WaitFlag
     {
         _waitLength = wait;
         _waitStartTime = -wait;
+        _endSetUp = true;
     }
 }

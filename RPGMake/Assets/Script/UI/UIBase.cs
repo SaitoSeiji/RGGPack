@@ -16,6 +16,10 @@ public class ButtonData
         _buttonText = _text;
         _onClickAction = _onclick;
     }
+    public ButtonData(string _text)
+    {
+        _buttonText = _text;
+    }
 }
 
 public class UIBase : MonoBehaviour
@@ -70,8 +74,14 @@ public class UIBase : MonoBehaviour
                 _myButtonController.SetButtonActive(true);
                 break;
             case UIState.SLEEP:
+                _myButtonController.SetButtonActive(false);
+                break;
             case UIState.CLOSE:
                 _myButtonController.SetButtonActive(false);
+                ResetButtonData();
+                SyncButtonToText();
+                _nowSelectButtonIndex = 0;
+                _buttonStartIndex = 0;
                 break;
         }
     }
@@ -191,6 +201,7 @@ public class UIBase : MonoBehaviour
                 break;
         }
         ButtonUpdate();
+        SendMessage_chengeState(_nowUIstate);
     }
     #endregion
     #region ボタンで設定する操作
@@ -212,5 +223,13 @@ public class UIBase : MonoBehaviour
         UIController.Instance.CloseToUI(next);
     }
     #endregion
-    
+
+    void SendMessage_chengeState(UIState changed)
+    {
+        ExecuteEvents.Execute<IChengeUIState>(
+          target: gameObject,
+          eventData: null,
+          functor: (reciever, eventData) => reciever.RecieveChenge(changed)
+        );
+    }
 }
