@@ -13,9 +13,15 @@ MonoBehaviour:
   m_Name: tosyo_hongaesi
   m_EditorClassIdentifier: 
   _codeData:
-    _text: 
+    _text: "$#name[\u305F\u304B\u3057]\n\u305F\u3057\u304B\u3053\u306E\u3042\u305F\u308A\u3060\u3063\u305F\u306A...\n$#name[\u305F\u304B\u3057]\n...\n$#name[\u305F\u304B\u3057]\n\u3088\u3057\uFF01\u672C\u3092\u8FD4\u3057\u7D42\u308F\u3063\u305F\u305E\n$#flag[goHosousitu_hon]
+      1"
     _nextEventName: 
     _nextEventCode: {fileID: 0}
     coalTerm:
-      _termList: []
+      _termList:
+      - _id: goHosousitu_hon
+        _memberSet:
+        - memberName: flagNum
+          data: 0
+          _hikaku: 1
       _orMode: 0

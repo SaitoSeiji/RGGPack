@@ -296,6 +296,7 @@ public class DBOperater<T,K>
                 _database.GetDataList().Add(target);
             }
             target.UpdateData(data);
+            EditorUtility.SetDirty(target);
         }
 
 

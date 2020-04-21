@@ -147,6 +147,7 @@ public class EventDataOperater
                 assetDBList.Add(target);
             }
             target.UpdateData(data.id,data.dataSet);
+            EditorUtility.SetDirty(target);
         }
         _database.UpdateNextEvent();
         EditorUtility.SetDirty(_database);

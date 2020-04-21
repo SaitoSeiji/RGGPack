@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: housou_check_miss
   m_EditorClassIdentifier: 
   _codeData:
-    _text: 
+    _text: "$#name[\u305F\u304B\u3057]\n\u7528\u4E8B\u304C\u307E\u3060\u7D42\u308F\u3063\u3066\u306A\u3044\u306A"
     _nextEventName: 
     _nextEventCode: {fileID: 0}
     coalTerm:

@@ -52,7 +52,6 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
         }
         SetMemberSet();
     }
-
     public void SetData<T>(string id,string memberName,int data)
         where T:AbstractDB
     {
@@ -98,7 +97,6 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
             }
         }
     }
-
     public string GetText<T>(string id, string memberName)
         where T:AbstractDB
     {
@@ -142,7 +140,6 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
         }
         return "";
     }
-
     public int GetData<T>(DataMemberInspector data)
         where T : AbstractDB
     {
@@ -154,7 +151,6 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
         }
         return -1;
     }
-
     public int GetData<T>(string id, string memberName)
         where T : AbstractDB
     {
@@ -197,6 +193,19 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
             }
         }
         return -1;
+    }
+
+    public List<DBData> GetDB<T>()
+        where T : AbstractDB
+    {
+        foreach (var db in _variableDbList)
+        {
+            if (db is T)
+            {
+                return _saveDataList[db.name];
+            }
+        }
+        return null;
     }
     #endregion
     public void SaveAction()

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: moveToClass
   m_EditorClassIdentifier: 
   _codeData:
-    _text: 
-    _nextEventName: 
-    _nextEventCode: {fileID: 0}
+    _text: $#map[class]
+    _nextEventName: firstEvent
+    _nextEventCode: {fileID: 11400000, guid: bc3c5d2f3787f43489455a1c2d5d5bd4, type: 2}
     coalTerm:
       _termList: []
       _orMode: 0

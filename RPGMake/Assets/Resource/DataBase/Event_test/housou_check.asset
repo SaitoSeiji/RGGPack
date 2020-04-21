@@ -19,5 +19,11 @@ MonoBehaviour:
     coalTerm:
       _termList: []
       _orMode: 0
-  _nextEventNameList: []
-  _nextEventList: []
+  _nextEventNameList:
+  - housou_check_opened
+  - housou_check_clear
+  - housou_check_miss
+  _nextEventList:
+  - {fileID: 11400000, guid: 8302bbafe0fd87c45af2f18c6459fd0b, type: 2}
+  - {fileID: 11400000, guid: 84690b1cf80cfd24bb857e59fbe14a4e, type: 2}
+  - {fileID: 11400000, guid: a010962c66ecf73499177c7f3bae583a, type: 2}

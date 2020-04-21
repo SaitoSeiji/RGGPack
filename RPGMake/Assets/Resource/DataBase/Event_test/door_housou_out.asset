@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: door_housou_out
   m_EditorClassIdentifier: 
   _codeData:
-    _text: 
+    _text: $#map[housou_mae]
     _nextEventName: 
     _nextEventCode: {fileID: 0}
     coalTerm:
