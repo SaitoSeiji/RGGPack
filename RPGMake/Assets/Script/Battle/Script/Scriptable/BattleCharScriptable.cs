@@ -10,7 +10,7 @@ public class BattleCharData
     [SerializeField] public int _hp;
     [SerializeField] public int _attack;
     [SerializeField] public int _guard;
-    public List<SkillCommandScriptalbe> _mySkillList = new List<SkillCommandScriptalbe>();
+    public List<SkillDBData> _mySkillList = new List<SkillDBData>();
 
     public BattleCharData(int hp, int attack, int guard)
     {

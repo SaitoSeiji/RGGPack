@@ -25,6 +25,8 @@ public class DBOperater_mono : MonoBehaviour
                 return typeof(ItemDB);
             case "Flag":
                 return typeof(FlagDB);
+            case "Skill":
+                return typeof(SkillDB);
             default:
                 return typeof(AbstractDB);
         }
@@ -92,7 +94,6 @@ public class DBOperater_mono : MonoBehaviour
             _data = op.EditDBD(_fileName);
             oldName = _fileName;
         }
-
     }
     //[ContextMenu("Update data")]
     public void UpdateDB()
@@ -113,7 +114,7 @@ public class DBOperater_mono : MonoBehaviour
         }
     }
     [ContextMenu("SyncDataByTxt")]
-    public void SyncDBTxt()
+    public void SyncDBByTxt()
     {
         var read = ReadFile(_fileName);
         var type = JudgeDBType(read.type);
@@ -123,9 +124,14 @@ public class DBOperater_mono : MonoBehaviour
             var op = new DBOperater<ItemDBData, ItemDB>(db as ItemDB, _fileName);
             op.SyncDataByTxt(ReadFile(_fileName).text);
         }
-        else if(type == typeof(FlagDB))
+        else if (type == typeof(FlagDB))
         {
             var op = new DBOperater<FlagDBData, FlagDB>(db as FlagDB, _fileName);
+            op.SyncDataByTxt(ReadFile(_fileName).text);
+        }
+        else if (type == typeof(SkillDB))
+        {
+            var op = new DBOperater<SkillDBData, SkillDB>(db as SkillDB, _fileName);
             op.SyncDataByTxt(ReadFile(_fileName).text);
         }
     }

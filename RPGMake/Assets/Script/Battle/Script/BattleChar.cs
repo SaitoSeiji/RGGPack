@@ -28,6 +28,11 @@ public class BattleChar
     {
         return _enemyTargets[i];
     }
+    public BattleChar SelectTarget(string st)
+    {
+        return _enemyTargets.Where(x => x._myCharData._name == st).FirstOrDefault();
+    }
+
     public BattleChar SelectTargetAuto()
     {
         return SelectTargetAI();
@@ -48,7 +53,7 @@ public class BattleChar
         var targetSkill = _myCharData._mySkillList.Where(x => x._SKill._skillName == name).FirstOrDefault();
         if (targetSkill != null)
         {
-            rate = targetSkill._SKill._rate;
+            rate = targetSkill._SKill.GetRate();
         }
         else
         {
@@ -56,10 +61,16 @@ public class BattleChar
         }
         return (int)(_myCharData._attack * rate);
     }
-    
+
     public SkillCommandData SelectCommand(int index)
     {
         return _myCharData._mySkillList[index]._SKill;
+    }
+    public SkillCommandData SelectCommand(string name)
+    {
+        var command = _myCharData._mySkillList.Where(x => x._SKill._skillName == name).FirstOrDefault();
+        if (command == null) command = _myCharData._mySkillList[0];
+        return command._SKill;
     }
 
     public SkillCommandData SelectCommand_auto()

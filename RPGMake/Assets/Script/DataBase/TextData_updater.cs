@@ -25,7 +25,7 @@ public class TextData_updater : MonoBehaviour
         foreach (var data in _dataBaseText)
         {
             _dbOperater.SetReadFileName(data.name);
-            _dbOperater.SyncDBTxt();
+            _dbOperater.SyncDBByTxt();
         }
         SaveDataController.Instance.TestInitSave();
     }

@@ -19,5 +19,5 @@ MonoBehaviour:
     _attack: 3
     _guard: 1
     _mySkillList:
-    - {fileID: 11400000, guid: 009f6d7ce96153c4d96c100c48b60f88, type: 2}
     - {fileID: 11400000, guid: 0f001f5b030d21348bd65dc23461d636, type: 2}
+    - {fileID: 11400000, guid: 814158c4bb727c34f9bd5470934223d9, type: 2}

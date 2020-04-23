@@ -22,6 +22,7 @@ public class GameContoller : SingletonMonoBehaviour<GameContoller>
     // Start is called before the first frame update
     void Start()
     {
+        SaveDataController.Instance.InitStaticDataBase();
         SaveDataController.Instance.LoadAction();
         Player.Instance.Init();
         if(firstEvent!=null) EventController.Instance.CoalEvent(firstEvent);

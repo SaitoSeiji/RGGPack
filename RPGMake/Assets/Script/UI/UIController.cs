@@ -45,7 +45,6 @@ public class UIController : SingletonMonoBehaviour<UIController>
     /// </summary>
     public void AddUI(UIBase next,bool ignore=false)
     {
-        Debug.Log("add:"+next.name);
         if (!_OperateEnablbe&&!ignore) return;
         if (_opnedUIStack.Count > 0)
         {
@@ -60,8 +59,7 @@ public class UIController : SingletonMonoBehaviour<UIController>
         next.SetSortOrder(_TopSortOrder);
 
         _chengeInterbalFlag.WaitStart();
-
-        Debug.Log("add:succsess" + next.name);
+        
     }
     /// <summary>
     /// targetまで閉じる（targetは閉じる）

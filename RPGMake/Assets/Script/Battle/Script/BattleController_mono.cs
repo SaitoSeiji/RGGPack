@@ -6,13 +6,14 @@ using System;
 
 public class BattleController
 {
-    PlayerChar _player;
+    public PlayerChar _player { get; private set; }
     public List<EnemyChar> _enemys { get; private set; }
     Queue<BattleChar> _battleCharQueue = new Queue<BattleChar>();
 
     public bool _waitInput { get; private set; } = false;
 
-    (int index, int charIndex) _charInput=(-1,-1);
+    //(int index, int charIndex) _charInput=(-1,-1);
+    (string command, string charName) _charInput=("","");
     string _logText = "";
 
     public BattleController(BattleCharData player,List<BattleCharData> enemy)
@@ -104,10 +105,14 @@ public class BattleController
         int damage=0;
         if(next is PlayerChar)
         {
-            target= next.SelectTarget(_charInput.index);
-            command = next.SelectCommand(_charInput.charIndex);
+            //target = next.SelectTarget(_charInput.index);
+            //command = next.SelectCommand(_charInput.charIndex);
+            //damage = next.SelectAttack(command._skillName);
+            //_charInput = (-1, -1);
+            target = next.SelectTarget(_charInput.charName);
+            command = next.SelectCommand(_charInput.command);
             damage = next.SelectAttack(command._skillName);
-            _charInput = (-1, -1);
+            _charInput = ("","");
         }
         else
         {
@@ -121,25 +126,32 @@ public class BattleController
         AddLog_damage(target._myCharData, damaged);
         PrepareNextTurn();
     }
-    public void SetCharInput(int index,int command)
+    //public void SetCharInput(int index,int command)
+    //{
+    //    if (!CheckIsAliveTarget(index)) return;
+    //    _charInput = (index, command);
+    //    _waitInput = false;
+    //}
+
+    public void SetCharInput(string charName,string command)
     {
-        if (!CheckIsAliveTarget(index)) return;
-        _charInput = (index, command);
+        //if (!CheckIsAliveTarget(index)) return;
+        _charInput = (command, charName);
         _waitInput = false;
     }
     #endregion
     #region log
     void AddLog_test_hpResult()
     {
-        _logText += string.Format("player hp{0}\n", _player._myCharData._hp);
-        foreach (var enemy in _enemys)
-        {
-            _logText += string.Format("{0} hp {1}\n", enemy._myCharData._name, enemy._myCharData._hp);
-        }
+        //_logText += string.Format("player hp{0}\n", _player._myCharData._hp);
+        //foreach (var enemy in _enemys)
+        //{
+        //    _logText += string.Format("{0} hp {1}\n", enemy._myCharData._name, enemy._myCharData._hp);
+        //}
     }
     void AddLog_test_playerTurn()
     {
-        _logText += "next is playerTurn\n";
+        //_logText += "next is playerTurn\n";
     }
     void AddLog_command(BattleCharData chars,SkillCommandData skilldata)
     {
@@ -180,7 +192,7 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
             ,ene._enemySetData._charList.Select(x=>x._CharData).ToList());
     }
 
-    public void SetCharInput(int target,int skill)
+    public void SetCharInput(string target,string skill)
     {
         battle.SetCharInput(target, skill);
     }
@@ -202,11 +214,22 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
     void SetCharText()
     {
         SetChar(player,enemys);
+        BattleUIController.Instance.StartBattle();
     }
 
     public List<EnemyChar> GetEnemyList()
     {
         return battle._enemys;
+    }
+
+    public List<SkillDBData> GetSkillList()
+    {
+        return battle._player._myCharData._mySkillList;
+    }
+
+    public bool IsEnd()
+    {
+        return battle.IsEnd();
     }
     //private void Update()
     //{
