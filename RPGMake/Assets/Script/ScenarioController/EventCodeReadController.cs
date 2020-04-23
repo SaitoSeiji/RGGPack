@@ -83,19 +83,19 @@ public class TextData : CodeData
         {
             if (string.IsNullOrEmpty(data.name))
             {
-                TextDisplayer.Instance.SetTextData(data.txt);
+                EventCodeReadController.Instance._textDisplayer.SetTextData(data.txt);
             }
             else
             {
-                TextDisplayer.Instance.SetTextData(data.txt,data.name);
+                EventCodeReadController.Instance._textDisplayer.SetTextData(data.txt, data.name);
             }
         }
-        TextDisplayer.Instance.StartEvent();
+        EventCodeReadController.Instance._textDisplayer.StartEvent();
     }
 
     public override bool IsEndCode()
     {
-        return !TextDisplayer.Instance._readNow;
+        return EventCodeReadController.Instance._textDisplayer._readNow;
     }
 
     public override bool CheckChain(TextCovertedData data)
@@ -501,6 +501,8 @@ public class EventCodeReadController : SingletonMonoBehaviour<EventCodeReadContr
     EventCodeScriptable _nowScriptable;
 
     public Dictionary<string, List<string>> _flashData = new Dictionary<string, List<string>>();
+
+    [SerializeField]public TextDisplayer _textDisplayer;
 
     private void Start()
     {

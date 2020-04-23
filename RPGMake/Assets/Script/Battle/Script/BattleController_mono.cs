@@ -7,7 +7,7 @@ using System;
 public class BattleController
 {
     PlayerChar _player;
-    List<EnemyChar> _enemys;
+    public List<EnemyChar> _enemys { get; private set; }
     Queue<BattleChar> _battleCharQueue = new Queue<BattleChar>();
 
     public bool _waitInput { get; private set; } = false;
@@ -56,8 +56,8 @@ public class BattleController
                 _player.RemoveRaival(enemy);
             }
         }
-        AddLog_hpResult();
-        if(_waitInput) AddLog_playerTurn();
+        AddLog_test_hpResult();
+        if(_waitInput) AddLog_test_playerTurn();
     }
     void SyncDeadChar()
     {
@@ -128,7 +128,8 @@ public class BattleController
         _waitInput = false;
     }
     #endregion
-    void AddLog_hpResult()
+    #region log
+    void AddLog_test_hpResult()
     {
         _logText += string.Format("player hp{0}\n", _player._myCharData._hp);
         foreach (var enemy in _enemys)
@@ -136,7 +137,7 @@ public class BattleController
             _logText += string.Format("{0} hp {1}\n", enemy._myCharData._name, enemy._myCharData._hp);
         }
     }
-    void AddLog_playerTurn()
+    void AddLog_test_playerTurn()
     {
         _logText += "next is playerTurn\n";
     }
@@ -158,41 +159,72 @@ public class BattleController
         _logText = "";
         return result;
     }
+    #endregion
 }
 
-public class BattleController_mono : MonoBehaviour
+public class BattleController_mono : SingletonMonoBehaviour<BattleController_mono>
 {
     [SerializeField] BattleCharScriptable player;
-    [SerializeField] List<BattleCharScriptable> enemys;
+    [SerializeField] EnemySetScriptable enemys;
     WaitFlag wf = new WaitFlag();
-    BattleController battle;
+    public BattleController battle { get; private set; }
 
-    [SerializeField] int selectIndex;
-    [SerializeField] int seletCommand;
-
-    private void Start()
+    //[SerializeField] int selectIndex;
+    //[SerializeField] int seletCommand;
+    
+    public void SetChar(BattleCharScriptable pl, EnemySetScriptable ene)
     {
-        battle = new BattleController(player._CharData,enemys.Select(x=>x._CharData).ToList());
-        wf.SetWaitLength(1f);
+        pl = player;
+        enemys = ene;
+        battle = new BattleController(player._CharData
+            ,ene._enemySetData._charList.Select(x=>x._CharData).ToList());
     }
 
-    private void Update()
+    public void SetCharInput(int target,int skill)
     {
-        if (!battle.IsEnd()&&!wf._waitNow)
+        battle.SetCharInput(target, skill);
+    }
+
+    public void Next()
+    {
+        if (battle._waitInput)
         {
-            if (battle._waitInput)
-            {
-                if (Input.GetKeyDown(KeyCode.Z))
-                {
-                    battle.SetCharInput(selectIndex, seletCommand);
-                }
-            }
-            else
-            {
-                wf.WaitStart();
-                battle.Command();
-                Debug.Log(battle.GetLog());
-            }
+            return;
+        }
+        else
+        {
+            battle.Command();
+            BattleUIController.Instance.AddDisplayText(battle.GetLog());
         }
     }
+
+    [ContextMenu("testBattle")]
+    void SetCharText()
+    {
+        SetChar(player,enemys);
+    }
+
+    public List<EnemyChar> GetEnemyList()
+    {
+        return battle._enemys;
+    }
+    //private void Update()
+    //{
+    //    if (!battle.IsEnd()&&!wf._waitNow)
+    //    {
+    //        if (battle._waitInput)
+    //        {
+    //            if (Input.GetKeyDown(KeyCode.Z))
+    //            {
+                    
+    //            }
+    //        }
+    //        else
+    //        {
+    //            wf.WaitStart();
+    //            battle.Command();
+    //            Debug.Log(battle.GetLog());
+    //        }
+    //    }
+    //}
 }

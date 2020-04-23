@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class UIController : SingletonMonoBehaviour<UIController>
 {
-    Stack<UIBase> _opnedUIList = new Stack<UIBase>();
-    int _TopSortOrder { get { return _opnedUIList.Count; } }
+    Stack<UIBase> _opnedUIStack = new Stack<UIBase>();
+    int _TopSortOrder { get { return _opnedUIStack.Count; } }
     [SerializeField] UIBase _firstUI;
 
     WaitFlag _chengeInterbalFlag = new WaitFlag();
@@ -28,8 +28,8 @@ public class UIController : SingletonMonoBehaviour<UIController>
     {
         get
         {
-            if (_opnedUIList.Count == 0) return false;
-            return _opnedUIList.Peek()._IsOperateUI;
+            if (_opnedUIStack.Count == 0) return false;
+            return _opnedUIStack.Peek()._IsOperateUI;
         }
     }
     //===============================================
@@ -45,18 +45,23 @@ public class UIController : SingletonMonoBehaviour<UIController>
     /// </summary>
     public void AddUI(UIBase next,bool ignore=false)
     {
+        Debug.Log("add:"+next.name);
         if (!_OperateEnablbe&&!ignore) return;
-        if (_opnedUIList.Count > 0)
+        if (_opnedUIStack.Count > 0)
         {
-            var nowTop = _opnedUIList.Peek();
+            var nowTop = _opnedUIStack.Peek();
+            if (nowTop.Equals(next)) return;
+
             nowTop.SetUIState(UIBase.UIState.SLEEP);
         }
 
-        _opnedUIList.Push(next);
+        _opnedUIStack.Push(next);
         next.SetUIState(UIBase.UIState.ACTIVE);
         next.SetSortOrder(_TopSortOrder);
 
         _chengeInterbalFlag.WaitStart();
+
+        Debug.Log("add:succsess" + next.name);
     }
     /// <summary>
     /// targetまで閉じる（targetは閉じる）
@@ -65,16 +70,16 @@ public class UIController : SingletonMonoBehaviour<UIController>
     public void CloseUI(UIBase target, bool ignore=false)
     {
         if (!_OperateEnablbe && !ignore) return;
-        var head = _opnedUIList.Peek();
+        var head = _opnedUIStack.Peek();
         while (head != target)
         {
-            head = _opnedUIList.Pop();
+            head = _opnedUIStack.Pop();
             head.SetUIState(UIBase.UIState.CLOSE);
-            head = _opnedUIList.Peek();
+            head = _opnedUIStack.Peek();
         }
-        head = _opnedUIList.Pop();
+        head = _opnedUIStack.Pop();
         head.SetUIState(UIBase.UIState.CLOSE);
-        head = _opnedUIList.Peek();
+        head = _opnedUIStack.Peek();
         head.SetUIState(UIBase.UIState.ACTIVE);
 
 
@@ -88,12 +93,12 @@ public class UIController : SingletonMonoBehaviour<UIController>
     public void CloseToUI(UIBase target, bool ignore=false)
     {
         if (!_OperateEnablbe && !ignore) return;
-        var head = _opnedUIList.Peek();
+        var head = _opnedUIStack.Peek();
         while (head != target)
         {
-            head = _opnedUIList.Pop();
+            head = _opnedUIStack.Pop();
             head.SetUIState(UIBase.UIState.CLOSE);
-            head = _opnedUIList.Peek();
+            head = _opnedUIStack.Peek();
         }
         head.SetUIState(UIBase.UIState.ACTIVE);
 

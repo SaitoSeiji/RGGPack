@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstractUIOperator : MonoBehaviour
+public abstract class AbstractUIOperator : MonoBehaviour,IChengeUIState
 {
     public enum OperateType
     {
@@ -44,4 +44,24 @@ public abstract class AbstractUIOperator : MonoBehaviour
 
         }
     }
+
+    void IChengeUIState.RecieveChenge(UIBase.UIState changed)
+    {
+        switch (changed)
+        {
+            case UIBase.UIState.ACTIVE:
+                ChengeState_toActive();
+                break;
+            case UIBase.UIState.SLEEP:
+                ChengeState_toSleep();
+                break;
+            case UIBase.UIState.CLOSE:
+                ChengeState_toClose();
+                break;
+        }
+    }
+
+    protected virtual void ChengeState_toActive() { }
+    protected virtual void ChengeState_toSleep() { }
+    protected virtual void ChengeState_toClose() { }
 }
