@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
 {
@@ -9,31 +10,46 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         None,
         Switch,
         SwitchWait,
+
         WaitInput,
         DisplayText,
         Process
     }
-    [SerializeField]BattleUIState _battleUIState;
+    [SerializeField,NonEditable]BattleUIState _battleUIState;
     BattleUIState _nextUIState;
+
+    //キャッシュ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
     [SerializeField] UIBase _commandUI;
     [SerializeField] UIBase _textUI;
     [SerializeField] TextDisplayer _battleTextDisplayer;
-    UIBase _selfUI;
-    [SerializeField] BattleController_mono bcmono;
 
+    [SerializeField] CharParamDisplay _playerParam;
+    [SerializeField] List<CharParamDisplay> _enemyParams;
+    UIBase _selfUI;
+    public UIBase _SelfUI
+    {
+        get
+        {
+            if(_selfUI==null)_selfUI = GetComponent<UIBase>();
+            return _selfUI;
+        }
+    }
+    //==============================================
     List<string> _displayText;
 
     string temp_command;
     string temp_target;
+    
 
-    private void Start()
+    private void OnDisable()
     {
-        _selfUI = GetComponent<UIBase>();
+        _nextUIState = BattleUIState.None;
+        _battleUIState = BattleUIState.None;
     }
 
     private void Update()
     {
-        if (bcmono.battle == null) return;
+        if (BattleController_mono.Instance.battle == null) return;
         switch (_battleUIState)
         {
             case BattleUIState.Switch:
@@ -43,13 +59,18 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
                     SwichUIState(BattleUIState.DisplayText);
                     DisplayText(_displayText);
                 }
-                else if (bcmono.battle._waitInput)
+                else if (BattleController_mono.Instance.battle._waitInput)
                 {
                     SwichUIState(BattleUIState.WaitInput);
                 }
-                else if (bcmono.IsEnd())
+                else if (BattleController_mono.Instance.IsEnd())
                 {
-                    _battleUIState = BattleUIState.None;
+                    _playerParam.EndChar();
+                    foreach(var data in _enemyParams)
+                    {
+                        data.EndChar();
+                    }
+                    SwichUIState(BattleUIState.None);
                 }
                 else
                 {
@@ -64,35 +85,46 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
                     case BattleUIState.WaitInput:
                         if (_commandUI._NowUIState == UIBase.UIState.CLOSE)
                         {
-                            _selfUI.AddUI(_commandUI);
+                            _SelfUI.AddUI(_commandUI);
                         }
                         else EndSwichUIState();
                         break;
                     case BattleUIState.DisplayText:
                         if (_textUI._NowUIState == UIBase.UIState.CLOSE)
                         {
-                            _selfUI.AddUI(_textUI);
+                            _SelfUI.AddUI(_textUI);
                         }
                         else EndSwichUIState();
+                        break;
+                    case BattleUIState.None:
+                        if (_SelfUI._NowUIState == UIBase.UIState.ACTIVE)
+                        {
+                            _SelfUI.CloseUI(_SelfUI);
+                        }
                         break;
                 }
                 break;
             case BattleUIState.WaitInput:
-                if (_selfUI._NowUIState==UIBase.UIState.ACTIVE)
+                if (_SelfUI._NowUIState==UIBase.UIState.ACTIVE)
                 {
                     _battleUIState = BattleUIState.Switch;
-                    bcmono.SetCharInput(temp_target, temp_command);
+                    BattleController_mono.Instance.SetCharInput(temp_target, temp_command);
                 }
                 break;
             case BattleUIState.DisplayText:
                 if (!_battleTextDisplayer._readNow)
                 {
+                    _playerParam.SyncData();
+                    foreach(var data in _enemyParams)
+                    {
+                        data.SyncData();
+                    }
                     _battleUIState = BattleUIState.Switch;
                     CloseText();
                 }
                 break;
             case BattleUIState.Process:
-                bcmono.Next();
+                BattleController_mono.Instance.Next();
                 _battleUIState = BattleUIState.Switch;
                 break;
         }
@@ -103,7 +135,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     {
         temp_command = command;
         temp_target = target;
-        coalSelf.CloseToUI(_selfUI);
+        coalSelf.CloseToUI(_SelfUI);
     }
     
     void DisplayText(List<string> input)
@@ -115,7 +147,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     void CloseText()
     {
         _displayText = null;
-        _textUI.CloseToUI(_selfUI);
+        _textUI.CloseToUI(_SelfUI);
     }
 
     public void AddDisplayText(string text)
@@ -125,7 +157,8 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         {
             _displayText = new List<string>();
         }
-        _displayText.Add(text);
+        var splited = text.Split('$');
+        _displayText.AddRange(splited);
     }
 
 
@@ -144,5 +177,12 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     public void StartBattle()
     {
         _battleUIState = BattleUIState.Switch;
+        _playerParam.SetChar( BattleController_mono.Instance.battle._player);
+        var enemys = BattleController_mono.Instance.battle._enemys;
+        for (int i = 0; i < enemys.Count; i++)
+        {
+            _enemyParams[i].SetChar(enemys[i]);
+        }
     }
+    
 }

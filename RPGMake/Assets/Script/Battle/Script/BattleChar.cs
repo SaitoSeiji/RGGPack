@@ -6,11 +6,13 @@ using System.Linq;
 public class BattleChar
 {
     public BattleCharData _myCharData { get; protected set; }
+    public int _nowHp { get; private set; }
     protected List<BattleChar> _enemyTargets = new List<BattleChar>();
 
     public BattleChar(BattleCharData charData)
     {
         _myCharData = charData;
+        _nowHp = _myCharData._Hp;
     }
 
     public void AddRaival(BattleChar enemy)
@@ -82,8 +84,8 @@ public class BattleChar
     #region damage
     public int SetDamage(int damage)
     {
-        _myCharData._hp -= CalcDamage(damage);
-        if (_myCharData._hp < 0) _myCharData._hp = 0;
+        _nowHp -= CalcDamage(damage);
+        if (_nowHp < 0) _nowHp = 0;
         return CalcDamage(damage);
     }
     int CalcDamage(int attack)
@@ -95,7 +97,7 @@ public class BattleChar
     #endregion
     public bool IsAlive()
     {
-        return _myCharData._hp > 0;
+        return _nowHp > 0;
     }
 }
 public class PlayerChar : BattleChar

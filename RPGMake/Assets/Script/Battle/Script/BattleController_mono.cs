@@ -44,6 +44,11 @@ public class BattleController
     void PrepareNextTurn()
     {
         SyncDeadChar();
+        if (IsEnd())
+        {
+            AddLog_End();
+            return;
+        }
         if (_battleCharQueue.Peek() is PlayerChar)
         {
             _waitInput = true;
@@ -105,10 +110,6 @@ public class BattleController
         int damage=0;
         if(next is PlayerChar)
         {
-            //target = next.SelectTarget(_charInput.index);
-            //command = next.SelectCommand(_charInput.charIndex);
-            //damage = next.SelectAttack(command._skillName);
-            //_charInput = (-1, -1);
             target = next.SelectTarget(_charInput.charName);
             command = next.SelectCommand(_charInput.command);
             damage = next.SelectAttack(command._skillName);
@@ -126,16 +127,9 @@ public class BattleController
         AddLog_damage(target._myCharData, damaged);
         PrepareNextTurn();
     }
-    //public void SetCharInput(int index,int command)
-    //{
-    //    if (!CheckIsAliveTarget(index)) return;
-    //    _charInput = (index, command);
-    //    _waitInput = false;
-    //}
 
     public void SetCharInput(string charName,string command)
     {
-        //if (!CheckIsAliveTarget(index)) return;
         _charInput = (command, charName);
         _waitInput = false;
     }
@@ -165,6 +159,19 @@ public class BattleController
     {
         _logText += string.Format("{0}は倒れた\n",chars._name);
     }
+
+    void AddLog_End()
+    {
+        if (_player._nowHp <= 0)
+        {
+            _logText += string.Format("$目の前が真っ暗になった\n");
+        }
+        else
+        {
+            _logText += string.Format("$コウは戦闘に勝利した！\n");
+            _logText += string.Format("経験値やお金を手に入れた！\n");
+        }
+    }
     public string GetLog()
     {
         string result = (string)_logText.Clone();
@@ -176,8 +183,9 @@ public class BattleController
 
 public class BattleController_mono : SingletonMonoBehaviour<BattleController_mono>
 {
-    [SerializeField] BattleCharScriptable player;
-    [SerializeField] EnemySetScriptable enemys;
+    [SerializeField] BattleUIController _battleUI;
+    [SerializeField] BattleCharScriptable _player;
+    [SerializeField] EnemySetScriptable _enemys;
     WaitFlag wf = new WaitFlag();
     public BattleController battle { get; private set; }
 
@@ -186,9 +194,9 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
     
     public void SetChar(BattleCharScriptable pl, EnemySetScriptable ene)
     {
-        pl = player;
-        enemys = ene;
-        battle = new BattleController(player._CharData
+        pl = _player;
+        _enemys = ene;
+        battle = new BattleController(_player._CharData
             ,ene._enemySetData._charList.Select(x=>x._CharData).ToList());
     }
 
@@ -210,12 +218,6 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
         }
     }
 
-    [ContextMenu("testBattle")]
-    void SetCharText()
-    {
-        SetChar(player,enemys);
-        BattleUIController.Instance.StartBattle();
-    }
 
     public List<EnemyChar> GetEnemyList()
     {
@@ -231,23 +233,17 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
     {
         return battle.IsEnd();
     }
-    //private void Update()
-    //{
-    //    if (!battle.IsEnd()&&!wf._waitNow)
-    //    {
-    //        if (battle._waitInput)
-    //        {
-    //            if (Input.GetKeyDown(KeyCode.Z))
-    //            {
-                    
-    //            }
-    //        }
-    //        else
-    //        {
-    //            wf.WaitStart();
-    //            battle.Command();
-    //            Debug.Log(battle.GetLog());
-    //        }
-    //    }
-    //}
+    
+    public void StartBattle(BattleCharScriptable player,EnemySetScriptable enemys)
+    {
+        UIController.Instance.AddUI(_battleUI._SelfUI);
+        SetChar(player, enemys);
+        _battleUI.StartBattle();
+    }
+
+    [ContextMenu("testBattle")]
+    void SetCharText()
+    {
+        StartBattle(_player, _enemys);
+    }
 }

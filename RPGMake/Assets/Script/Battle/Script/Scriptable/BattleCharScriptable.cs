@@ -7,9 +7,11 @@ public class BattleCharData
 {
     [SerializeField] public string _id;
     [SerializeField] public string _name;
-    [SerializeField] public int _hp;
+    [SerializeField] int _hp;
+    public int _Hp { get { return _hp; } }
     [SerializeField] public int _attack;
     [SerializeField] public int _guard;
+    [SerializeField] public Sprite _charImage;
     public List<SkillDBData> _mySkillList = new List<SkillDBData>();
 
     public BattleCharData(int hp, int attack, int guard)
@@ -27,6 +29,7 @@ public class BattleCharData
         _attack = data._attack;
         _guard = data._guard;
         _mySkillList = data._mySkillList;
+        _charImage = data._charImage;
     }
 
     public BattleCharData Clone()
