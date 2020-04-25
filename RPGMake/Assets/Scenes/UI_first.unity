@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d8d3165bd4743b458bc73f7d7e93788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _staticDbList: []
   _variableDbList: []
   _memberSet: []
 --- !u!1 &1350106873
@@ -225,6 +226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1350106875}
   - component: {fileID: 1350106874}
+  - component: {fileID: 1350106876}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -244,12 +246,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0fb8e8789a7574d84aa0276e778215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  a:
-    _hp: 10
-    _attack: 2
-  b:
-    _hp: 10
-    _attack: 2
+  _battleUI: {fileID: 0}
+  _player: {fileID: 0}
+  _enemys: {fileID: 0}
 --- !u!4 &1350106875
 Transform:
   m_ObjectHideFlags: 0
@@ -264,6 +263,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1350106876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350106873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0501c1938a3e1ae4b98aa742e3489fd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  readText: {fileID: 4900000, guid: d82b1f9edac29aa49be88bc4a1605f25, type: 3}
 --- !u!1 &1700408911
 GameObject:
   m_ObjectHideFlags: 0

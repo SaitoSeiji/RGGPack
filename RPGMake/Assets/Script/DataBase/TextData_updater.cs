@@ -16,7 +16,7 @@ public class TextData_updater : MonoBehaviour
 
     public void DataUpdate_ev()
     {
-        _eventOperater.SetReadFileName(_eventDataText.name);
+        _eventOperater.SetReadFile(_eventDataText);
         _eventOperater.SyncDatabyTxt();
     }
 
@@ -24,10 +24,15 @@ public class TextData_updater : MonoBehaviour
     {
         foreach (var data in _dataBaseText)
         {
-            _dbOperater.SetReadFileName(data.name);
+            _dbOperater.SetReadFile(data);
             _dbOperater.SyncDBByTxt();
         }
         SaveDataController.Instance.TestInitSave();
+        foreach (var data in _dataBaseText)
+        {
+            _dbOperater.SetReadFile(data);
+            _dbOperater.RateUpdate();
+        }
     }
     
     void Init()

@@ -10,115 +10,113 @@ using System.Text.RegularExpressions;
 using UnityEditor;
 #endif
 
-public class DBListCreator
+public static class DBListCreator
 {
-    DBData _template=null;
-    int _dataLinesSize;
-
-    public DBListCreator(AbstractDBData data)
+    //===================================================
+    static List<string> DivideSingle(string data)
     {
-        _template = data.GetDataTemplate();
-        _dataLinesSize = data.GetTxtMemberCount();
-    }
-
-    DBData CreateDBData(string id, string txt)
-    {
-        Dictionary<string, string> dic_st= new Dictionary<string, string>(_template._memberSet_st);
-        Dictionary<string, int> dic_int= new Dictionary<string, int>(_template._memberSet_int);
-        
-        var lines = new List<string>( txt.Split('\n'));
-        foreach (var line in lines)
-        {
-            line.Trim();
-            var datas = line.Split(' ');
-            if (datas.Length == 2&&datas[0]!="id")
-            {
-                if (int.TryParse(datas[1], out int num))
-                {
-                    dic_int[datas[0]] = num;
-                }
-                else
-                {
-                    dic_st[datas[0]] = datas[1];
-                }
-            }
-        }
-
-        var result = new DBData();
-        result._serchId = id;
-        result._memberSet_int = dic_int;
-        result._memberSet_st = dic_st;
+        var split = data.Split('\n');
+        var result = new List<string>(split);
         return result;
     }
-    public List<DBData> CreateDBListBytxt(string txt)
+    static private (List<(string head,string content)> contents, string replaced) ReplaceBlanket(string data)
+    {
+
+        string rgx = @"([^\s]+?)[\s]*{(.+?)}";
+        var matches = Regex.Matches(data, rgx, RegexOptions.Singleline);
+        var contents = new List<(string haed, string content)>();
+        foreach (Match match in matches)
+        {
+            string head = match.Groups[1].Value.Trim();
+            string content = match.Groups[2].Value.Trim();
+            contents.Add((head,content));
+        }
+        var replaced = Regex.Replace(data, rgx, "", RegexOptions.Singleline);
+        replaced = string.Join("\n", (replaced.Split('\n').Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x)).ToArray()));
+        return (contents, replaced.Trim());
+    }
+    static (string id, string replaced) DivideId(string data)
+    {
+        string rgx = @"id:([\s]*?)([^\s]+)";
+        var match = Regex.Match(data, rgx, RegexOptions.Singleline);
+        string id = match.Groups[2].Value;
+        string replaced = Regex.Replace(data, rgx, "", RegexOptions.Singleline);
+        return (id, replaced);
+    }
+
+    static private string[] DivideTextBlock(string text)
+    {
+        var datas = text.Split(new string[] { "id:" }, StringSplitOptions.RemoveEmptyEntries)
+            .Select(x => x = "id:" + x).ToArray();
+        return datas;
+    }
+
+    static public List<DBData> CreateDBListBytxt(string txt)
     {
         var result = new List<DBData>();
         if (string.IsNullOrEmpty(txt)) return result;
-        var lines = txt.Split('\n').Select(x=>x.Trim()).Where(x=>!string.IsNullOrEmpty(x)).ToArray();
-        int beforeIdIndex = -1;
-        for(int i=0;true;i++)
+        var blockList = DivideTextBlock(txt);
+        foreach(var block in blockList)
         {
-            bool end = false;
-            string head = "";
-            //終了判定
-            if (lines[i].Equals("end") || i > lines.Length)
-            {
-                head = "end";
-                end = true;
-            }
-            else//データの区切りかどうかの判定
-            {
-                head = lines[i].Substring(0, 2);
-            }
-            if (head == "end"||head=="id")
-            {
-                if (beforeIdIndex >= 0)
-                {
-                    string id = lines[beforeIdIndex].Split(' ')[1];
-                    string content = DivideArray(lines, beforeIdIndex+1, _dataLinesSize);
-                    result.Add(CreateDBData(id, content));
-                }
-                beforeIdIndex = i;
-            }
-            if (end)
-            {
-                break;
-            }
-        }
+            //データの分割
+            var idSet = DivideId(block);
+            var blancketSet = ReplaceBlanket(idSet.replaced);
+            var singles = DivideSingle(blancketSet.replaced);
 
+            var add = new DBData(idSet.id);
+            //singleのデータを加える
+            foreach(var single in singles)
+            {
+                var split = single.Split(' ');
+                if (split.Length != 2) continue;
+                if(int.TryParse(split[1],out int num))
+                {
+                    add._memberSet_int.Add(split[0], num);
+                }
+                else
+                {
+                    add._memberSet_st.Add(split[0], split[1]);
+                }
+            }
+            //blanketのデータを加える
+            foreach(var blanket in blancketSet.contents)
+            {
+                add._memberSet_stList.Add(blanket.head, new List<string>());
+                var split = blanket.content.Split('\n');
+                foreach(var data in split)
+                {
+                    if (string.IsNullOrEmpty(data)) continue;
+                    add._memberSet_stList[blanket.head].Add(data.Trim());
+                }
+            }
+            result.Add(add);
+        }
         return result;
     }
+    
 
-    string DivideArray(string[] _originData, int start, int size)
-    {
-        string[] result=new string[size];
-        Array.Copy(_originData, start, result,0, size);
-
-        return string.Join("\n",result);
-    }
-
-    public DBData GetTmeplate(string id)
-    {
-        return new DBData(_template,id);
-    }
+    //public DBData GetTmeplate(string id)
+    //{
+    //    return new DBData(_template,id);
+    //}
 }
 
 //DB関連の入出力処理
 public static class DBIO
 {
-    public static string CreateSavePath_txt(string saveKey)
-    {
-        return Application.dataPath + "/Resource/DataBase/" + saveKey + ".txt";
-    }
+    //public static string CreateSavePath_txt(string saveKey)
+    //{
+    //    return Application.dataPath + "/Resource/DataBase/" + saveKey + ".txt";
+    //}
 
-    public static string CreateSavePath_asset(string saveKey,string key)
+    public static string CreateSavePath_asset(string dirName,string fileName)
     {
-        return ("Assets/Resource/DataBase/" + saveKey + "/" + key + ".asset");
+        return ("Assets/Resource/DataBase/" + dirName + "/" + fileName + ".asset");
     }
     
-    public static string CreateAssetDirectoryPath(string saveKey)
+    public static string CreateAssetDirectoryPath(string dirName)
     {
-        return ("Assets/Resource/DataBase/" + saveKey);
+        return ("Assets/Resource/DataBase/" + dirName);
     }
 
     public static bool CheckDir(string path)
@@ -132,15 +130,15 @@ public static class DBIO
         AssetDatabase.Refresh();
     }
 
-    public static string ReadText(string path)
-    {
-        string rawdata = "";
-        using (StreamReader sr = new StreamReader(path))
-        {
-            rawdata = sr.ReadToEnd();
-        }
-        return rawdata;
-    }
+    //public static string ReadText(string path)
+    //{
+    //    string rawdata = "";
+    //    using (StreamReader sr = new StreamReader(path))
+    //    {
+    //        rawdata = sr.ReadToEnd();
+    //    }
+    //    return rawdata;
+    //}
 
     public static (string type,string replaced) TrimType(string txt)
     {
@@ -162,18 +160,18 @@ public static class DBIO
     }
 
 
-    public static void WriteText(List<string> data, string path)
-    {
-        WriteText(string.Join("\n", data), path);
-    }
-    public static void WriteText(string data, string path)
-    {
-        using (StreamWriter sw = new StreamWriter(path))
-        {
-            data = data.Trim('\r', '\n', '\t');
-            sw.WriteLine(data);
-        }
-    }
+    //public static void WriteText(List<string> data, string path)
+    //{
+    //    WriteText(string.Join("\n", data), path);
+    //}
+    //public static void WriteText(string data, string path)
+    //{
+    //    using (StreamWriter sw = new StreamWriter(path))
+    //    {
+    //        data = data.Trim('\r', '\n', '\t');
+    //        sw.WriteLine(data);
+    //    }
+    //}
 }
 
 //データベースの操作を行うクラス
@@ -181,14 +179,10 @@ public class DBOperater<T,K>
     where T:AbstractDBData
     where K:AbstractDB
 {
-    string _dirName;
     K _database;
-
-    DBData _tempData;
-
-    public DBOperater(K db,string dirName)
+    
+    public DBOperater(K db)
     {
-        _dirName = dirName;
         _database = db;
     }
     #region debug
@@ -202,114 +196,121 @@ public class DBOperater<T,K>
     }
 #endregion
     //Add~Updateは現在使用不可
-    public void AddDBD(string name)
-    {
-        var dataList = _database.GetDataList();
-        if (dataList.Where(x=>x._Data._serchId==name).FirstOrDefault()!=null)
-        {
-            DebugMessage_miss("Add : already contain this name:"+name);
-            return;
-        }
-        //scriptableObjectの追加
-        var scriptable = AbstractDBData.GetInstance<T>();
-        AssetDatabase.CreateAsset(scriptable, DBIO.CreateSavePath_asset(_dirName,name));
-        scriptable.InitData();
-        dataList.Add(scriptable);
-        //txtデータ書き込み
-        DBIO.WriteText(_database.CreateDataTxt(), DBIO.CreateSavePath_txt(_dirName));
-        AssetDatabase.Refresh();
-        DebugMessage_success("Add");
-    }
-    public void RemoveDBD(string name)
-    {
+    //public void AddDBD(string name)
+    //{
+    //    var dataList = _database.GetDataList();
+    //    if (dataList.Where(x=>x._Data._serchId==name).FirstOrDefault()!=null)
+    //    {
+    //        DebugMessage_miss("Add : already contain this name:"+name);
+    //        return;
+    //    }
+    //    //scriptableObjectの追加
+    //    var scriptable = AbstractDBData.GetInstance<T>();
+    //    AssetDatabase.CreateAsset(scriptable, DBIO.CreateSavePath_asset(_dirName,name));
+    //    scriptable.InitData();
+    //    dataList.Add(scriptable);
+    //    //txtデータ書き込み
+    //    DBIO.WriteText(_database.CreateDataTxt(), DBIO.CreateSavePath_txt(_dirName));
+    //    AssetDatabase.Refresh();
+    //    DebugMessage_success("Add");
+    //}
+    //public void RemoveDBD(string name)
+    //{
         
-        //scriptableObjeの削除
-        var dataList = _database.GetDataList();
-        if (dataList.Where(x => x._Data._serchId == name).FirstOrDefault() == null)
-        {
-            DebugMessage_miss("Remove : not contain this name:"+name);
-            return;
-        }
-        var scrData = dataList.Where(x => x._Data._serchId == name).First();
-        dataList.Remove(scrData);
-        AssetDatabase.MoveAssetToTrash(AssetDatabase.GetAssetPath(scrData));
-        //txtの更新
-        DBIO.WriteText(_database.CreateDataTxt(), DBIO.CreateSavePath_txt(_dirName));
-        AssetDatabase.Refresh();
-        DebugMessage_success("Remove");
-    }
-    public DBData EditDBD(string name)
+    //    //scriptableObjeの削除
+    //    var dataList = _database.GetDataList();
+    //    if (dataList.Where(x => x._Data._serchId == name).FirstOrDefault() == null)
+    //    {
+    //        DebugMessage_miss("Remove : not contain this name:"+name);
+    //        return;
+    //    }
+    //    var scrData = dataList.Where(x => x._Data._serchId == name).First();
+    //    dataList.Remove(scrData);
+    //    AssetDatabase.MoveAssetToTrash(AssetDatabase.GetAssetPath(scrData));
+    //    //txtの更新
+    //    DBIO.WriteText(_database.CreateDataTxt(), DBIO.CreateSavePath_txt(_dirName));
+    //    AssetDatabase.Refresh();
+    //    DebugMessage_success("Remove");
+    //}
+    //public DBData EditDBD(string name)
+    //{
+    //    var data= _database.GetDataList().Where(x => x._Data._serchId == name).ToList();
+    //    if (data == null||data.Count==0)
+    //    {
+    //        DebugMessage_miss("Edit:not contain this name:"+name);
+    //        return null;
+    //    }
+    //    else DebugMessage_success("Edit");
+    //    return new DBData( data.First()._Data,name);
+    //}
+    //public void UpdateDBD(DBData data,string oldName)
+    //{
+    //    var targetData = _database.GetDataList().Where(x => x._Data._serchId == oldName).FirstOrDefault();
+    //    if (targetData==null)
+    //    {
+    //        DebugMessage_miss("Update:not containt this name:"+oldName);
+    //        return;
+    //    }
+    //    //scriptableObjectの更新
+    //    AssetDatabase.RenameAsset(DBIO.CreateSavePath_asset(_dirName,oldName), data._serchId);
+    //    targetData.UpdateData(data);
+    //    EditorUtility.SetDirty(targetData);
+    //    //txtの更新
+    //    DBIO.WriteText(_database.CreateDataTxt(), DBIO.CreateSavePath_txt(_dirName));
+    //    AssetDatabase.Refresh();
+    //    DebugMessage_success("Update");
+    //}
+    public void SyncDataByTxt(TextAsset textAsset)
     {
-        var data= _database.GetDataList().Where(x => x._Data._serchId == name).ToList();
-        if (data == null||data.Count==0)
+        if (!DBIO.CheckDir(DBIO.CreateAssetDirectoryPath(textAsset.name)))
         {
-            DebugMessage_miss("Edit:not contain this name:"+name);
-            return null;
+            DBIO.CreateDir(DBIO.CreateAssetDirectoryPath(textAsset.name));
         }
-        else DebugMessage_success("Edit");
-        return new DBData( data.First()._Data,name);
-    }
-    public void UpdateDBD(DBData data,string oldName)
-    {
-        var targetData = _database.GetDataList().Where(x => x._Data._serchId == oldName).FirstOrDefault();
-        if (targetData==null)
-        {
-            DebugMessage_miss("Update:not containt this name:"+oldName);
-            return;
-        }
-        //scriptableObjectの更新
-        AssetDatabase.RenameAsset(DBIO.CreateSavePath_asset(_dirName,oldName), data._serchId);
-        targetData.UpdateData(data);
-        EditorUtility.SetDirty(targetData);
-        //txtの更新
-        DBIO.WriteText(_database.CreateDataTxt(), DBIO.CreateSavePath_txt(_dirName));
-        AssetDatabase.Refresh();
-        DebugMessage_success("Update");
-    }
-    public void SyncDataByTxt(string txt)
-    {
-        if (!DBIO.CheckDir(DBIO.CreateAssetDirectoryPath(_dirName)))
-        {
-            DBIO.CreateDir(DBIO.CreateAssetDirectoryPath(_dirName));
-        }
-
-        var creator = new DBListCreator(AbstractDBData.GetInstance<T>());
-        var txtDataList = creator.CreateDBListBytxt(txt);
+        
+        var textDataList = DBListCreator.CreateDBListBytxt(DBIO.TrimType(textAsset.text).replaced);
         var assetDBList = _database.GetDataList();
         //txtに書いてないものを削除
         for(int i=assetDBList.Count-1;i>=0;i--)
         {
-            if (txtDataList.Where(x=>x._serchId==assetDBList[i]._Data._serchId).FirstOrDefault()==null)
+            if (textDataList.Where(x=>x._serchId==assetDBList[i]._Data._serchId).FirstOrDefault()==null)
             {
                 AssetDatabase.MoveAssetToTrash(AssetDatabase.GetAssetPath(assetDBList[i]));
                 assetDBList.RemoveAt(i);
             }
         }
         //txtに書いてあるけどデータがないものを追加
-        foreach(var data in txtDataList)
+        foreach(var data in textDataList)
         {
             var target = assetDBList.Where(x => x._Data._serchId == data._serchId).FirstOrDefault();
             if (target == null)
             {
                 target = AbstractDBData.GetInstance<T>();
-                AssetDatabase.CreateAsset(target,DBIO.CreateSavePath_asset(_dirName,data._serchId));
+                AssetDatabase.CreateAsset(target,DBIO.CreateSavePath_asset(textAsset.name,data._serchId));
                 _database.GetDataList().Add(target);
             }
             target.UpdateData(data);
             EditorUtility.SetDirty(target);
         }
 
-
         EditorUtility.SetDirty(_database);
         AssetDatabase.Refresh();
         DebugMessage_success("SyncText");
     }
 
-    public void SyncTxtByData()
+    public void RateUpdate()
     {
-        string write = _database.CreateDataTxt();
-        DBIO.WriteText(write, DBIO.CreateSavePath_txt(_dirName));
+        var list = _database.GetDataList();
+        foreach(var data in list)
+        {
+            data.RateUpdateMemeber();
+        }
     }
+
+    //public void SyncTxtByData()
+    //{
+    //    string write = _database.CreateDataTxt();
+    //    DBIO.WriteText(write, DBIO.CreateSavePath_txt(_dirName));
+    //}
 
 }
 

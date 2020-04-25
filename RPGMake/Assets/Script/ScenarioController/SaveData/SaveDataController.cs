@@ -221,14 +221,14 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
         }
         return null;
     }
-    public List<DBData> GetDB_static<T>()
+    public T GetDB_static<T>()
        where T : StaticDB
     {
         foreach (var db in _staticDbList)
         {
             if (db is T)
             {
-                return db.GetDataList().Select(x=>x._Data).ToList();
+                return db as T;
             }
         }
         return null;

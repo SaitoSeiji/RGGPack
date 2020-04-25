@@ -1,0 +1,27 @@
+﻿Type(Charcter)
+id: player
+	name コウ
+	hp 20
+	attack 5
+	guard 5
+	skill{
+		attack
+		superAttack
+	}
+id: maou
+	name 魔王
+	hp 20
+	attack 5
+	guard 5
+	skill{
+		attack
+		darkmagic
+	}
+id: akuma
+	name 悪魔
+	hp 5
+	attack 3
+	guard 2
+	skill{
+		attack
+	}

@@ -19,7 +19,7 @@ public class SkillCommandData
     }
 }
 
-[CreateAssetMenu(fileName = "SkillCommand", menuName = "CharData/SkillCommand", order = 0)]
+[CreateAssetMenu(fileName = "SkillDBData", menuName = "DataBases/Data/SkillDBData", order = 0)]
 public class SkillDBData : AbstractDBData
 {
     [SerializeField] SkillCommandData _skill=new SkillCommandData();
@@ -38,6 +38,11 @@ public class SkillDBData : AbstractDBData
         var result = new Dictionary<string, string>();
         result.Add("skillName", _skill._skillName);
         return result;
+    }
+
+    protected override Dictionary<string, List<string>> InitMemeber_stList()
+    {
+        return new Dictionary<string, List<string>>();
     }
 
     protected override void UpdateMember()

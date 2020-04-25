@@ -1,0 +1,18 @@
+﻿Type(EnemySet)
+id: testset
+	enemy{
+		maou
+		akuma
+	}
+id: akuma2
+	enemy{
+		akuma
+		akuma
+	}
+id: akuma3
+	enemy{
+		akuma
+		akuma
+		akuma
+	}
+end

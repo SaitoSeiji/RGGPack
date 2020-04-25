@@ -1,36 +1,6 @@
 ﻿Type(Item)
-id test1
+id: test1
 	displayName テスト1
-	explanation データの登録テストです
-	maxNum 20
-	haveNum 1
-id test2
-	displayName テスト2
-	explanation データの登録テストです
-	maxNum 20
-	haveNum 0
-id test3
-	displayName テスト3
-	explanation データの登録テストです
-	maxNum 20
-	haveNum 1
-id test4
-	displayName テスト4
-	explanation データの登録テストです
-	maxNum 20
-	haveNum 0
-id test5
-	displayName テスト5
-	explanation データの登録テストです
-	maxNum 20
-	haveNum 1
-id test6
-	displayName テスト6
-	explanation データの登録テストです
-	maxNum 20
-	haveNum 1
-id test7
-	displayName テスト7
 	explanation データの登録テストです
 	maxNum 20
 	haveNum 1

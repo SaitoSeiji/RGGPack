@@ -11,13 +11,13 @@ public class SelectSkillScript : AbstractUIScript_button
 
     protected override List<ButtonData> CreateMyButtonData()
     {
-        var saveddb = SaveDataController.Instance.GetDB_static<SkillDB>();
+        var saveddb = SaveDataController.Instance.GetDB_static<SkillDB>().GetDataList().Select(x=>x as SkillDBData);
         var dataList = BattleController_mono.Instance.GetSkillList();
         var resultList = new List<ButtonData>();
         foreach (var data in dataList)
         {
-            var dbData = saveddb.Where(x => x._serchId == data._Data._serchId).First();
-            resultList.Add(new ButtonData(data._SKill._skillName, CreateClickEvent(dbData)));
+            var dbData = saveddb.Where(x => x._Data._serchId == data._Data._serchId).First();
+            resultList.Add(new ButtonData(data._SKill._skillName, CreateClickEvent(dbData._Data)));
         }
         return resultList;
     }
