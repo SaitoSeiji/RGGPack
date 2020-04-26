@@ -14,7 +14,8 @@ public class BattleController
 
     //(int index, int charIndex) _charInput=(-1,-1);
     (string command, string charName) _charInput=("","");
-    string _logText = "";
+    //string _logText = "";
+    Dictionary<string, string> _logData = new Dictionary<string, string>();
 
     public BattleController(BattleCharData player,List<BattleCharData> enemy)
     {
@@ -29,6 +30,8 @@ public class BattleController
         }
         _battleCharQueue = SetFirstQueue();
         PrepareNextTurn();
+
+        AddLog_encount();
     }
     #region private
     //複数同名モンスターがいるときに固有名にする AとかBとか
@@ -121,7 +124,6 @@ public class BattleController
             {
                 tempQueue.Enqueue(target);
             }
-
         }
         _battleCharQueue = tempQueue;
     }
@@ -191,34 +193,47 @@ public class BattleController
     }
     void AddLog_command(BattleCharData chars,SkillCommandData skilldata)
     {
-        _logText += string.Format("{0}の{1}\n",chars._name,skilldata._skillName);
+        _logData["command"]= string.Format("{0}の{1}\n",chars._name,skilldata._skillName);
     }
     void AddLog_damage(BattleCharData chars, int damage)
     {
-        _logText += string.Format("{0}は{1}のダメージを受けた\n", chars._name, damage);
+        _logData["damage"]= string.Format("{0}は{1}のダメージを受けた\n", chars._name, damage);
     }
     void AddLog_defeat(BattleCharData chars)
     {
-        _logText += string.Format("{0}は倒れた\n",chars._name);
+        _logData["defeat"]= string.Format("{0}は倒れた\n",chars._name);
+    }
+
+    void AddLog_encount()
+    {
+        _logData["encount"] = "魔物が現れた";
     }
 
     void AddLog_End()
     {
         if (_player._nowHp <= 0)
         {
-            _logText += string.Format("$目の前が真っ暗になった\n");
+            _logData["end"] = string.Format("コウたちは全滅した\n");
+            _logData["end"] += string.Format("目の前が真っ暗になった");
         }
         else
         {
-            _logText += string.Format("$コウは戦闘に勝利した！\n");
-            _logText += string.Format("経験値やお金を手に入れた！\n");
+            _logData["end"] = string.Format("コウは戦闘に勝利した！\n");
+            _logData["end"] += string.Format("経験値やお金を手に入れた！\n");
         }
     }
-    public string GetLog()
+    //public string GetLog()
+    //{
+    //    string result = (string)_logText.Clone();
+    //    _logText = "";
+    //    return result;
+    //}
+    public string GetLog(string key)
     {
-        string result = (string)_logText.Clone();
-        _logText = "";
-        return result;
+        if (!_logData.ContainsKey(key)) return "";
+        var temp = _logData[key];
+        _logData.Remove(key);
+        return temp;
     }
     #endregion
 }
@@ -232,12 +247,10 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
     public BattleController battle { get; private set; }
     
     
-    void SetChar(CharcterDBData pl, EnemySetDBData ene)
+    void SetChar(BattleCharData pl, EnemySetData ene)
     {
-        pl = _player;
-        _enemys = ene;
-        battle = new BattleController(_player._CharData
-            ,ene._enemySetData._charList.Select(x=>x._CharData).ToList());
+        battle = new BattleController(pl
+            ,ene._charList.Select(x=>x._CharData).ToList());
     }
 
     public void SetCharInput(string target,string skill)
@@ -254,7 +267,7 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
         else
         {
             battle.Command();
-            BattleUIController.Instance.AddDisplayText(battle.GetLog());
+            //BattleUIController.Instance.AddDisplayText(battle.GetLog());
         }
     }
     #region get
@@ -273,12 +286,22 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
     {
         return battle.IsEnd();
     }
-    #endregion
-    public void StartBattle(CharcterDBData player,EnemySetDBData enemys)
+
+    public bool IsBattleEnd()
     {
-        UIController.Instance.AddUI(_battleUI._SelfUI);
+        return IsEnd() && !BattleUIController.Instance.IsBattleNow();
+    }
+    #endregion
+    public void StartBattle(BattleCharData player,EnemySetData enemys)
+    {
+        UIController.Instance.AddUI(_battleUI._BaseUI,true);
         SetChar(player, enemys);
         _battleUI.StartBattle();
+    }
+
+    public void StartBattle(EnemySetData enemys)
+    {
+        StartBattle(_player._CharData, enemys);
     }
 
 
@@ -286,6 +309,6 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
     [ContextMenu("testBattle")]
     void SetCharText()
     {
-        StartBattle(_player, _enemys);
+        StartBattle(_player._CharData, _enemys._enemySetData);
     }
 }

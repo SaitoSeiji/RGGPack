@@ -16,6 +16,14 @@ id:testevent
 		moveToClass
 		door_class
 	}
+id: testBattle
+	text{
+		$
+		戦闘テスト
+		$#battle[testset]
+		$
+		戦闘終了
+	}
 id: testSprite
 	text{
 		$#image[back,0] back

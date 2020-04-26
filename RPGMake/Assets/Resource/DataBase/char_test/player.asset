@@ -16,13 +16,13 @@ MonoBehaviour:
     _serchId: player
   _charData:
     _name: "\u30B3\u30A6"
-    _hp: 20
+    _hp: 40
     _attack: 5
     _guard: 5
     _charImage: {fileID: 0}
     _mySkillList:
-    - {fileID: 11400000, guid: 0f001f5b030d21348bd65dc23461d636, type: 2}
     - {fileID: 11400000, guid: 92ff050a8cc81a64f86ed98a585bff40, type: 2}
+    - {fileID: 11400000, guid: 814158c4bb727c34f9bd5470934223d9, type: 2}
   _skillNameSet:
-  - attack
   - superAttack
+  - darkmagic

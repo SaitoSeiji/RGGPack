@@ -17,7 +17,7 @@ MonoBehaviour:
   _charData:
     _name: "\u9B54\u738B"
     _hp: 20
-    _attack: 5
+    _attack: 3
     _guard: 5
     _charImage: {fileID: 21300000, guid: 221759b44cfd87a418778b9977c29ea1, type: 3}
     _mySkillList:

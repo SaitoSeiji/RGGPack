@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 
 #region codeData
@@ -53,6 +54,9 @@ public abstract class CodeData
             case "music"://music[setName,0]
                 result = new AudioCode(data);
                 break;
+            case "battle"://battle[enemySetName]
+                result = new BattleCode(data);
+                break;
             case "load"://load[black] 500
                 result = new LoadCode(data);
                 break;
@@ -95,7 +99,7 @@ public class TextData : CodeData
 
     public override bool IsEndCode()
     {
-        return EventCodeReadController.Instance._textDisplayer._readNow;
+        return !EventCodeReadController.Instance._textDisplayer._readNow;
     }
 
     public override bool CheckChain(TextCovertedData data)
@@ -223,6 +227,33 @@ public class BranchCode : CodeData
     public override Queue<CodeData> GetNextCode()
     {
         return _nextCodes[_selectNumber];
+    }
+}
+
+public class BattleCode:CodeData
+{
+    EnemySetData _targetEnemySet;
+
+    public BattleCode(TextCovertedData data)
+    {
+        _targetEnemySet= GetEnemySet(data);
+    }
+
+    EnemySetData GetEnemySet(TextCovertedData data)
+    {
+        var db= SaveDataController.Instance.GetDB_static<EnemySetDB>();
+        var dbdata= db.GetDataList().Where(x => x._Data._serchId == data._data).First() as EnemySetDBData;
+        return dbdata._enemySetData;
+    }
+
+    public override void CodeAction()
+    {
+        BattleController_mono.Instance.StartBattle(_targetEnemySet);
+    }
+
+    public override bool IsEndCode()
+    {
+        return BattleController_mono.Instance.IsBattleEnd();
     }
 }
 

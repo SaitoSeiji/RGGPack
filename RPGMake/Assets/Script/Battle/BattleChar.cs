@@ -70,8 +70,10 @@ public class BattleChar
     }
     public SkillCommandData SelectCommand(string name)
     {
-        var command = _myCharData._mySkillList.Where(x => x._SKill._skillName == name).FirstOrDefault();
-        if (command == null) command = _myCharData._mySkillList[0];
+        //var command = _myCharData._mySkillList.Where(x => x._SKill._skillName == name).FirstOrDefault();
+        //if (command == null) command = _myCharData._mySkillList[0];
+        var list = SaveDataController.Instance.GetDB_static<SkillDB>().GetDataList().Select(x => x as SkillDBData);
+        var command = list.Where(x => x._SKill._skillName == name).First();
         return command._SKill;
     }
 
