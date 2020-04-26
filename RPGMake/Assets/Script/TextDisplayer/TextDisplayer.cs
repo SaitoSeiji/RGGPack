@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 
-public class TextDisplayer:SingletonMonoBehaviour<TextDisplayer>
+public class TextDisplayer:MonoBehaviour
 {
     public static class TextReplacer
     {
@@ -80,9 +80,10 @@ public class TextDisplayer:SingletonMonoBehaviour<TextDisplayer>
     
     WaitFlag _charWaitFlag;
     WaitFlag _endWaitFlag;
-
-    private void Start()
+    
+    void Init()
     {
+        if (_charWaitFlag != null) return;
         _charWaitFlag = new WaitFlag();
         _charWaitFlag.SetWaitLength(charWaitTime);
         _endWaitFlag = new WaitFlag();
@@ -127,6 +128,7 @@ public class TextDisplayer:SingletonMonoBehaviour<TextDisplayer>
     #region Public
     public void StartEvent()
     {
+        Init();
         if (_readNow) return;
         _charWaitFlag.WaitStart();
         _readNow = true;

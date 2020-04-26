@@ -1,14 +1,14 @@
 Type(Flag)
-id testFlag
+id: testFlag
 	flagNum 0
-id preEvent
+id: preEvent
 	flagNum 0
-id goHosousitu_kyokasyo
+id: goHosousitu_kyokasyo
 	flagNum 0
-id goHosousitu_hon
+id: goHosousitu_hon
 	flagNum 0
-id goHosousitu_hoken
+id: goHosousitu_hoken
 	flagNum 0
-id doorOpened
+id: doorOpened
 	flagNum 0
 end

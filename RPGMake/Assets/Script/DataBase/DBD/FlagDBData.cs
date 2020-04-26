@@ -19,6 +19,11 @@ public class FlagDBData : AbstractDBData
         return result;
     }
 
+    protected override Dictionary<string, List<string>> InitMemeber_stList()
+    {
+        return new Dictionary<string, List<string>>();
+    }
+
     protected override void UpdateMember()
     {
     }

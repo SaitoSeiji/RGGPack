@@ -8,10 +8,14 @@ public class DBData
     public string _serchId;//検索用id
     public Dictionary<string, string> _memberSet_st = new Dictionary<string, string>();//メンバー変数として扱う 型はstring
     public Dictionary<string, int> _memberSet_int = new Dictionary<string, int>();//メンバー変数として扱う 型はint
+    public Dictionary<string, List<string>> _memberSet_stList = new Dictionary<string, List<string>>();//型はlist<string>
     
-    public DBData()
+    public DBData(string id)
     {
-
+        _serchId = id;
+        _memberSet_int = new Dictionary<string, int>();
+        _memberSet_st = new Dictionary<string, string>();
+        _memberSet_stList = new Dictionary<string, List<string>>();
     }
 
     public DBData(DBData data,string id)
@@ -19,6 +23,7 @@ public class DBData
         _serchId = id;
         _memberSet_st = new Dictionary<string, string>(_memberSet_st);
         _memberSet_int = new Dictionary<string, int>(_memberSet_int);
+        _memberSet_stList = new Dictionary<string, List<string>>();
     }
 }
 
@@ -30,9 +35,10 @@ public abstract class AbstractDBData : ScriptableObject
 
     public void InitData()
     {
-        if (_Data == null) _data = new DBData();
+        if (_Data == null) _data = new DBData("default");
         _Data._memberSet_st = InitMember_st();
         _Data._memberSet_int = InitMember_int();
+        _Data._memberSet_stList = InitMemeber_stList();
         try
         {
             _Data._serchId = this.name;
@@ -44,8 +50,10 @@ public abstract class AbstractDBData : ScriptableObject
     }
 
     protected abstract Dictionary<string, string> InitMember_st();
+    protected abstract Dictionary<string, List<string>> InitMemeber_stList();
     protected abstract Dictionary<string, int> InitMember_int();
     protected abstract void UpdateMember();
+    public virtual void RateUpdateMemeber() { }//データベース全体の登録が済んだ後に行うアップデート
 
     public static T GetInstance<T>()
         where T :ScriptableObject

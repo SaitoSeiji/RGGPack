@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class EventDataOperater_mono : MonoBehaviour
 {
-    [SerializeField,HideInInspector] string _txtname;
+    [SerializeField, HideInInspector] TextAsset _readText;
     [SerializeField] EventDB eventDb;
     
 
     [ContextMenu("SyncDatabyTxt")]
     public void SyncDatabyTxt()
     {
-        string path = DBIO.CreateSavePath_txt(_txtname);
-        var txt = DBIO.TrimType( DBIO.ReadText(path));
-        EventDataOperater.SyncDataByTxt(eventDb,txt.replaced,_txtname);
+        var txt = DBIO.TrimType(_readText.text);
+        EventDataOperater.SyncDataByTxt(eventDb, txt.replaced, _readText.name);
     }
 
-    public void SetReadFileName(string fileName)
+    //public void SetReadFileName(string fileName)
+    //{
+    //    _txtname = fileName;
+    //}
+    public void SetReadFile(TextAsset text)
     {
-        _txtname = fileName;
+        _readText = text;
     }
-    
 }

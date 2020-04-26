@@ -5,18 +5,12 @@ using System.Linq;
 
 public class DBOperater_mono : MonoBehaviour
 {
-    [SerializeField,HideInInspector] string _fileName;
+    [SerializeField, HideInInspector] TextAsset _readFile;
     [SerializeField] List<AbstractDB> _dataBaseList=new List<AbstractDB>();
     //現在一時利用停止中
     [SerializeField, Space(10),HideInInspector] string oldName;
     [SerializeField, HideInInspector] DBData _data;
     #region static
-    static (string type,string text) ReadFile(string fileName)
-    {
-        string path = DBIO.CreateSavePath_txt(fileName);
-        string txt= DBIO.ReadText(path);
-        return DBIO.TrimType(txt);
-    }
     static System.Type JudgeDBType(string  type)
     {
         switch (type)
@@ -25,6 +19,12 @@ public class DBOperater_mono : MonoBehaviour
                 return typeof(ItemDB);
             case "Flag":
                 return typeof(FlagDB);
+            case "Skill":
+                return typeof(SkillDB);
+            case "Charcter":
+                return typeof(CharcterDB);
+            case "EnemySet":
+                return typeof(EnemySetDB);
             default:
                 return typeof(AbstractDB);
         }
@@ -36,120 +36,166 @@ public class DBOperater_mono : MonoBehaviour
         return _dataBaseList.Where(x => x.GetType() == type).FirstOrDefault();
     }
     //[ContextMenu("add Data")]
-    public void AddDB()
-    {
-        var read = ReadFile(_fileName);
-        var type = JudgeDBType(read.type);
-        var db = GetDB(type);
-        if (type == typeof(ItemDB))
-        {
-            var op = new DBOperater<ItemDBData, ItemDB>(db as ItemDB, _fileName);
-            op.AddDBD(_fileName);
-        }
-        else if (type == typeof(FlagDB))
-        {
+    //public void AddDB()
+    //{
+    //    var read = ReadFile(_fileName);
+    //    var type = JudgeDBType(read.type);
+    //    var db = GetDB(type);
+    //    if (type == typeof(ItemDB))
+    //    {
+    //        var op = new DBOperater<ItemDBData, ItemDB>(db as ItemDB, _fileName);
+    //        op.AddDBD(_fileName);
+    //    }
+    //    else if (type == typeof(FlagDB))
+    //    {
 
-            var op = new DBOperater<FlagDBData, FlagDB>(db as FlagDB, _fileName);
-            op.AddDBD(_fileName);
-        }
-    }
-    //[ContextMenu("remove data")]
-    public void RemoveDB()
-    {
-        var read = ReadFile(_fileName);
-        var type = JudgeDBType(read.type);
-        var db = GetDB(type);
-        if (type == typeof(ItemDB))
-        {
-            var op = new DBOperater<ItemDBData, ItemDB>(db as ItemDB, _fileName);
-            op.RemoveDBD(_fileName);
-        }
-        else if (type == typeof(FlagDB))
-        {
+    //        var op = new DBOperater<FlagDBData, FlagDB>(db as FlagDB, _fileName);
+    //        op.AddDBD(_fileName);
+    //    }
+    //}
+    ////[ContextMenu("remove data")]
+    //public void RemoveDB()
+    //{
+    //    var read = ReadFile(_fileName);
+    //    var type = JudgeDBType(read.type);
+    //    var db = GetDB(type);
+    //    if (type == typeof(ItemDB))
+    //    {
+    //        var op = new DBOperater<ItemDBData, ItemDB>(db as ItemDB, _fileName);
+    //        op.RemoveDBD(_fileName);
+    //    }
+    //    else if (type == typeof(FlagDB))
+    //    {
 
-            var op = new DBOperater<FlagDBData, FlagDB>(db as FlagDB, _fileName);
-            op.RemoveDBD(_fileName);
-        }
-    }
-    //[ContextMenu("Edit data")]
-    public void EditDB()
-    {
-        var read = ReadFile(_fileName);
-        var type = JudgeDBType(read.type);
-        var db = GetDB(type);
-        if (type == typeof(ItemDB))
-        {
-            var op = new DBOperater<ItemDBData, ItemDB>(db as ItemDB, _fileName);
-            if (op == null) return;
-            _data = op.EditDBD(_fileName);
-            oldName = _fileName;
-        }
-        else if (type == typeof(FlagDB))
-        {
+    //        var op = new DBOperater<FlagDBData, FlagDB>(db as FlagDB, _fileName);
+    //        op.RemoveDBD(_fileName);
+    //    }
+    //}
+    ////[ContextMenu("Edit data")]
+    //public void EditDB()
+    //{
+    //    var read = ReadFile(_fileName);
+    //    var type = JudgeDBType(read.type);
+    //    var db = GetDB(type);
+    //    if (type == typeof(ItemDB))
+    //    {
+    //        var op = new DBOperater<ItemDBData, ItemDB>(db as ItemDB, _fileName);
+    //        if (op == null) return;
+    //        _data = op.EditDBD(_fileName);
+    //        oldName = _fileName;
+    //    }
+    //    else if (type == typeof(FlagDB))
+    //    {
 
-            var op = new DBOperater<FlagDBData, FlagDB>(db as FlagDB, _fileName);
-            if (op == null) return;
-            _data = op.EditDBD(_fileName);
-            oldName = _fileName;
-        }
+    //        var op = new DBOperater<FlagDBData, FlagDB>(db as FlagDB, _fileName);
+    //        if (op == null) return;
+    //        _data = op.EditDBD(_fileName);
+    //        oldName = _fileName;
+    //    }
+    //}
+    ////[ContextMenu("Update data")]
+    //public void UpdateDB()
+    //{
+    //    var read = ReadFile(_fileName);
+    //    var type = JudgeDBType(read.type);
+    //    var db = GetDB(type);
+    //    if (type == typeof(ItemDB))
+    //    {
+    //        var op = new DBOperater<ItemDBData, ItemDB>(db as ItemDB, _fileName);
+    //        op.UpdateDBD(_data, oldName);
+    //    }
+    //    else if (type == typeof(FlagDB))
+    //    {
 
-    }
-    //[ContextMenu("Update data")]
-    public void UpdateDB()
-    {
-        var read = ReadFile(_fileName);
-        var type = JudgeDBType(read.type);
-        var db = GetDB(type);
-        if (type == typeof(ItemDB))
-        {
-            var op = new DBOperater<ItemDBData, ItemDB>(db as ItemDB, _fileName);
-            op.UpdateDBD(_data, oldName);
-        }
-        else if (type == typeof(FlagDB))
-        {
-
-            var op = new DBOperater<FlagDBData, FlagDB>(db as FlagDB, _fileName);
-            op.UpdateDBD(_data, oldName);
-        }
-    }
+    //        var op = new DBOperater<FlagDBData, FlagDB>(db as FlagDB, _fileName);
+    //        op.UpdateDBD(_data, oldName);
+    //    }
+    //}
     [ContextMenu("SyncDataByTxt")]
-    public void SyncDBTxt()
+    public void SyncDBByTxt()
     {
-        var read = ReadFile(_fileName);
+        var read = DBIO.TrimType(_readFile.text);//ReadFile(_readFile);
         var type = JudgeDBType(read.type);
         var db = GetDB(type);
         if (type == typeof(ItemDB))
         {
-            var op = new DBOperater<ItemDBData, ItemDB>(db as ItemDB, _fileName);
-            op.SyncDataByTxt(ReadFile(_fileName).text);
+            var op = new DBOperater<ItemDBData, ItemDB>(db as ItemDB);
+            op.SyncDataByTxt(_readFile);
         }
-        else if(type == typeof(FlagDB))
+        else if (type == typeof(FlagDB))
         {
-            var op = new DBOperater<FlagDBData, FlagDB>(db as FlagDB, _fileName);
-            op.SyncDataByTxt(ReadFile(_fileName).text);
+            var op = new DBOperater<FlagDBData, FlagDB>(db as FlagDB);
+            op.SyncDataByTxt(_readFile);
+        }
+        else if (type == typeof(SkillDB))
+        {
+            var op = new DBOperater<SkillDBData, SkillDB>(db as SkillDB);
+            op.SyncDataByTxt(_readFile);
+        }
+        else if (type == typeof(CharcterDB))
+        {
+            var op = new DBOperater<CharcterDBData, CharcterDB>(db as CharcterDB);
+            op.SyncDataByTxt(_readFile);
+        }
+        else if (type == typeof(EnemySetDB))
+        {
+            var op = new DBOperater<EnemySetDBData, EnemySetDB>(db as EnemySetDB);
+            op.SyncDataByTxt(_readFile);
+        }
+    }
+
+    public void RateUpdate()
+    {
+        var read = DBIO.TrimType(_readFile.text);//ReadFile(_readFile);
+        var type = JudgeDBType(read.type);
+        var db = GetDB(type);
+        if (type == typeof(ItemDB))
+        {
+            var op = new DBOperater<ItemDBData, ItemDB>(db as ItemDB);
+            op.RateUpdate();
+        }
+        else if (type == typeof(FlagDB))
+        {
+            var op = new DBOperater<FlagDBData, FlagDB>(db as FlagDB);
+            op.RateUpdate();
+        }
+        else if (type == typeof(SkillDB))
+        {
+            var op = new DBOperater<SkillDBData, SkillDB>(db as SkillDB);
+            op.RateUpdate();
+        }
+        else if (type == typeof(CharcterDB))
+        {
+            var op = new DBOperater<CharcterDBData, CharcterDB>(db as CharcterDB);
+            op.RateUpdate();
+        }
+        else if (type == typeof(EnemySetDB))
+        {
+            var op = new DBOperater<EnemySetDBData, EnemySetDB>(db as EnemySetDB);
+            op.RateUpdate();
         }
     }
     //[ContextMenu("SyncTxtByData")]
-    public void SyncTxtDB()
-    {
-        var read = ReadFile(_fileName);
-        var type = JudgeDBType(read.type);
-        var db = GetDB(type);
-        if (type == typeof(ItemDB))
-        {
-            var op = new DBOperater<ItemDBData, ItemDB>(db as ItemDB, _fileName);
-            op.SyncTxtByData();
-        }
-        else if (type == typeof(FlagDB))
-        {
+    //public void SyncTxtDB()
+    //{
+    //    var read = ReadFile(_fileName);
+    //    var type = JudgeDBType(read.type);
+    //    var db = GetDB(type);
+    //    if (type == typeof(ItemDB))
+    //    {
+    //        var op = new DBOperater<ItemDBData, ItemDB>(db as ItemDB, _fileName);
+    //        op.SyncTxtByData();
+    //    }
+    //    else if (type == typeof(FlagDB))
+    //    {
 
-            var op = new DBOperater<FlagDBData, FlagDB>(db as FlagDB, _fileName);
-            op.SyncTxtByData();
-        }
-    }
+    //        var op = new DBOperater<FlagDBData, FlagDB>(db as FlagDB, _fileName);
+    //        op.SyncTxtByData();
+    //    }
+    //}
 
-    public void SetReadFileName(string fileName)
+    public void SetReadFile(TextAsset text)
     {
-        _fileName = fileName;
+        _readFile = text;
     }
 }

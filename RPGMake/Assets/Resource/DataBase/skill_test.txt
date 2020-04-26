@@ -1,0 +1,14 @@
+﻿Type(Skill)
+id: attack
+	skillName 攻撃
+	target 0
+	rate 100
+id: superAttack
+	skillName すごい攻撃
+	target 0
+	rate 300
+id: darkmagic
+	skillName 闇の魔法
+	target 0
+	rate 300
+end

@@ -1,5 +1,5 @@
 ﻿Type(Event)
-id: testevent
+id:testevent
 	text{
 		$
 		text22
@@ -15,6 +15,14 @@ id: testevent
 	next{
 		moveToClass
 		door_class
+	}
+id: testBattle
+	text{
+		$
+		戦闘テスト
+		$#battle[testset]
+		$
+		戦闘終了
 	}
 id: testSprite
 	text{

@@ -63,6 +63,7 @@ public class EventDataOperater
         return ReplaceBrancket(input, "(.+?){(.+?)}");
     }
 
+    //　「id:」ごとにデータを分割
     static string[] SplitDataUnit(string input)
     {
         var datas = input.Split(new string[] { "id:" }, StringSplitOptions.RemoveEmptyEntries)
@@ -76,10 +77,12 @@ public class EventDataOperater
         var dataSet = SplitDataUnit(input);
         foreach(var data in dataSet)
         {
-            string idBrox = @"id: (.+?)\n(.+)";
+            // id: (id) ( content)となる
+            string idBrox = @"id:(.+?)\n(.+)";
             var match = Regex.Match(data, idBrox, RegexOptions.Singleline);
             string _id = match.Groups[1].Value.Trim();
             string content = match.Groups[2].Value.Trim();
+
             var list= ReplaceBrancket_smal(content);
             result.Add((_id, list));
         }

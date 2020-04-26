@@ -26,6 +26,12 @@ public class ItemDBData : AbstractDBData
         result.Add("explanation", GetDefaultString(_explanation));
         return result;
     }
+
+    protected override Dictionary<string, List<string>> InitMemeber_stList()
+    {
+        return new Dictionary<string, List<string>>();
+    }
+
     protected override void UpdateMember()
     {
         _displayName = _Data._memberSet_st["displayName"];

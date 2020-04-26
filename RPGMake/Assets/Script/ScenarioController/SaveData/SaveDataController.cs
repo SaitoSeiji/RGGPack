@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
 {
+    [SerializeField] List<StaticDB> _staticDbList;
     [SerializeField] List<VariableDB> _variableDbList; 
     [SerializeField] List<DataMemberInspector> _memberSet=new List<DataMemberInspector>();
     [SerializeField] Dictionary<string,List<DBData>> _saveDataList = new Dictionary<string, List<DBData>>();
@@ -21,6 +23,18 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
                 tempSaveList.Add(data._Data);
             }
             _saveDataList.Add(db.name, tempSaveList);
+        }
+    }
+
+    public void InitStaticDataBase()
+    {
+        foreach (var db in _staticDbList)
+        {
+            var dataList = db.GetDataList();
+            foreach (var data in dataList)
+            {
+                data.InitData();
+            }
         }
     }
 
@@ -195,14 +209,26 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
         return -1;
     }
 
-    public List<DBData> GetDB<T>()
-        where T : AbstractDB
+    public List<DBData> GetDB_var<T>()
+        where T : VariableDB
     {
         foreach (var db in _variableDbList)
         {
             if (db is T)
             {
                 return _saveDataList[db.name];
+            }
+        }
+        return null;
+    }
+    public T GetDB_static<T>()
+       where T : StaticDB
+    {
+        foreach (var db in _staticDbList)
+        {
+            if (db is T)
+            {
+                return db as T;
             }
         }
         return null;
