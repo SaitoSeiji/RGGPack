@@ -8,9 +8,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     public enum BattleState
     {
         None,
-        First,
         Battle,
-        Result,
         Close
     }
     [SerializeField, NonEditable] BattleState _battleState;
@@ -18,7 +16,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     public enum BattleUIState
     {
         None,
-        Switch,
+        NoUI,
 
         StateStart,
         StateEnd,
@@ -59,7 +57,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         _nowUIState = BattleUIState.None;
         _battleState = BattleState.None;
     }
-
+    
     private void Update()
     {
         BattleStateUpdate();
@@ -67,45 +65,20 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     }
     void BattleStateUpdate()
     {
-        if (_nowUIState != BattleUIState.Switch) return;
+        if (_nowUIState != BattleUIState.NoUI) return;
         switch (_battleState)
         {
-            case BattleState.First:
-                {
-                    var log = _battle.GetLog("encount");
-                    AddDisplayText(log);
-                    ChengeUIState(BattleUIState.DisplayText);
-                    _battleState = BattleState.Battle;
-                }
-                break;
             case BattleState.Battle:
                 {
-                    if (_battle.IsEnd())
+                    if (_battle._waitInput)
                     {
-                        _battleState = BattleState.Result;
+                        ChengeUIState(BattleUIState.WaitInput);
                     }
                     else
                     {
-                        if (_battle._waitInput)
-                        {
-                            ChengeUIState(BattleUIState.WaitInput);
-                        }
-                        else
-                        {
-                            BattleController_mono.Instance.Next();
-                            var log = _battle.GetLog("command") + _battle.GetLog("damage") + _battle.GetLog("defeat");
-                            AddDisplayText(log);
-                            ChengeUIState(BattleUIState.DisplayText);
-                        }
+                        BattleController_mono.Instance.Next();
                     }
-                }
-                break;
-            case BattleState.Result:
-                {
-                    var log = _battle.GetLog("end");
-                    AddDisplayText(log);
-                    ChengeUIState(BattleUIState.DisplayText);
-                    _battleState = BattleState.Close;
+
                 }
                 break;
             case BattleState.Close:
@@ -116,12 +89,11 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
                 break;
         }
     }
-
     void UIStateUpdate()
     {
         switch (_nowUIState)
         {
-            case BattleUIState.Switch:
+            case BattleUIState.NoUI:
                 break;
             //切り替え時にUIのAdd等が入る場合、一回でうまくいかない場合があるので、成功するまで繰り返した後
             //stateの遷移を行っている
@@ -182,115 +154,12 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
             case BattleUIState.DisplayText:
                 if (!_battleTextDisplayer._readNow)
                 {
-                    _playerParam.SyncData();
-                    foreach (var data in _enemyParams)
-                    {
-                        data.SyncData();
-                    }
                     EndUIState(BattleUIState.DisplayText);
                 }
                 break;
         }
     }
-
-    //void UIStateUpdate()
-    //{
-    //    switch (_nowUIState)
-    //    {
-    //        case BattleUIState.Switch:
-    //            if (_displayText != null)
-    //            {
-    //                ChengeUIState(BattleUIState.DisplayText);
-    //                DisplayText(_displayText);
-    //            }
-    //            else if (BattleController_mono.Instance.battle._waitInput)
-    //            {
-    //                ChengeUIState(BattleUIState.WaitInput);
-    //            }
-    //            else if (BattleController_mono.Instance.IsEnd())
-    //            {
-    //                AddDisplayText(_battle.GetLog("end"));
-    //                DisplayText(_displayText);
-    //                ChengeUIState(BattleUIState.DisplayText_last);
-    //            }
-    //            else
-    //            {
-    //                _nowUIState = BattleUIState.Process;
-    //            }
-    //            break;
-    //        //切り替え時にUIのAdd等が入る場合、一回でうまくいかない場合があるので、成功するまで繰り返した後
-    //        //stateの遷移を行っている
-    //        case BattleUIState.StateStart:
-    //            switch (_nextUIState)
-    //            {
-    //                case BattleUIState.WaitInput:
-    //                    if (_commandUI._NowUIState == UIBase.UIState.CLOSE)
-    //                    {
-    //                        _BaseUI.AddUI(_commandUI);
-    //                    }
-    //                    else EndChengeUIState();
-    //                    break;
-    //                case BattleUIState.DisplayText_last:
-    //                case BattleUIState.DisplayText:
-    //                    if (_textUI._NowUIState == UIBase.UIState.CLOSE)
-    //                    {
-    //                        _BaseUI.AddUI(_textUI);
-    //                    }
-    //                    else EndChengeUIState();
-    //                    break;
-    //                case BattleUIState.None:
-    //                    if (_textUI._NowUIState == UIBase.UIState.ACTIVE)
-    //                    {
-    //                        CloseText();
-    //                    }
-    //                    else if (_BaseUI._NowUIState == UIBase.UIState.ACTIVE)
-    //                    {
-    //                        _BaseUI.CloseUI(_BaseUI);
-    //                    }
-    //                    else EndChengeUIState();
-    //                    break;
-    //            }
-    //            break;
-    //        case BattleUIState.WaitInput:
-    //            if (_BaseUI._NowUIState == UIBase.UIState.ACTIVE)
-    //            {
-    //                _nowUIState = BattleUIState.Switch;
-    //                BattleController_mono.Instance.SetCharInput(temp_target, temp_command);
-    //            }
-    //            break;
-    //        case BattleUIState.DisplayText:
-    //            if (!_battleTextDisplayer._readNow)
-    //            {
-    //                _playerParam.SyncData();
-    //                foreach (var data in _enemyParams)
-    //                {
-    //                    data.SyncData();
-    //                }
-    //                _nowUIState = BattleUIState.Switch;
-    //                CloseText();
-    //            }
-    //            break;
-    //        case BattleUIState.DisplayText_last:
-    //            if (!_battleTextDisplayer._readNow)
-    //            {
-    //                _playerParam.EndChar();
-    //                foreach (var data in _enemyParams)
-    //                {
-    //                    data.EndChar();
-    //                }
-    //                ChengeUIState(BattleUIState.None);
-    //            }
-    //            break;
-    //        case BattleUIState.Process:
-    //            BattleController_mono.Instance.Next();
-    //            var st = _battle.GetLog("command") + _battle.GetLog("damage") + _battle.GetLog("defeat");
-    //            AddDisplayText(st);
-    //            //DisplayText(_displayText);
-    //            _nowUIState = BattleUIState.Switch;
-    //            break;
-    //    }
-    //}
-
+    
     public void EndCommand(string command,string target,UIBase coalSelf)
     {
         temp_command = command;
@@ -310,7 +179,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         _textUI.CloseToUI(_BaseUI);
     }
 
-     void AddDisplayText(string text)
+    void AddDisplayText(string text)
     {
         if (string.IsNullOrEmpty(text)) return;
         if (_displayText == null)
@@ -342,14 +211,13 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
 
     void EndEndUIState()
     {
-        _nowUIState = BattleUIState.Switch;
+        _nowUIState = BattleUIState.NoUI;
         _nextUIState = BattleUIState.None;
     }
     #endregion
-    public void StartBattle()
+    public void SetUpCharData()
     {
-        _nowUIState = BattleUIState.Switch;
-        _battleState = BattleState.First;
+        _nowUIState = BattleUIState.NoUI;
         _playerParam.SetChar( BattleController_mono.Instance.battle._player);
         var enemys = BattleController_mono.Instance.battle._enemys;
         for (int i = 0; i < enemys.Count; i++)
@@ -357,9 +225,80 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
             _enemyParams[i].SetChar(enemys[i]);
         }
     }
+    public void SetUpBattleDelegate(BattleController battle)
+    {
+        battle._battleAction_encount = EncountAction;
+        battle._battleAction_command = CommandAction;
+        battle._battleAction_damage = DamageAction;
+        battle._battleAction_defeat = DefeatAction;
+        battle._battleAction_endTurn = EndTurnAction;
+        battle._battleAction_end = EndBattleAction;
+    }
 
     public bool IsBattleNow()
     {
         return _nowUIState != BattleUIState.None;
     }
+    #region battleActionのデリゲート登録用関数
+    void EncountAction()
+    {
+        string log= "魔物が現れた";
+        AddDisplayText(log);
+        ChengeUIState(BattleUIState.DisplayText);
+        _battleState = BattleState.Battle;
+    }
+    string _battlelogText = "";
+    void CommandAction(BattleCharData chars, SkillCommandData skilldata)
+    {
+        _battlelogText= string.Format("{0}の{1}<w>\n", chars._name, skilldata._skillName);
+    }
+
+    void DamageAction(BattleCharData chars, int damage)
+    {
+        _battlelogText += string.Format("{0}は{1}のダメージ<0>を受けた\n", chars._name, damage);
+        _battleTextDisplayer.AddTextAction(0, () =>
+        {
+            _playerParam.SyncData();
+            _playerParam.DamageAction();
+            _enemyParams.ForEach(x => {
+                x.SyncData();
+                x.DamageAction();
+            });
+        });
+    }
+
+    void DefeatAction(BattleCharData chars)
+    {
+        if (chars == null) return;
+        _battlelogText+= string.Format("<w>{0}は倒れた<1>\n", chars._name);
+        _battleTextDisplayer.AddTextAction(1, () =>
+         {
+             _playerParam.DeadAction();
+             _enemyParams.ForEach(x => x.DeadAction());
+         });
+    }
+
+    void EndTurnAction()
+    {
+        AddDisplayText(_battlelogText);
+        ChengeUIState(BattleUIState.DisplayText);
+    }
+    void EndBattleAction(bool plDead)
+    {
+        string log = "";
+        if (plDead)
+        {
+            log += string.Format("コウたちは全滅した<w>\n");
+            log += string.Format("目の前が真っ暗になった");
+        }
+        else
+        {
+            log += string.Format("コウは戦闘に勝利した！<w>\n");
+            log += string.Format("経験値やお金を手に入れた！\n");
+        }
+        AddDisplayText(log);
+        ChengeUIState(BattleUIState.DisplayText);
+        _battleState = BattleState.Close;
+    }
+    #endregion
 }

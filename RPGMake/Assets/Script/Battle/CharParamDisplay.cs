@@ -31,11 +31,6 @@ public class CharParamDisplay : MonoBehaviour
         _beforeHp = data._myCharData._Hp;
     }
 
-    public void EndChar()
-    {
-        gameObject.SetActive(false);
-        _mycharData = null;
-    }
 
     public void SyncData()
     {
@@ -44,29 +39,30 @@ public class CharParamDisplay : MonoBehaviour
         {
             _hpText.text = GetHpText();
         }
-        SyncHp();
-        if (_mycharData._nowHp <= 0&&_deadRemove)
+    }
+    public void DamageAction()
+    {
+        if (_mycharData == null) return;
+        if (_beforeHp > _mycharData._nowHp)
         {
-            EndChar();
+            anim.SetTrigger("damage");
         }
+        _beforeHp = _mycharData._nowHp;
     }
 
-    public void Damage()
+    public void DeadAction()
     {
-        anim.SetTrigger("damage");
+        if (_mycharData == null) return;
+        if (_mycharData._nowHp <= 0 && _deadRemove)
+        {
+            gameObject.SetActive(false);
+            _mycharData = null;
+        }
     }
 
     string GetHpText()
     {
         return string.Format("{0}/{1}",_mycharData._nowHp,_mycharData._myCharData._Hp);
     }
-
-    void SyncHp()
-    {
-        if (_beforeHp > _mycharData._nowHp)
-        {
-            Damage();
-        }
-        _beforeHp = _mycharData._nowHp;
-    }
+    
 }

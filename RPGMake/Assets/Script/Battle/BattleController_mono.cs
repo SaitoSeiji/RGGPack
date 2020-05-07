@@ -15,7 +15,14 @@ public class BattleController
     //(int index, int charIndex) _charInput=(-1,-1);
     (string command, string charName) _charInput=("","");
     //string _logText = "";
-    Dictionary<string, string> _logData = new Dictionary<string, string>();
+    //_battleAction_command～battleAction_endTurnまでを一つにまとめたい
+    public Action _battleAction_encount;
+    public Action<BattleCharData,SkillCommandData> _battleAction_command;
+    public Action<BattleCharData,int> _battleAction_damage;
+    public Action<BattleCharData> _battleAction_defeat;
+    public Action _battleAction_endTurn;
+    public Action<bool> _battleAction_end;
+    
 
     public BattleController(BattleCharData player,List<BattleCharData> enemy)
     {
@@ -29,9 +36,12 @@ public class BattleController
             _player.AddRaival(ene);
         }
         _battleCharQueue = SetFirstQueue();
-        PrepareNextTurn();
+    }
 
-        AddLog_encount();
+    public void StartBattle()
+    {
+        PrepareNextTurn();
+        _battleAction_encount?.Invoke();
     }
     #region private
     //複数同名モンスターがいるときに固有名にする AとかBとか
@@ -88,10 +98,9 @@ public class BattleController
 
     void PrepareNextTurn()
     {
-        SyncDeadChar();
         if (IsEnd())
         {
-            AddLog_End();
+            _battleAction_end?.Invoke(_player._nowHp <= 0);
             return;
         }
         if (_battleCharQueue.Peek() is PlayerChar)
@@ -107,18 +116,18 @@ public class BattleController
                 _player.RemoveRaival(enemy);
             }
         }
-        AddLog_test_hpResult();
-        if(_waitInput) AddLog_test_playerTurn();
     }
-    void SyncDeadChar()
+    BattleCharData SyncDeadChar()
     {
+        BattleCharData deadman = null;
         var tempQueue=new Queue<BattleChar>();
         while (_battleCharQueue.Count > 0)
         {
             var target = _battleCharQueue.Dequeue();
             if (!target.IsAlive())
             {
-                AddLog_defeat(target._myCharData);
+                //AddLog_defeat(target._myCharData);
+                deadman = target._myCharData;
             }
             else
             {
@@ -126,6 +135,7 @@ public class BattleController
             }
         }
         _battleCharQueue = tempQueue;
+        return deadman;
     }
 
     private bool CheckIsAliveTarget(int index)
@@ -151,24 +161,26 @@ public class BattleController
         var next = _battleCharQueue.Dequeue();
         BattleChar target;
         SkillCommandData command;
-        int damage=0;
         if(next is PlayerChar)
         {
             target = next.SelectTarget(_charInput.charName);
             command = next.SelectCommand(_charInput.command);
-            damage = next.SelectAttack(command._skillName);
             _charInput = ("","");
         }
         else
         {
             target = next.SelectTargetAuto();
             command = next.SelectCommand_auto();
-            damage = next.SelectAttack(command._skillName);
         }
-        var damaged= target.SetDamage(damage);
+        int damage = next.SelectAttack(command._skillName);
+        target.SetDamage(damage);
         _battleCharQueue.Enqueue(next);
-        AddLog_command(next._myCharData, command);
-        AddLog_damage(target._myCharData, damaged);
+        var deadMan= SyncDeadChar();
+        //var log = GetLog_command(next._myCharData,command) + GetLog_damage(target._myCharData,damage) + GetLog_defeat(deadMan);
+        _battleAction_command?.Invoke(next._myCharData,command);
+        _battleAction_damage?.Invoke(target._myCharData,damage);
+        _battleAction_defeat?.Invoke(deadMan);
+        _battleAction_endTurn?.Invoke();
         PrepareNextTurn();
     }
 
@@ -179,62 +191,7 @@ public class BattleController
     }
     #endregion
     #region log
-    void AddLog_test_hpResult()
-    {
-        //_logText += string.Format("player hp{0}\n", _player._myCharData._hp);
-        //foreach (var enemy in _enemys)
-        //{
-        //    _logText += string.Format("{0} hp {1}\n", enemy._myCharData._name, enemy._myCharData._hp);
-        //}
-    }
-    void AddLog_test_playerTurn()
-    {
-        //_logText += "next is playerTurn\n";
-    }
-    void AddLog_command(BattleCharData chars,SkillCommandData skilldata)
-    {
-        _logData["command"]= string.Format("{0}の{1}\n",chars._name,skilldata._skillName);
-    }
-    void AddLog_damage(BattleCharData chars, int damage)
-    {
-        _logData["damage"]= string.Format("{0}は{1}のダメージを受けた\n", chars._name, damage);
-    }
-    void AddLog_defeat(BattleCharData chars)
-    {
-        _logData["defeat"]= string.Format("{0}は倒れた\n",chars._name);
-    }
-
-    void AddLog_encount()
-    {
-        _logData["encount"] = "魔物が現れた";
-    }
-
-    void AddLog_End()
-    {
-        if (_player._nowHp <= 0)
-        {
-            _logData["end"] = string.Format("コウたちは全滅した\n");
-            _logData["end"] += string.Format("目の前が真っ暗になった");
-        }
-        else
-        {
-            _logData["end"] = string.Format("コウは戦闘に勝利した！\n");
-            _logData["end"] += string.Format("経験値やお金を手に入れた！\n");
-        }
-    }
-    //public string GetLog()
-    //{
-    //    string result = (string)_logText.Clone();
-    //    _logText = "";
-    //    return result;
-    //}
-    public string GetLog(string key)
-    {
-        if (!_logData.ContainsKey(key)) return "";
-        var temp = _logData[key];
-        _logData.Remove(key);
-        return temp;
-    }
+    
     #endregion
 }
 
@@ -246,17 +203,11 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
     WaitFlag wf = new WaitFlag();
     public BattleController battle { get; private set; }
     
-    
-    void SetChar(BattleCharData pl, EnemySetData ene)
-    {
-        battle = new BattleController(pl
-            ,ene._charList.Select(x=>x._CharData).ToList());
-    }
-
     public void SetCharInput(string target,string skill)
     {
         battle.SetCharInput(target, skill);
     }
+    
 
     public void Next()
     {
@@ -267,7 +218,6 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
         else
         {
             battle.Command();
-            //BattleUIController.Instance.AddDisplayText(battle.GetLog());
         }
     }
     #region get
@@ -295,8 +245,10 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
     public void StartBattle(BattleCharData player,EnemySetData enemys)
     {
         UIController.Instance.AddUI(_battleUI._BaseUI,true);
-        SetChar(player, enemys);
-        _battleUI.StartBattle();
+        battle = new BattleController(player, enemys._charList.Select(x => x._CharData).ToList());
+        _battleUI.SetUpCharData();
+        _battleUI.SetUpBattleDelegate(battle);
+        battle.StartBattle();
     }
 
     public void StartBattle(EnemySetData enemys)

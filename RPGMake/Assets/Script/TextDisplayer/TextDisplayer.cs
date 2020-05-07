@@ -3,17 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
+using System;
 
 public class TextDisplayer:MonoBehaviour
 {
+
     public static class TextReplacer
     {
-        static string _replaceTextDataRGX = @"\[(.+)\]";//[text]
-        static string _kakkoNakaRGX = @"(.+),(.+)";//head,data
+        static string _replaceTextDataRGX = @"\[(.+?)\]";//[text]
+        static string _kakkoNakaRGX = @"(.+?),(.+?)";//head,data
+        static string _replaceTextData_reading_RGX = @"<(.+?)>";//<text> テキストを表示中に実行する
 
-        public static string CheckReplace(string data)
+        public static string CheckReplace_before(string data)
         {
-            var rgx = new Regex(_replaceTextDataRGX);
+            return CheckReplace(data, _replaceTextDataRGX);
+        }
+
+        public static string CheckReplace_reading(string data)
+        {
+            if (data[0] != '<') return "";
+            return CheckReplace(data, _replaceTextData_reading_RGX);
+        }
+
+        static string CheckReplace(string data,string rgxText)
+        {
+            var rgx = new Regex(rgxText);
             var match = rgx.Match(data);
             if (match.Success)
             {
@@ -25,14 +39,24 @@ public class TextDisplayer:MonoBehaviour
             }
         }
 
-        public static string ReplaceText(string data, string replace)
+        public static string ReplaceText_before(string data, string replace)
         {
-            var rgx = new Regex(_replaceTextDataRGX);
-            return rgx.Replace(data, replace);
+            return ReplaceText(data, replace, _replaceTextDataRGX);
+        }
+
+        public static string ReplaceText_reading(string data)
+        {
+            return ReplaceText(data, "", _replaceTextData_reading_RGX);
+        }
+
+        static string ReplaceText(string data, string replace,string rgxText)
+        {
+            var rgx = new Regex(rgxText);
+            return rgx.Replace(data, replace,1);
         }
 
 
-        public static string GetReplaceContent(string target)
+        public static string GetReplaceContent_before(string target)
         {
             string result = target;
             var rgx = new Regex(_kakkoNakaRGX);
@@ -54,7 +78,6 @@ public class TextDisplayer:MonoBehaviour
             }
             return result;
         }
-
         static string ItemReplace(string data)
         {
             switch (data)
@@ -74,13 +97,14 @@ public class TextDisplayer:MonoBehaviour
     Queue<string> _textData=new Queue<string>();
     public bool _readNow { get; private set; }
     string _nowTextData;
-    
+
+    Dictionary<string, Action> _textCommandList = new Dictionary<string, Action>();
     //textの表示パラメータ==============================
     [SerializeField] float charWaitTime;//1文字ごとの待ち時間
     
     WaitFlag _charWaitFlag;
     WaitFlag _endWaitFlag;
-    
+    bool waitSubmit = false;
     void Init()
     {
         if (_charWaitFlag != null) return;
@@ -94,6 +118,11 @@ public class TextDisplayer:MonoBehaviour
 
     private void Update()
     {
+        if (waitSubmit)
+        {
+            if (SubmitInput()) waitSubmit = false;
+            return;
+        }
         if (_readNow)
         {
             if (_charWaitFlag._waitNow)
@@ -118,6 +147,7 @@ public class TextDisplayer:MonoBehaviour
                 }
                 else
                 {
+                    _nowTextData = CheckReplaceTargetText(_displayTextArea.text,_nowTextData);
                     _displayTextArea.text = GetUpdateText(_displayTextArea.text,_nowTextData);
                     _charWaitFlag.WaitStart();
                 }
@@ -125,6 +155,7 @@ public class TextDisplayer:MonoBehaviour
             }
         }
     }
+    
     #region Public
     public void StartEvent()
     {
@@ -134,6 +165,8 @@ public class TextDisplayer:MonoBehaviour
         _readNow = true;
         _nowTextData = GetNextRead();
         _textPanel.SetActive(true);
+
+        _textCommandList["w"] = () => waitSubmit = true;
     }
 
     public void SetTextData(List<string> textData)
@@ -153,6 +186,11 @@ public class TextDisplayer:MonoBehaviour
         var text = name + "\n「" +textData+ "」";
         _textData.Enqueue(text);
     }
+
+    public void AddTextAction(int num,Action act)
+    {
+        _textCommandList[num.ToString()] = act;
+    }
     #endregion
 
 
@@ -170,6 +208,7 @@ public class TextDisplayer:MonoBehaviour
         _displayTextArea.text = "";
         _textPanel.SetActive(false);
         _readNow = false;
+        _textCommandList = new Dictionary<string, Action>();
     }
 
     bool SubmitInput()
@@ -188,23 +227,35 @@ public class TextDisplayer:MonoBehaviour
     }
 
     //表示テキストの更新
-    static string GetUpdateText(string displayText,string targetText)
+    static string GetUpdateText(string displayText, string targetText)
     {
+        if (displayText.Length >= targetText.Length) return displayText;
         string result = displayText;
         int nowCharCount = result.Length;
         result += targetText[nowCharCount];
         return result;
     }
+    string CheckReplaceTargetText(string displayText, string targetText)
+    {
+        int nowCharCount = displayText.Length;
+        string check = TextReplacer.CheckReplace_reading(targetText.Substring(nowCharCount));
+        if (!string.IsNullOrEmpty(check))
+        {
+            _textCommandList[check]?.Invoke();
+            targetText = TextReplacer.ReplaceText_reading(targetText);
+        }
+        return targetText;
+    }
     #region repalace
     string RepalceData(string text)
     {
         var tempText = text;
-        string check = TextReplacer.CheckReplace(tempText);
+        string check = TextReplacer.CheckReplace_before(tempText);
         while (!string.IsNullOrEmpty(check))
         {
-            var replace = TextReplacer.GetReplaceContent(check);
-            tempText = TextReplacer.ReplaceText(tempText, replace);
-            check = TextReplacer.CheckReplace(tempText);
+            var replace = TextReplacer.GetReplaceContent_before(check);
+            tempText = TextReplacer.ReplaceText_before(tempText, replace);
+            check = TextReplacer.CheckReplace_before(tempText);
         }
         return tempText;
     }
