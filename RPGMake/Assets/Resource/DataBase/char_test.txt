@@ -1,25 +1,25 @@
 ﻿Type(Charcter)
 id: player
-	name コウ
-	hp 40
+	name コ
+	hpMax 40
 	attack 5
 	guard 5
 	skill{
 		superAttack
-		darkmagic
+		allAtack_test
+		self_test
 	}
 id: maou
-	name 魔王
-	hp 20
+	name 魔王2
+	hpMax 20
 	attack 3
 	guard 5
 	skill{
 		attack
-		darkmagic
 	}
 id: akuma
 	name 悪魔
-	hp 5
+	hpMax 5
 	attack 3
 	guard 2
 	skill{

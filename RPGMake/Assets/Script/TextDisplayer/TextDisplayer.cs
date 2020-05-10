@@ -93,6 +93,7 @@ public class TextDisplayer:MonoBehaviour
 
     [SerializeField] Text _displayTextArea;
     [SerializeField] GameObject _textPanel;
+    [SerializeField] int _maxDisplayLineCount = -1;//一度に表示する最大行数　-1だと制限なし
 
     Queue<string> _textData=new Queue<string>();
     public bool _readNow { get; private set; }
@@ -173,26 +174,60 @@ public class TextDisplayer:MonoBehaviour
     {
         foreach(var data in textData)
         {
-            _textData.Enqueue(data);
+            var divide = DivideForMaxLineCount(data);
+            divide.ForEach(x => _textData.Enqueue(x));
         }
     }
 
     public void SetTextData(string textData)
     {
-        _textData.Enqueue(textData);
+        var divide = DivideForMaxLineCount(textData);
+        divide.ForEach(x => _textData.Enqueue(x));
     }
     public void SetTextData(string textData,string name)
     {
         var text = name + "\n「" +textData+ "」";
-        _textData.Enqueue(text);
+        var divide = DivideForMaxLineCount(text);
+        divide.ForEach(x => _textData.Enqueue(x));
     }
 
-    public void AddTextAction(int num,Action act)
+    //数値以外で登録できるけど登録済みのやつを入れた時にはじかないとまずい　ex)<w>ははじかないとやばい
+    public void AddTextAction(string num,Action act)
     {
-        _textCommandList[num.ToString()] = act;
+        if (!_textCommandList.ContainsKey(num.ToString()))
+        {
+            _textCommandList[num]=act;
+        }
+        else
+        {
+            _textCommandList[num] += act;
+        }
     }
     #endregion
-
+    //_maxDisplayLineCount行ごとに分割する
+    List<string> DivideForMaxLineCount(string textData)
+    {
+        if (_maxDisplayLineCount <= 0) return new List<string>() { textData };
+        var result= new List<string>();
+        string rgx = "(";//指定回数以上の改行を含んでいるか調べるrgx
+        for(int i = 0; i < _maxDisplayLineCount; i++)
+        {
+            rgx += ".*?\n";
+        }
+        rgx += @")(\S)";
+        string remainTarget = textData;
+        var match = Regex.Match(remainTarget, rgx, RegexOptions.Multiline);
+        while (match.Success)
+        {
+            var add = match.Groups[1].Value;
+            result.Add(add);
+            //remainTarget = match.Groups[2].Value;
+            remainTarget = remainTarget.Substring(add.Length);
+            match = Regex.Match(remainTarget, rgx, RegexOptions.Multiline);
+        }
+        result.Add(remainTarget);
+        return result;
+    }
 
     string GetNextRead()
     {

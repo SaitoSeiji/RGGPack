@@ -1,14 +1,32 @@
 ﻿Type(Skill)
 id: attack
 	skillName 攻撃
-	target 0
+	target 4
 	rate 100
 id: superAttack
 	skillName すごい攻撃
-	target 0
+	target 4
 	rate 300
 id: darkmagic
 	skillName 闇の魔法
-	target 0
+	target 4
 	rate 300
-end
+id: allAtack_test
+	skillName 全体攻撃テスト
+	target 5
+	rate 1000
+id: self_test
+	skillName 仲間攻撃テスト
+	target 1
+	rate 500
+
+NONE =-1,
+SELF=0,
+FRIEND_SOLO=1,
+FRIEND_ALL=2,
+FRIEND_RANDOM=3,
+
+ENEMY_SOLO=4,
+ENEMY_ALL=5,
+ENEMY_RANDOM=6
+    

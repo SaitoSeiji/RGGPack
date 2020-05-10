@@ -1,0 +1,25 @@
+{
+    "saveList": [
+        {
+            "_serchId": "kou",
+            "_memberSet_st": {
+                "name": "コウ"
+            },
+            "_memberSet_int": {
+                "hpMax": 40,
+                "attack": 5,
+                "guard": 5,
+                "spMax": 20,
+                "spNow": 20,
+                "hpNow": 40
+            },
+            "_memberSet_stList": {
+                "skill": [
+                    "superAttack",
+                    "allAtack_test",
+                    "self_test"
+                ]
+            }
+        }
+    ]
+}

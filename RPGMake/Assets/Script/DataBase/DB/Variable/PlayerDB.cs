@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-
-[CreateAssetMenu(fileName = "SkillDB", menuName = "DataBases/DataBase/SkillDB", order = 0)]
-public class SkillDB : StaticDB
+[CreateAssetMenu(fileName = "PlayerDB", menuName = "DataBases/DataBase/PlayerDB", order = 0)]
+public class PlayerDB : VariableDB
 {
-    [SerializeField] public List<SkillDBData> _dataList;
+    [SerializeField] public List<PlayerDBData> _dataList;
 
     public override AbstractDBData FindData_id(string id)
     {
@@ -18,12 +17,14 @@ public class SkillDB : StaticDB
     {
         InitData(_dataList);
     }
+
+
     public override List<AbstractDBData> GetDataList()
     {
         return _dataList.Select(x => (AbstractDBData)x).ToList();
     }
     public override void SetDataList(List<AbstractDBData> list)
     {
-        _dataList = list.Select(x => x as SkillDBData).ToList();
+        _dataList = list.Select(x => x as PlayerDBData).ToList();
     }
 }

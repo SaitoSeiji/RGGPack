@@ -6,12 +6,8 @@ using System;
 [System.Serializable]
 public class SkillCommandData
 {
-    public enum TARGET
-    {
-        NONE, SELF, ENEMY
-    }
     [SerializeField] public string _skillName;
-    [SerializeField] public TARGET _target;
+    [SerializeField] public Battle_targetDicide.TargetType _target;
     [SerializeField] public int _rowRate;
     public float GetRate()
     {
@@ -49,6 +45,6 @@ public class SkillDBData : AbstractDBData
     {
         _skill._skillName = _Data._memberSet_st["skillName"];
         _skill._rowRate = _Data._memberSet_int["rate"];
-        _skill._target = (SkillCommandData.TARGET)Enum.ToObject(typeof(SkillCommandData.TARGET), _Data._memberSet_int["target"]);
+        _skill._target = (Battle_targetDicide.TargetType)Enum.ToObject(typeof(Battle_targetDicide.TargetType), _Data._memberSet_int["target"]);
     }
 }

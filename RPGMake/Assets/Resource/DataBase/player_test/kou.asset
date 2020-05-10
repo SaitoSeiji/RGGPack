@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb9d760bff9b56c49bb0d0c2ad1c971c, type: 3}
-  m_Name: player
+  m_Script: {fileID: 11500000, guid: b0e371111b269e049ac0140ab142ecd8, type: 3}
+  m_Name: kou
   m_EditorClassIdentifier: 
   _data:
-    _serchId: player
+    _serchId: kou
   _charData:
-    _name: "\u30B3"
+    _name: "\u30B3\u30A6"
     _hpMax: 40
     _attack: 5
     _guard: 5
@@ -24,6 +24,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 92ff050a8cc81a64f86ed98a585bff40, type: 2}
     - {fileID: 11400000, guid: 17f9fcc2d391d48418a3215c65177961, type: 2}
     - {fileID: 11400000, guid: 950bf96417454944ca6fbf9694f26157, type: 2}
+    _spMax: 20
+    _spNow: 20
+    _hpNow: 40
   _skillNameSet:
   - superAttack
   - allAtack_test

@@ -8,8 +8,8 @@ using UnityEngine;
 public class BattleCharData
 {
     [SerializeField] public string _name;
-    [SerializeField] public int _hp;
-    public int _Hp { get { return _hp; } }
+    [SerializeField] public int _hpMax;
+    public int _HpMax { get { return _hpMax; } }
     [SerializeField] public int _attack;
     [SerializeField] public int _guard;
     [SerializeField] public Sprite _charImage;
@@ -20,26 +20,88 @@ public class BattleCharData
 
     }
 
-    public BattleCharData(int hp, int attack, int guard)
-    {
-        _hp = hp;
-        _attack = attack;
-        _guard = guard;
-    }
-
     public BattleCharData(BattleCharData data)
     {
         _name = data._name;
-        _hp = data._hp;
+        _hpMax = data._hpMax;
         _attack = data._attack;
         _guard = data._guard;
         _mySkillList = data._mySkillList;
         _charImage = data._charImage;
     }
 
-    public BattleCharData Clone()
+    public virtual BattleCharData Clone()
     {
         return new BattleCharData(this);
+    }
+}
+
+public static class Partial_CharcterDBData
+{
+    public static Dictionary<string, int> InitMember_int(BattleCharData charData)
+    {
+        var result = new Dictionary<string, int>();
+        result.Add("hpMax", charData._HpMax);
+        result.Add("attack", charData._attack);
+        result.Add("guard", charData._guard);
+        return result;
+    }
+    public static Dictionary<string, string> InitMember_st(BattleCharData charData)
+    {
+        var result = new Dictionary<string, string>();
+        result.Add("name", charData._name);
+        return result;
+    }
+
+    public static Dictionary<string, List<string>> InitMemeber_stList(List<string> skillNameSet)
+    {
+        var result = new Dictionary<string, List<string>>();
+        result.Add("skill", skillNameSet);
+        return result;
+    }
+
+    public static void UpdateMember(ref BattleCharData charData,ref List<string> skillNameSet, DBData dbData)
+    {
+        charData._hpMax = dbData._memberSet_int["hpMax"];
+        charData._attack = dbData._memberSet_int["attack"];
+        charData._guard = dbData._memberSet_int["guard"];
+
+        charData._name = dbData._memberSet_st["name"];
+        skillNameSet = dbData._memberSet_stList["skill"];
+    }
+
+    public static void RateUpdateMemeber(ref BattleCharData charData, List<string> skillNameSet)
+    {
+        var db = SaveDataController.Instance.GetDB_static<SkillDB>();
+        charData._mySkillList = new List<SkillDBData>();
+        foreach (var skill in skillNameSet)
+        {
+            var data = db._dataList.Where(x => x.name == skill).First();
+            charData._mySkillList.Add(data as SkillDBData);
+        }
+    }
+
+    //効率かなり悪いのでなんかしたい
+    public static BattleCharData ConvertDBData2BattleCharData(DBData dbData)
+    {
+        //charDataの基本データの登録
+        BattleCharData charData = new BattleCharData();
+        charData._hpMax = dbData._memberSet_int["hpMax"];
+        charData._attack = dbData._memberSet_int["attack"];
+        charData._guard = dbData._memberSet_int["guard"];
+        charData._name = dbData._memberSet_st["name"];
+
+        //スキルの登録
+        var skillNameSet = dbData._memberSet_stList["skill"];
+        var db = SaveDataController.Instance.GetDB_static<SkillDB>();
+        charData._mySkillList = new List<SkillDBData>();
+        foreach (var skill in skillNameSet)
+        {
+            var data = db._dataList.Where(x => x.name == skill).First();
+            charData._mySkillList.Add(data as SkillDBData);
+        }
+
+        return charData;
     }
 }
 
@@ -53,49 +115,29 @@ public class CharcterDBData : AbstractDBData
 
     protected override Dictionary<string, int> InitMember_int()
     {
-        var result = new Dictionary<string, int>();
-        result.Add("hp", _charData._Hp);
-        result.Add("attack", _charData._attack);
-        result.Add("guard", _charData._guard);
-        return result;
+        return Partial_CharcterDBData.InitMember_int(_charData);
     }
 
     protected override Dictionary<string, string> InitMember_st()
     {
-        var result= new Dictionary<string, string>();
-        result.Add("name", _charData._name);
-        return result;
+        return Partial_CharcterDBData.InitMember_st(_charData);
     }
 
     protected override Dictionary<string, List<string>> InitMemeber_stList()
     {
-        var result= new Dictionary<string, List<string>>();
-        result.Add("skill", _skillNameSet);
-        return result;
+        return Partial_CharcterDBData.InitMemeber_stList(_skillNameSet);
     }
 
     protected override void UpdateMember()
     {
-        _charData._hp = _Data._memberSet_int["hp"];
-        _charData._attack = _Data._memberSet_int["attack"];
-        _charData._guard = _Data._memberSet_int["guard"];
-
-        _charData._name = _Data._memberSet_st["name"];
-        _skillNameSet = _Data._memberSet_stList["skill"];
+        Partial_CharcterDBData.UpdateMember(ref _charData,ref _skillNameSet, _Data);
     }
 
     public override void RateUpdateMemeber()
     {
         base.RateUpdateMemeber();
-
-        var db= SaveDataController.Instance.GetDB_static<SkillDB>();
-        var dbList = db.GetDataList();
-        _charData._mySkillList = new List<SkillDBData>();
-        foreach (var skill in _skillNameSet)
-        {
-            var data = dbList.Where(x => x.name == skill).First();
-            _charData._mySkillList.Add(data as SkillDBData);
-        }
+        
+        Partial_CharcterDBData.RateUpdateMemeber(ref _charData, _skillNameSet);
         EditorUtility.SetDirty(this);
     }
 }

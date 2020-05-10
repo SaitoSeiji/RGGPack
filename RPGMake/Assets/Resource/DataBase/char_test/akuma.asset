@@ -16,10 +16,10 @@ MonoBehaviour:
     _serchId: akuma
   _charData:
     _name: "\u60AA\u9B54"
-    _hp: 5
+    _hpMax: 5
     _attack: 3
     _guard: 2
-    _charImage: {fileID: 21300000, guid: c95dde51802393c4da8a442b91b1d34b, type: 3}
+    _charImage: {fileID: 0}
     _mySkillList:
     - {fileID: 11400000, guid: 0f001f5b030d21348bd65dc23461d636, type: 2}
   _skillNameSet:

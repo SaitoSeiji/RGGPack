@@ -242,7 +242,7 @@ public class BattleCode:CodeData
     EnemySetData GetEnemySet(TextCovertedData data)
     {
         var db= SaveDataController.Instance.GetDB_static<EnemySetDB>();
-        var dbdata= db.GetDataList().Where(x => x._Data._serchId == data._data).First() as EnemySetDBData;
+        var dbdata= db._dataList.Where(x => x._Data._serchId == data._data).First() as EnemySetDBData;
         return dbdata._enemySetData;
     }
 

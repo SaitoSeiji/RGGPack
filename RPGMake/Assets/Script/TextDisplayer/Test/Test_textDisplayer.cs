@@ -21,7 +21,7 @@ public class Test_textDisplayer : MonoBehaviour
         for(int i = 0; i < 10; i++)
         {
             string temp = "succses:"+i.ToString();
-            dip.AddTextAction(i, () => Debug.Log(temp));
+            dip.AddTextAction(i.ToString(), () => Debug.Log(temp));
         }
         CoalText();
     }

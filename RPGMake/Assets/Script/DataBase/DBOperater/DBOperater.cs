@@ -286,12 +286,12 @@ public class DBOperater<T,K>
             {
                 target = AbstractDBData.GetInstance<T>();
                 AssetDatabase.CreateAsset(target,DBIO.CreateSavePath_asset(textAsset.name,data._serchId));
-                _database.GetDataList().Add(target);
+                assetDBList.Add(target);
             }
             target.UpdateData(data);
             EditorUtility.SetDirty(target);
         }
-
+        _database.SetDataList(assetDBList);
         EditorUtility.SetDirty(_database);
         AssetDatabase.Refresh();
         DebugMessage_success("SyncText");
@@ -304,6 +304,7 @@ public class DBOperater<T,K>
         {
             data.RateUpdateMemeber();
         }
+        _database.SetDataList(list);
     }
 
     //public void SyncTxtByData()

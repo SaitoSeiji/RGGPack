@@ -5,10 +5,10 @@ using System.Linq;
 
 public abstract class AbstractDB : ScriptableObject
 {
-
     //後で治す：AbstractDBをジェネリックにしたくなかったために、dataBaseのListがどのデータでも入るようになってしまっている
     //不具合が出次第修正
     public abstract List<AbstractDBData> GetDataList();
+    public abstract void SetDataList(List<AbstractDBData> list);
 
     protected static T FindData_id<T>(List<T> dataList, string id)
         where T : AbstractDBData
@@ -28,22 +28,22 @@ public abstract class AbstractDB : ScriptableObject
         }
     }
 
-    public string CreateDataTxt()
-    {
-        var list = GetDataList();
-        string result = "";
-        foreach (var data in list)
-        {
-            result += data.CreateSaveTxt();
-        }
-        result += "end";
-        return result;
-    }
+    //public string CreateDataTxt()
+    //{
+    //    var list = GetDataList();
+    //    string result = "";
+    //    foreach (var data in list)
+    //    {
+    //        result += data.CreateSaveTxt();
+    //    }
+    //    result += "end";
+    //    return result;
+    //}
     
     //今のところデータの変更が行われたときに呼ばれる
-    public void DataUpdateAction(DBData dbData)
+    public static void DataUpdateAction<T>(DBData dbData,List<T> list)
+        where T:AbstractDBData
     {
-        var list = GetDataList();
         foreach(var data in list)
         {
             if (data._Data._serchId == dbData._serchId)

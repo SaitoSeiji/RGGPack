@@ -6,13 +6,15 @@ using System.Linq;
 public class BattleChar
 {
     public BattleCharData _myCharData { get; protected set; }
-    public int _nowHp { get; private set; }
+    public int _maxHp { get; protected set; }
+    public int _nowHp { get; protected set; }
     protected List<BattleChar> _enemyTargets = new List<BattleChar>();
 
     public BattleChar(BattleCharData charData)
     {
         _myCharData = charData;
-        _nowHp = _myCharData._Hp;
+        _nowHp = _myCharData._HpMax;
+        _maxHp = _myCharData._HpMax;
     }
 
     public void AddRaival(BattleChar enemy)
@@ -70,9 +72,8 @@ public class BattleChar
     }
     public SkillCommandData SelectCommand(string name)
     {
-        //var command = _myCharData._mySkillList.Where(x => x._SKill._skillName == name).FirstOrDefault();
-        //if (command == null) command = _myCharData._mySkillList[0];
-        var list = SaveDataController.Instance.GetDB_static<SkillDB>().GetDataList().Select(x => x as SkillDBData);
+        if (string.IsNullOrEmpty(name)) return SelectCommand_auto();
+        var list = SaveDataController.Instance.GetDB_static<SkillDB>()._dataList;
         var command = list.Where(x => x._SKill._skillName == name).First();
         return command._SKill;
     }
@@ -84,17 +85,27 @@ public class BattleChar
     }
     #endregion
     #region damage
-    public int SetDamage(int damage)
+    /// <summary>
+    /// calcダメージしてから使う
+    /// </summary>
+    /// <param name="damage"></param>
+    public void SetDamage(int damage)
     {
-        _nowHp -= CalcDamage(damage);
+        _nowHp -= damage;
         if (_nowHp < 0) _nowHp = 0;
-        return CalcDamage(damage);
     }
-    int CalcDamage(int attack)
+    public int CalcDamage(int attack)
     {
         var result = attack - _myCharData._guard;
         if (result <= 0) result = 1;
         return result;
+    }
+
+    public void SetCure(int cure)
+    {
+        _nowHp += cure;
+        if (_maxHp < _nowHp) _nowHp = _maxHp;
+        
     }
     #endregion
     public bool IsAlive()
@@ -104,9 +115,23 @@ public class BattleChar
 }
 public class PlayerChar : BattleChar
 {
-    public PlayerChar(BattleCharData charData) : base(charData)
+    PlayerCharData _charData;
+    public new PlayerCharData _myCharData { get
+        {
+            SyncData();
+            return _charData;
+        }
+    }
+    public PlayerChar(PlayerCharData charData) : base(charData)
     {
+        _charData = charData;
+        _nowHp = _charData._hpNow;
+    }
 
+    void SyncData()
+    {
+        _charData = _charData.Copy(base._myCharData);
+        _charData._hpNow = _nowHp; ;
     }
 }
 public class EnemyChar : BattleChar

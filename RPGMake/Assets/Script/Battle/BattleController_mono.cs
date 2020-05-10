@@ -11,20 +11,22 @@ public class BattleController
     Queue<BattleChar> _battleCharQueue = new Queue<BattleChar>();
 
     public bool _waitInput { get; private set; } = false;
+    
+    (string command, BattleChar target) _charInput=("",null);
 
-    //(int index, int charIndex) _charInput=(-1,-1);
-    (string command, string charName) _charInput=("","");
-    //string _logText = "";
+    #region callback
     //_battleAction_command～battleAction_endTurnまでを一つにまとめたい
     public Action _battleAction_encount;
-    public Action<BattleCharData,SkillCommandData> _battleAction_command;
+    public Action<BattleCharData, SkillCommandData> _battleAction_command;
     public Action<BattleCharData,int> _battleAction_damage;
+    public Action<BattleCharData,int> _battleAction_cure;
     public Action<BattleCharData> _battleAction_defeat;
     public Action _battleAction_endTurn;
     public Action<bool> _battleAction_end;
-    
+    #endregion
 
-    public BattleController(BattleCharData player,List<BattleCharData> enemy)
+
+    public BattleController(PlayerCharData player,List<BattleCharData> enemy)
     {
         _player = new PlayerChar(player);
         _enemys = new List<EnemyChar>();
@@ -98,6 +100,7 @@ public class BattleController
 
     void PrepareNextTurn()
     {
+        _charInput = (null, null);
         if (IsEnd())
         {
             _battleAction_end?.Invoke(_player._nowHp <= 0);
@@ -106,7 +109,6 @@ public class BattleController
         if (_battleCharQueue.Peek() is PlayerChar)
         {
             _waitInput = true;
-            
         }
 
         foreach (var enemy in _enemys)
@@ -117,9 +119,8 @@ public class BattleController
             }
         }
     }
-    BattleCharData SyncDeadChar()
+    void SyncDeadChar()
     {
-        BattleCharData deadman = null;
         var tempQueue=new Queue<BattleChar>();
         while (_battleCharQueue.Count > 0)
         {
@@ -127,7 +128,6 @@ public class BattleController
             if (!target.IsAlive())
             {
                 //AddLog_defeat(target._myCharData);
-                deadman = target._myCharData;
             }
             else
             {
@@ -135,7 +135,6 @@ public class BattleController
             }
         }
         _battleCharQueue = tempQueue;
-        return deadman;
     }
 
     private bool CheckIsAliveTarget(int index)
@@ -143,6 +142,25 @@ public class BattleController
         if (_enemys.Count <= index) return false;
         return _enemys[index].IsAlive();
     }
+    #region 対象選択用
+    List<BattleChar> GetFriend(BattleChar target)
+    {
+        if (target == _player) return new List<BattleChar>() { _player };
+        else return _enemys.Select(x => (BattleChar)x).ToList();
+    }
+    List<BattleChar> GetEnemy(BattleChar target)
+    {
+        if (target == _player) return _enemys.Select(x => (BattleChar)x).ToList();
+        else return new List<BattleChar>() { _player };
+    }
+    //スキルの対象を決める
+    BattleChar GetInputCommandTarget(BattleChar user, Battle_targetDicide ct)
+    {
+        if (!ct.IsInputSelect()) return null;
+        if (_charInput.target != null) return _charInput.target;
+        else return user.SelectTargetAuto();
+    }
+    #endregion
     #endregion
     #region public
     public bool IsEnd()
@@ -154,39 +172,55 @@ public class BattleController
         }
         return true;
     }
-    
+
+    public Battle_targetDicide GetCommantTarget(string commandName)
+    {
+        var next = _battleCharQueue.Peek();
+        var command = next.SelectCommand(commandName);
+        return new Battle_targetDicide(command._target, next, GetFriend(next), GetEnemy(next));
+    }
+
+
     public void Command()
     {
         if (_waitInput||IsEnd()) return;
+        //次に動くキャラを決める
         var next = _battleCharQueue.Dequeue();
-        BattleChar target;
-        SkillCommandData command;
-        if(next is PlayerChar)
+        //使用するコマンドを決める
+        SkillCommandData command= next.SelectCommand(_charInput.command);
+        int attack = next.SelectAttack(command._skillName);
+        _battleAction_command?.Invoke(next._myCharData, command);
+        //対象を決める
+        var ct= new Battle_targetDicide(command._target,next,GetFriend(next), GetEnemy(next));
+        var targetPool = ct.GetTargetPool();
+        var inputTarget = GetInputCommandTarget(next,ct);
+        List<BattleChar> targets=ct.SelectTarget(targetPool,inputTarget);
+        //スキルの効果を発動する
+        foreach (var target in targets)
         {
-            target = next.SelectTarget(_charInput.charName);
-            command = next.SelectCommand(_charInput.command);
-            _charInput = ("","");
+            if (ct._IsCure)
+            {
+                var cure = attack;
+                target.SetCure(cure);
+                _battleAction_cure?.Invoke(target._myCharData, cure);
+            }
+            else
+            {
+                var damage = target.CalcDamage(attack);
+                target.SetDamage(damage);
+                _battleAction_damage?.Invoke(target._myCharData, damage);
+                if (!target.IsAlive()) _battleAction_defeat?.Invoke(target._myCharData);
+            }
         }
-        else
-        {
-            target = next.SelectTargetAuto();
-            command = next.SelectCommand_auto();
-        }
-        int damage = next.SelectAttack(command._skillName);
-        target.SetDamage(damage);
-        _battleCharQueue.Enqueue(next);
-        var deadMan= SyncDeadChar();
-        //var log = GetLog_command(next._myCharData,command) + GetLog_damage(target._myCharData,damage) + GetLog_defeat(deadMan);
-        _battleAction_command?.Invoke(next._myCharData,command);
-        _battleAction_damage?.Invoke(target._myCharData,damage);
-        _battleAction_defeat?.Invoke(deadMan);
         _battleAction_endTurn?.Invoke();
+        _battleCharQueue.Enqueue(next);
         PrepareNextTurn();
     }
 
     public void SetCharInput(string charName,string command)
     {
-        _charInput = (command, charName);
+        var target = _battleCharQueue.Where(x => x._myCharData._name == charName).FirstOrDefault();
+        _charInput = (command, target);
         _waitInput = false;
     }
     #endregion
@@ -198,11 +232,12 @@ public class BattleController
 public class BattleController_mono : SingletonMonoBehaviour<BattleController_mono>
 {
     [SerializeField] BattleUIController _battleUI;
-    [SerializeField] CharcterDBData _player;
-    [SerializeField] EnemySetDBData _enemys;
+    [SerializeField] EnemySetDBData _testButtleEnemys;
     WaitFlag wf = new WaitFlag();
     public BattleController battle { get; private set; }
-    
+    //PlayerCharData _playerCharData;
+    DBData _playerSaveData;
+
     public void SetCharInput(string target,string skill)
     {
         battle.SetCharInput(target, skill);
@@ -242,25 +277,27 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
         return IsEnd() && !BattleUIController.Instance.IsBattleNow();
     }
     #endregion
-    public void StartBattle(BattleCharData player,EnemySetData enemys)
+    void StartBattle(PlayerCharData player,EnemySetData enemys)
     {
         UIController.Instance.AddUI(_battleUI._BaseUI,true);
         battle = new BattleController(player, enemys._charList.Select(x => x._CharData).ToList());
         _battleUI.SetUpCharData();
         _battleUI.SetUpBattleDelegate(battle);
+        battle._battleAction_end += EndAction;
         battle.StartBattle();
     }
 
     public void StartBattle(EnemySetData enemys)
     {
-        StartBattle(_player._CharData, enemys);
+        var dblist= SaveDataController.Instance.GetDB_var<PlayerDB>();
+        _playerSaveData = dblist.First();
+        var _playerCharData = PlayerDBData.ConvertDBData2plData(_playerSaveData);
+        StartBattle(_playerCharData, enemys);
     }
 
-
-
-    [ContextMenu("testBattle")]
-    void SetCharText()
+    void EndAction(bool win)
     {
-        StartBattle(_player._CharData, _enemys._enemySetData);
+        _playerSaveData = PlayerDBData.ConvertplData2DBData(battle._player._myCharData,_playerSaveData);
+        SaveDataController.Instance.SetData<PlayerDB>(_playerSaveData);
     }
 }

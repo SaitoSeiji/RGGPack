@@ -6,7 +6,7 @@ using TMPro;
 
 public class CharParamDisplay : MonoBehaviour
 {
-    BattleChar _mycharData;
+    public BattleChar _mycharData { get; private set; }
     [SerializeField] TextMeshProUGUI _name;
     [SerializeField] TextMeshProUGUI _hpText;
     [SerializeField] Image _charImage;
@@ -28,7 +28,7 @@ public class CharParamDisplay : MonoBehaviour
         {
             anim = GetComponent<Animator>();
         }
-        _beforeHp = data._myCharData._Hp;
+        _beforeHp = data._myCharData._HpMax;
     }
 
 
@@ -62,7 +62,7 @@ public class CharParamDisplay : MonoBehaviour
 
     string GetHpText()
     {
-        return string.Format("{0}/{1}",_mycharData._nowHp,_mycharData._myCharData._Hp);
+        return string.Format("{0}/{1}",_mycharData._nowHp,_mycharData._myCharData._HpMax);
     }
     
 }

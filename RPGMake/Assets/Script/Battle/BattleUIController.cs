@@ -230,6 +230,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         battle._battleAction_encount = EncountAction;
         battle._battleAction_command = CommandAction;
         battle._battleAction_damage = DamageAction;
+        battle._battleAction_cure = CureAction;
         battle._battleAction_defeat = DefeatAction;
         battle._battleAction_endTurn = EndTurnAction;
         battle._battleAction_end = EndBattleAction;
@@ -250,31 +251,71 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     string _battlelogText = "";
     void CommandAction(BattleCharData chars, SkillCommandData skilldata)
     {
-        _battlelogText= string.Format("{0}の{1}<w>\n", chars._name, skilldata._skillName);
+        _battlelogText= string.Format("{0}の{1}\n", chars._name, skilldata._skillName);
     }
+    
 
     void DamageAction(BattleCharData chars, int damage)
     {
-        _battlelogText += string.Format("{0}は{1}のダメージ<0>を受けた\n", chars._name, damage);
-        _battleTextDisplayer.AddTextAction(0, () =>
+        _battlelogText += string.Format("{0}は{1}のダメージ<{0}0>を受けた\n", chars._name, damage);
+        string charname = chars._name.Clone().ToString();
+        _battleTextDisplayer.AddTextAction(chars._name+"0", () =>
         {
-            _playerParam.SyncData();
-            _playerParam.DamageAction();
-            _enemyParams.ForEach(x => {
-                x.SyncData();
-                x.DamageAction();
-            });
+            //対象のcharにdamageActionするだけ
+
+            if (charname == _playerParam._mycharData._myCharData._name)
+            {
+                _playerParam.SyncData();
+                _playerParam.DamageAction();
+            }
+            else
+            {
+                var target = _enemyParams.Where(
+                    x =>x._mycharData!=null
+                    && charname==x._mycharData._myCharData._name).FirstOrDefault();
+                if (target != null)
+                {
+                    target.SyncData();
+                    target.DamageAction();
+                }
+            }
+        });
+    }
+
+    void CureAction(BattleCharData chars, int damage)
+    {
+        _battlelogText += string.Format("{0}は{1}回復<{0}1>\n", chars._name, damage);
+        _battleTextDisplayer.AddTextAction(chars._name + "1", () =>
+        {
+            if (chars._name == _playerParam._mycharData._myCharData._name)
+            {
+                _playerParam.SyncData();
+            }
+            else
+            {
+                var target = _enemyParams.Where(x => x._mycharData != null&& chars._name == x._mycharData._myCharData._name).FirstOrDefault();
+                if (target != null)
+                {
+                    target.SyncData();
+                }
+            }
         });
     }
 
     void DefeatAction(BattleCharData chars)
     {
         if (chars == null) return;
-        _battlelogText+= string.Format("<w>{0}は倒れた<1>\n", chars._name);
-        _battleTextDisplayer.AddTextAction(1, () =>
-         {
-             _playerParam.DeadAction();
-             _enemyParams.ForEach(x => x.DeadAction());
+        _battlelogText+= string.Format("{0}は倒れた<{0}2>\n", chars._name);
+        _battleTextDisplayer.AddTextAction(chars._name+"2", () =>
+        {
+            //対象のcharにDeadActionするだけ
+            if (chars._name == _playerParam._mycharData._myCharData._name) _playerParam.DeadAction();
+             else
+             {
+                 var target=_enemyParams.Where(x => x._mycharData != null
+                     && chars.Equals(x._mycharData._myCharData)).FirstOrDefault();
+                 if (target != null) target.DeadAction();
+             }
          });
     }
 

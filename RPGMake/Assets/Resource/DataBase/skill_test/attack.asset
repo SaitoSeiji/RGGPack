@@ -16,5 +16,5 @@ MonoBehaviour:
     _serchId: attack
   _skill:
     _skillName: "\u653B\u6483"
-    _target: 0
+    _target: 4
     _rowRate: 100

@@ -47,8 +47,7 @@ public class ItemDBData : AbstractDBData
         result.AddData( "haveNum", have+num);
         return result;
     }
-
-
+    
     public override void DataUpdateAction(DBData data)
     {
         var maxNum = data._memberSet_int["maxNum"];

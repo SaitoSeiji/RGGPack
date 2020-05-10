@@ -45,11 +45,10 @@ public class EnemySetDBData : AbstractDBData
     {
         base.RateUpdateMemeber();
         var db = SaveDataController.Instance.GetDB_static<CharcterDB>();
-        var dbList = db.GetDataList();
         _enemySetData._charList = new List<CharcterDBData>();
         foreach (var skill in _enemyNameList)
         {
-            var data = dbList.Where(x => x.name == skill).First();
+            var data = db._dataList.Where(x => x.name == skill).First();
             _enemySetData._charList.Add(data as CharcterDBData);
         }
         EditorUtility.SetDirty(this);

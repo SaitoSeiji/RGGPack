@@ -1,0 +1,14 @@
+﻿Type(Player)
+id: kou
+	name コウ
+	hpMax 40
+	hpNow 40
+	spMax 20
+	spNow 20
+	attack 5
+	guard 5
+	skill{
+		superAttack
+		allAtack_test
+		self_test
+	}

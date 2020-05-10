@@ -16,5 +16,5 @@ MonoBehaviour:
     _serchId: darkmagic
   _skill:
     _skillName: "\u95C7\u306E\u9B54\u6CD5"
-    _target: 0
+    _target: 4
     _rowRate: 300
