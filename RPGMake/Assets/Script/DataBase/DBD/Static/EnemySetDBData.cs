@@ -13,7 +13,7 @@ public class EnemySetData
 
 
 [CreateAssetMenu(fileName = "EnemySetDBData", menuName = "DataBases/Data/EnemySetDBData", order = 0)]
-public class EnemySetDBData : AbstractDBData
+public class EnemySetDBData : StaticDBData
 {
     public EnemySetData _enemySetData=new EnemySetData();
 
@@ -36,9 +36,9 @@ public class EnemySetDBData : AbstractDBData
         return result = new Dictionary<string, List<string>>();
     }
 
-    protected override void UpdateMember()
+    public override void UpdateMember(TempDBData data)
     {
-        _enemyNameList = _Data._memberSet_stList["enemy"];
+        _enemyNameList = data.GetData_list("enemy");
     }
 
     public override void RateUpdateMemeber()

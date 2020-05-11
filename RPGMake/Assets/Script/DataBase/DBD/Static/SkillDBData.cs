@@ -16,7 +16,7 @@ public class SkillCommandData
 }
 
 [CreateAssetMenu(fileName = "SkillDBData", menuName = "DataBases/Data/SkillDBData", order = 0)]
-public class SkillDBData : AbstractDBData
+public class SkillDBData : StaticDBData
 {
     [SerializeField] SkillCommandData _skill=new SkillCommandData();
     public SkillCommandData _SKill { get { return _skill; } }
@@ -41,10 +41,10 @@ public class SkillDBData : AbstractDBData
         return new Dictionary<string, List<string>>();
     }
 
-    protected override void UpdateMember()
+    public override void UpdateMember(TempDBData data)
     {
-        _skill._skillName = _Data._memberSet_st["skillName"];
-        _skill._rowRate = _Data._memberSet_int["rate"];
-        _skill._target = (Battle_targetDicide.TargetType)Enum.ToObject(typeof(Battle_targetDicide.TargetType), _Data._memberSet_int["target"]);
+        _skill._skillName = data.GetData_st("skillName");
+        _skill._rowRate = data.GetData_int("rate");
+        _skill._target = (Battle_targetDicide.TargetType)Enum.ToObject(typeof(Battle_targetDicide.TargetType), data.GetData_int("target"));
     }
 }

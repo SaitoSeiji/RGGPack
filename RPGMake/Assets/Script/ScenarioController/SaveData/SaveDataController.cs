@@ -7,209 +7,87 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
 {
     [SerializeField] List<StaticDB> _staticDbList;
     [SerializeField] List<VariableDB> _variableDbList; 
-    [SerializeField] List<DataMemberInspector> _memberSet=new List<DataMemberInspector>();
-    [SerializeField] Dictionary<string,List<DBData>> _saveDataList = new Dictionary<string, List<DBData>>();//<dbName,dataList>
+    //[SerializeField] List<DataMemberInspector> _memberSet=new List<DataMemberInspector>();
+    [SerializeField] Dictionary<string,List<SavedDBData>> _saveDataList = new Dictionary<string, List<SavedDBData>>();//<dbName,dataList>
 
     void InitSaveDataList()
     {
-        _saveDataList = new Dictionary<string, List<DBData>>();
+        _saveDataList = new Dictionary<string, List<SavedDBData>>();
         foreach (var db in _variableDbList)
         {
-            var tempSaveList = new List<DBData>();
-            var datalist = db.GetDataList();
-            foreach (var data in datalist)
-            {
-                data.InitData();
-                tempSaveList.Add(data._Data);
-            }
-            _saveDataList.Add(db.name, tempSaveList);
-            db.SetDataList(datalist);
+            _saveDataList.Add(db.name, db.GetSavedDataList());
         }
     }
 
     public void InitStaticDataBase()
     {
-        foreach (var db in _staticDbList)
-        {
-            var datalist = db.GetDataList();
-            foreach (var data in datalist)
-            {
-                data.InitData();
-            }
-            db.SetDataList(datalist);
-        }
+        //foreach (var db in _staticDbList)
+        //{
+        //    var datalist = db.GetDataList();
+        //    foreach (var data in datalist)
+        //    {
+        //        data.InitData();
+        //    }
+        //    db.SetDataList(datalist);
+        //}
     }
 
     void SetMemberSet()
     {
-        _memberSet = new List<DataMemberInspector>();
-        foreach (var dataList in _saveDataList)
-        {
-            foreach (var data in dataList.Value)
-            {
-                DataMemberInspector temp = null;
-                foreach (var st in data._memberSet_int)
-                {
-                    if(temp==null) temp = new DataMemberInspector(data._serchId);
-                    temp.AddData(st.Key, st.Value,DataMemberInspector.HIKAKU.NONE);
-                }
-                _memberSet.Add(temp);
-            }
-        }
+        //_memberSet = new List<DataMemberInspector>();
+        //foreach (var dataList in _saveDataList)
+        //{
+        //    foreach (var data in dataList.Value)
+        //    {
+        //        DataMemberInspector temp = null;
+        //        foreach (var st in data._memberSet_int)
+        //        {
+        //            if(temp==null) temp = new DataMemberInspector(data._serchId);
+        //            temp.AddData(st.Key, st.Value,DataMemberInspector.HIKAKU.NONE);
+        //        }
+        //        _memberSet.Add(temp);
+        //    }
+        //}
     }
     #region dataChenge
-    public void SetData<T>(DataMemberInspector data)
-        where T : AbstractDB
+    
+    public void SetData<T,K>(K data)
+        where T:VariableDB
+        where K: SavedDBData
     {
-        foreach(var d in data._memberSet)
+        var key= GetDBName<T>();
+        List<SavedDBData> db = _saveDataList[key];
+        for (int i = 0; i < db.Count; i++)
         {
-            SetData<T>(data._id, d.memberName, d.data);
-            //Debug.Log(d.data+":"+d.memberName);
-        }
-    }
-    public void SetData<T>(string id,string memberName,int data)
-        where T:AbstractDB
-    {
-        var targetDB = _variableDbList.Where(x => x is T).FirstOrDefault();
-        if (targetDB == null)
-        {
-            Debug.Log("SaveDataController:SetData:name is null");
-            return;
-        }
-        var targetData = _saveDataList[targetDB.name].Where(x => x._serchId == id).FirstOrDefault();
-        if (targetData == null)
-        {
-            Debug.Log("SaveDataController:SetData:id is uncorrect");
-            return;
-        }
-        targetData._memberSet_int[memberName] = data;
-        var datalist = targetDB.GetDataList();
-        AbstractDB.DataUpdateAction(targetData,datalist);//最大値越えチェックなどに使う　データベースを書き換えるわけじゃないが勘違いしやすい
-        targetDB.SetDataList(datalist);
-        SetMemberSet();
-    }
-    public void SetData<T>(DBData dbData)
-    {
-        var targetDB = _variableDbList.Where(x => x is T).FirstOrDefault();
-        if (targetDB == null)
-        {
-            Debug.Log("SaveDataController:SetData:name is null");
-            return;
-        }
-        var targetData= _saveDataList[targetDB.name].Where(x => x._serchId == dbData._serchId).FirstOrDefault();
-        if (targetData == null) return;
-        targetData = dbData;
-        var datalist = targetDB.GetDataList();
-        AbstractDB.DataUpdateAction(targetData, datalist);//最大値越えチェックなどに使う　データベースを書き換えるわけじゃないが勘違いしやすい
-        targetDB.SetDataList(datalist);
-        SetMemberSet();
-    }
-    public string GetText<T>(string id, string memberName)
-        where T:AbstractDB
-    {
-        string name = "";
-        foreach (var db in _variableDbList)
-        {
-            if (db is T)
+            if (db[i]._serchId == data._serchId)
             {
-                name = db.name;
+                db[i] = data;
                 break;
             }
         }
-        if (string.IsNullOrEmpty(name))
-        {
-            Debug.Log("SaveDataController:SetData:name is null");
-            return "";
-        }
-
-        foreach (var saveData in _saveDataList)
-        {
-            if (saveData.Key == name)
-            {
-                foreach (var unit in saveData.Value)
-                {
-                    if (unit._serchId == id)
-                    {
-                        if (unit._memberSet_st.ContainsKey(memberName))
-                        {
-                            return unit._memberSet_st[memberName];
-                        }
-                        else
-                        {
-                            Debug.Log("SaveDataController:SetData:memberName is uncorrect:"+memberName);
-                        }
-                        return "";
-                    }
-                }
-                Debug.Log("SaveDataController:SetData:id is uncorrect");
-                return "";
-            }
-        }
-        return "";
-    }
-    public int GetData<T>(DataMemberInspector data)
-        where T : AbstractDB
-    {
-        foreach(var mem in data._memberSet)
-        {
-            var result= GetData<T>(data._id, mem.memberName);
-            //Debug.Log(result+":"+mem.memberName);
-            return result;
-        }
-        return -1;
-    }
-    public int GetData<T>(string id, string memberName)
-        where T : AbstractDB
-    {
-        string name = "";
-        foreach (var db in _variableDbList)
-        {
-            if (db is T)
-            {
-                name = db.name;
-                break;
-            }
-        }
-        if (string.IsNullOrEmpty(name))
-        {
-            Debug.Log("SaveDataController:SetData:name is null");
-            return -1;
-        }
-
-        foreach (var saveData in _saveDataList)
-        {
-            if (saveData.Key == name)
-            {
-                foreach (var unit in saveData.Value)
-                {
-                    if (unit._serchId == id)
-                    {
-                        if (unit._memberSet_int.ContainsKey(memberName))
-                        {
-                            return unit._memberSet_int[memberName];
-                        }
-                        else
-                        {
-                            Debug.Log("SaveDataController:SetData:memberName is uncorrect");
-                        }
-                        return -1;
-                    }
-                }
-                Debug.Log("SaveDataController:SetData:id is uncorrect");
-                return -1;
-            }
-        }
-        return -1;
     }
 
-    public List<DBData> GetDB_var<T>()
+    string GetDBName<T>()
         where T : VariableDB
     {
         foreach (var db in _variableDbList)
         {
             if (db is T)
             {
-                return _saveDataList[db.name];
+                return db.name;
+            }
+        }
+        return null;
+    }
+    public List<T2> GetDB_var<T, T2>()
+       where T : VariableDB
+       where T2 : SavedDBData
+    {
+        foreach (var db in _variableDbList)
+        {
+            if (db is T)
+            {
+                return _saveDataList[db.name].Select(x => (T2)x).ToList();
             }
         }
         return null;
@@ -231,7 +109,7 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
     {
         foreach(var data in _saveDataList)
         {
-            JsonSaver.SaveAction<DBData>(data.Value,data.Key);
+            JsonSaver.SaveAction<SavedDBData>(data.Value,data.Key);
         }
     }
 
@@ -239,7 +117,7 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
     {
         foreach(var db in _variableDbList)
         {
-            _saveDataList[db.name]= JsonSaver.LoadAction_list<DBData>(db.name);
+            _saveDataList[db.name]= JsonSaver.LoadAction_list<SavedDBData>(db.name);
         }
         SetMemberSet();
     }
@@ -262,10 +140,17 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
         LoadAction();
     }
 
-    [ContextMenu("valueChengeTest")]
-    void TestValueChenge()
+    [ContextMenu("setDataTest")]
+    void TestSetData()
     {
-        SetData<FlagDB>("t1", "flagNum", 5);
-        SetMemberSet();
+        var db = GetDB_var<PlayerDB, SavedDBData_player>();
+        var data = db[0];
+        data._hpNow-=10;
+        Debug.Log(data._hpNow);
+        SetData<PlayerDB, SavedDBData_player>(data);
+        var db2 = GetDB_var<PlayerDB, SavedDBData_player>();
+        var data2 = db[0];
+        Debug.Log(data2._hpNow);
     }
+    
 }

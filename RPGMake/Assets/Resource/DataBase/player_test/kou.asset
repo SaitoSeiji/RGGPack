@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e371111b269e049ac0140ab142ecd8, type: 3}
   m_Name: kou
   m_EditorClassIdentifier: 
-  _data:
-    _serchId: kou
   _charData:
+    _serchId: 
     _name: "\u30B3\u30A6"
     _hpMax: 40
     _attack: 5

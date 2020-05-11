@@ -249,13 +249,13 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         _battleState = BattleState.Battle;
     }
     string _battlelogText = "";
-    void CommandAction(BattleCharData chars, SkillCommandData skilldata)
+    void CommandAction(SavedDBData_char chars, SkillCommandData skilldata)
     {
         _battlelogText= string.Format("{0}の{1}\n", chars._name, skilldata._skillName);
     }
     
 
-    void DamageAction(BattleCharData chars, int damage)
+    void DamageAction(SavedDBData_char chars, int damage)
     {
         _battlelogText += string.Format("{0}は{1}のダメージ<{0}0>を受けた\n", chars._name, damage);
         string charname = chars._name.Clone().ToString();
@@ -282,7 +282,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         });
     }
 
-    void CureAction(BattleCharData chars, int damage)
+    void CureAction(SavedDBData_char chars, int damage)
     {
         _battlelogText += string.Format("{0}は{1}回復<{0}1>\n", chars._name, damage);
         _battleTextDisplayer.AddTextAction(chars._name + "1", () =>
@@ -302,7 +302,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         });
     }
 
-    void DefeatAction(BattleCharData chars)
+    void DefeatAction(SavedDBData_char chars)
     {
         if (chars == null) return;
         _battlelogText+= string.Format("{0}は倒れた<{0}2>\n", chars._name);

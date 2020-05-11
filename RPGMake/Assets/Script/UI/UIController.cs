@@ -9,7 +9,8 @@ public class UIController : SingletonMonoBehaviour<UIController>
     [SerializeField] UIBase _firstUI;
 
     WaitFlag _chengeInterbalFlag = new WaitFlag();
-    Dictionary<string, DBData> _flashDBData=new Dictionary<string, DBData>();
+    Dictionary<string, SavedDBData> _flashDBData_save=new Dictionary<string, SavedDBData>();
+    Dictionary<string, AbstractDBData> _flashDBData_static=new Dictionary<string, AbstractDBData>();
     //ここから設定。増えたら分離
     [SerializeField] float _chengeInterbal;
     
@@ -105,17 +106,34 @@ public class UIController : SingletonMonoBehaviour<UIController>
     }
     #endregion
     #region flashData
-    public void SetFlashData(string key,DBData data)
+    public void SetFlashData(string key, SavedDBData data)
     {
-        _flashDBData.Add(key, data);
+        _flashDBData_save.Add(key, data);
+    }
+    public void SetFlashData(string key, AbstractDBData data)
+    {
+        _flashDBData_static.Add(key, data);
     }
 
-    public DBData GetFlashData(string key)
+    public AbstractDBData GetFlashData_static(string key)
     {
-        if (_flashDBData.ContainsKey(key))
+        if (_flashDBData_static.ContainsKey(key))
         {
-            var data = _flashDBData[key];
-            _flashDBData.Remove(key);
+            var data = _flashDBData_static[key];
+            _flashDBData_static.Remove(key);
+            return data;
+        }
+        else
+        {
+            return null;
+        }
+    }
+    public SavedDBData GetFlashData_saved(string key)
+    {
+        if (_flashDBData_save.ContainsKey(key))
+        {
+            var data = _flashDBData_save[key];
+            _flashDBData_save.Remove(key);
             return data;
         }
         else

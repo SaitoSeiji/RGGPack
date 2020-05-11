@@ -17,16 +17,16 @@ public class BattleController
     #region callback
     //_battleAction_command～battleAction_endTurnまでを一つにまとめたい
     public Action _battleAction_encount;
-    public Action<BattleCharData, SkillCommandData> _battleAction_command;
-    public Action<BattleCharData,int> _battleAction_damage;
-    public Action<BattleCharData,int> _battleAction_cure;
-    public Action<BattleCharData> _battleAction_defeat;
+    public Action<SavedDBData_char, SkillCommandData> _battleAction_command;
+    public Action<SavedDBData_char,int> _battleAction_damage;
+    public Action<SavedDBData_char,int> _battleAction_cure;
+    public Action<SavedDBData_char> _battleAction_defeat;
     public Action _battleAction_endTurn;
     public Action<bool> _battleAction_end;
     #endregion
 
 
-    public BattleController(PlayerCharData player,List<BattleCharData> enemy)
+    public BattleController(SavedDBData_player player,List<SavedDBData_char> enemy)
     {
         _player = new PlayerChar(player);
         _enemys = new List<EnemyChar>();
@@ -234,9 +234,9 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
     [SerializeField] BattleUIController _battleUI;
     [SerializeField] EnemySetDBData _testButtleEnemys;
     WaitFlag wf = new WaitFlag();
+
     public BattleController battle { get; private set; }
     //PlayerCharData _playerCharData;
-    DBData _playerSaveData;
 
     public void SetCharInput(string target,string skill)
     {
@@ -277,7 +277,7 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
         return IsEnd() && !BattleUIController.Instance.IsBattleNow();
     }
     #endregion
-    void StartBattle(PlayerCharData player,EnemySetData enemys)
+    void StartBattle(SavedDBData_player player,EnemySetData enemys)
     {
         UIController.Instance.AddUI(_battleUI._BaseUI,true);
         battle = new BattleController(player, enemys._charList.Select(x => x._CharData).ToList());
@@ -289,15 +289,16 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
 
     public void StartBattle(EnemySetData enemys)
     {
-        var dblist= SaveDataController.Instance.GetDB_var<PlayerDB>();
-        _playerSaveData = dblist.First();
-        var _playerCharData = PlayerDBData.ConvertDBData2plData(_playerSaveData);
-        StartBattle(_playerCharData, enemys);
+        var dblist= SaveDataController.Instance.GetDB_var<PlayerDB, SavedDBData_player>();
+        var _playerSaveData = dblist[0];
+        StartBattle(_playerSaveData, enemys);
     }
 
-    void EndAction(bool win)
+    void EndAction(bool lose)
     {
-        _playerSaveData = PlayerDBData.ConvertplData2DBData(battle._player._myCharData,_playerSaveData);
-        SaveDataController.Instance.SetData<PlayerDB>(_playerSaveData);
+        if (!lose)
+        {
+            SaveDataController.Instance.SetData<PlayerDB, SavedDBData_player>(battle._player._myCharData);
+        }
     }
 }

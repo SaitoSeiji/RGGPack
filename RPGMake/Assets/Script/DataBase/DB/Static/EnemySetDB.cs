@@ -8,21 +8,26 @@ public class EnemySetDB : StaticDB
 {
     [SerializeField] public List<EnemySetDBData> _dataList=new List<EnemySetDBData>();
 
-    public override AbstractDBData FindData_id(string id)
-    {
-        return FindData_id(_dataList, id);
-    }
+    //public override AbstractDBData FindData_id(string id)
+    //{
+    //    return FindData_id(_dataList, id);
+    //}
 
-    public override void InitData()
-    {
-        InitData(_dataList);
-    }
-    public override List<AbstractDBData> GetDataList()
+    //public override void InitData()
+    //{
+    //    InitData(_dataList);
+    //}
+    public override List<AbstractDBData> GetDataList(IEnable_initDB enable)
     {
         return _dataList.Select(x => (AbstractDBData)x).ToList();
     }
-    public override void SetDataList(List<AbstractDBData> list)
+
+    public override void SetDataList(List<AbstractDBData> list, IEnable_initDB enable)
     {
         _dataList = list.Select(x => x as EnemySetDBData).ToList();
     }
+    //public override void SetDataList(List<AbstractDBData> list)
+    //{
+    //    
+    //}
 }

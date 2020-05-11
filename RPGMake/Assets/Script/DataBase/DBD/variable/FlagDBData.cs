@@ -2,10 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class SavedDBData_flag : SavedDBData
+{
+    public int flagNum;
+}
 
 [CreateAssetMenu(fileName = "FlagDBD",menuName = "DataBases/Data/FlagData",order = 0)]
-public class FlagDBData : AbstractDBData
+public class FlagDBData : VariableDBData
 {
+    [SerializeField] SavedDBData_flag _data;
+
+    public override SavedDBData GetSavedDBData()
+    {
+        return _data;
+    }
+
     protected override Dictionary<string, string> InitMember_st()
     {
         var result= new Dictionary<string, string>();
@@ -24,8 +36,10 @@ public class FlagDBData : AbstractDBData
         return new Dictionary<string, List<string>>();
     }
 
-    protected override void UpdateMember()
+    public override void UpdateMember(TempDBData data)
     {
+        _data._serchId = data._serchId;
+        _data.flagNum = data.GetData_int("flagNum");
     }
 
     public static DataMemberInspector SetFlagNum(string id,int Num)

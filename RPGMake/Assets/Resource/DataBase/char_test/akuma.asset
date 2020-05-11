@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb9d760bff9b56c49bb0d0c2ad1c971c, type: 3}
   m_Name: akuma
   m_EditorClassIdentifier: 
-  _data:
-    _serchId: akuma
   _charData:
+    _serchId: 
     _name: "\u60AA\u9B54"
     _hpMax: 5
     _attack: 3

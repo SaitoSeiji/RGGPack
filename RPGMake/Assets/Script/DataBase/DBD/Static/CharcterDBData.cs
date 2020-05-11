@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 
 [System.Serializable]
-public class BattleCharData
+public class SavedDBData_char:SavedDBData
 {
     [SerializeField] public string _name;
     [SerializeField] public int _hpMax;
@@ -15,13 +15,14 @@ public class BattleCharData
     [SerializeField] public Sprite _charImage;
     public List<SkillDBData> _mySkillList = new List<SkillDBData>();
 
-    public BattleCharData()
+    public SavedDBData_char()
     {
 
     }
 
-    public BattleCharData(BattleCharData data)
+    public SavedDBData_char(SavedDBData_char data)
     {
+        _serchId = data._serchId;
         _name = data._name;
         _hpMax = data._hpMax;
         _attack = data._attack;
@@ -30,15 +31,15 @@ public class BattleCharData
         _charImage = data._charImage;
     }
 
-    public virtual BattleCharData Clone()
+    public virtual SavedDBData_char Clone()
     {
-        return new BattleCharData(this);
+        return new SavedDBData_char(this);
     }
 }
 
 public static class Partial_CharcterDBData
 {
-    public static Dictionary<string, int> InitMember_int(BattleCharData charData)
+    public static Dictionary<string, int> InitMember_int(SavedDBData_char charData)
     {
         var result = new Dictionary<string, int>();
         result.Add("hpMax", charData._HpMax);
@@ -46,7 +47,7 @@ public static class Partial_CharcterDBData
         result.Add("guard", charData._guard);
         return result;
     }
-    public static Dictionary<string, string> InitMember_st(BattleCharData charData)
+    public static Dictionary<string, string> InitMember_st(SavedDBData_char charData)
     {
         var result = new Dictionary<string, string>();
         result.Add("name", charData._name);
@@ -60,17 +61,17 @@ public static class Partial_CharcterDBData
         return result;
     }
 
-    public static void UpdateMember(ref BattleCharData charData,ref List<string> skillNameSet, DBData dbData)
+    public static void UpdateMember(ref SavedDBData_char charData,ref List<string> skillNameSet, TempDBData dbData)
     {
-        charData._hpMax = dbData._memberSet_int["hpMax"];
-        charData._attack = dbData._memberSet_int["attack"];
-        charData._guard = dbData._memberSet_int["guard"];
+        charData._hpMax = dbData.GetData_int("hpMax");
+        charData._attack = dbData.GetData_int("attack");
+        charData._guard = dbData.GetData_int("guard");
 
-        charData._name = dbData._memberSet_st["name"];
-        skillNameSet = dbData._memberSet_stList["skill"];
+        charData._name = dbData.GetData_st("name");
+        skillNameSet = dbData.GetData_list("skill");
     }
 
-    public static void RateUpdateMemeber(ref BattleCharData charData, List<string> skillNameSet)
+    public static void RateUpdateMemeber(ref SavedDBData_char charData, List<string> skillNameSet)
     {
         var db = SaveDataController.Instance.GetDB_static<SkillDB>();
         charData._mySkillList = new List<SkillDBData>();
@@ -82,17 +83,17 @@ public static class Partial_CharcterDBData
     }
 
     //効率かなり悪いのでなんかしたい
-    public static BattleCharData ConvertDBData2BattleCharData(DBData dbData)
+    public static SavedDBData_char ConvertDBData2BattleCharData(TempDBData dbData)
     {
         //charDataの基本データの登録
-        BattleCharData charData = new BattleCharData();
-        charData._hpMax = dbData._memberSet_int["hpMax"];
-        charData._attack = dbData._memberSet_int["attack"];
-        charData._guard = dbData._memberSet_int["guard"];
-        charData._name = dbData._memberSet_st["name"];
+        SavedDBData_char charData = new SavedDBData_char();
+        charData._hpMax = dbData.GetData_int("hpMax");
+        charData._attack = dbData.GetData_int("attack");
+        charData._guard = dbData.GetData_int("guard");
 
-        //スキルの登録
-        var skillNameSet = dbData._memberSet_stList["skill"];
+        charData._name = dbData.GetData_st("name");
+
+        var skillNameSet = dbData.GetData_list("skill");
         var db = SaveDataController.Instance.GetDB_static<SkillDB>();
         charData._mySkillList = new List<SkillDBData>();
         foreach (var skill in skillNameSet)
@@ -106,10 +107,10 @@ public static class Partial_CharcterDBData
 }
 
 [CreateAssetMenu(fileName = "CharcterDBData", menuName = "DataBases/Data/CharcterDBData", order = 0)]
-public class CharcterDBData : AbstractDBData
+public class CharcterDBData : StaticDBData
 {
-    [SerializeField] BattleCharData _charData=new BattleCharData();
-    public BattleCharData _CharData { get { return _charData.Clone(); } }
+    [SerializeField] SavedDBData_char _charData=new SavedDBData_char();
+    public SavedDBData_char _CharData { get { return _charData.Clone(); } }
 
     [SerializeField,NonEditable]List<string> _skillNameSet = new List<string>();
 
@@ -128,9 +129,9 @@ public class CharcterDBData : AbstractDBData
         return Partial_CharcterDBData.InitMemeber_stList(_skillNameSet);
     }
 
-    protected override void UpdateMember()
+    public override void UpdateMember(TempDBData data)
     {
-        Partial_CharcterDBData.UpdateMember(ref _charData,ref _skillNameSet, _Data);
+        Partial_CharcterDBData.UpdateMember(ref _charData, ref _skillNameSet, data);
     }
 
     public override void RateUpdateMemeber()

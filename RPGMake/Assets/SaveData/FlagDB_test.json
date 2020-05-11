@@ -1,76 +1,34 @@
 {
     "saveList": [
         {
+            "flagNum": 0,
             "_serchId": "testFlag",
-            "_memberSet_st": {
-                
-            },
-            "_memberSet_int": {
-                "flagNum": 0
-            },
-            "_memberSet_stList": {
-                
-            }
+            "$type": "SavedDBData_flag"
         },
         {
+            "flagNum": 0,
             "_serchId": "preEvent",
-            "_memberSet_st": {
-                
-            },
-            "_memberSet_int": {
-                "flagNum": 0
-            },
-            "_memberSet_stList": {
-                
-            }
+            "$type": "SavedDBData_flag"
         },
         {
+            "flagNum": 0,
             "_serchId": "goHosousitu_kyokasyo",
-            "_memberSet_st": {
-                
-            },
-            "_memberSet_int": {
-                "flagNum": 0
-            },
-            "_memberSet_stList": {
-                
-            }
+            "$type": "SavedDBData_flag"
         },
         {
+            "flagNum": 0,
             "_serchId": "goHosousitu_hon",
-            "_memberSet_st": {
-                
-            },
-            "_memberSet_int": {
-                "flagNum": 0
-            },
-            "_memberSet_stList": {
-                
-            }
+            "$type": "SavedDBData_flag"
         },
         {
+            "flagNum": 0,
             "_serchId": "goHosousitu_hoken",
-            "_memberSet_st": {
-                
-            },
-            "_memberSet_int": {
-                "flagNum": 0
-            },
-            "_memberSet_stList": {
-                
-            }
+            "$type": "SavedDBData_flag"
         },
         {
+            "flagNum": 0,
             "_serchId": "doorOpened",
-            "_memberSet_st": {
-                
-            },
-            "_memberSet_int": {
-                "flagNum": 0
-            },
-            "_memberSet_stList": {
-                
-            }
+            "$type": "SavedDBData_flag"
         }
     ]
 }

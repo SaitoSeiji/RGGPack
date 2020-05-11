@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74df56f46f0884a43bad8815d78e5b37, type: 3}
   m_Name: darkmagic
   m_EditorClassIdentifier: 
-  _data:
-    _serchId: darkmagic
   _skill:
     _skillName: "\u95C7\u306E\u9B54\u6CD5"
     _target: 4

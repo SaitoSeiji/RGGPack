@@ -5,12 +5,12 @@ using System.Linq;
 
 public class BattleChar
 {
-    public BattleCharData _myCharData { get; protected set; }
+    public SavedDBData_char _myCharData { get; protected set; }
     public int _maxHp { get; protected set; }
     public int _nowHp { get; protected set; }
     protected List<BattleChar> _enemyTargets = new List<BattleChar>();
 
-    public BattleChar(BattleCharData charData)
+    public BattleChar(SavedDBData_char charData)
     {
         _myCharData = charData;
         _nowHp = _myCharData._HpMax;
@@ -115,14 +115,14 @@ public class BattleChar
 }
 public class PlayerChar : BattleChar
 {
-    PlayerCharData _charData;
-    public new PlayerCharData _myCharData { get
+    SavedDBData_player _charData;
+    public new SavedDBData_player _myCharData { get
         {
             SyncData();
             return _charData;
         }
     }
-    public PlayerChar(PlayerCharData charData) : base(charData)
+    public PlayerChar(SavedDBData_player charData) : base(charData)
     {
         _charData = charData;
         _nowHp = _charData._hpNow;
@@ -131,12 +131,12 @@ public class PlayerChar : BattleChar
     void SyncData()
     {
         _charData = _charData.Copy(base._myCharData);
-        _charData._hpNow = _nowHp; ;
+        _charData._hpNow = _nowHp;
     }
 }
 public class EnemyChar : BattleChar
 {
-    public EnemyChar(BattleCharData charData) : base(charData)
+    public EnemyChar(SavedDBData_char charData) : base(charData)
     {
 
     }

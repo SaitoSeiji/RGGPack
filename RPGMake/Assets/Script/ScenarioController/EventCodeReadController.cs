@@ -148,11 +148,16 @@ public class FlagCode : CodeData
 
     public override void CodeAction()
     {
+        var db= SaveDataController.Instance.GetDB_var<FlagDB, SavedDBData_flag>();
         foreach (var flag in _flagData)
         {
+            var temp = db.Find(x=>x._serchId==flag.Key) ;
+            temp.flagNum = flag.Value;
+            SaveDataController.Instance.SetData<FlagDB,SavedDBData_flag>(temp);
+            
             //SaveDataHolder.Instance.SetFlagNum(flag.Key, flag.Value);
-            var key = FlagDBData.SetFlagNum(flag.Key, flag.Value);
-            SaveDataController.Instance.SetData<FlagDB>(key);
+            //var key = FlagDBData.SetFlagNum(flag.Key, flag.Value);
+            //SaveDataController.Instance.SetData<FlagDB>(key);
         }
     }
 
@@ -242,7 +247,7 @@ public class BattleCode:CodeData
     EnemySetData GetEnemySet(TextCovertedData data)
     {
         var db= SaveDataController.Instance.GetDB_static<EnemySetDB>();
-        var dbdata= db._dataList.Where(x => x._Data._serchId == data._data).First() as EnemySetDBData;
+        var dbdata= db._dataList.Where(x => x.name == data._data).First() as EnemySetDBData;
         return dbdata._enemySetData;
     }
 
@@ -311,11 +316,15 @@ public class ItemCode : CodeData
     public override void CodeAction()
     {
         string dispTxt = "";
+        var db = SaveDataController.Instance.GetDB_var<ItemDB, SavedDBData_item>();
         foreach (var d in _itemSet)
         {
             //var data = SaveDataHolder.Instance.GetItem(d.Key, d.Value);
-            var key = ItemDBData.AddHaveNum(d.Key, d.Value);
-            SaveDataController.Instance.SetData<ItemDB>(key);
+            var data = db.Where(x => x._serchId == d.Key).First();
+            data._haveNum += d.Value;
+            SaveDataController.Instance.SetData<ItemDB, SavedDBData_item>(data);
+            //var key = ItemDBData.AddHaveNum(d.Key, d.Value);
+            //SaveDataController.Instance.SetData<ItemDB>(key);
             EventCodeReadController.Instance.SetFlashData("getItem",d.Key);
         }
     }

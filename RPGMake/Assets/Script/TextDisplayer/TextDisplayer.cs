@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 using System;
+using System.Linq;
 
 public class TextDisplayer:MonoBehaviour
 {
@@ -85,7 +86,10 @@ public class TextDisplayer:MonoBehaviour
                 case "getItem":
                     var key= EventCodeReadController.Instance.GetFlashData(data)[0];
                     EventCodeReadController.Instance.RemoveFlashData(data);
-                    return SaveDataController.Instance.GetText<ItemDB>(key.ToString(), "displayName");
+                    var target = SaveDataController.Instance.GetDB_var<ItemDB,SavedDBData_item>().Where(x => x._serchId == key).FirstOrDefault();
+                    if (target == null) return "";
+                    return target._displayName;
+                    //return SaveDataController.Instance.GetText<ItemDB>(key.ToString(), "displayName");
             }
             return "";
         }

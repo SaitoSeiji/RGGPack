@@ -1,25 +1,41 @@
 {
     "saveList": [
         {
+            "_spMax": 20,
+            "_spNow": 20,
+            "_hpNow": 30,
+            "_name": "コウ",
+            "_hpMax": 40,
+            "_attack": 5,
+            "_guard": 5,
+            "_charImage": {
+                
+            },
+            "_mySkillList": [
+                {
+                    "_skill": {
+                        "_skillName": "すごい攻撃",
+                        "_target": "ENEMY_SOLO",
+                        "_rowRate": 300
+                    }
+                },
+                {
+                    "_skill": {
+                        "_skillName": "全体攻撃テスト",
+                        "_target": "ENEMY_ALL",
+                        "_rowRate": 1000
+                    }
+                },
+                {
+                    "_skill": {
+                        "_skillName": "仲間攻撃テスト",
+                        "_target": "FRIEND_SOLO",
+                        "_rowRate": 500
+                    }
+                }
+            ],
             "_serchId": "kou",
-            "_memberSet_st": {
-                "name": "コウ"
-            },
-            "_memberSet_int": {
-                "hpMax": 40,
-                "attack": 5,
-                "guard": 5,
-                "spMax": 20,
-                "spNow": 20,
-                "hpNow": 40
-            },
-            "_memberSet_stList": {
-                "skill": [
-                    "superAttack",
-                    "allAtack_test",
-                    "self_test"
-                ]
-            }
+            "$type": "SavedDBData_player"
         }
     ]
 }

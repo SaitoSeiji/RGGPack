@@ -11,27 +11,25 @@ public class SelectSkillScript : AbstractUIScript_button
 
     protected override List<ButtonData> CreateMyButtonData()
     {
-        var saveddb = SaveDataController.Instance.GetDB_static<SkillDB>()._dataList;
-        var dataList = BattleController_mono.Instance.GetSkillList();
+        var useAbleSkillList = BattleController_mono.Instance.GetSkillList();
         var resultList = new List<ButtonData>();
-        foreach (var data in dataList)
+        foreach (var data in useAbleSkillList)
         {
-            var dbData = saveddb.Where(x => x._Data._serchId == data._Data._serchId).First();
-            resultList.Add(new ButtonData(data._SKill._skillName, CreateClickEvent(dbData._Data)));
+            resultList.Add(new ButtonData(data._SKill._skillName, CreateClickEvent(data)));
         }
         return resultList;
     }
 
-    private UnityEvent CreateClickEvent(DBData data)
+    private UnityEvent CreateClickEvent(SkillDBData data)
     {
         UnityEvent ue = new UnityEvent();
-        ue.AddListener(()=>ClickNextUIEvent(data._memberSet_st["skillName"],data));
+        ue.AddListener(()=>ClickNextUIEvent(data));
         return ue;
     }
 
-    void ClickNextUIEvent(string skillName,DBData data)
+    void ClickNextUIEvent(SkillDBData data)
     {
-        var ct = BattleController_mono.Instance.battle.GetCommantTarget(skillName);
+        var ct = BattleController_mono.Instance.battle.GetCommantTarget(data._SKill._skillName);
         //対象選択をする場合
         if (ct.IsInputSelect())
         {
@@ -40,7 +38,7 @@ public class SelectSkillScript : AbstractUIScript_button
         }
         else//しない場合
         {
-            BattleUIController.Instance.EndCommand(skillName,null, _MyUIBase);
+            BattleUIController.Instance.EndCommand(data._SKill._skillName, null, _MyUIBase);
         }
     }
 }

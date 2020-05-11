@@ -9,7 +9,7 @@ public class DBOperater_mono : MonoBehaviour
     [SerializeField] List<AbstractDB> _dataBaseList=new List<AbstractDB>();
     //現在一時利用停止中
     [SerializeField, Space(10),HideInInspector] string oldName;
-    [SerializeField, HideInInspector] DBData _data;
+    [SerializeField, HideInInspector] TempDBData _data;
     #region static
     static System.Type JudgeDBType(string  type)
     {

@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74df56f46f0884a43bad8815d78e5b37, type: 3}
   m_Name: allAtack_test
   m_EditorClassIdentifier: 
-  _data:
-    _serchId: allAtack_test
   _skill:
     _skillName: "\u5168\u4F53\u653B\u6483\u30C6\u30B9\u30C8"
     _target: 5

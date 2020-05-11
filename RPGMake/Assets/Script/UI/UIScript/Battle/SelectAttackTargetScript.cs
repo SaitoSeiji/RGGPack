@@ -14,11 +14,11 @@ public class SelectAttackTargetScript : AbstractUIScript_button
     string GetSkillName()
     {
         //使用するスキル名を取得
-        var data = UIController.Instance.GetFlashData("command");
+        var data = UIController.Instance.GetFlashData_static("command") as SkillDBData;
         if (data == null) return "";
         else
         {
-            return data._memberSet_st["skillName"];
+            return data._SKill._skillName;
         }
     }
 
