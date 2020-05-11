@@ -17,6 +17,7 @@ public class BattleController
     #region callback
     //_battleAction_command～battleAction_endTurnまでを一つにまとめたい
     public Action _battleAction_encount;
+    public Action _battleAction_waitInput;
     public Action<SavedDBData_char, SkillCommandData> _battleAction_command;
     public Action<SavedDBData_char,int> _battleAction_damage;
     public Action<SavedDBData_char,int> _battleAction_cure;
@@ -42,10 +43,11 @@ public class BattleController
 
     public void StartBattle()
     {
-        PrepareNextTurn();
         _battleAction_encount?.Invoke();
+        PrepareNextTurn();
     }
     #region private
+    #region name
     //複数同名モンスターがいるときに固有名にする AとかBとか
     //無駄に長いので短くできそう
     void SetUniqueName(List<EnemyChar> enemys)
@@ -86,7 +88,7 @@ public class BattleController
         }
         return "";
     }
-
+    #endregion
     Queue<BattleChar> SetFirstQueue()
     {
         var result = new Queue<BattleChar>();
@@ -106,10 +108,6 @@ public class BattleController
             _battleAction_end?.Invoke(_player._nowHp <= 0);
             return;
         }
-        if (_battleCharQueue.Peek() is PlayerChar)
-        {
-            _waitInput = true;
-        }
 
         foreach (var enemy in _enemys)
         {
@@ -118,29 +116,11 @@ public class BattleController
                 _player.RemoveRaival(enemy);
             }
         }
-    }
-    void SyncDeadChar()
-    {
-        var tempQueue=new Queue<BattleChar>();
-        while (_battleCharQueue.Count > 0)
+        if (_battleCharQueue.Peek() is PlayerChar)
         {
-            var target = _battleCharQueue.Dequeue();
-            if (!target.IsAlive())
-            {
-                //AddLog_defeat(target._myCharData);
-            }
-            else
-            {
-                tempQueue.Enqueue(target);
-            }
+            _waitInput = true;
+            _battleAction_waitInput?.Invoke();
         }
-        _battleCharQueue = tempQueue;
-    }
-
-    private bool CheckIsAliveTarget(int index)
-    {
-        if (_enemys.Count <= index) return false;
-        return _enemys[index].IsAlive();
     }
     #region 対象選択用
     List<BattleChar> GetFriend(BattleChar target)
@@ -181,7 +161,7 @@ public class BattleController
     }
 
 
-    public void Command()
+    public void TurnAct()
     {
         if (_waitInput||IsEnd()) return;
         //次に動くキャラを決める
@@ -224,9 +204,6 @@ public class BattleController
         _waitInput = false;
     }
     #endregion
-    #region log
-    
-    #endregion
 }
 
 public class BattleController_mono : SingletonMonoBehaviour<BattleController_mono>
@@ -252,7 +229,7 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
         }
         else
         {
-            battle.Command();
+            battle.TurnAct();
         }
     }
     #region get

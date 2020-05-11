@@ -19,24 +19,7 @@ public class EnemySetDBData : StaticDBData
 
     [SerializeField, NonEditable] List<string> _enemyNameList = new List<string>();
 
-    protected override Dictionary<string, int> InitMember_int()
-    {
-        return new Dictionary<string, int>();
-    }
-
-    protected override Dictionary<string, string> InitMember_st()
-    {
-        return new Dictionary<string, string>();
-    }
-
-    protected override Dictionary<string, List<string>> InitMemeber_stList()
-    {
-        var result= new Dictionary<string, List<string>>();
-        result.Add("enemy", _enemyNameList);
-        return result = new Dictionary<string, List<string>>();
-    }
-
-    public override void UpdateMember(TempDBData data)
+    protected override void UpdateMember_child(TempDBData data)
     {
         _enemyNameList = data.GetData_list("enemy");
     }
@@ -44,11 +27,11 @@ public class EnemySetDBData : StaticDBData
     public override void RateUpdateMemeber()
     {
         base.RateUpdateMemeber();
-        var db = SaveDataController.Instance.GetDB_static<CharcterDB>();
+        var db = SaveDataController.Instance.GetDB_static<CharcterDB>()._dataList;
         _enemySetData._charList = new List<CharcterDBData>();
-        foreach (var skill in _enemyNameList)
+        foreach (var names in _enemyNameList)
         {
-            var data = db._dataList.Where(x => x.name == skill).First();
+            var data = db.Where(x => x.name == names).First();
             _enemySetData._charList.Add(data as CharcterDBData);
         }
         EditorUtility.SetDirty(this);

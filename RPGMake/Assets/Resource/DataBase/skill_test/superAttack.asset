@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74df56f46f0884a43bad8815d78e5b37, type: 3}
   m_Name: superAttack
   m_EditorClassIdentifier: 
-  _skill:
+  _serchId: superAttack
+  _data:
     _skillName: "\u3059\u3054\u3044\u653B\u6483"
     _target: 4
     _rowRate: 300

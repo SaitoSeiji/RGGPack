@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de26f47d8b3b2b845a64577566b9f00d, type: 3}
   m_Name: akuma2
   m_EditorClassIdentifier: 
+  _serchId: akuma2
   _enemySetData:
     _charList:
     - {fileID: 11400000, guid: a6c94f1c0a731e64b892b7806e644594, type: 2}

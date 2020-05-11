@@ -15,7 +15,7 @@ public class SelectSkillScript : AbstractUIScript_button
         var resultList = new List<ButtonData>();
         foreach (var data in useAbleSkillList)
         {
-            resultList.Add(new ButtonData(data._SKill._skillName, CreateClickEvent(data)));
+            resultList.Add(new ButtonData(data._Data._skillName, CreateClickEvent(data)));
         }
         return resultList;
     }
@@ -29,7 +29,7 @@ public class SelectSkillScript : AbstractUIScript_button
 
     void ClickNextUIEvent(SkillDBData data)
     {
-        var ct = BattleController_mono.Instance.battle.GetCommantTarget(data._SKill._skillName);
+        var ct = BattleController_mono.Instance.battle.GetCommantTarget(data._Data._skillName);
         //対象選択をする場合
         if (ct.IsInputSelect())
         {
@@ -38,7 +38,7 @@ public class SelectSkillScript : AbstractUIScript_button
         }
         else//しない場合
         {
-            BattleUIController.Instance.EndCommand(data._SKill._skillName, null, _MyUIBase);
+            BattleUIController.Instance.EndCommand(data._Data._skillName, null, _MyUIBase);
         }
     }
 }

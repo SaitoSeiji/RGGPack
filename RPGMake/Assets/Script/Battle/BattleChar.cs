@@ -28,14 +28,6 @@ public class BattleChar
         _enemyTargets.Remove(enemy);
     }
     #region selctTarget
-    public BattleChar SelectTarget(int i)
-    {
-        return _enemyTargets[i];
-    }
-    public BattleChar SelectTarget(string st)
-    {
-        return _enemyTargets.Where(x => x._myCharData._name == st).FirstOrDefault();
-    }
 
     public BattleChar SelectTargetAuto()
     {
@@ -54,10 +46,10 @@ public class BattleChar
     public int SelectAttack(string name)
     {
         float rate = -1;
-        var targetSkill = _myCharData._mySkillList.Where(x => x._SKill._skillName == name).FirstOrDefault();
+        var targetSkill = _myCharData._mySkillList.Where(x => x._Data._skillName == name).FirstOrDefault();
         if (targetSkill != null)
         {
-            rate = targetSkill._SKill.GetRate();
+            rate = targetSkill._Data.GetRate();
         }
         else
         {
@@ -68,20 +60,20 @@ public class BattleChar
 
     public SkillCommandData SelectCommand(int index)
     {
-        return _myCharData._mySkillList[index]._SKill;
+        return _myCharData._mySkillList[index]._Data;
     }
     public SkillCommandData SelectCommand(string name)
     {
         if (string.IsNullOrEmpty(name)) return SelectCommand_auto();
         var list = SaveDataController.Instance.GetDB_static<SkillDB>()._dataList;
-        var command = list.Where(x => x._SKill._skillName == name).First();
-        return command._SKill;
+        var command = list.Where(x => x._Data._skillName == name).First();
+        return command._Data;
     }
 
     public SkillCommandData SelectCommand_auto()
     {
         int select= Random.Range(0, _myCharData._mySkillList.Count);
-        return _myCharData._mySkillList[select]._SKill;
+        return _myCharData._mySkillList[select]._Data;
     }
     #endregion
     #region damage

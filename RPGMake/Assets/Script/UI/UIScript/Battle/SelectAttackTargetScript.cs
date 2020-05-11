@@ -18,7 +18,7 @@ public class SelectAttackTargetScript : AbstractUIScript_button
         if (data == null) return "";
         else
         {
-            return data._SKill._skillName;
+            return data._Data._skillName;
         }
     }
 

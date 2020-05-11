@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
 {
@@ -49,6 +50,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
 
     string temp_command;
     string temp_target;
+    Queue<Action> _uiActionQueue=new Queue<Action>();
     
 
     private void OnDisable()
@@ -66,19 +68,16 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     void BattleStateUpdate()
     {
         if (_nowUIState != BattleUIState.NoUI) return;
+        if (_uiActionQueue.Count > 0)
+        {
+            _uiActionQueue.Dequeue().Invoke();
+            return;
+        }
         switch (_battleState)
         {
             case BattleState.Battle:
                 {
-                    if (_battle._waitInput)
-                    {
-                        ChengeUIState(BattleUIState.WaitInput);
-                    }
-                    else
-                    {
-                        BattleController_mono.Instance.Next();
-                    }
-
+                    BattleController_mono.Instance.Next();
                 }
                 break;
             case BattleState.Close:
@@ -228,6 +227,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     public void SetUpBattleDelegate(BattleController battle)
     {
         battle._battleAction_encount = EncountAction;
+        battle._battleAction_waitInput = () =>{_uiActionQueue.Enqueue(()=> ChengeUIState(BattleUIState.WaitInput));};
         battle._battleAction_command = CommandAction;
         battle._battleAction_damage = DamageAction;
         battle._battleAction_cure = CureAction;
@@ -243,103 +243,126 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     #region battleActionのデリゲート登録用関数
     void EncountAction()
     {
-        string log= "魔物が現れた";
-        AddDisplayText(log);
-        ChengeUIState(BattleUIState.DisplayText);
-        _battleState = BattleState.Battle;
+        _uiActionQueue.Enqueue(() =>
+        {
+            string log = "魔物が現れた";
+            AddDisplayText(log);
+            ChengeUIState(BattleUIState.DisplayText);
+            _battleState = BattleState.Battle;
+        }
+        );
     }
     string _battlelogText = "";
     void CommandAction(SavedDBData_char chars, SkillCommandData skilldata)
     {
-        _battlelogText= string.Format("{0}の{1}\n", chars._name, skilldata._skillName);
+        _uiActionQueue.Enqueue(() =>
+        {
+            _battlelogText = string.Format("{0}の{1}\n", chars._name, skilldata._skillName);
+        });
     }
-    
+
 
     void DamageAction(SavedDBData_char chars, int damage)
     {
-        _battlelogText += string.Format("{0}は{1}のダメージ<{0}0>を受けた\n", chars._name, damage);
-        string charname = chars._name.Clone().ToString();
-        _battleTextDisplayer.AddTextAction(chars._name+"0", () =>
+        _uiActionQueue.Enqueue(() =>
         {
+            _battlelogText += string.Format("{0}は{1}のダメージ<{0}0>を受けた\n", chars._name, damage);
+            string charname = chars._name.Clone().ToString();
+            _battleTextDisplayer.AddTextAction(chars._name + "0", () =>
+              {
             //対象のcharにdamageActionするだけ
 
             if (charname == _playerParam._mycharData._myCharData._name)
-            {
-                _playerParam.SyncData();
-                _playerParam.DamageAction();
-            }
-            else
-            {
-                var target = _enemyParams.Where(
-                    x =>x._mycharData!=null
-                    && charname==x._mycharData._myCharData._name).FirstOrDefault();
-                if (target != null)
-                {
-                    target.SyncData();
-                    target.DamageAction();
-                }
-            }
+                  {
+                      _playerParam.SyncData();
+                      _playerParam.DamageAction();
+                  }
+                  else
+                  {
+                      var target = _enemyParams.Where(
+                          x => x._mycharData != null
+                          && charname == x._mycharData._myCharData._name).FirstOrDefault();
+                      if (target != null)
+                      {
+                          target.SyncData();
+                          target.DamageAction();
+                      }
+                  }
+              });
+
         });
     }
 
     void CureAction(SavedDBData_char chars, int damage)
     {
-        _battlelogText += string.Format("{0}は{1}回復<{0}1>\n", chars._name, damage);
-        _battleTextDisplayer.AddTextAction(chars._name + "1", () =>
+        _uiActionQueue.Enqueue(() =>
         {
-            if (chars._name == _playerParam._mycharData._myCharData._name)
+            _battlelogText += string.Format("{0}は{1}回復<{0}1>\n", chars._name, damage);
+            _battleTextDisplayer.AddTextAction(chars._name + "1", () =>
             {
-                _playerParam.SyncData();
-            }
-            else
-            {
-                var target = _enemyParams.Where(x => x._mycharData != null&& chars._name == x._mycharData._myCharData._name).FirstOrDefault();
-                if (target != null)
+                if (chars._name == _playerParam._mycharData._myCharData._name)
                 {
-                    target.SyncData();
+                    _playerParam.SyncData();
                 }
-            }
+                else
+                {
+                    var target = _enemyParams.Where(x => x._mycharData != null && chars._name == x._mycharData._myCharData._name).FirstOrDefault();
+                    if (target != null)
+                    {
+                        target.SyncData();
+                    }
+                }
+            });
         });
     }
 
     void DefeatAction(SavedDBData_char chars)
     {
-        if (chars == null) return;
-        _battlelogText+= string.Format("{0}は倒れた<{0}2>\n", chars._name);
-        _battleTextDisplayer.AddTextAction(chars._name+"2", () =>
+        _uiActionQueue.Enqueue(() =>
         {
+            if (chars == null) return;
+            _battlelogText += string.Format("{0}は倒れた<{0}2>\n", chars._name);
+            _battleTextDisplayer.AddTextAction(chars._name + "2", () =>
+              {
             //対象のcharにDeadActionするだけ
             if (chars._name == _playerParam._mycharData._myCharData._name) _playerParam.DeadAction();
-             else
-             {
-                 var target=_enemyParams.Where(x => x._mycharData != null
-                     && chars.Equals(x._mycharData._myCharData)).FirstOrDefault();
-                 if (target != null) target.DeadAction();
-             }
-         });
+                  else
+                  {
+                      var target = _enemyParams.Where(x => x._mycharData != null
+                      && chars.Equals(x._mycharData._myCharData)).FirstOrDefault();
+                      if (target != null) target.DeadAction();
+                  }
+              });
+        });
     }
 
     void EndTurnAction()
     {
-        AddDisplayText(_battlelogText);
-        ChengeUIState(BattleUIState.DisplayText);
+        _uiActionQueue.Enqueue(() =>
+        {
+            AddDisplayText(_battlelogText);
+            ChengeUIState(BattleUIState.DisplayText);
+        });
     }
     void EndBattleAction(bool plDead)
     {
-        string log = "";
-        if (plDead)
+        _uiActionQueue.Enqueue(() =>
         {
-            log += string.Format("コウたちは全滅した<w>\n");
-            log += string.Format("目の前が真っ暗になった");
-        }
-        else
-        {
-            log += string.Format("コウは戦闘に勝利した！<w>\n");
-            log += string.Format("経験値やお金を手に入れた！\n");
-        }
-        AddDisplayText(log);
-        ChengeUIState(BattleUIState.DisplayText);
-        _battleState = BattleState.Close;
+            string log = "";
+            if (plDead)
+            {
+                log += string.Format("コウたちは全滅した<w>\n");
+                log += string.Format("目の前が真っ暗になった");
+            }
+            else
+            {
+                log += string.Format("コウは戦闘に勝利した！<w>\n");
+                log += string.Format("経験値やお金を手に入れた！\n");
+            }
+            AddDisplayText(log);
+            ChengeUIState(BattleUIState.DisplayText);
+            _battleState = BattleState.Close;
+        });
     }
     #endregion
 }

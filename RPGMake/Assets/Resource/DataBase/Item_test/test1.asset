@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71fe70f65a0c2545bdd777c4735e5da, type: 3}
   m_Name: test1
   m_EditorClassIdentifier: 
+  _serchId: test1
   _data:
     _serchId: test1
     _displayName: "\u30C6\u30B9\u30C81"

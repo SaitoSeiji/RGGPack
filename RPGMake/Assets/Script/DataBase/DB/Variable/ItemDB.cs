@@ -6,19 +6,8 @@ using System.Linq;
 [CreateAssetMenu(fileName = "ItemDB", menuName = "DataBases/DataBase/ItemDB", order = 0)]
 public class ItemDB : VariableDB
 {
-    [SerializeField] public List<ItemDBData> _dataList;
-
-    //public override AbstractDBData FindData_id(string id)
-    //{
-    //    return FindData_id(_dataList, id);
-    //}
-
-    //public override void InitData()
-    //{
-    //    InitData(_dataList);
-    //}
-
-
+    [SerializeField] List<ItemDBData> _dataList;
+    
     public override List<AbstractDBData> GetDataList(IEnable_initDB enable)
     {
         return _dataList.Select(x => (AbstractDBData)x).ToList();
@@ -28,8 +17,4 @@ public class ItemDB : VariableDB
     {
         _dataList = list.Select(x => x as ItemDBData).ToList();
     }
-    //public override void SetDataList(List<AbstractDBData> list)
-    //{
-    //    
-    //}
 }

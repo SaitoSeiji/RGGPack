@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 545431bd9cf6cfd42abd3d86ce75676c, type: 3}
   m_Name: doorOpened
   m_EditorClassIdentifier: 
+  _serchId: doorOpened
   _data:
     _serchId: doorOpened
     flagNum: 0

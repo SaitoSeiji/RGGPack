@@ -3,7 +3,7 @@
         {
             "_spMax": 20,
             "_spNow": 20,
-            "_hpNow": 30,
+            "_hpNow": 40,
             "_name": "コウ",
             "_hpMax": 40,
             "_attack": 5,
@@ -13,25 +13,28 @@
             },
             "_mySkillList": [
                 {
-                    "_skill": {
+                    "_data": {
                         "_skillName": "すごい攻撃",
                         "_target": "ENEMY_SOLO",
                         "_rowRate": 300
-                    }
+                    },
+                    "_serchId": "superAttack"
                 },
                 {
-                    "_skill": {
+                    "_data": {
                         "_skillName": "全体攻撃テスト",
                         "_target": "ENEMY_ALL",
                         "_rowRate": 1000
-                    }
+                    },
+                    "_serchId": "allAtack_test"
                 },
                 {
-                    "_skill": {
+                    "_data": {
                         "_skillName": "仲間攻撃テスト",
                         "_target": "FRIEND_SOLO",
                         "_rowRate": 500
-                    }
+                    },
+                    "_serchId": "self_test"
                 }
             ],
             "_serchId": "kou",

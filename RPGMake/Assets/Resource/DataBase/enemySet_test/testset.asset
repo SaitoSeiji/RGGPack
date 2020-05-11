@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de26f47d8b3b2b845a64577566b9f00d, type: 3}
   m_Name: testset
   m_EditorClassIdentifier: 
+  _serchId: testset
   _enemySetData:
     _charList:
     - {fileID: 11400000, guid: 520f8d70d5d34624da97bb2250e18165, type: 2}

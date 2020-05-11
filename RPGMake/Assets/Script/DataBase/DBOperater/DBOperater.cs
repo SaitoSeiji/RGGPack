@@ -97,12 +97,6 @@ public static class DBListCreator
         }
         return result;
     }
-    
-
-    //public DBData GetTmeplate(string id)
-    //{
-    //    return new DBData(_template,id);
-    //}
 }
 
 //DB関連の入出力処理

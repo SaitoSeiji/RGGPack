@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
 {
     [SerializeField] List<StaticDB> _staticDbList;
     [SerializeField] List<VariableDB> _variableDbList; 
-    //[SerializeField] List<DataMemberInspector> _memberSet=new List<DataMemberInspector>();
     [SerializeField] Dictionary<string,List<SavedDBData>> _saveDataList = new Dictionary<string, List<SavedDBData>>();//<dbName,dataList>
-
-    void InitSaveDataList()
+    
+    //セーブデータ用のデータを作成
+    public void InitSaveDataList()
     {
         _saveDataList = new Dictionary<string, List<SavedDBData>>();
         foreach (var db in _variableDbList)
@@ -18,55 +19,6 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
             _saveDataList.Add(db.name, db.GetSavedDataList());
         }
     }
-
-    public void InitStaticDataBase()
-    {
-        //foreach (var db in _staticDbList)
-        //{
-        //    var datalist = db.GetDataList();
-        //    foreach (var data in datalist)
-        //    {
-        //        data.InitData();
-        //    }
-        //    db.SetDataList(datalist);
-        //}
-    }
-
-    void SetMemberSet()
-    {
-        //_memberSet = new List<DataMemberInspector>();
-        //foreach (var dataList in _saveDataList)
-        //{
-        //    foreach (var data in dataList.Value)
-        //    {
-        //        DataMemberInspector temp = null;
-        //        foreach (var st in data._memberSet_int)
-        //        {
-        //            if(temp==null) temp = new DataMemberInspector(data._serchId);
-        //            temp.AddData(st.Key, st.Value,DataMemberInspector.HIKAKU.NONE);
-        //        }
-        //        _memberSet.Add(temp);
-        //    }
-        //}
-    }
-    #region dataChenge
-    
-    public void SetData<T,K>(K data)
-        where T:VariableDB
-        where K: SavedDBData
-    {
-        var key= GetDBName<T>();
-        List<SavedDBData> db = _saveDataList[key];
-        for (int i = 0; i < db.Count; i++)
-        {
-            if (db[i]._serchId == data._serchId)
-            {
-                db[i] = data;
-                break;
-            }
-        }
-    }
-
     string GetDBName<T>()
         where T : VariableDB
     {
@@ -78,6 +30,24 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
             }
         }
         return null;
+    }
+    #region dataChenge
+
+    public void SetData<T,K>(K data)
+        where T:VariableDB
+        where K: SavedDBData
+    {
+        var key= GetDBName<T>();
+        List<SavedDBData> db = _saveDataList[key];
+        for (int i = 0; i < db.Count; i++)
+        {
+            if (db[i]._serchId == data._serchId)
+            {
+                data.ModifyData();
+                db[i] = data;
+                break;
+            }
+        }
     }
     public List<T2> GetDB_var<T, T2>()
        where T : VariableDB
@@ -105,6 +75,7 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
         return null;
     }
     #endregion
+    #region IO
     public void SaveAction()
     {
         foreach(var data in _saveDataList)
@@ -119,11 +90,11 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
         {
             _saveDataList[db.name]= JsonSaver.LoadAction_list<SavedDBData>(db.name);
         }
-        SetMemberSet();
     }
-
+    #endregion
+    #region test
     [ContextMenu("InitsaveTest")]
-    public void TestInitSave()
+    void TestInitSave()
     {
         InitSaveDataList();
         SaveAction();
@@ -152,5 +123,17 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
         var data2 = db[0];
         Debug.Log(data2._hpNow);
     }
-    
+    #endregion
+    #region editorOnly
+    public void SetSaveDataList_editorOnly<T>(List<SavedDBData> list)
+        where T : VariableDB
+    {
+        var key = GetDBName<T>();
+        _saveDataList[key] = list;
+    }
+    public List<string> GetKeySet_editorOnly()
+    {
+        return _saveDataList.Keys.ToList();
+    }
+    #endregion
 }

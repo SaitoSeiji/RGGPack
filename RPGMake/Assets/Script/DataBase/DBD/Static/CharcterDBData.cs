@@ -39,28 +39,6 @@ public class SavedDBData_char:SavedDBData
 
 public static class Partial_CharcterDBData
 {
-    public static Dictionary<string, int> InitMember_int(SavedDBData_char charData)
-    {
-        var result = new Dictionary<string, int>();
-        result.Add("hpMax", charData._HpMax);
-        result.Add("attack", charData._attack);
-        result.Add("guard", charData._guard);
-        return result;
-    }
-    public static Dictionary<string, string> InitMember_st(SavedDBData_char charData)
-    {
-        var result = new Dictionary<string, string>();
-        result.Add("name", charData._name);
-        return result;
-    }
-
-    public static Dictionary<string, List<string>> InitMemeber_stList(List<string> skillNameSet)
-    {
-        var result = new Dictionary<string, List<string>>();
-        result.Add("skill", skillNameSet);
-        return result;
-    }
-
     public static void UpdateMember(ref SavedDBData_char charData,ref List<string> skillNameSet, TempDBData dbData)
     {
         charData._hpMax = dbData.GetData_int("hpMax");
@@ -78,31 +56,8 @@ public static class Partial_CharcterDBData
         foreach (var skill in skillNameSet)
         {
             var data = db._dataList.Where(x => x.name == skill).First();
-            charData._mySkillList.Add(data as SkillDBData);
+            charData._mySkillList.Add(data);
         }
-    }
-
-    //効率かなり悪いのでなんかしたい
-    public static SavedDBData_char ConvertDBData2BattleCharData(TempDBData dbData)
-    {
-        //charDataの基本データの登録
-        SavedDBData_char charData = new SavedDBData_char();
-        charData._hpMax = dbData.GetData_int("hpMax");
-        charData._attack = dbData.GetData_int("attack");
-        charData._guard = dbData.GetData_int("guard");
-
-        charData._name = dbData.GetData_st("name");
-
-        var skillNameSet = dbData.GetData_list("skill");
-        var db = SaveDataController.Instance.GetDB_static<SkillDB>();
-        charData._mySkillList = new List<SkillDBData>();
-        foreach (var skill in skillNameSet)
-        {
-            var data = db._dataList.Where(x => x.name == skill).First();
-            charData._mySkillList.Add(data as SkillDBData);
-        }
-
-        return charData;
     }
 }
 
@@ -114,22 +69,7 @@ public class CharcterDBData : StaticDBData
 
     [SerializeField,NonEditable]List<string> _skillNameSet = new List<string>();
 
-    protected override Dictionary<string, int> InitMember_int()
-    {
-        return Partial_CharcterDBData.InitMember_int(_charData);
-    }
-
-    protected override Dictionary<string, string> InitMember_st()
-    {
-        return Partial_CharcterDBData.InitMember_st(_charData);
-    }
-
-    protected override Dictionary<string, List<string>> InitMemeber_stList()
-    {
-        return Partial_CharcterDBData.InitMemeber_stList(_skillNameSet);
-    }
-
-    public override void UpdateMember(TempDBData data)
+    protected override void UpdateMember_child(TempDBData data)
     {
         Partial_CharcterDBData.UpdateMember(ref _charData, ref _skillNameSet, data);
     }

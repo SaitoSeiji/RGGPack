@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//text->dbの変換の際に使用するデータ
 [System.Serializable]
 public class TempDBData
 {
@@ -43,74 +44,18 @@ public class TempDBData
 
 public abstract class AbstractDBData : ScriptableObject
 {
-    //[SerializeField] TempDBData _data_tem;
-    //public TempDBData _Data { get { return _data_tem; } }
-
-
-    //public void InitData()
-    //{
-    //    if (_Data == null) _data_tem = new TempDBData("default");
-    //    _Data._memberSet_st = InitMember_st();
-    //    _Data._memberSet_int = InitMember_int();
-    //    _Data._memberSet_stList = InitMemeber_stList();
-    //    try
-    //    {
-    //        _Data._serchId = this.name;
-    //    }
-    //    catch (MissingReferenceException)
-    //    {
-    //        _Data._serchId = "default";
-    //    }
-    //}
-
-    protected abstract Dictionary<string, string> InitMember_st();
-    protected abstract Dictionary<string, List<string>> InitMemeber_stList();
-    protected abstract Dictionary<string, int> InitMember_int();
-    public abstract void UpdateMember(TempDBData data);
+    public string _serchId;
+    public void UpdateMember(TempDBData data)
+    {
+        _serchId = data._serchId;
+        UpdateMember_child(data);
+    }
+    protected abstract void UpdateMember_child(TempDBData data);
     public virtual void RateUpdateMemeber() { }//データベース全体の登録が済んだ後に行うアップデート
 
     public static T GetInstance<T>()
         where T :ScriptableObject
     {
         return CreateInstance<T>();
-    }
-
-    //public string CreateSaveTxt()
-    //{
-    //    InitData();
-
-    //    string result ="id " +_Data._serchId+"\n";
-    //    foreach (var st in _Data._memberSet_st)
-    //    {
-    //        result += "\t" + st.Key + " " + st.Value+"\n";
-    //    }
-    //    foreach (var it in _Data._memberSet_int)
-    //    {
-    //        result += "\t" + it.Key + " " + it.Value+"\n";
-    //    }
-    //    return result;
-    //}
-
-    protected static string GetDefaultString(string data)
-    {
-        return (string.IsNullOrEmpty(data)) ? "default" : data;
-    }
-
-    //public void UpdateData(TempDBData data)
-    //{
-    //    _data_tem = data;
-    //    UpdateMember();
-    //}
-
-    //public int GetTxtMemberCount()
-    //{
-    //    InitData();
-    //    return _Data._memberSet_int.Count + _Data._memberSet_int.Count;
-    //}
-
-    //マイナスになってはいけないデータの確認など
-    public virtual void DataUpdateAction(TempDBData data)
-    {
-
     }
 }

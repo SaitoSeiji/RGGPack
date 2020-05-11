@@ -3,7 +3,7 @@
         {
             "_displayName": "テスト1",
             "_maxNum": 20,
-            "_haveNum": 6,
+            "_haveNum": 1,
             "_explanation": "データの登録テストです",
             "_serchId": "test1",
             "$type": "SavedDBData_item"
