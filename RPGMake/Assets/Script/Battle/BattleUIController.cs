@@ -35,8 +35,8 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     [SerializeField] UIBase _textUI;
     [SerializeField] TextDisplayer _battleTextDisplayer;
 
-    [SerializeField,Space] CharParamDisplay _playerParam;
-    [SerializeField] List<CharParamDisplay> _enemyParams;
+    [SerializeField,Space] PlayerParamDisplay _playerParam;
+    [SerializeField] List<EnemyParamDisplay> _enemyParams;
     public UIBase _BaseUI
     {
         get
@@ -59,7 +59,10 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         _nowUIState = BattleUIState.None;
         _battleState = BattleState.None;
     }
-    
+    protected override void Awake()
+    {
+        base.Awake();
+    }
     private void Update()
     {
         BattleStateUpdate();
@@ -218,10 +221,12 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     {
         _nowUIState = BattleUIState.NoUI;
         _playerParam.SetChar( BattleController_mono.Instance.battle._player);
+        _playerParam.Activate();
         var enemys = BattleController_mono.Instance.battle._enemys;
         for (int i = 0; i < enemys.Count; i++)
         {
             _enemyParams[i].SetChar(enemys[i]);
+            _enemyParams[i].Activate();
         }
     }
     public void SetUpBattleDelegate(BattleController battle)
@@ -258,6 +263,8 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         _uiActionQueue.Enqueue(() =>
         {
             _battlelogText = string.Format("{0}の{1}\n", chars._name, skilldata._skillName);
+            var target = GetParamDisplayer(chars);
+            target.SyncDisply();
         });
     }
 
@@ -270,23 +277,13 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
             string charname = chars._name.Clone().ToString();
             _battleTextDisplayer.AddTextAction(chars._name + "0", () =>
               {
-            //対象のcharにdamageActionするだけ
+                  //対象のcharにdamageActionするだけ
+                  var target = GetParamDisplayer(chars);
+                  if (target != null)
+                  {
 
-            if (charname == _playerParam._mycharData._myCharData._name)
-                  {
-                      _playerParam.SyncData();
-                      _playerParam.DamageAction();
-                  }
-                  else
-                  {
-                      var target = _enemyParams.Where(
-                          x => x._mycharData != null
-                          && charname == x._mycharData._myCharData._name).FirstOrDefault();
-                      if (target != null)
-                      {
-                          target.SyncData();
-                          target.DamageAction();
-                      }
+                      target.SyncDisply();
+                      target.DamageAction();
                   }
               });
 
@@ -300,18 +297,8 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
             _battlelogText += string.Format("{0}は{1}回復<{0}1>\n", chars._name, damage);
             _battleTextDisplayer.AddTextAction(chars._name + "1", () =>
             {
-                if (chars._name == _playerParam._mycharData._myCharData._name)
-                {
-                    _playerParam.SyncData();
-                }
-                else
-                {
-                    var target = _enemyParams.Where(x => x._mycharData != null && chars._name == x._mycharData._myCharData._name).FirstOrDefault();
-                    if (target != null)
-                    {
-                        target.SyncData();
-                    }
-                }
+                var target = GetParamDisplayer(chars);
+                if(target!=null) target.SyncDisply();
             });
         });
     }
@@ -365,4 +352,21 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         });
     }
     #endregion
+
+    AbstractParamDisplay GetParamDisplayer(SavedDBData_char chars)
+    {
+        string charname = chars._name;
+        if (charname == _playerParam._mycharData._myCharData._name)
+        {
+            return _playerParam;
+        }
+        else
+        {
+            var target = _enemyParams.Where(
+                x => x._mycharData != null
+                && charname == x._mycharData._myCharData._name).FirstOrDefault();
+
+            return target;
+        }
+    }
 }

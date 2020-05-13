@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 
 [System.Serializable]
@@ -10,6 +11,7 @@ public class SavedDBData_item : SavedDBData
     [SerializeField] public int _maxNum;
     [SerializeField] public int _haveNum;
     [SerializeField, TextArea(0, 10)] public string _explanation;
+    [SerializeField]public Sprite _itemImage;
     public override void ModifyData()
     {
         if (_haveNum > _maxNum) _haveNum = _maxNum;

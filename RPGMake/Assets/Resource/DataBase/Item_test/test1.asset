@@ -19,3 +19,5 @@ MonoBehaviour:
     _maxNum: 20
     _haveNum: 1
     _explanation: "\u30C7\u30FC\u30BF\u306E\u767B\u9332\u30C6\u30B9\u30C8\u3067\u3059"
+    _itemImage: {fileID: -6155997769173100304, guid: efe4411c929ef1649ae60df8c1d5fa53,
+      type: 3}

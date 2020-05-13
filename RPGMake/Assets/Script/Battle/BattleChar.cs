@@ -108,7 +108,11 @@ public class BattleChar
 public class PlayerChar : BattleChar
 {
     SavedDBData_player _charData;
-    public new SavedDBData_player _myCharData { get
+    public int _maxSP { get; private set; }
+    public int _nowSP { get; private set; }
+    public new SavedDBData_player _myCharData
+    {
+        get
         {
             SyncData();
             return _charData;
@@ -118,6 +122,8 @@ public class PlayerChar : BattleChar
     {
         _charData = charData;
         _nowHp = _charData._hpNow;
+        _maxSP = charData._spMax;
+        _nowSP = charData._spNow;
     }
 
     void SyncData()

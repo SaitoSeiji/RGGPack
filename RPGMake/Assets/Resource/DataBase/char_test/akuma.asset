@@ -19,7 +19,7 @@ MonoBehaviour:
     _hpMax: 5
     _attack: 3
     _guard: 2
-    _charImage: {fileID: 0}
+    _charImage: {fileID: 21300000, guid: 0b0c07b87d29c074da8eb11d2d86530c, type: 3}
     _mySkillList:
     - {fileID: 11400000, guid: 0f001f5b030d21348bd65dc23461d636, type: 2}
   _skillNameSet:
