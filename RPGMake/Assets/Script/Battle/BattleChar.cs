@@ -62,7 +62,7 @@ public class BattleChar
     {
         return _myCharData._mySkillList[index]._Data;
     }
-    public SkillCommandData SelectCommand(string name)
+    public SkillCommandData GetCommand(string name)
     {
         if (string.IsNullOrEmpty(name)) return SelectCommand_auto();
         var list = SaveDataController.Instance.GetDB_static<SkillDB>()._dataList;
@@ -81,7 +81,7 @@ public class BattleChar
     /// calcダメージしてから使う
     /// </summary>
     /// <param name="damage"></param>
-    public void SetDamage(int damage)
+    public virtual void SetDamage(int damage)
     {
         _nowHp -= damage;
         if (_nowHp < 0) _nowHp = 0;
@@ -126,10 +126,18 @@ public class PlayerChar : BattleChar
         _nowSP = charData._spNow;
     }
 
+    //_charDataに反映
     void SyncData()
     {
         _charData = _charData.Copy(base._myCharData);
         _charData._hpNow = _nowHp;
+        _charData._spNow = _nowSP;
+    }
+
+    public void UseSP(int use)
+    {
+        _nowSP -= use;
+        SyncData();
     }
 }
 public class EnemyChar : BattleChar

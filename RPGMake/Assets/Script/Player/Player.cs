@@ -9,6 +9,8 @@ public class Player : SingletonMonoBehaviour<Player>
         NONE,UP,DOWN,LEFT,RIGHT
     }
     [SerializeField] DIRECTION _nowDirection;
+    public DIRECTION _NowDirection { get { return _nowDirection; } }
+    public bool _moving { get; private set; } = false;
     [SerializeField] ColliderMessanger _bodyCollider;
     [SerializeField] ColliderMessanger _frontCollier;
     [SerializeField] SpriteRenderer _headIcon;
@@ -81,19 +83,22 @@ public class Player : SingletonMonoBehaviour<Player>
     #region 移動
     void MoveUpdate(float tate,float yoko)
     {
-
+        bool move = false;
         if (Mathf.Abs(tate) > _setting._inputIgnore)
         {
             SetVelocity(0,Mathf.Sign(tate) * _setting._moveSpeed * Time.fixedDeltaTime);
+            move = true;
         }
         else if (Mathf.Abs(yoko) > _setting._inputIgnore)
         {
             SetVelocity(Mathf.Sign(yoko) * _setting._moveSpeed * Time.fixedDeltaTime,0);
+            move = true;
         }
         else
         {
             SetVelocity(0, 0);
         }
+        _moving = move;
     }
 
     void SetVelocity(float x,float y)

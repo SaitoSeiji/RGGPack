@@ -5,6 +5,7 @@ using System;
 
 public class Battle_targetDicide
 {
+    //key は　target
     public enum TargetType
     {
         NONE =-1,

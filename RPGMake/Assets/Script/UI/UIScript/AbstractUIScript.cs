@@ -16,6 +16,8 @@ public abstract class AbstractUIScript : MonoBehaviour,IChengeUIState
             return _myUIBase;
         }
     }
+    bool _inited = false;
+
     private void ChengedUIStateAction(UIBase.UIState chenged)
     {
         switch (chenged)
@@ -35,9 +37,14 @@ public abstract class AbstractUIScript : MonoBehaviour,IChengeUIState
     protected virtual void ChengeState_toActive() { }
     protected virtual void ChengeState_toSleep() { }
     protected virtual void ChengeState_toClose() { }
+    protected virtual void InitAction()
+    {
+        _inited = true;
+    }
 
     void IChengeUIState.RecieveChenge(UIBase.UIState changed)
     {
+        if (!_inited) InitAction();
         ChengedUIStateAction(changed);
     }
 }

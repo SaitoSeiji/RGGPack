@@ -4,17 +4,25 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Linq;
+using System;
 
 [System.Serializable]
 public class ButtonData
 {
     public string _buttonText;
     public UnityEvent _onClickAction = new UnityEvent();
+    public Action _cursorAction;
 
     public ButtonData(string _text, UnityEvent _onclick)
     {
         _buttonText = _text;
         _onClickAction = _onclick;
+    }
+    public ButtonData(string _text, UnityEvent _onclick,Action _cursor)
+    {
+        _buttonText = _text;
+        _onClickAction = _onclick;
+        _cursorAction = _cursor;
     }
     public ButtonData(string _text)
     {
@@ -33,6 +41,13 @@ public abstract class AbstractUIScript_button : AbstractUIScript
     List<GameObject> _addButtonList = new List<GameObject>();
     RectTransform _myPanel { get { return _MyUIBase._myPanel; } }
     ButtonController _myButtonController { get { return _MyUIBase._myButtonController; } }
+
+
+    protected override void InitAction()
+    {
+        base.InitAction();
+        _myButtonController._ChengeButtonCallback += CursorAction;
+    }
 
     protected abstract List<ButtonData> CreateMyButtonData();
 
@@ -65,6 +80,7 @@ public abstract class AbstractUIScript_button : AbstractUIScript
     {
         ButtonIndexUpdate();
     }
+
     //この下はprivate
     #region rawなボタン操作メソッド
     void AddButtonData(ButtonData data)
@@ -171,4 +187,14 @@ public abstract class AbstractUIScript_button : AbstractUIScript
         else return _nowSelectButtonIndex == 0;
     }
     #endregion
+
+    void CursorAction(GameObject cursor)
+    {
+        var index = _addButtonList.IndexOf(cursor);
+        if (index >= 0)
+        {
+            var targetIndex = _buttonRangeStartIndex+index;
+            if (_buttonDataList.Count > targetIndex) _buttonDataList[targetIndex]._cursorAction.Invoke();
+        }
+    }
 }

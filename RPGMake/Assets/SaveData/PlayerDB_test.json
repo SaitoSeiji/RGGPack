@@ -16,7 +16,9 @@
                     "_data": {
                         "_skillName": "すごい攻撃",
                         "_target": "ENEMY_SOLO",
-                        "_rowRate": 300
+                        "_rowRate": 300,
+                        "_resourceType": "HP",
+                        "_useNum": 5
                     },
                     "_serchId": "superAttack"
                 },
@@ -24,7 +26,9 @@
                     "_data": {
                         "_skillName": "全体攻撃テスト",
                         "_target": "ENEMY_ALL",
-                        "_rowRate": 1000
+                        "_rowRate": 1000,
+                        "_resourceType": "SP",
+                        "_useNum": 5
                     },
                     "_serchId": "allAtack_test"
                 },
@@ -32,9 +36,21 @@
                     "_data": {
                         "_skillName": "仲間攻撃テスト",
                         "_target": "FRIEND_SOLO",
-                        "_rowRate": 500
+                        "_rowRate": 500,
+                        "_resourceType": "NONE",
+                        "_useNum": 0
                     },
                     "_serchId": "self_test"
+                },
+                {
+                    "_data": {
+                        "_skillName": "SP使用テスト",
+                        "_target": "ENEMY_ALL",
+                        "_rowRate": 1000,
+                        "_resourceType": "SP",
+                        "_useNum": 5
+                    },
+                    "_serchId": "spTest"
                 }
             ],
             "_serchId": "kou",

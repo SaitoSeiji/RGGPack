@@ -2,12 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Linq;
+using TMPro;
 
 public class SelectSkillScript : AbstractUIScript_button
 {
     [SerializeField] UIBase _targetSelectUI;
+
+    [SerializeField, Space(10)] GameObject _textPannel;
+    [SerializeField] TextMeshProUGUI setumeiText;
 
     protected override List<ButtonData> CreateMyButtonData()
     {
@@ -15,7 +20,7 @@ public class SelectSkillScript : AbstractUIScript_button
         var resultList = new List<ButtonData>();
         foreach (var data in useAbleSkillList)
         {
-            resultList.Add(new ButtonData(data._Data._skillName, CreateClickEvent(data)));
+            resultList.Add(new ButtonData(data._Data._skillName, CreateClickEvent(data),CreateCursorEvent(data)));
         }
         return resultList;
     }
@@ -23,7 +28,11 @@ public class SelectSkillScript : AbstractUIScript_button
     private UnityEvent CreateClickEvent(SkillDBData data)
     {
         UnityEvent ue = new UnityEvent();
-        ue.AddListener(()=>ClickNextUIEvent(data));
+        ue.AddListener(()=> {
+            ClickNextUIEvent(data);
+            _textPannel.SetActive(false);
+            setumeiText.text = "";
+        });
         return ue;
     }
 
@@ -41,4 +50,15 @@ public class SelectSkillScript : AbstractUIScript_button
             BattleUIController.Instance.EndCommand(data._Data._skillName, null, _MyUIBase);
         }
     }
+
+    private Action CreateCursorEvent(SkillDBData data)
+    {
+        Action ue = () =>
+        {
+            _textPannel.SetActive(true);
+            setumeiText.text = "説明文:" + data._Data._skillName;
+        };
+        return ue;
+    }
+    
 }

@@ -11,4 +11,5 @@ id: kou
 		superAttack
 		allAtack_test
 		self_test
+		spTest
 	}

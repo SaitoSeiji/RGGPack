@@ -156,8 +156,16 @@ public class BattleController
     public Battle_targetDicide GetCommantTarget(string commandName)
     {
         var next = _battleCharQueue.Peek();
-        var command = next.SelectCommand(commandName);
+        var command = next.GetCommand(commandName);
         return new Battle_targetDicide(command._target, next, GetFriend(next), GetEnemy(next));
+    }
+
+    public bool CommandUseable(string commandName)
+    {
+        var next = _player;
+        var command = next.GetCommand(commandName);
+        var bur = new Battle_useResource(command._resourceType,command._useNum, next);
+        return bur.IsUseable();
     }
 
 
@@ -167,9 +175,18 @@ public class BattleController
         //次に動くキャラを決める
         var next = _battleCharQueue.Dequeue();
         //使用するコマンドを決める
-        SkillCommandData command= next.SelectCommand(_charInput.command);
+        SkillCommandData command= next.GetCommand(_charInput.command);
         int attack = next.SelectAttack(command._skillName);
         _battleAction_command?.Invoke(next._myCharData, command);
+        bool isPlayer = next is PlayerChar;
+        Battle_useResource bur = null;
+        //スキルリソース使用処理
+        if (isPlayer) {
+            var pl = (PlayerChar)next;
+            bur = new Battle_useResource(command._resourceType, command._useNum, pl);
+            if (!bur.IsUseable()) return;
+            bur.Use();
+        }
         //対象を決める
         var ct= new Battle_targetDicide(command._target,next,GetFriend(next), GetEnemy(next));
         var targetPool = ct.GetTargetPool();

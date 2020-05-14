@@ -258,12 +258,12 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         );
     }
     string _battlelogText = "";
-    void CommandAction(SavedDBData_char chars, SkillCommandData skilldata)
+    void CommandAction(SavedDBData_char user, SkillCommandData skilldata)
     {
         _uiActionQueue.Enqueue(() =>
         {
-            _battlelogText = string.Format("{0}の{1}\n", chars._name, skilldata._skillName);
-            var target = GetParamDisplayer(chars);
+            _battlelogText = string.Format("{0}の{1}\n", user._name, skilldata._skillName);
+            var target = GetParamDisplayer(user);
             target.SyncDisply();
         });
     }

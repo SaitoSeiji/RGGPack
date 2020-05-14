@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74df56f46f0884a43bad8815d78e5b37, type: 3}
-  m_Name: attack
+  m_Name: spTest
   m_EditorClassIdentifier: 
-  _serchId: attack
+  _serchId: spTest
   _data:
-    _skillName: "\u653B\u6483"
-    _target: 4
-    _rowRate: 100
-    _resourceType: 0
-    _useNum: 0
+    _skillName: "SP\u4F7F\u7528\u30C6\u30B9\u30C8"
+    _target: 5
+    _rowRate: 1000
+    _resourceType: 1
+    _useNum: 5

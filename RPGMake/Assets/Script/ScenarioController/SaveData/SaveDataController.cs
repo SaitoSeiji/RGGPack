@@ -18,6 +18,7 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
         {
             _saveDataList.Add(db.name, db.GetSavedDataList());
         }
+        SaveAction();
     }
     string GetDBName<T>()
         where T : VariableDB

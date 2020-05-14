@@ -30,14 +30,17 @@ public class TempDBData
 
     public string GetData_st(string key)
     {
+        if (!_memberSet_st.ContainsKey(key)) return "";
         return _memberSet_st[key];
     }
     public int GetData_int(string key)
     {
+        if (!_memberSet_int.ContainsKey(key)) return 0;
         return _memberSet_int[key];
     }
     public List<string> GetData_list(string key)
     {
+        if (!_memberSet_stList.ContainsKey(key)) return new List<string>();
         return _memberSet_stList[key];
     }
 }

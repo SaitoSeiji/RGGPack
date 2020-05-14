@@ -17,3 +17,5 @@ MonoBehaviour:
     _skillName: "\u5168\u4F53\u653B\u6483\u30C6\u30B9\u30C8"
     _target: 5
     _rowRate: 1000
+    _resourceType: 1
+    _useNum: 5
