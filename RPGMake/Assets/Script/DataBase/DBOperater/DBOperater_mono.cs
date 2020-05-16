@@ -9,7 +9,7 @@ public class DBOperater_mono : MonoBehaviour
     [SerializeField] List<AbstractDB> _dataBaseList=new List<AbstractDB>();
     //現在一時利用停止中
     [SerializeField, Space(10),HideInInspector] string oldName;
-    [SerializeField, HideInInspector] DBData _data;
+    [SerializeField, HideInInspector] TempDBData _data;
     #region static
     static System.Type JudgeDBType(string  type)
     {
@@ -23,10 +23,12 @@ public class DBOperater_mono : MonoBehaviour
                 return typeof(SkillDB);
             case "Charcter":
                 return typeof(CharcterDB);
+            case "Player":
+                return typeof(PlayerDB);
             case "EnemySet":
                 return typeof(EnemySetDB);
             default:
-                return typeof(AbstractDB);
+                return null;
         }
     }
     #endregion
@@ -137,6 +139,11 @@ public class DBOperater_mono : MonoBehaviour
             var op = new DBOperater<CharcterDBData, CharcterDB>(db as CharcterDB);
             op.SyncDataByTxt(_readFile);
         }
+        else if (type == typeof(PlayerDB))
+        {
+            var op = new DBOperater<PlayerDBData, PlayerDB>(db as PlayerDB);
+            op.SyncDataByTxt(_readFile);
+        }
         else if (type == typeof(EnemySetDB))
         {
             var op = new DBOperater<EnemySetDBData, EnemySetDB>(db as EnemySetDB);
@@ -167,6 +174,11 @@ public class DBOperater_mono : MonoBehaviour
         else if (type == typeof(CharcterDB))
         {
             var op = new DBOperater<CharcterDBData, CharcterDB>(db as CharcterDB);
+            op.RateUpdate();
+        }
+        else if (type == typeof(PlayerDB))
+        {
+            var op = new DBOperater<PlayerDBData, PlayerDB>(db as PlayerDB);
             op.RateUpdate();
         }
         else if (type == typeof(EnemySetDB))

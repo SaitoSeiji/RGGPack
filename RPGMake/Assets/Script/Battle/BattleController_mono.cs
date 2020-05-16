@@ -11,13 +11,23 @@ public class BattleController
     Queue<BattleChar> _battleCharQueue = new Queue<BattleChar>();
 
     public bool _waitInput { get; private set; } = false;
+    
+    (string command, BattleChar target) _charInput=("",null);
 
-    //(int index, int charIndex) _charInput=(-1,-1);
-    (string command, string charName) _charInput=("","");
-    //string _logText = "";
-    Dictionary<string, string> _logData = new Dictionary<string, string>();
+    #region callback
+    //_battleAction_command～battleAction_endTurnまでを一つにまとめたい
+    public Action _battleAction_encount;
+    public Action _battleAction_waitInput;
+    public Action<SavedDBData_char, SkillCommandData> _battleAction_command;
+    public Action<SavedDBData_char,int> _battleAction_damage;
+    public Action<SavedDBData_char,int> _battleAction_cure;
+    public Action<SavedDBData_char> _battleAction_defeat;
+    public Action _battleAction_endTurn;
+    public Action<bool> _battleAction_end;
+    #endregion
 
-    public BattleController(BattleCharData player,List<BattleCharData> enemy)
+
+    public BattleController(SavedDBData_player player,List<SavedDBData_char> enemy)
     {
         _player = new PlayerChar(player);
         _enemys = new List<EnemyChar>();
@@ -29,11 +39,15 @@ public class BattleController
             _player.AddRaival(ene);
         }
         _battleCharQueue = SetFirstQueue();
-        PrepareNextTurn();
+    }
 
-        AddLog_encount();
+    public void StartBattle()
+    {
+        _battleAction_encount?.Invoke();
+        PrepareNextTurn();
     }
     #region private
+    #region name
     //複数同名モンスターがいるときに固有名にする AとかBとか
     //無駄に長いので短くできそう
     void SetUniqueName(List<EnemyChar> enemys)
@@ -74,7 +88,7 @@ public class BattleController
         }
         return "";
     }
-
+    #endregion
     Queue<BattleChar> SetFirstQueue()
     {
         var result = new Queue<BattleChar>();
@@ -88,16 +102,16 @@ public class BattleController
 
     void PrepareNextTurn()
     {
-        SyncDeadChar();
+        _charInput = (null, null);
         if (IsEnd())
         {
-            AddLog_End();
+            _battleAction_end?.Invoke(_player._nowHp <= 0);
             return;
         }
-        if (_battleCharQueue.Peek() is PlayerChar)
+        //死亡したキャラをはじく
+        while (!_battleCharQueue.Peek().IsAlive())
         {
-            _waitInput = true;
-            
+            _battleCharQueue.Dequeue();
         }
 
         foreach (var enemy in _enemys)
@@ -107,32 +121,31 @@ public class BattleController
                 _player.RemoveRaival(enemy);
             }
         }
-        AddLog_test_hpResult();
-        if(_waitInput) AddLog_test_playerTurn();
-    }
-    void SyncDeadChar()
-    {
-        var tempQueue=new Queue<BattleChar>();
-        while (_battleCharQueue.Count > 0)
+        if (_battleCharQueue.Peek() is PlayerChar)
         {
-            var target = _battleCharQueue.Dequeue();
-            if (!target.IsAlive())
-            {
-                AddLog_defeat(target._myCharData);
-            }
-            else
-            {
-                tempQueue.Enqueue(target);
-            }
+            _waitInput = true;
+            _battleAction_waitInput?.Invoke();
         }
-        _battleCharQueue = tempQueue;
     }
-
-    private bool CheckIsAliveTarget(int index)
+    #region 対象選択用
+    List<BattleChar> GetFriend(BattleChar target)
     {
-        if (_enemys.Count <= index) return false;
-        return _enemys[index].IsAlive();
+        if (target == _player) return new List<BattleChar>() { _player };
+        else return _enemys.Select(x => (BattleChar)x).ToList();
     }
+    List<BattleChar> GetEnemy(BattleChar target)
+    {
+        if (target == _player) return _enemys.Select(x => (BattleChar)x).ToList();
+        else return new List<BattleChar>() { _player };
+    }
+    //スキルの対象を決める
+    BattleChar GetInputCommandTarget(BattleChar user, Battle_targetDicide ct)
+    {
+        if (!ct.IsInputSelect()) return null;
+        if (_charInput.target != null) return _charInput.target;
+        else return user.SelectTargetAuto();
+    }
+    #endregion
     #endregion
     #region public
     public bool IsEnd()
@@ -144,96 +157,79 @@ public class BattleController
         }
         return true;
     }
-    
-    public void Command()
+
+    public Battle_targetDicide GetCommantTarget(string commandName)
+    {
+        var next = _battleCharQueue.Peek();
+        var command = next.GetCommand(commandName);
+        return new Battle_targetDicide(command._target, next, GetFriend(next), GetEnemy(next));
+    }
+
+    public bool CommandUseable(string commandName)
+    {
+        var next = _player;
+        var command = next.GetCommand(commandName);
+        var bur = new Battle_useResource(command._useResourceType,command._useNum, next);
+        return bur.IsUseable();
+    }
+
+
+    public void TurnAct()
     {
         if (_waitInput||IsEnd()) return;
+        //次に動くキャラを決める
         var next = _battleCharQueue.Dequeue();
-        BattleChar target;
-        SkillCommandData command;
-        int damage=0;
-        if(next is PlayerChar)
-        {
-            target = next.SelectTarget(_charInput.charName);
-            command = next.SelectCommand(_charInput.command);
-            damage = next.SelectAttack(command._skillName);
-            _charInput = ("","");
+        //使用するコマンドを決める
+        SkillCommandData command= next.GetCommand(_charInput.command);
+        int attack = next.SelectAttack(command._skillName);
+        _battleAction_command?.Invoke(next._myCharData, command);
+        bool isPlayer = next is PlayerChar;
+        Battle_useResource bur = null;
+        //スキルリソース使用処理
+        if (isPlayer) {
+            var pl = (PlayerChar)next;
+            bur = new Battle_useResource(command._useResourceType, command._useNum, pl);
+            if (!bur.IsUseable()) return;
+            bur.Use();
         }
-        else
+        //対象を決める
+        var btd= new Battle_targetDicide(command._target,next,GetFriend(next), GetEnemy(next));
+        var targetPool = btd.GetTargetPool();
+        var inputTarget = GetInputCommandTarget(next,btd);
+        List<BattleChar> targets=btd.SelectTarget(targetPool,inputTarget);
+        //スキルの効果を発動する
+        foreach (var target in targets)
         {
-            target = next.SelectTargetAuto();
-            command = next.SelectCommand_auto();
-            damage = next.SelectAttack(command._skillName);
+            var btr =new Battle_targetResource(command._TargetResourceType,attack,target,btd._IsCure);
+            var actNum= btr.Action();
+            if (btd._IsCure) _battleAction_cure?.Invoke(target._myCharData, actNum);
+            else _battleAction_damage?.Invoke(target._myCharData, actNum);
+            if (!target.IsAlive()) _battleAction_defeat?.Invoke(target._myCharData);
+
+            //if (btd._IsCure)
+            //{
+            //    var cure = attack;
+            //    target.SetCure(cure);
+            //    _battleAction_cure?.Invoke(target._myCharData, cure);
+            //}
+            //else
+            //{
+            //    var damage = target.CalcDamage(attack);
+            //    target.SetDamage(damage);
+            //    _battleAction_damage?.Invoke(target._myCharData, damage);
+            //    if (!target.IsAlive()) _battleAction_defeat?.Invoke(target._myCharData);
+            //}
         }
-        var damaged= target.SetDamage(damage);
+        _battleAction_endTurn?.Invoke();
         _battleCharQueue.Enqueue(next);
-        AddLog_command(next._myCharData, command);
-        AddLog_damage(target._myCharData, damaged);
         PrepareNextTurn();
     }
 
     public void SetCharInput(string charName,string command)
     {
-        _charInput = (command, charName);
+        var target = _battleCharQueue.Where(x => x._myCharData._name == charName).FirstOrDefault();
+        _charInput = (command, target);
         _waitInput = false;
-    }
-    #endregion
-    #region log
-    void AddLog_test_hpResult()
-    {
-        //_logText += string.Format("player hp{0}\n", _player._myCharData._hp);
-        //foreach (var enemy in _enemys)
-        //{
-        //    _logText += string.Format("{0} hp {1}\n", enemy._myCharData._name, enemy._myCharData._hp);
-        //}
-    }
-    void AddLog_test_playerTurn()
-    {
-        //_logText += "next is playerTurn\n";
-    }
-    void AddLog_command(BattleCharData chars,SkillCommandData skilldata)
-    {
-        _logData["command"]= string.Format("{0}の{1}\n",chars._name,skilldata._skillName);
-    }
-    void AddLog_damage(BattleCharData chars, int damage)
-    {
-        _logData["damage"]= string.Format("{0}は{1}のダメージを受けた\n", chars._name, damage);
-    }
-    void AddLog_defeat(BattleCharData chars)
-    {
-        _logData["defeat"]= string.Format("{0}は倒れた\n",chars._name);
-    }
-
-    void AddLog_encount()
-    {
-        _logData["encount"] = "魔物が現れた";
-    }
-
-    void AddLog_End()
-    {
-        if (_player._nowHp <= 0)
-        {
-            _logData["end"] = string.Format("コウたちは全滅した\n");
-            _logData["end"] += string.Format("目の前が真っ暗になった");
-        }
-        else
-        {
-            _logData["end"] = string.Format("コウは戦闘に勝利した！\n");
-            _logData["end"] += string.Format("経験値やお金を手に入れた！\n");
-        }
-    }
-    //public string GetLog()
-    //{
-    //    string result = (string)_logText.Clone();
-    //    _logText = "";
-    //    return result;
-    //}
-    public string GetLog(string key)
-    {
-        if (!_logData.ContainsKey(key)) return "";
-        var temp = _logData[key];
-        _logData.Remove(key);
-        return temp;
     }
     #endregion
 }
@@ -241,22 +237,17 @@ public class BattleController
 public class BattleController_mono : SingletonMonoBehaviour<BattleController_mono>
 {
     [SerializeField] BattleUIController _battleUI;
-    [SerializeField] CharcterDBData _player;
-    [SerializeField] EnemySetDBData _enemys;
+    [SerializeField] EnemySetDBData _testButtleEnemys;
     WaitFlag wf = new WaitFlag();
+
     public BattleController battle { get; private set; }
-    
-    
-    void SetChar(BattleCharData pl, EnemySetData ene)
-    {
-        battle = new BattleController(pl
-            ,ene._charList.Select(x=>x._CharData).ToList());
-    }
+    //PlayerCharData _playerCharData;
 
     public void SetCharInput(string target,string skill)
     {
         battle.SetCharInput(target, skill);
     }
+    
 
     public void Next()
     {
@@ -266,8 +257,7 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
         }
         else
         {
-            battle.Command();
-            //BattleUIController.Instance.AddDisplayText(battle.GetLog());
+            battle.TurnAct();
         }
     }
     #region get
@@ -292,23 +282,28 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
         return IsEnd() && !BattleUIController.Instance.IsBattleNow();
     }
     #endregion
-    public void StartBattle(BattleCharData player,EnemySetData enemys)
+    void StartBattle(SavedDBData_player player,EnemySetData enemys)
     {
         UIController.Instance.AddUI(_battleUI._BaseUI,true);
-        SetChar(player, enemys);
-        _battleUI.StartBattle();
+        battle = new BattleController(player, enemys._charList.Select(x => x._CharData).ToList());
+        _battleUI.SetUpCharData();
+        _battleUI.SetUpBattleDelegate(battle);
+        battle._battleAction_end += EndAction;
+        battle.StartBattle();
     }
 
     public void StartBattle(EnemySetData enemys)
     {
-        StartBattle(_player._CharData, enemys);
+        var dblist= SaveDataController.Instance.GetDB_var<PlayerDB, SavedDBData_player>();
+        var _playerSaveData = dblist[0];
+        StartBattle(_playerSaveData, enemys);
     }
 
-
-
-    [ContextMenu("testBattle")]
-    void SetCharText()
+    void EndAction(bool lose)
     {
-        StartBattle(_player._CharData, _enemys._enemySetData);
+        if (!lose)
+        {
+            SaveDataController.Instance.SetData<PlayerDB, SavedDBData_player>(battle._player._myCharData);
+        }
     }
 }

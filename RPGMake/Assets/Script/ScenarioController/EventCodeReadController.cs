@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-
 #region codeData
 public abstract class CodeData
 {
@@ -30,7 +29,8 @@ public abstract class CodeData
             return this;
         }
         CodeData result = null;
-        switch (data._head)
+        var head = data._head.ToLower();
+        switch (head)
         {
             case "":
             case "name"://name[name]
@@ -44,6 +44,9 @@ public abstract class CodeData
                 break;
             case "item"://item[itemName] 1
                 result = new ItemCode(data);
+                break;
+            case "skill"://skill[playerName,skillname]
+                result = new SkillCode(data);
                 break;
             case "map"://map[mapName]
                 result = new MapCode(data);
@@ -70,6 +73,7 @@ public abstract class CodeData
         return result;
     }
 }
+
 
 [System.Serializable]
 public class TextData : CodeData
@@ -148,17 +152,105 @@ public class FlagCode : CodeData
 
     public override void CodeAction()
     {
+        var db= SaveDataController.Instance.GetDB_var<FlagDB, SavedDBData_flag>();
         foreach (var flag in _flagData)
         {
+            var temp = db.Find(x=>x._serchId==flag.Key) ;
+            temp.flagNum = flag.Value;
+            SaveDataController.Instance.SetData<FlagDB,SavedDBData_flag>(temp);
+            
             //SaveDataHolder.Instance.SetFlagNum(flag.Key, flag.Value);
-            var key = FlagDBData.SetFlagNum(flag.Key, flag.Value);
-            SaveDataController.Instance.SetData<FlagDB>(key);
+            //var key = FlagDBData.SetFlagNum(flag.Key, flag.Value);
+            //SaveDataController.Instance.SetData<FlagDB>(key);
         }
     }
 
     public override bool IsEndCode()
     {
         return true;
+    }
+}
+
+public class ItemCode : CodeData
+{
+    Dictionary<string, int> _itemSet = new Dictionary<string, int>();
+
+
+    public ItemCode(TextCovertedData data)
+    {
+        _itemSet = SetItemSet(data);
+    }
+
+    Dictionary<string, int> SetItemSet(TextCovertedData data)
+    {
+        var result = new Dictionary<string, int>();
+        var texts = data._text.Split('\n');
+        result.Add(data._data, int.Parse(texts[0]));
+        for (int i = 1; i < texts.Length; i++)
+        {
+            var text = texts[i].Split(' ');
+            try
+            {
+                result.Add(text[0], int.Parse(text[1]));
+            }
+            catch (System.IndexOutOfRangeException)
+            {
+
+            }
+        }
+
+        return result;
+    }
+
+    public override void CodeAction()
+    {
+        string dispTxt = "";
+        var db = SaveDataController.Instance.GetDB_var<ItemDB, SavedDBData_item>();
+        foreach (var d in _itemSet)
+        {
+            var data = db.Where(x => x._serchId == d.Key).First();
+            data._haveNum += d.Value;
+            SaveDataController.Instance.SetData<ItemDB, SavedDBData_item>(data);
+            EventCodeReadController.Instance.SetFlashData("getItem", d.Key);
+        }
+    }
+
+    public override bool IsEndCode()
+    {
+        return true;
+    }
+}
+
+internal class SkillCode : CodeData
+{
+    SavedDBData_player targetPlayer;
+    SkillDBData targetSkill;
+
+    public SkillCode(TextCovertedData data)
+    {
+        var input = data._data.Split(',');
+        var playerId = input[0];
+        var skillid = input[1];
+        var db_player = SaveDataController.Instance.GetDB_var<PlayerDB, SavedDBData_player>();
+        targetPlayer = db_player.Where(x => x._serchId == playerId).First();
+        var db_skill = SaveDataController.Instance.GetDB_static<SkillDB>()._dataList;
+        targetSkill = db_skill.Where(x => x._serchId == skillid).First();
+    }
+
+    public override void CodeAction()
+    {
+        targetPlayer.AddSkill(targetSkill);
+        SaveDataController.Instance.SetData<PlayerDB, SavedDBData_player>(targetPlayer);
+    }
+
+    public override bool IsEndCode()
+    {
+        return true;
+    }
+
+    public override bool CheckChain(TextCovertedData data)
+    {
+        return false;
     }
 }
 
@@ -242,7 +334,7 @@ public class BattleCode:CodeData
     EnemySetData GetEnemySet(TextCovertedData data)
     {
         var db= SaveDataController.Instance.GetDB_static<EnemySetDB>();
-        var dbdata= db.GetDataList().Where(x => x._Data._serchId == data._data).First() as EnemySetDBData;
+        var dbdata= db._dataList.Where(x => x.name == data._data).First() as EnemySetDBData;
         return dbdata._enemySetData;
     }
 
@@ -275,54 +367,6 @@ public class MapCode : CodeData
     {
 
         return !MapController.Instance._mapChengeNow;
-    }
-}
-
-public class ItemCode : CodeData
-{
-    Dictionary<string, int> _itemSet = new Dictionary<string, int>();
-
-
-    public ItemCode(TextCovertedData data)
-    {
-        _itemSet = SetItemSet(data);
-    }
-
-    Dictionary<string, int> SetItemSet(TextCovertedData data)
-    {
-        var result = new Dictionary<string, int>();
-        var texts = data._text.Split('\n');
-        result.Add(data._data, int.Parse(texts[0]));
-        for (int i = 1; i < texts.Length; i++)
-        {
-            var text = texts[i].Split(' ');
-            try
-            {
-                result.Add(text[0], int.Parse(text[1]));
-            }catch (System.IndexOutOfRangeException)
-            {
-
-            }
-        }
-
-        return result;
-    }
-
-    public override void CodeAction()
-    {
-        string dispTxt = "";
-        foreach (var d in _itemSet)
-        {
-            //var data = SaveDataHolder.Instance.GetItem(d.Key, d.Value);
-            var key = ItemDBData.AddHaveNum(d.Key, d.Value);
-            SaveDataController.Instance.SetData<ItemDB>(key);
-            EventCodeReadController.Instance.SetFlashData("getItem",d.Key);
-        }
-    }
-
-    public override bool IsEndCode()
-    {
-        return true;
     }
 }
 

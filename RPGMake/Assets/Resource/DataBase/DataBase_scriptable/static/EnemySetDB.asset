@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09de42f74aa14774fbdb110cef712673, type: 3}
   m_Name: EnemySetDB
   m_EditorClassIdentifier: 
-  dataList:
+  _dataList:
   - {fileID: 11400000, guid: e0a6f647fe4b7474e8a8f840972e3e39, type: 2}
   - {fileID: 11400000, guid: 668533db97c39ec468b95dde560ff053, type: 2}
   - {fileID: 11400000, guid: 170a267e153f8fa43ab85dc859d358f8, type: 2}

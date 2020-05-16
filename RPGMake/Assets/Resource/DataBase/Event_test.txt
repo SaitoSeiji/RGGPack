@@ -24,6 +24,16 @@ id: testBattle
 		$
 		戦闘終了
 	}
+id: testBattle_addSKill
+	text{
+		$
+		戦闘テスト
+		$#Battle[testset]
+		
+	}
+	next{
+		testAddSkill
+	}
 id: testSprite
 	text{
 		$#image[back,0] back
@@ -38,6 +48,14 @@ id: testSprite
 		$#image[kyoko,2] left r
 		$#image[kyoko,2] right r
 	}
+id: testAddSkill
+	text{
+		$#skill[kou,addTest]
+		$
+		スキルを習得した
+		$
+	}
+＝＝ここまでテスト＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 id: moveToClass
 	text{
 		$#map[class]

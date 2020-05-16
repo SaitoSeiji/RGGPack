@@ -1,18 +1,15 @@
 {
     "saveList": [
         {
-            "_serchId": "test1",
-            "_memberSet_st": {
-                "displayName": "テスト1",
-                "explanation": "データの登録テストです"
-            },
-            "_memberSet_int": {
-                "maxNum": 20,
-                "haveNum": 1
-            },
-            "_memberSet_stList": {
+            "_displayName": "テスト1",
+            "_maxNum": 20,
+            "_haveNum": 1,
+            "_explanation": "データの登録テストです",
+            "_itemImage": {
                 
-            }
+            },
+            "_serchId": "test1",
+            "$type": "SavedDBData_item"
         }
     ]
 }

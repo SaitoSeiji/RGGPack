@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableList:
   - {fileID: 11400000, guid: c0c7e48bf4f39b74fbe058a652e28fc9, type: 2}
+  - {fileID: 11400000, guid: 9a8c9a54ee7f8f3489e8327f3e19e542, type: 2}
+  - {fileID: 11400000, guid: 0bc84797fd8a50b44b8db437d31bbfd7, type: 2}
   - {fileID: 11400000, guid: 3f1fd97e3fa56af448955d4c1cc5e1e1, type: 2}
   - {fileID: 11400000, guid: bc3c5d2f3787f43489455a1c2d5d5bd4, type: 2}
   - {fileID: 11400000, guid: c1c5a193a671231478e28ee6d5354899, type: 2}
@@ -28,5 +30,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d14d8eba331c9c54093482c2d764edd2, type: 2}
   - {fileID: 11400000, guid: 17fa307e3e58cfd46a1213f2f8eaf6ff, type: 2}
   - {fileID: 11400000, guid: dcceebc2a5724a74685cc4c6ce555074, type: 2}
-  - {fileID: 11400000, guid: 0bc84797fd8a50b44b8db437d31bbfd7, type: 2}
-  - {fileID: 11400000, guid: 9a8c9a54ee7f8f3489e8327f3e19e542, type: 2}
+  - {fileID: 11400000, guid: f1417c352445e4740b476536c90fcbf3, type: 2}
+  - {fileID: 11400000, guid: 8d2ed6138a0134943895d75f9c308717, type: 2}

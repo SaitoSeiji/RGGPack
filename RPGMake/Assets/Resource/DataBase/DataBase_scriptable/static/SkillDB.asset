@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d27a1673321e69d40b3bd6ce16822883, type: 3}
   m_Name: SkillDB
   m_EditorClassIdentifier: 
-  dataList:
+  _dataList:
   - {fileID: 11400000, guid: 0f001f5b030d21348bd65dc23461d636, type: 2}
   - {fileID: 11400000, guid: 92ff050a8cc81a64f86ed98a585bff40, type: 2}
   - {fileID: 11400000, guid: 814158c4bb727c34f9bd5470934223d9, type: 2}
+  - {fileID: 11400000, guid: 17f9fcc2d391d48418a3215c65177961, type: 2}
+  - {fileID: 11400000, guid: 950bf96417454944ca6fbf9694f26157, type: 2}
+  - {fileID: 11400000, guid: a74baab7d04ed5641a3818f8d861b3e8, type: 2}
+  - {fileID: 11400000, guid: 71f96d9d036bf234eaef37714125baca, type: 2}
+  - {fileID: 11400000, guid: 2da99d606c5a58345a04e33de92d0505, type: 2}

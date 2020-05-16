@@ -5,35 +5,40 @@ using UnityEngine.Events;
 
 public class SelectAttackTargetScript : AbstractUIScript_button
 {
-    string _mySkillName;
 
     protected override void ChengeState_toActive()
     {
         base.ChengeState_toActive();
-        var data = UIController.Instance.GetFlashData("command");
-        if (data == null) _mySkillName = "";
+    }
+
+    string GetSkillName()
+    {
+        //使用するスキル名を取得
+        var data = UIController.Instance.GetFlashData_static("command") as SkillDBData;
+        if (data == null) return "";
         else
         {
-            _mySkillName = data._memberSet_st["skillName"];
+            return data._Data._skillName;
         }
     }
 
     protected override List<ButtonData> CreateMyButtonData()
     {
-        var dataList = BattleController_mono.Instance.GetEnemyList();
+        var skillName = GetSkillName();
+        var dataList = BattleController_mono.Instance.battle.GetCommantTarget(skillName).GetTargetPool();
         var resultList = new List<ButtonData>();
         foreach(var data in dataList)
         {
             if (!data.IsAlive()) continue;
-            resultList.Add(new ButtonData(data._myCharData._name,CreateClickEvent(data)));
+            resultList.Add(new ButtonData(data._myCharData._name,CreateClickEvent(data,skillName)));
         }
         return resultList;
     }
 
-    UnityEvent CreateClickEvent(EnemyChar data)
+    UnityEvent CreateClickEvent(BattleChar target,string skillName)
     {
         UnityEvent ue = new UnityEvent();
-        ue.AddListener(()=>BattleUIController.Instance.EndCommand(_mySkillName, data._myCharData._name,_MyUIBase));
+        ue.AddListener(()=>BattleUIController.Instance.EndCommand(skillName, target._myCharData._name,_MyUIBase));
         return ue;
     }
 }

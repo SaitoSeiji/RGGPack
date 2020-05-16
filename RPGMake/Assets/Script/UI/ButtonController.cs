@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
 
 [RequireComponent(typeof(CanvasGroup))]
 public class ButtonController : MonoBehaviour
@@ -10,7 +11,6 @@ public class ButtonController : MonoBehaviour
     [SerializeField]private GameObject firstSelect;
     [SerializeField, NonEditable] GameObject _nowSelect;
     private CanvasGroup canvasGroup;
-
 
     WaitFlag _inputWaitFlag = new WaitFlag();
     public bool _InputEnable
@@ -20,6 +20,7 @@ public class ButtonController : MonoBehaviour
             return !_inputWaitFlag._waitNow;
         }
     }
+    public Action<GameObject> _ChengeButtonCallback {  get; set; }
 
     void OnEnable()
     {
@@ -64,17 +65,18 @@ public class ButtonController : MonoBehaviour
         }
         else
         {
-            if (_nowSelect != temp) ButtonChengeAction();
+            if (_nowSelect != temp) ButtonChengeAction(temp);
             _nowSelect = temp;
         }
     }
 
-    void ButtonChengeAction()
+    void ButtonChengeAction(GameObject select)
     {
         if (!_inputWaitFlag._endSetUp)
         {
             _inputWaitFlag.SetWaitLength(0.2f);
         }
         _inputWaitFlag.WaitStart();
+        _ChengeButtonCallback?.Invoke(select);
     }
 }

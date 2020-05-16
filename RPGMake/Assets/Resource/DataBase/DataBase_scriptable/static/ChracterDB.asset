@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c346fa180a4af464087237253b187fb9, type: 3}
   m_Name: ChracterDB
   m_EditorClassIdentifier: 
-  dataList:
+  _dataList:
   - {fileID: 11400000, guid: db7b70fa5677e1c4686c7921d901d200, type: 2}
   - {fileID: 11400000, guid: 520f8d70d5d34624da97bb2250e18165, type: 2}
   - {fileID: 11400000, guid: a6c94f1c0a731e64b892b7806e644594, type: 2}

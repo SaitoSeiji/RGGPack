@@ -51,9 +51,9 @@ public static class DBListCreator
         return datas;
     }
 
-    static public List<DBData> CreateDBListBytxt(string txt)
+    static public List<TempDBData> CreateDBListBytxt(string txt)
     {
-        var result = new List<DBData>();
+        var result = new List<TempDBData>();
         if (string.IsNullOrEmpty(txt)) return result;
         var blockList = DivideTextBlock(txt);
         foreach(var block in blockList)
@@ -63,42 +63,40 @@ public static class DBListCreator
             var blancketSet = ReplaceBlanket(idSet.replaced);
             var singles = DivideSingle(blancketSet.replaced);
 
-            var add = new DBData(idSet.id);
             //singleのデータを加える
-            foreach(var single in singles)
+            var tempDic_int = new Dictionary<string, int>();
+            var tempDic_st = new Dictionary<string, string>();
+            foreach (var single in singles)
             {
                 var split = single.Split(' ');
                 if (split.Length != 2) continue;
                 if(int.TryParse(split[1],out int num))
                 {
-                    add._memberSet_int.Add(split[0], num);
+                    tempDic_int.Add(split[0], num);
                 }
                 else
                 {
-                    add._memberSet_st.Add(split[0], split[1]);
+                    tempDic_st.Add(split[0], split[1]);
                 }
             }
             //blanketのデータを加える
-            foreach(var blanket in blancketSet.contents)
+            var tempDic_list = new Dictionary<string, List<string>>();
+            foreach (var blanket in blancketSet.contents)
             {
-                add._memberSet_stList.Add(blanket.head, new List<string>());
+                tempDic_list.Add(blanket.head, new List<string>());
                 var split = blanket.content.Split('\n');
                 foreach(var data in split)
                 {
                     if (string.IsNullOrEmpty(data)) continue;
-                    add._memberSet_stList[blanket.head].Add(data.Trim());
+                    tempDic_list[blanket.head].Add(data.Trim());
                 }
             }
+            var add = new TempDBData(idSet.id);
+            add.InitMember(tempDic_st, tempDic_int, tempDic_list);
             result.Add(add);
         }
         return result;
     }
-    
-
-    //public DBData GetTmeplate(string id)
-    //{
-    //    return new DBData(_template,id);
-    //}
 }
 
 //DB関連の入出力処理
@@ -175,7 +173,7 @@ public static class DBIO
 }
 
 //データベースの操作を行うクラス
-public class DBOperater<T,K>
+public class DBOperater<T,K>:IEnable_initDB
     where T:AbstractDBData
     where K:AbstractDB
 {
@@ -268,11 +266,11 @@ public class DBOperater<T,K>
         }
         
         var textDataList = DBListCreator.CreateDBListBytxt(DBIO.TrimType(textAsset.text).replaced);
-        var assetDBList = _database.GetDataList();
+        var assetDBList = _database.GetDataList(this);
         //txtに書いてないものを削除
         for(int i=assetDBList.Count-1;i>=0;i--)
         {
-            if (textDataList.Where(x=>x._serchId==assetDBList[i]._Data._serchId).FirstOrDefault()==null)
+            if (textDataList.Where(x=>x._serchId==assetDBList[i].name).FirstOrDefault()==null)
             {
                 AssetDatabase.MoveAssetToTrash(AssetDatabase.GetAssetPath(assetDBList[i]));
                 assetDBList.RemoveAt(i);
@@ -281,17 +279,17 @@ public class DBOperater<T,K>
         //txtに書いてあるけどデータがないものを追加
         foreach(var data in textDataList)
         {
-            var target = assetDBList.Where(x => x._Data._serchId == data._serchId).FirstOrDefault();
+            var target = assetDBList.Where(x => x.name == data._serchId).FirstOrDefault();
             if (target == null)
             {
                 target = AbstractDBData.GetInstance<T>();
                 AssetDatabase.CreateAsset(target,DBIO.CreateSavePath_asset(textAsset.name,data._serchId));
-                _database.GetDataList().Add(target);
+                assetDBList.Add(target);
             }
-            target.UpdateData(data);
+            target.UpdateMember(data);
             EditorUtility.SetDirty(target);
         }
-
+        _database.SetDataList(assetDBList,this);
         EditorUtility.SetDirty(_database);
         AssetDatabase.Refresh();
         DebugMessage_success("SyncText");
@@ -299,11 +297,12 @@ public class DBOperater<T,K>
 
     public void RateUpdate()
     {
-        var list = _database.GetDataList();
+        var list = _database.GetDataList(this);
         foreach(var data in list)
         {
             data.RateUpdateMemeber();
         }
+        _database.SetDataList(list,this);
     }
 
     //public void SyncTxtByData()

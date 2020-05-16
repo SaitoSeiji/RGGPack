@@ -2,108 +2,63 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//text->dbの変換の際に使用するデータ
 [System.Serializable]
-public class DBData
+public class TempDBData
 {
-    public string _serchId;//検索用id
-    public Dictionary<string, string> _memberSet_st = new Dictionary<string, string>();//メンバー変数として扱う 型はstring
-    public Dictionary<string, int> _memberSet_int = new Dictionary<string, int>();//メンバー変数として扱う 型はint
-    public Dictionary<string, List<string>> _memberSet_stList = new Dictionary<string, List<string>>();//型はlist<string>
+    public string _serchId;//検索用id AbstractDBDataのnameと同じ
+    Dictionary<string, string> _memberSet_st = new Dictionary<string, string>();//メンバー変数として扱う 型はstring
+    Dictionary<string, int> _memberSet_int = new Dictionary<string, int>();//メンバー変数として扱う 型はint
+    Dictionary<string, List<string>> _memberSet_stList = new Dictionary<string, List<string>>();//型はlist<string>
     
-    public DBData(string id)
+    public TempDBData(string id)
     {
         _serchId = id;
         _memberSet_int = new Dictionary<string, int>();
         _memberSet_st = new Dictionary<string, string>();
         _memberSet_stList = new Dictionary<string, List<string>>();
     }
-
-    public DBData(DBData data,string id)
+    
+    public void InitMember(Dictionary<string, string> _memberSet_st,
+        Dictionary<string, int> _memberSet_int,
+        Dictionary<string, List<string>> _memberSet_list)
     {
-        _serchId = id;
-        _memberSet_st = new Dictionary<string, string>(_memberSet_st);
-        _memberSet_int = new Dictionary<string, int>(_memberSet_int);
-        _memberSet_stList = new Dictionary<string, List<string>>();
+        this._memberSet_st = _memberSet_st;
+        this._memberSet_int = _memberSet_int;
+        this._memberSet_stList = _memberSet_list;
+    }
+
+    public string GetData_st(string key)
+    {
+        if (!_memberSet_st.ContainsKey(key)) return "";
+        return _memberSet_st[key];
+    }
+    public int GetData_int(string key)
+    {
+        if (!_memberSet_int.ContainsKey(key)) return 0;
+        return _memberSet_int[key];
+    }
+    public List<string> GetData_list(string key)
+    {
+        if (!_memberSet_stList.ContainsKey(key)) return new List<string>();
+        return _memberSet_stList[key];
     }
 }
 
 public abstract class AbstractDBData : ScriptableObject
 {
-    [SerializeField] DBData _data;
-    public DBData _Data { get { return _data; } }
-
-
-    public void InitData()
+    public string _serchId;
+    public void UpdateMember(TempDBData data)
     {
-        if (_Data == null) _data = new DBData("default");
-        _Data._memberSet_st = InitMember_st();
-        _Data._memberSet_int = InitMember_int();
-        _Data._memberSet_stList = InitMemeber_stList();
-        try
-        {
-            _Data._serchId = this.name;
-        }
-        catch (MissingReferenceException)
-        {
-            _Data._serchId = "default";
-        }
+        _serchId = data._serchId;
+        UpdateMember_child(data);
     }
-
-    protected abstract Dictionary<string, string> InitMember_st();
-    protected abstract Dictionary<string, List<string>> InitMemeber_stList();
-    protected abstract Dictionary<string, int> InitMember_int();
-    protected abstract void UpdateMember();
+    protected abstract void UpdateMember_child(TempDBData data);
     public virtual void RateUpdateMemeber() { }//データベース全体の登録が済んだ後に行うアップデート
 
     public static T GetInstance<T>()
         where T :ScriptableObject
     {
         return CreateInstance<T>();
-    }
-
-    public string CreateSaveTxt()
-    {
-        InitData();
-
-        string result ="id " +_Data._serchId+"\n";
-        foreach (var st in _Data._memberSet_st)
-        {
-            result += "\t" + st.Key + " " + st.Value+"\n";
-        }
-        foreach (var it in _Data._memberSet_int)
-        {
-            result += "\t" + it.Key + " " + it.Value+"\n";
-        }
-        return result;
-    }
-
-    public DBData GetDataTemplate()
-    {
-        InitData();
-        return new DBData(_Data,"template");
-    }
-
-
-    protected static string GetDefaultString(string data)
-    {
-        return (string.IsNullOrEmpty(data)) ? "default" : data;
-    }
-
-    public void UpdateData(DBData data)
-    {
-        _data = data;
-        UpdateMember();
-    }
-
-    public int GetTxtMemberCount()
-    {
-        InitData();
-        return _Data._memberSet_int.Count + _Data._memberSet_int.Count;
-    }
-
-    //マイナスになってはいけないデータの確認など
-    public virtual void DataUpdateAction(DBData data)
-    {
-
     }
 }
