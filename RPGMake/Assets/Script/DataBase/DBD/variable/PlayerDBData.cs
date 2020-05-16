@@ -37,6 +37,12 @@ public class SavedDBData_player : SavedDBData_char
         result._hpNow = _hpNow;
         return result;
     }
+    //ここからデータへの変更をするもの
+    public void AddSkill(SkillDBData data)
+    {
+        if (_mySkillList.Contains(data)) return;
+        _mySkillList.Add(data);
+    }
 }
 
 [CreateAssetMenu(fileName = "PlayerDBData", menuName = "DataBases/Data/PlayerDBData", order = 0)]

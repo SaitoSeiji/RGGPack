@@ -12,6 +12,7 @@ public class ButtonData
     public string _buttonText;
     public UnityEvent _onClickAction = new UnityEvent();
     public Action _cursorAction;
+    public bool isActive=true;
 
     public ButtonData(string _text, UnityEvent _onclick)
     {
@@ -27,6 +28,11 @@ public class ButtonData
     public ButtonData(string _text)
     {
         _buttonText = _text;
+    }
+
+    public void SetIsActive(bool flag)
+    {
+        isActive = flag;
     }
 }
 public abstract class AbstractUIScript_button : AbstractUIScript
@@ -102,13 +108,21 @@ public abstract class AbstractUIScript_button : AbstractUIScript
         for (int i = 0; i < _buttonDisplayRange; i++)
         {
             if (_buttonDataList.Count <= i + _buttonRangeStartIndex) break;
-            var target = _buttonDataList[i + _buttonRangeStartIndex];
-            var bt = AddButton(target._buttonText);
-            bt.onClick.AddListener(() => target._onClickAction.Invoke());
+            var targetData = _buttonDataList[i + _buttonRangeStartIndex];
+            var bt = AddButton(targetData._buttonText);
+
+            if(targetData.isActive) bt.onClick.AddListener(() => targetData._onClickAction.Invoke());
+            else DisActive(bt);
         }
     }
 
-
+    private void DisActive(Button bt)
+    {
+        var colors = bt.colors;
+        colors.normalColor = bt.colors.disabledColor;
+        colors.selectedColor = (colors.disabledColor + colors.selectedColor) / 2;
+        bt.colors = colors;
+    }
 
     Button AddButton(string text)
     {
@@ -194,7 +208,7 @@ public abstract class AbstractUIScript_button : AbstractUIScript
         if (index >= 0)
         {
             var targetIndex = _buttonRangeStartIndex+index;
-            if (_buttonDataList.Count > targetIndex) _buttonDataList[targetIndex]._cursorAction.Invoke();
+            if (_buttonDataList.Count > targetIndex) _buttonDataList[targetIndex]._cursorAction?.Invoke();
         }
     }
 }

@@ -12,4 +12,5 @@ id: kou
 		allAtack_test
 		self_test
 		spTest
+		cureSP
 	}

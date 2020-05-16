@@ -14,13 +14,23 @@ public class SelectSkillScript : AbstractUIScript_button
     [SerializeField, Space(10)] GameObject _textPannel;
     [SerializeField] TextMeshProUGUI setumeiText;
 
+    protected override void ChengeState_toClose()
+    {
+        base.ChengeState_toClose();
+        _textPannel.SetActive(false);
+        setumeiText.text = "";
+    }
+    
     protected override List<ButtonData> CreateMyButtonData()
     {
         var useAbleSkillList = BattleController_mono.Instance.GetSkillList();
         var resultList = new List<ButtonData>();
         foreach (var data in useAbleSkillList)
         {
-            resultList.Add(new ButtonData(data._Data._skillName, CreateClickEvent(data),CreateCursorEvent(data)));
+            var add = new ButtonData(data._Data._skillName, CreateClickEvent(data), CreateCursorEvent(data));
+            resultList.Add(add);
+            var btr =new Battle_useResource(data._Data._useResourceType,data._Data._useNum,BattleController_mono.Instance.battle._player);
+            add.SetIsActive(btr.IsUseable());
         }
         return resultList;
     }
@@ -30,8 +40,6 @@ public class SelectSkillScript : AbstractUIScript_button
         UnityEvent ue = new UnityEvent();
         ue.AddListener(()=> {
             ClickNextUIEvent(data);
-            _textPannel.SetActive(false);
-            setumeiText.text = "";
         });
         return ue;
     }
@@ -56,7 +64,8 @@ public class SelectSkillScript : AbstractUIScript_button
         Action ue = () =>
         {
             _textPannel.SetActive(true);
-            setumeiText.text = "説明文:" + data._Data._skillName;
+            var information = BattleCommandDataFormatter.Format(data._Data);
+            setumeiText.text =information;
         };
         return ue;
     }

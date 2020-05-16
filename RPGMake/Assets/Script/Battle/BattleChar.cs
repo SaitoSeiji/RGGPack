@@ -49,7 +49,7 @@ public class BattleChar
         var targetSkill = _myCharData._mySkillList.Where(x => x._Data._skillName == name).FirstOrDefault();
         if (targetSkill != null)
         {
-            rate = targetSkill._Data.GetRate();
+            rate = targetSkill._Data._AttackRate;
         }
         else
         {
@@ -137,8 +137,17 @@ public class PlayerChar : BattleChar
     public void UseSP(int use)
     {
         _nowSP -= use;
+        _nowSP = Mathf.Clamp(_nowSP,0,_maxSP);
         SyncData();
     }
+
+    public void CureSP(int cure)
+    {
+        _nowSP += cure;
+        _nowSP = Mathf.Clamp(_nowSP, 0, _maxSP);
+        SyncData();
+    }
+    
 }
 public class EnemyChar : BattleChar
 {

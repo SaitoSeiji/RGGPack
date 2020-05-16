@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74df56f46f0884a43bad8815d78e5b37, type: 3}
-  m_Name: spTest
+  m_Name: cureSP
   m_EditorClassIdentifier: 
-  _serchId: spTest
+  _serchId: cureSP
   _data:
-    _skillName: "SP\u4F7F\u7528\u30C6\u30B9\u30C8"
-    _target: 5
-    _useResourceType: 1
-    _useNum: 5
-    _targetResourceType: 2
-    _attackRate: 10
+    _skillName: "SP\u56DE\u5FA9\u30C6\u30B9\u30C8"
+    _target: 0
+    _useResourceType: 0
+    _useNum: 0
+    _targetResourceType: 1
+    _attackRate: 0.5

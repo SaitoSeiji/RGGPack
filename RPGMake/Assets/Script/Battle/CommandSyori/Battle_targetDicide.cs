@@ -2,22 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using CommandEnums;
 
 public class Battle_targetDicide
 {
-    //key は　target
-    public enum TargetType
-    {
-        NONE =-1,
-        SELF=0,//(回復)
-        FRIEND_SOLO=1,//(回復)
-        FRIEND_ALL =2,//(回復)
-        FRIEND_RANDOM =3,//(回復)
-
-        ENEMY_SOLO =4,
-        ENEMY_ALL=5,
-        ENEMY_RANDOM=6
-    }
+    
     TargetType _myTargetType;
     
     BattleChar _user;
@@ -28,11 +17,7 @@ public class Battle_targetDicide
     {
         get
         {
-            if (_myTargetType == TargetType.SELF
-                || _myTargetType == TargetType.FRIEND_SOLO
-                || _myTargetType == TargetType.FRIEND_ALL
-                || _myTargetType == TargetType.FRIEND_RANDOM) return true;
-            else return false;
+            return CommandEnumAction.IsCure(_myTargetType);
         }
     }
     
@@ -116,4 +101,6 @@ public class Battle_targetDicide
         }
         return result;
     }
+
+    
 }

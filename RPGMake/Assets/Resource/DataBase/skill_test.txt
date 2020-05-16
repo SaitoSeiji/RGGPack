@@ -2,6 +2,9 @@
 id: attack
 	skillName 攻撃
 	target 4
+	useResource 0
+	useNum 0
+	targetResource 0
 	rate 100
 id: superAttack
 	skillName すごい攻撃
@@ -31,7 +34,18 @@ id: spTest
 	rate 1000
 	useResource 1
 	useNum 5
-
+id: addTest
+	skillName スキル習得テスト
+	target 5
+	rate 1000
+	useResource 1
+	useNum 5
+id: cureSP
+	skillName SP回復テスト
+	target 0
+	targetResource 1
+	rate 50
+==================
 NONE =-1,
 SELF=0,
 FRIEND_SOLO=1,
@@ -41,4 +55,8 @@ FRIEND_RANDOM=3,
 ENEMY_SOLO=4,
 ENEMY_ALL=5,
 ENEMY_RANDOM=6
-    
+==================
+NONE = 0,
+SP = 1,
+HP = 2,
+===================

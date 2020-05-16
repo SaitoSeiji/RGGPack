@@ -16,9 +16,10 @@
                     "_data": {
                         "_skillName": "すごい攻撃",
                         "_target": "ENEMY_SOLO",
-                        "_rowRate": 300,
-                        "_resourceType": "HP",
-                        "_useNum": 5
+                        "_useResourceType": "HP",
+                        "_useNum": 5,
+                        "_targetResourceType": "HP",
+                        "_attackRate": 3.0
                     },
                     "_serchId": "superAttack"
                 },
@@ -26,9 +27,10 @@
                     "_data": {
                         "_skillName": "全体攻撃テスト",
                         "_target": "ENEMY_ALL",
-                        "_rowRate": 1000,
-                        "_resourceType": "SP",
-                        "_useNum": 5
+                        "_useResourceType": "SP",
+                        "_useNum": 5,
+                        "_targetResourceType": "HP",
+                        "_attackRate": 10.0
                     },
                     "_serchId": "allAtack_test"
                 },
@@ -36,9 +38,10 @@
                     "_data": {
                         "_skillName": "仲間攻撃テスト",
                         "_target": "FRIEND_SOLO",
-                        "_rowRate": 500,
-                        "_resourceType": "NONE",
-                        "_useNum": 0
+                        "_useResourceType": "NONE",
+                        "_useNum": 0,
+                        "_targetResourceType": "HP",
+                        "_attackRate": 5.0
                     },
                     "_serchId": "self_test"
                 },
@@ -46,11 +49,23 @@
                     "_data": {
                         "_skillName": "SP使用テスト",
                         "_target": "ENEMY_ALL",
-                        "_rowRate": 1000,
-                        "_resourceType": "SP",
-                        "_useNum": 5
+                        "_useResourceType": "SP",
+                        "_useNum": 5,
+                        "_targetResourceType": "HP",
+                        "_attackRate": 10.0
                     },
                     "_serchId": "spTest"
+                },
+                {
+                    "_data": {
+                        "_skillName": "SP回復テスト",
+                        "_target": "SELF",
+                        "_useResourceType": "NONE",
+                        "_useNum": 0,
+                        "_targetResourceType": "SP",
+                        "_attackRate": 0.5
+                    },
+                    "_serchId": "cureSP"
                 }
             ],
             "_serchId": "kou",

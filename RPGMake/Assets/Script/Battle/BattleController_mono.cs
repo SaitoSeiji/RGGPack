@@ -108,6 +108,11 @@ public class BattleController
             _battleAction_end?.Invoke(_player._nowHp <= 0);
             return;
         }
+        //死亡したキャラをはじく
+        while (!_battleCharQueue.Peek().IsAlive())
+        {
+            _battleCharQueue.Dequeue();
+        }
 
         foreach (var enemy in _enemys)
         {
@@ -164,7 +169,7 @@ public class BattleController
     {
         var next = _player;
         var command = next.GetCommand(commandName);
-        var bur = new Battle_useResource(command._resourceType,command._useNum, next);
+        var bur = new Battle_useResource(command._useResourceType,command._useNum, next);
         return bur.IsUseable();
     }
 
@@ -183,31 +188,37 @@ public class BattleController
         //スキルリソース使用処理
         if (isPlayer) {
             var pl = (PlayerChar)next;
-            bur = new Battle_useResource(command._resourceType, command._useNum, pl);
+            bur = new Battle_useResource(command._useResourceType, command._useNum, pl);
             if (!bur.IsUseable()) return;
             bur.Use();
         }
         //対象を決める
-        var ct= new Battle_targetDicide(command._target,next,GetFriend(next), GetEnemy(next));
-        var targetPool = ct.GetTargetPool();
-        var inputTarget = GetInputCommandTarget(next,ct);
-        List<BattleChar> targets=ct.SelectTarget(targetPool,inputTarget);
+        var btd= new Battle_targetDicide(command._target,next,GetFriend(next), GetEnemy(next));
+        var targetPool = btd.GetTargetPool();
+        var inputTarget = GetInputCommandTarget(next,btd);
+        List<BattleChar> targets=btd.SelectTarget(targetPool,inputTarget);
         //スキルの効果を発動する
         foreach (var target in targets)
         {
-            if (ct._IsCure)
-            {
-                var cure = attack;
-                target.SetCure(cure);
-                _battleAction_cure?.Invoke(target._myCharData, cure);
-            }
-            else
-            {
-                var damage = target.CalcDamage(attack);
-                target.SetDamage(damage);
-                _battleAction_damage?.Invoke(target._myCharData, damage);
-                if (!target.IsAlive()) _battleAction_defeat?.Invoke(target._myCharData);
-            }
+            var btr =new Battle_targetResource(command._TargetResourceType,attack,target,btd._IsCure);
+            var actNum= btr.Action();
+            if (btd._IsCure) _battleAction_cure?.Invoke(target._myCharData, actNum);
+            else _battleAction_damage?.Invoke(target._myCharData, actNum);
+            if (!target.IsAlive()) _battleAction_defeat?.Invoke(target._myCharData);
+
+            //if (btd._IsCure)
+            //{
+            //    var cure = attack;
+            //    target.SetCure(cure);
+            //    _battleAction_cure?.Invoke(target._myCharData, cure);
+            //}
+            //else
+            //{
+            //    var damage = target.CalcDamage(attack);
+            //    target.SetDamage(damage);
+            //    _battleAction_damage?.Invoke(target._myCharData, damage);
+            //    if (!target.IsAlive()) _battleAction_defeat?.Invoke(target._myCharData);
+            //}
         }
         _battleAction_endTurn?.Invoke();
         _battleCharQueue.Enqueue(next);

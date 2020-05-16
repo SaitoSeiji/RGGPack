@@ -1,17 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CommandEnums;
 
 //攻撃するときに使用するものについての処理
 public class Battle_useResource
 {
     //key は　resource
-    public enum ResourceType
-    {
-        NONE=0,
-        SP=1,
-        HP=2,
-    }
+    
     ResourceType _myResourceType;
     int _useNum;
     PlayerChar _myPl;

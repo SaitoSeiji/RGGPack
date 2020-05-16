@@ -16,6 +16,7 @@ MonoBehaviour:
   _data:
     _skillName: "\u653B\u6483"
     _target: 4
-    _rowRate: 100
-    _resourceType: 0
+    _useResourceType: 0
     _useNum: 0
+    _targetResourceType: 2
+    _attackRate: 1

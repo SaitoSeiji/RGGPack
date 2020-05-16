@@ -13,7 +13,7 @@ public class SavedDBData_char:SavedDBData
     [SerializeField] public int _attack;
     [SerializeField] public int _guard;
     [SerializeField] public Sprite _charImage;
-    public List<SkillDBData> _mySkillList = new List<SkillDBData>();
+    public List<SkillDBData> _mySkillList = new List<SkillDBData>();//重複を許さないのでハッシュセットにできるならいい　でもinspectorでいじれない？
 
     public SavedDBData_char()
     {

@@ -25,6 +25,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 17f9fcc2d391d48418a3215c65177961, type: 2}
     - {fileID: 11400000, guid: 950bf96417454944ca6fbf9694f26157, type: 2}
     - {fileID: 11400000, guid: a74baab7d04ed5641a3818f8d861b3e8, type: 2}
+    - {fileID: 11400000, guid: 2da99d606c5a58345a04e33de92d0505, type: 2}
     _spMax: 20
     _spNow: 20
     _hpNow: 40
@@ -33,3 +34,4 @@ MonoBehaviour:
   - allAtack_test
   - self_test
   - spTest
+  - cureSP
