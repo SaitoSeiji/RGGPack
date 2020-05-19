@@ -5,6 +5,7 @@ using UnityEngine;
 public class EventDataOperater_mono : MonoBehaviour
 {
     [SerializeField, HideInInspector] TextAsset _readText;
+    [SerializeField] bool isTest;
     [SerializeField] EventDB eventDb;
     
 
@@ -12,7 +13,8 @@ public class EventDataOperater_mono : MonoBehaviour
     public void SyncDatabyTxt()
     {
         var txt = DBIO.TrimType(_readText.text);
-        EventDataOperater.SyncDataByTxt(eventDb, txt.replaced, _readText.name);
+        var path =(isTest)? $"Test/{_readText.name}":$"Product/{_readText.name}";
+        EventDataOperater.SyncDataByTxt(eventDb, txt.replaced,path );
     }
 
     //public void SetReadFileName(string fileName)

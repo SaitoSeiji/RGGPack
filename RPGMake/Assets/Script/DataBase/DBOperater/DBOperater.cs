@@ -258,13 +258,15 @@ public class DBOperater<T,K>:IEnable_initDB
     //    AssetDatabase.Refresh();
     //    DebugMessage_success("Update");
     //}
-    public void SyncDataByTxt(TextAsset textAsset)
+    public void SyncDataByTxt(TextAsset textAsset,string parentDir)
     {
-        if (!DBIO.CheckDir(DBIO.CreateAssetDirectoryPath(textAsset.name)))
+        string path = $"{parentDir}/{textAsset.name}";
+        if (!DBIO.CheckDir(DBIO.CreateAssetDirectoryPath(path)))
         {
-            DBIO.CreateDir(DBIO.CreateAssetDirectoryPath(textAsset.name));
+            DBIO.CreateDir(DBIO.CreateAssetDirectoryPath(path));
         }
         
+
         var textDataList = DBListCreator.CreateDBListBytxt(DBIO.TrimType(textAsset.text).replaced);
         var assetDBList = _database.GetDataList(this);
         //txtに書いてないものを削除
@@ -283,7 +285,7 @@ public class DBOperater<T,K>:IEnable_initDB
             if (target == null)
             {
                 target = AbstractDBData.GetInstance<T>();
-                AssetDatabase.CreateAsset(target,DBIO.CreateSavePath_asset(textAsset.name,data._serchId));
+                AssetDatabase.CreateAsset(target,DBIO.CreateSavePath_asset(path,data._serchId));
                 assetDBList.Add(target);
             }
             target.UpdateMember(data);

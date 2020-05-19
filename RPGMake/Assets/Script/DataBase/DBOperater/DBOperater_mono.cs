@@ -10,6 +10,7 @@ public class DBOperater_mono : MonoBehaviour
     //現在一時利用停止中
     [SerializeField, Space(10),HideInInspector] string oldName;
     [SerializeField, HideInInspector] TempDBData _data;
+    [SerializeField] bool istest;
     #region static
     static System.Type JudgeDBType(string  type)
     {
@@ -32,6 +33,11 @@ public class DBOperater_mono : MonoBehaviour
         }
     }
     #endregion
+
+    string GetDirPath()
+    {
+        return (istest)? "Test":"Product";
+    }
 
     AbstractDB GetDB(System.Type type)
     {
@@ -122,32 +128,32 @@ public class DBOperater_mono : MonoBehaviour
         if (type == typeof(ItemDB))
         {
             var op = new DBOperater<ItemDBData, ItemDB>(db as ItemDB);
-            op.SyncDataByTxt(_readFile);
+            op.SyncDataByTxt(_readFile, GetDirPath());
         }
         else if (type == typeof(FlagDB))
         {
             var op = new DBOperater<FlagDBData, FlagDB>(db as FlagDB);
-            op.SyncDataByTxt(_readFile);
+            op.SyncDataByTxt(_readFile, GetDirPath());
         }
         else if (type == typeof(SkillDB))
         {
             var op = new DBOperater<SkillDBData, SkillDB>(db as SkillDB);
-            op.SyncDataByTxt(_readFile);
+            op.SyncDataByTxt(_readFile, GetDirPath());
         }
         else if (type == typeof(CharcterDB))
         {
             var op = new DBOperater<CharcterDBData, CharcterDB>(db as CharcterDB);
-            op.SyncDataByTxt(_readFile);
+            op.SyncDataByTxt(_readFile,GetDirPath());
         }
         else if (type == typeof(PlayerDB))
         {
             var op = new DBOperater<PlayerDBData, PlayerDB>(db as PlayerDB);
-            op.SyncDataByTxt(_readFile);
+            op.SyncDataByTxt(_readFile, GetDirPath());
         }
         else if (type == typeof(EnemySetDB))
         {
             var op = new DBOperater<EnemySetDBData, EnemySetDB>(db as EnemySetDB);
-            op.SyncDataByTxt(_readFile);
+            op.SyncDataByTxt(_readFile, GetDirPath());
         }
     }
 
