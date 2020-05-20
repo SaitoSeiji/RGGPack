@@ -10,17 +10,19 @@ public class TextData_updater : MonoBehaviour
 {
     [SerializeField,HideInInspector] DBOperater_mono _dbOperater;
     [SerializeField,HideInInspector] EventDataOperater_mono _eventOperater;
-    
-    [SerializeField]List<TextAsset> _dataBaseText = new List<TextAsset>();
-    [SerializeField] TextAsset _eventDataText;
 
-    public void DataUpdate_ev()
+    [SerializeField] DBOperratorSetting _settingData;
+    List<TextAsset> _dataBaseText { get { return _settingData._DataBaseTextList; } }
+    TextAsset _eventDataText { get { return _settingData._EventDataText; } }
+
+
+    void DataUpdate_ev()
     {
         _eventOperater.SetReadFile(_eventDataText);
         _eventOperater.SyncDatabyTxt();
     }
 
-    public void DataUpdate_db()
+    void DataUpdate_db()
     {
         foreach (var data in _dataBaseText)
         {
@@ -46,6 +48,20 @@ public class TextData_updater : MonoBehaviour
             _eventOperater = FindObjectOfType<EventDataOperater_mono>();
         }
     }
+
+    void UpdateSetting()
+    {
+        _dbOperater.SetSettingObject(_settingData);
+        _eventOperater.SetSettingObject(_settingData);
+        GameController_setting.SetUpGameController(_settingData);
+    }
+    
+    [ContextMenu("resetDB")]
+    void ResetDB()
+    {
+        _settingData.ResetDataBase();
+    }
+    
 #if UNITY_EDITOR
     [CustomEditor(typeof(TextData_updater))]
     public class TextData_updater_editor : Editor
@@ -59,6 +75,10 @@ public class TextData_updater : MonoBehaviour
                 script.Init();
                 script.DataUpdate_db();
                 script.DataUpdate_ev();
+            }else if (GUILayout.Button("updateSetting"))
+            {
+                script.Init();
+                script.UpdateSetting();
             }
         }
     }

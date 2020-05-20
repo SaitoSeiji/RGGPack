@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class AudioController : SingletonMonoBehaviour<AudioController>
 {
-    [SerializeField] AudioDataBase _data;
+    AudioDataBase _audioDataBase { get {return ResourceDB_mono.Instance._audioDB; } }
     [SerializeField] AudioSource source;
     [SerializeField] float _fadeTime;
     public void SetSound(AudioClip ac)
@@ -14,7 +14,7 @@ public class AudioController : SingletonMonoBehaviour<AudioController>
     }
     public void SetSound(string setName,int key)
     {
-        ChengeSound(_data.GetData(setName,key));
+        ChengeSound(_audioDataBase.GetData(setName,key));
     }
     
     public void PlaySE(AudioClip ac)
@@ -24,7 +24,7 @@ public class AudioController : SingletonMonoBehaviour<AudioController>
 
     public void PlaySE(string setName,int key)
     {
-        source.PlayOneShot(_data.GetData(setName,key));
+        source.PlayOneShot(_audioDataBase.GetData(setName,key));
     }
 
     public void StopSound()

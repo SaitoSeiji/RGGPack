@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7702df95de9856d41b673166eff311e6, type: 3}
+  m_Name: testevent
+  m_EditorClassIdentifier: 
+  _codeData:
+    _text: '$
+
+      text22
+
+      text2
+
+      $'
+    _nextEventName: 
+    _nextEventCode: {fileID: 0}
+    coalTerm:
+      _termList:
+      - _id: id
+        _memberSet:
+        - memberName: memeber
+          data: 1
+          _hikaku: 2
+      - _id: flagId
+        _memberSet:
+        - memberName: flagNum
+          data: 0
+          _hikaku: 3
+      - _id: itemId
+        _memberSet:
+        - memberName: haveNum
+          data: 1
+          _hikaku: 1
+      _orMode: 1
+  _nextEventNameList:
+  - moveToClass
+  - door_class
+  _nextEventList:
+  - {fileID: 11400000, guid: 33d8b3918253a9c428e8182644cdb3b0, type: 2}
+  - {fileID: 11400000, guid: 53345ed66502dc84b9278d0a05de8139, type: 2}

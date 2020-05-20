@@ -1,12 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class EventDataOperater_mono : MonoBehaviour
 {
     [SerializeField, HideInInspector] TextAsset _readText;
-    [SerializeField] bool isTest;
-    [SerializeField] EventDB eventDb;
+    [SerializeField] DBOperratorSetting _mySetting;
+     bool isTest { get { return _mySetting._IsTest; } }
+    public EventDB _EventDb { get { return _mySetting._EventDb; } }
     
 
     [ContextMenu("SyncDatabyTxt")]
@@ -14,7 +16,7 @@ public class EventDataOperater_mono : MonoBehaviour
     {
         var txt = DBIO.TrimType(_readText.text);
         var path =(isTest)? $"Test/{_readText.name}":$"Product/{_readText.name}";
-        EventDataOperater.SyncDataByTxt(eventDb, txt.replaced,path );
+        EventDataOperater.SyncDataByTxt(_EventDb, txt.replaced,path );
     }
 
     //public void SetReadFileName(string fileName)
@@ -25,4 +27,13 @@ public class EventDataOperater_mono : MonoBehaviour
     {
         _readText = text;
     }
+
+#if UNITY_EDITOR
+    public void SetSettingObject(DBOperratorSetting setting)
+    {
+        _mySetting = setting;
+        Debug.Log($"{gameObject.name}:setting updated");
+        EditorUtility.SetDirty(this);
+    }
+#endif
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+
 public class EventController : SingletonMonoBehaviour<EventController>
 {
     [SerializeField] EventDB _eventDataBase;
@@ -31,4 +32,12 @@ public class EventController : SingletonMonoBehaviour<EventController>
     {
         return _eventDataBase._scriptableList.Where(x => x.name == id).FirstOrDefault();
     }
+
+    //editorのみ
+#if UNITY_EDITOR
+    public void SetEventDataBase(EventDB db)
+    {
+        _eventDataBase = db;
+    }
+#endif
 }

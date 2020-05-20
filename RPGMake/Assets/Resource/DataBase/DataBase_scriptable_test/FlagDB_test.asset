@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37cee416af16798418f08820f68f6566, type: 3}
+  m_Name: FlagDB_test
+  m_EditorClassIdentifier: 
+  _dataList:
+  - {fileID: 11400000, guid: 06c278bce7b7a974e877f09ad00a5041, type: 2}
+  - {fileID: 11400000, guid: c9eba0856549ba74588971a2b6806886, type: 2}
+  - {fileID: 11400000, guid: 9390a941346310e4caaeb76e7851c82f, type: 2}
+  - {fileID: 11400000, guid: ad71ef20086156340a2c55381a111d17, type: 2}
+  - {fileID: 11400000, guid: a026f86e428efb145ae335419d84ce01, type: 2}
+  - {fileID: 11400000, guid: 325c8322041926e4f848a57b20a0582a, type: 2}

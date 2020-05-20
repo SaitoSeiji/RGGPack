@@ -45,14 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc30f0796fd79f14fba3c8a8b9b09e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _readFile: {fileID: 4900000, guid: 0e2a6fc2cf9c21b46896b5f094e06bb5, type: 3}
-  _dataBaseList:
-  - {fileID: 11400000, guid: 374bc57b483dd5248bcc4d62cbb99b8c, type: 2}
-  - {fileID: 11400000, guid: ac3c42e6064ff244f971701bf4c10548, type: 2}
-  - {fileID: 11400000, guid: c44e2068d1133ee4f9507936f567d6be, type: 2}
-  - {fileID: 11400000, guid: 971aaf577dec9064b8a5cab7803eaaa5, type: 2}
-  - {fileID: 11400000, guid: 89ca1c374992c1b468534aca36be8370, type: 2}
-  - {fileID: 11400000, guid: 52a826e3df6265845936553a43e61b4d, type: 2}
+  _mySettting: {fileID: 11400000, guid: 58581d713af24b249968842346537436, type: 2}
+  _readFile: {fileID: 4900000, guid: 70a120b6187d4c340839c180616570a5, type: 3}
   oldName: 
   _data:
     _serchId: 
@@ -69,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _readText: {fileID: 4900000, guid: 5f7ad3af02a7d6f4fa8847ec56ba0805, type: 3}
-  eventDb: {fileID: 11400000, guid: c32eff852fba8844397d0fcf0176a52e, type: 2}
+  _mySetting: {fileID: 11400000, guid: 58581d713af24b249968842346537436, type: 2}
 --- !u!114 &1156514040800366301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,11 +78,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dbOperater: {fileID: 1156514040800366302}
   _eventOperater: {fileID: 1156514040800366303}
-  _dataBaseText:
-  - {fileID: 4900000, guid: 2e994465b77b49144a82a8d58323682f, type: 3}
-  - {fileID: 4900000, guid: 84f2e903fd19e2f4eaac96855024af62, type: 3}
-  - {fileID: 4900000, guid: 90990309b3f449843af2105d68c8e167, type: 3}
-  - {fileID: 4900000, guid: d82b1f9edac29aa49be88bc4a1605f25, type: 3}
-  - {fileID: 4900000, guid: 0e2a6fc2cf9c21b46896b5f094e06bb5, type: 3}
-  - {fileID: 4900000, guid: 70a120b6187d4c340839c180616570a5, type: 3}
-  _eventDataText: {fileID: 4900000, guid: 5f7ad3af02a7d6f4fa8847ec56ba0805, type: 3}
+  _settingData: {fileID: 11400000, guid: 58581d713af24b249968842346537436, type: 2}

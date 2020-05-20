@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e371111b269e049ac0140ab142ecd8, type: 3}
+  m_Name: kou
+  m_EditorClassIdentifier: 
+  _serchId: kou
+  _charData:
+    _serchId: kou
+    _name: "\u30B3\u30A6"
+    _hpMax: 40
+    _attack: 5
+    _guard: 5
+    _charImage: {fileID: 0}
+    _mySkillList:
+    - {fileID: 11400000, guid: a191c04c92deffa43b050521afc7a77e, type: 2}
+    - {fileID: 11400000, guid: 44397260edf7e4b4e8e37c31c2ce997a, type: 2}
+    - {fileID: 11400000, guid: 4f93cb9cef2ba6d42808cf590cecccb2, type: 2}
+    - {fileID: 11400000, guid: 3fc51a4031e19a943bc38137e811361d, type: 2}
+    - {fileID: 11400000, guid: ee3cb058932b4014dbb5eb499b09cc54, type: 2}
+    _spMax: 20
+    _spNow: 20
+    _hpNow: 40
+  _skillNameSet:
+  - superAttack
+  - allAtack_test
+  - self_test
+  - spTest
+  - cureSP

@@ -73,6 +73,7 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
                 return db as T;
             }
         }
+        Debug.LogError($"db is not foung : type{typeof(T)}");
         return null;
     }
     #endregion
@@ -135,6 +136,12 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
     public List<string> GetKeySet_editorOnly()
     {
         return _saveDataList.Keys.ToList();
+    }
+
+    public void SetDB_editorOnly(List<StaticDB> db_static,List<VariableDB> db_variable)
+    {
+        _staticDbList = db_static;
+        _variableDbList = db_variable;
     }
     #endregion
 }
