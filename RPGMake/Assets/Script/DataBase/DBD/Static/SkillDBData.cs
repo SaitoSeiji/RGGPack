@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using CommandEnums;
+using RPGEnums;
 
 [System.Serializable]
 public class SkillCommandData

@@ -1,0 +1,26 @@
+{
+    "saveList": [
+        {
+            "_haveItemList": [
+                {
+                    "_itemData": {
+                        "_data": {
+                            "_displayName": "テスト1",
+                            "_explanation": "データの登録テストです",
+                            "_targetType": "ENEMY_SOLO",
+                            "_targetResource": "NONE",
+                            "_effectNum": 50,
+                            "_itemImage": {
+                                
+                            }
+                        },
+                        "_serchId": "test1"
+                    },
+                    "haveNum": 5
+                }
+            ],
+            "_serchId": "default",
+            "$type": "SavedDBData_party"
+        }
+    ]
+}

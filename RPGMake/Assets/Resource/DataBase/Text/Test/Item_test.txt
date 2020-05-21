@@ -4,4 +4,8 @@ id: test1
 	explanation データの登録テストです
 	maxNum 20
 	haveNum 1
+	useScene 0
+	targetType 4
+	targetResource 0
+	effectNum 50
 end

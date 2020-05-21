@@ -10,7 +10,7 @@ public class SaveDataLookInspector : MonoBehaviour
 {
     [SerializeField]List<SavedDBData_player> _savedata_pl;
     [SerializeField]List<SavedDBData_flag> _savedata_flag;
-    [SerializeField]List<SavedDBData_item> _savedata_item;
+    [SerializeField]SavedDBData_party _savedata_party;
     [SerializeField] Dictionary<string, List<SavedDBData>> _saveDataList = new Dictionary<string, List<SavedDBData>>();//<dbName,dataList>
     bool synced = false;
     [ContextMenu("sync")]
@@ -19,7 +19,7 @@ public class SaveDataLookInspector : MonoBehaviour
         synced = true;
         _savedata_pl = SaveDataController.Instance.GetDB_var<PlayerDB, SavedDBData_player>();
         _savedata_flag = SaveDataController.Instance.GetDB_var<FlagDB, SavedDBData_flag>();
-        _savedata_item = SaveDataController.Instance.GetDB_var<ItemDB, SavedDBData_item>();
+        _savedata_party = SaveDataController.Instance.GetDB_var<PartyDB, SavedDBData_party>()[0];
     }
 
     void Sync_to()
@@ -27,7 +27,7 @@ public class SaveDataLookInspector : MonoBehaviour
         if (!synced) return;
         SaveDataController.Instance.SetSaveDataList_editorOnly<PlayerDB>(_savedata_pl.Select(x=>x as SavedDBData).ToList());
         SaveDataController.Instance.SetSaveDataList_editorOnly<FlagDB>(_savedata_flag.Select(x=>x as SavedDBData).ToList());
-        SaveDataController.Instance.SetSaveDataList_editorOnly<ItemDB>(_savedata_item.Select(x=>x as SavedDBData).ToList());
+        SaveDataController.Instance.SetData<PartyDB, SavedDBData_party>(_savedata_party);
     }
     #if UNITY_EDITOR
     [CustomEditor(typeof(SaveDataLookInspector))]

@@ -1,4 +1,4 @@
-﻿using CommandEnums;
+﻿using RPGEnums;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

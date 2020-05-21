@@ -1,0 +1,6 @@
+﻿Type(Party)
+id: default
+	haveItem{
+		test1 1
+	}
+end

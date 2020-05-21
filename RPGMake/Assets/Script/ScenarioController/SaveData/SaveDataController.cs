@@ -84,6 +84,7 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
         {
             JsonSaver.SaveAction<SavedDBData>(data.Value,data.Key);
         }
+        Debug.Log("saved");
     }
 
     public void LoadAction()

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CommandEnums;
+using RPGEnums;
 
 public static class BattleCommandDataFormatter
 {

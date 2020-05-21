@@ -9,7 +9,7 @@ public class Test_uiScript : AbstractUIScript_button
 
     protected override List<ButtonData> CreateMyButtonData()
     {
-        var db = SaveDataController.Instance.GetDB_var<ItemDB,SavedDBData_item>();
+        var db = SaveDataController.Instance.GetDB_var<PartyDB,SavedDBData_party>();
         var result = new List<ButtonData>();
         foreach (var data in db)
         {

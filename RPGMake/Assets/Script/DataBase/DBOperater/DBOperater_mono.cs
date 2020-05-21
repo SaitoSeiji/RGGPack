@@ -20,16 +20,18 @@ public class DBOperater_mono : MonoBehaviour
     {
         switch (type)
         {
-            case "Item":
-                return typeof(ItemDB);
+            case "Player":
+                return typeof(PlayerDB);
             case "Flag":
                 return typeof(FlagDB);
+            case "Party":
+                return typeof(PartyDB);
+            case "Item":
+                return typeof(ItemDB);
             case "Skill":
                 return typeof(SkillDB);
             case "Charcter":
                 return typeof(CharcterDB);
-            case "Player":
-                return typeof(PlayerDB);
             case "EnemySet":
                 return typeof(EnemySetDB);
             default:
@@ -154,6 +156,11 @@ public class DBOperater_mono : MonoBehaviour
             var op = new DBOperater<PlayerDBData, PlayerDB>(db as PlayerDB);
             op.SyncDataByTxt(_readFile, GetDirPath());
         }
+        else if (type == typeof(PartyDB))
+        {
+            var op = new DBOperater<PartyDBData, PartyDB>(db as PartyDB);
+            op.SyncDataByTxt(_readFile, GetDirPath());
+        }
         else if (type == typeof(EnemySetDB))
         {
             var op = new DBOperater<EnemySetDBData, EnemySetDB>(db as EnemySetDB);
@@ -189,6 +196,11 @@ public class DBOperater_mono : MonoBehaviour
         else if (type == typeof(PlayerDB))
         {
             var op = new DBOperater<PlayerDBData, PlayerDB>(db as PlayerDB);
+            op.RateUpdate();
+        }
+        else if (type == typeof(PartyDB))
+        {
+            var op = new DBOperater<PartyDBData, PartyDB>(db as PartyDB);
             op.RateUpdate();
         }
         else if (type == typeof(EnemySetDB))

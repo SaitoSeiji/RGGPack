@@ -35,19 +35,19 @@ public class EventCodeScriptablesTerm
     {
         if (_termList == null || _termList.Count == 0) return true;
         var db_flag = SaveDataController.Instance.GetDB_var<FlagDB, SavedDBData_flag>();
-        var db_item = SaveDataController.Instance.GetDB_var<ItemDB, SavedDBData_item>();
+        var db_item = SaveDataController.Instance.GetDB_var<PartyDB, SavedDBData_party>()[0];
         foreach (var coalTerm in _termList)
         {
             //var checkData = SaveDataController.Instance.GetData<FlagDB>(coalTerm);
             var check = db_flag.Where(x => x._serchId == coalTerm._id).FirstOrDefault();
-            SavedDBData_item check2=null;
+            int check2=0;
             if (check == null)
             {
-                check2 = db_item.Where(x => x._serchId == coalTerm._id).FirstOrDefault();
+                check2 = db_item.GetHaveItemNum(coalTerm._id);
             }
-            if (check == null&&check2==null) return false;
+            if (check == null&&check2==0) return false;
 
-            int checkData = (check != null) ? check.flagNum : check2._haveNum;
+            int checkData = (check != null) ? check.flagNum : check2;
 
             int checkedData = coalTerm._memberSet[0].data;
             if (_orMode)

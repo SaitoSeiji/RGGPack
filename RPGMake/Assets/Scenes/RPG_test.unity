@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da753f9d34cd53741a508ec169389332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventData: {fileID: 0}
+  _eventData: {fileID: 11400000, guid: 33d8b3918253a9c428e8182644cdb3b0, type: 2}
   _eventDataId: moveToClass
 --- !u!4 &474430234
 Transform:
@@ -488,6 +488,67 @@ PrefabInstance:
       propertyPath: firstEvent
       value: 
       objectReference: {fileID: 474430233}
+    - target: {fileID: 221977414699323473, guid: fd2c1dd96ab564442bac0e48be0b722d,
+        type: 3}
+      propertyPath: _staticDbList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 221977414699323473, guid: fd2c1dd96ab564442bac0e48be0b722d,
+        type: 3}
+      propertyPath: _staticDbList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: ac3c42e6064ff244f971701bf4c10548,
+        type: 2}
+    - target: {fileID: 221977414699323473, guid: fd2c1dd96ab564442bac0e48be0b722d,
+        type: 3}
+      propertyPath: _staticDbList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 971aaf577dec9064b8a5cab7803eaaa5,
+        type: 2}
+    - target: {fileID: 221977414699323473, guid: fd2c1dd96ab564442bac0e48be0b722d,
+        type: 3}
+      propertyPath: _staticDbList.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 89ca1c374992c1b468534aca36be8370,
+        type: 2}
+    - target: {fileID: 221977414699323473, guid: fd2c1dd96ab564442bac0e48be0b722d,
+        type: 3}
+      propertyPath: _staticDbList.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: c44e2068d1133ee4f9507936f567d6be,
+        type: 2}
+    - target: {fileID: 221977414699323473, guid: fd2c1dd96ab564442bac0e48be0b722d,
+        type: 3}
+      propertyPath: _variableDbList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 52a826e3df6265845936553a43e61b4d,
+        type: 2}
+    - target: {fileID: 221977414699323473, guid: fd2c1dd96ab564442bac0e48be0b722d,
+        type: 3}
+      propertyPath: _variableDbList.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: d2a53ba54fe3d0d4ba6f1a64b3ecff2d,
+        type: 2}
+    - target: {fileID: 7884714404386365228, guid: fd2c1dd96ab564442bac0e48be0b722d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157059912695508790, guid: fd2c1dd96ab564442bac0e48be0b722d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104370432688920172, guid: fd2c1dd96ab564442bac0e48be0b722d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3562868019391529490, guid: fd2c1dd96ab564442bac0e48be0b722d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd2c1dd96ab564442bac0e48be0b722d, type: 3}
 --- !u!1001 &1156514041223965669
@@ -704,6 +765,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416967837125699867, guid: 4117ac9ac7c0dd54aa106fcc51e3330c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UIBase, myScript
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416967837157140544, guid: 4117ac9ac7c0dd54aa106fcc51e3330c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UIBase, myScript
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952213230587072451, guid: 4117ac9ac7c0dd54aa106fcc51e3330c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UIBase, myScript
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952213231384248944, guid: 4117ac9ac7c0dd54aa106fcc51e3330c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UIBase, myScript
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4117ac9ac7c0dd54aa106fcc51e3330c, type: 3}
