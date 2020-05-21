@@ -5,7 +5,7 @@ using System.Linq;
 
 public class MapController : SingletonMonoBehaviour<MapController>
 {
-    [SerializeField] MapDataBase _mapData;
+    MapDataBase _mapData { get { return ResourceDB_mono.Instance._mapDB; } }
     MapData_mono _nowMapObject;
     LoadCanvas _loadCanvas;
 
@@ -81,7 +81,7 @@ public class MapController : SingletonMonoBehaviour<MapController>
         _nextMapName = mapName;
         _mapChengeNow = true;
     }
-
+    
 
     [SerializeField] string testMapName;
     [ContextMenu("chengeMap")]

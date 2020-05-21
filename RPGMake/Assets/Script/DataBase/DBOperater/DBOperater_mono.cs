@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class DBOperater_mono : MonoBehaviour
 {
+    [SerializeField] DBOperratorSetting _mySettting;
     [SerializeField, HideInInspector] TextAsset _readFile;
-    [SerializeField] List<AbstractDB> _dataBaseList=new List<AbstractDB>();
+    List<AbstractDB> _dataBaseList { get { return _mySettting._DataBaseList; } }
     //現在一時利用停止中
     [SerializeField, Space(10),HideInInspector] string oldName;
     [SerializeField, HideInInspector] TempDBData _data;
-    [SerializeField] bool istest;
+     bool istest { get { return _mySettting._IsTest; } }
     #region static
     static System.Type JudgeDBType(string  type)
     {
@@ -216,4 +220,12 @@ public class DBOperater_mono : MonoBehaviour
     {
         _readFile = text;
     }
+#if UNITY_EDITOR
+    public void SetSettingObject(DBOperratorSetting setting)
+    {
+        _mySettting = setting;
+        Debug.Log($"{gameObject.name}:setting updated");
+        EditorUtility.SetDirty(this);
+    }
+#endif
 }

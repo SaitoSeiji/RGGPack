@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using System;
 
 [System.Serializable]
 public class SavedDBData_char:SavedDBData
@@ -55,8 +56,17 @@ public static class Partial_CharcterDBData
         charData._mySkillList = new List<SkillDBData>();
         foreach (var skill in skillNameSet)
         {
-            var data = db._dataList.Where(x => x.name == skill).First();
-            charData._mySkillList.Add(data);
+            try
+            {
+                var data = db._dataList.Where(x => x.name == skill).First();
+                charData._mySkillList.Add(data);
+            }
+            catch(Exception e)
+            {
+                Debug.LogError($"charName is {charData._serchId}\n" +
+                    $"skillName is {skill}:\n" +
+                    $"{e}");
+            }
         }
     }
 }

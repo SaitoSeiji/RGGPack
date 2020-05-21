@@ -9,7 +9,7 @@ public class SpriteCanvas : SingletonMonoBehaviour<SpriteCanvas>
     [SerializeField] Image image_left;
     [SerializeField] Image image_right;
     [SerializeField] Image image_back;
-    [SerializeField] SpriteDataBase _dataBase;
+    SpriteDataBase _dataBase { get { return ResourceDB_mono.Instance._imageDB; } }
     [SerializeField] Sprite clearImage;
     #region setImage
     public void SetImage(string spName,int spIndex,ImageCode.ImagePos pos)

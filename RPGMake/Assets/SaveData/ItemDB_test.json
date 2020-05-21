@@ -5,9 +5,7 @@
             "_maxNum": 20,
             "_haveNum": 1,
             "_explanation": "データの登録テストです",
-            "_itemImage": {
-                
-            },
+            "_itemImage": null,
             "_serchId": "test1",
             "$type": "SavedDBData_item"
         }
