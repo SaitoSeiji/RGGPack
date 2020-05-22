@@ -24,31 +24,53 @@ public class SavedDBData_party : SavedDBData
 
     [SerializeField] public List<PartyItemData> _haveItemList = new List<PartyItemData>();
 
-    public void ChengeItemNum(string key,int num)
+    public void ChengeItemNum(string key, int num)
     {
         try
         {
-
             var target = SaveDataController.Instance.GetDB_static<ItemDB>()._dataList.Where(x => x._serchId == key).First();
-            if (_haveItemList.Where(x=>x._itemData==target).FirstOrDefault()==null)
+            if (_haveItemList.Where(x => x._itemData._serchId == target._serchId).FirstOrDefault() == null)
             {
-                _haveItemList.Add(new PartyItemData(target,0));
+                _haveItemList.Add(new PartyItemData(target, 0));
             }
             _haveItemList.ForEach(x => {
-                if (x._itemData == target)
+                if (x._itemData._serchId == target._serchId)
                 {
                     x.haveNum += num;
                     x.haveNum = Mathf.Clamp(x.haveNum, 0, 100);
                 }
             });
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             Debug.LogError($"item key is not exist :{key}\n" +
                 $"{e}");
         }
     }
-    
+    public void ChengeItemNum(ItemData data, int num)
+    {
+        try
+        {
+            var target = SaveDataController.Instance.GetDB_static<ItemDB>()._dataList.Where(x => x._data._displayName == data._displayName).First();
+            if (_haveItemList.Where(x => x._itemData._serchId == target._serchId).FirstOrDefault() == null)
+            {
+                _haveItemList.Add(new PartyItemData(target, 0));
+            }
+            _haveItemList.ForEach(x => {
+                if (x._itemData._serchId == target._serchId)
+                {
+                    x.haveNum += num;
+                    x.haveNum = Mathf.Clamp(x.haveNum, 0, 100);
+                }
+            });
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"item key is not exist :{data._displayName}\n" +
+                $"{e}");
+        }
+    }
+
     public int GetHaveItemNum(string key)
     {
         var target = SaveDataController.Instance.GetDB_static<ItemDB>()._dataList.Where(x => x._serchId == key).First();

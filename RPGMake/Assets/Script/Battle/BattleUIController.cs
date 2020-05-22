@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using DBDInterface;
 
 public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
 {
@@ -48,7 +49,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     List<string> _displayText;
     BattleController _battle { get {return BattleController_mono.Instance.battle; } }
 
-    string temp_command;
+    ICommandData temp_command;
     string temp_target;
     Queue<Action> _uiActionQueue=new Queue<Action>();
     
@@ -162,7 +163,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         }
     }
     
-    public void EndCommand(string command,string target,UIBase coalSelf)
+    public void EndCommand(ICommandData command,string target,UIBase coalSelf)
     {
         temp_command = command;
         temp_target = target;
@@ -234,6 +235,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         battle._battleAction_encount = EncountAction;
         battle._battleAction_waitInput = () =>{_uiActionQueue.Enqueue(()=> ChengeUIState(BattleUIState.WaitInput));};
         battle._battleAction_command = CommandAction;
+        battle._battleAction_item = ItemAction;
         battle._battleAction_damage = DamageAction;
         battle._battleAction_cure = CureAction;
         battle._battleAction_defeat = DefeatAction;
@@ -265,6 +267,13 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
             _battlelogText = string.Format("{0}の{1}\n", user._name, skilldata._skillName);
             var target = GetParamDisplayer(user);
             target.SyncDisply();
+        });
+    }
+    void ItemAction(SavedDBData_char user, ItemData itemdata)
+    {
+        _uiActionQueue.Enqueue(() =>
+        {
+            _battlelogText = string.Format("{0}は{1}を使った\n", user._name, itemdata._displayName);
         });
     }
 

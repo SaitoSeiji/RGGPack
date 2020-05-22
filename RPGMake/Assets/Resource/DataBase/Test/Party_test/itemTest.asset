@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bac3018df1fb5c444bc1a15452bc5ded, type: 3}
-  m_Name: default
+  m_Name: itemTest
   m_EditorClassIdentifier: 
-  _serchId: default
+  _serchId: itemTest
   _partyData:
-    _serchId: default
+    _serchId: itemTest
     _haveItemList:
     - _itemData: {fileID: 11400000, guid: 3e536c234660e674f87262841cef26dd, type: 2}
-      haveNum: 1
+      haveNum: 5
     - _itemData: {fileID: 11400000, guid: 4ac9f83151865814c9c83f753a5399fb, type: 2}
-      haveNum: 1
+      haveNum: 5
     - _itemData: {fileID: 11400000, guid: ee152d759e273fe4badc292303d3f4f4, type: 2}
-      haveNum: 1
+      haveNum: 5
   _haveItemKeyList:
-  - cureTest 1
-  - cureSpTest 1
-  - attackTest 1
+  - cureTest 5
+  - cureSpTest 5
+  - attackTest 5

@@ -46,7 +46,7 @@ public class SelectSkillScript : AbstractUIScript_button
 
     void ClickNextUIEvent(SkillDBData data)
     {
-        var ct = BattleController_mono.Instance.battle.GetCommantTarget(data._Data._skillName);
+        var ct = BattleController_mono.Instance.battle.GetCommandTargetDicide(data._Data);
         //対象選択をする場合
         if (ct.IsInputSelect())
         {
@@ -55,7 +55,7 @@ public class SelectSkillScript : AbstractUIScript_button
         }
         else//しない場合
         {
-            BattleUIController.Instance.EndCommand(data._Data._skillName, null, _MyUIBase);
+            BattleUIController.Instance.EndCommand(data._Data, null, _MyUIBase);
         }
     }
 

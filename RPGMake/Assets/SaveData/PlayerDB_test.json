@@ -2,8 +2,8 @@
     "saveList": [
         {
             "_spMax": 20,
-            "_spNow": 15,
-            "_hpNow": 40,
+            "_spNow": 20,
+            "_hpNow": 39,
             "_name": "コウ",
             "_hpMax": 40,
             "_attack": 5,
@@ -66,17 +66,6 @@
                         "_attackRate": 0.5
                     },
                     "_serchId": "cureSP"
-                },
-                {
-                    "_data": {
-                        "_skillName": "スキル習得テスト",
-                        "_target": "ENEMY_ALL",
-                        "_useResourceType": "SP",
-                        "_useNum": 5,
-                        "_targetResourceType": "HP",
-                        "_attackRate": 10.0
-                    },
-                    "_serchId": "addTest"
                 }
             ],
             "_serchId": "kou",

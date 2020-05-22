@@ -1,6 +1,13 @@
 ﻿Type(Party)
 id: default
 	haveItem{
-		test1 1
+		cureTest 1
+		cureSpTest 1
+		attackTest 1
 	}
-end
+id: itemTest
+	haveItem{
+		cureTest 5
+		cureSpTest 5
+		attackTest 5
+	}

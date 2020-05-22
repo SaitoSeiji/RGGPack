@@ -43,18 +43,8 @@ public class BattleChar
     }
     #endregion
     #region attack
-    public int SelectAttack(string name)
+    public int CalcurateAttack(float rate)
     {
-        float rate = -1;
-        var targetSkill = _myCharData._mySkillList.Where(x => x._Data._skillName == name).FirstOrDefault();
-        if (targetSkill != null)
-        {
-            rate = targetSkill._Data._AttackRate;
-        }
-        else
-        {
-            rate = 1.0f;
-        }
         return (int)(_myCharData._attack * rate);
     }
 

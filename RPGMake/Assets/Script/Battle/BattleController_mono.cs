@@ -3,22 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using DBDInterface;
 
 public class BattleController
 {
+    public enum BattleState
+    {
+        WaitInput,
+        TurnAction,
+        PrepareNextTurn,
+        BattleEnd
+    }
+    BattleState _battleState;
+
     public PlayerChar _player { get; private set; }
     public List<EnemyChar> _enemys { get; private set; } = new List<EnemyChar>();
     Queue<BattleChar> _battleCharQueue = new Queue<BattleChar>();
 
     public bool _waitInput { get; private set; } = false;
     
-    (string command, BattleChar target) _charInput=("",null);
-
+    (ICommandData command, BattleChar target) _charInput=(null,null);
+    
     #region callback
     //_battleAction_command～battleAction_endTurnまでを一つにまとめたい
     public Action _battleAction_encount;
     public Action _battleAction_waitInput;
     public Action<SavedDBData_char, SkillCommandData> _battleAction_command;
+    public Action<SavedDBData_char, ItemData> _battleAction_item;
     public Action<SavedDBData_char,int> _battleAction_damage;
     public Action<SavedDBData_char,int> _battleAction_cure;
     public Action<SavedDBData_char> _battleAction_defeat;
@@ -39,6 +50,7 @@ public class BattleController
             _player.AddRaival(ene);
         }
         _battleCharQueue = SetFirstQueue();
+        _battleState = BattleState.WaitInput;
     }
 
     public void StartBattle()
@@ -89,6 +101,7 @@ public class BattleController
         return "";
     }
     #endregion
+    #region 戦闘ロジック
     Queue<BattleChar> SetFirstQueue()
     {
         var result = new Queue<BattleChar>();
@@ -99,13 +112,38 @@ public class BattleController
         }
         return result;
     }
+    
+    //入力を受け取る
+    void GetInput()
+    {
+        //敵の場合はここで入力を作成
+        if (!(_battleCharQueue.Peek() is PlayerChar))
+        {
+            var next = _battleCharQueue.Peek();
+            var command = next.SelectCommand_auto() as ICommandData;
+            var target = next.SelectTargetAuto();
+            _charInput = (command, target);
+        }
+    }
 
+    //戦闘ロジックの実行
+    void TurnAct()
+    {
+        if (_waitInput || IsEnd()) return;
+        //次に動くキャラを決める
+        var next = _battleCharQueue.Peek();
+        CommandCallBack(_charInput.command, next);
+        var strategy = CommandStrategy.GetStrategy(_charInput.command);
+        strategy.TurnAction(next, _charInput.target, _charInput.command, this);
+
+        _battleAction_endTurn?.Invoke();
+        _battleCharQueue.Dequeue();
+        _battleCharQueue.Enqueue(next);
+    }
     void PrepareNextTurn()
     {
-        _charInput = (null, null);
         if (IsEnd())
         {
-            _battleAction_end?.Invoke(_player._nowHp <= 0);
             return;
         }
         //死亡したキャラをはじく
@@ -121,12 +159,14 @@ public class BattleController
                 _player.RemoveRaival(enemy);
             }
         }
+
         if (_battleCharQueue.Peek() is PlayerChar)
         {
             _waitInput = true;
             _battleAction_waitInput?.Invoke();
         }
     }
+    #endregion
     #region 対象選択用
     List<BattleChar> GetFriend(BattleChar target)
     {
@@ -139,13 +179,24 @@ public class BattleController
         else return new List<BattleChar>() { _player };
     }
     //スキルの対象を決める
-    BattleChar GetInputCommandTarget(BattleChar user, Battle_targetDicide ct)
-    {
-        if (!ct.IsInputSelect()) return null;
-        if (_charInput.target != null) return _charInput.target;
-        else return user.SelectTargetAuto();
-    }
+    //BattleChar GetInputCommandTarget(BattleChar user, Battle_targetDicide ct)
+    //{
+    //    if (!ct.IsInputSelect()) return null;
+    //    if (_charInput.target != null) return _charInput.target;
+    //    else return user.SelectTargetAuto();
+    //}
     #endregion
+
+    void CommandCallBack(ICommandData icommand,BattleChar target)
+    {
+        if(icommand is SkillCommandData)
+        {
+            _battleAction_command?.Invoke(target._myCharData,icommand as SkillCommandData);
+        }else if(icommand is ItemData)
+        {
+            _battleAction_item?.Invoke(target._myCharData, icommand as ItemData);
+        }
+    }
     #endregion
     #region public
     public bool IsEnd()
@@ -157,12 +208,11 @@ public class BattleController
         }
         return true;
     }
-
-    public Battle_targetDicide GetCommantTarget(string commandName)
+    public Battle_targetDicide GetCommandTargetDicide(ICommandData targetIntarface)
     {
         var next = _battleCharQueue.Peek();
-        var command = next.GetCommand(commandName);
-        return new Battle_targetDicide(command._target, next, GetFriend(next), GetEnemy(next));
+        var commandData = targetIntarface.GetCommandData();
+        return new Battle_targetDicide(commandData._target, next, GetFriend(next), GetEnemy(next));
     }
 
     public bool CommandUseable(string commandName)
@@ -173,63 +223,34 @@ public class BattleController
         return bur.IsUseable();
     }
 
-
-    public void TurnAct()
-    {
-        if (_waitInput||IsEnd()) return;
-        //次に動くキャラを決める
-        var next = _battleCharQueue.Dequeue();
-        //使用するコマンドを決める
-        SkillCommandData command= next.GetCommand(_charInput.command);
-        int attack = next.SelectAttack(command._skillName);
-        _battleAction_command?.Invoke(next._myCharData, command);
-        bool isPlayer = next is PlayerChar;
-        Battle_useResource bur = null;
-        //スキルリソース使用処理
-        if (isPlayer) {
-            var pl = (PlayerChar)next;
-            bur = new Battle_useResource(command._useResourceType, command._useNum, pl);
-            if (!bur.IsUseable()) return;
-            bur.Use();
-        }
-        //対象を決める
-        var btd= new Battle_targetDicide(command._target,next,GetFriend(next), GetEnemy(next));
-        var targetPool = btd.GetTargetPool();
-        var inputTarget = GetInputCommandTarget(next,btd);
-        List<BattleChar> targets=btd.SelectTarget(targetPool,inputTarget);
-        //スキルの効果を発動する
-        foreach (var target in targets)
-        {
-            var btr =new Battle_targetResource(command._TargetResourceType,attack,target,btd._IsCure);
-            var actNum= btr.Action();
-            if (btd._IsCure) _battleAction_cure?.Invoke(target._myCharData, actNum);
-            else _battleAction_damage?.Invoke(target._myCharData, actNum);
-            if (!target.IsAlive()) _battleAction_defeat?.Invoke(target._myCharData);
-
-            //if (btd._IsCure)
-            //{
-            //    var cure = attack;
-            //    target.SetCure(cure);
-            //    _battleAction_cure?.Invoke(target._myCharData, cure);
-            //}
-            //else
-            //{
-            //    var damage = target.CalcDamage(attack);
-            //    target.SetDamage(damage);
-            //    _battleAction_damage?.Invoke(target._myCharData, damage);
-            //    if (!target.IsAlive()) _battleAction_defeat?.Invoke(target._myCharData);
-            //}
-        }
-        _battleAction_endTurn?.Invoke();
-        _battleCharQueue.Enqueue(next);
-        PrepareNextTurn();
-    }
-
-    public void SetCharInput(string charName,string command)
+    public void SetCharInput(string charName,ICommandData command)
     {
         var target = _battleCharQueue.Where(x => x._myCharData._name == charName).FirstOrDefault();
         _charInput = (command, target);
         _waitInput = false;
+    }
+
+    public void Battle()
+    {
+        if(IsEnd()) _battleState = BattleState.BattleEnd;
+        switch (_battleState)
+        {
+            case BattleState.WaitInput:
+                GetInput();
+                _battleState = BattleState.TurnAction;
+                break;
+            case BattleState.TurnAction:
+                TurnAct();
+                _battleState = BattleState.PrepareNextTurn;
+                break;
+            case BattleState.PrepareNextTurn:
+                PrepareNextTurn();
+                _battleState = BattleState.WaitInput;
+                break;
+            case BattleState.BattleEnd:
+                _battleAction_end?.Invoke(_player._nowHp <= 0);
+                break;
+        }
     }
     #endregion
 }
@@ -243,7 +264,7 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
     public BattleController battle { get; private set; }
     //PlayerCharData _playerCharData;
 
-    public void SetCharInput(string target,string skill)
+    public void SetCharInput(string target,ICommandData skill)
     {
         battle.SetCharInput(target, skill);
     }
@@ -257,7 +278,7 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
         }
         else
         {
-            battle.TurnAct();
+            battle.Battle();
         }
     }
     #region get
