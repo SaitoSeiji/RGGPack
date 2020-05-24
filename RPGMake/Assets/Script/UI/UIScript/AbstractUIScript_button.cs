@@ -11,8 +11,11 @@ public class ButtonData
 {
     public string _buttonText;
     public UnityEvent _onClickAction = new UnityEvent();
-    public Action _cursorAction;
+    public Action _cursorAction;//選択肢にカーソルがあった時のアクション
     public bool isActive=true;
+
+    public Sprite _buttonImage;
+    public string _additonalText;
 
     public ButtonData(string _text, UnityEvent _onclick)
     {
@@ -38,13 +41,13 @@ public class ButtonData
 public abstract class AbstractUIScript_button : AbstractUIScript
 {
     
-    [SerializeField] Button _buttonPrefab;
+    [SerializeField] ButtonUnitDisplayer _buttonPrefab;
     [SerializeField] int _buttonDisplayRange;
     [SerializeField,NonEditable] int _buttonRangeStartIndex;//表示範囲の始まり this=4 なら4～の_buttonDataListを表示
     [SerializeField,NonEditable] int _nowSelectButtonIndex;
 
     List<ButtonData> _buttonDataList = new List<ButtonData>();
-    List<GameObject> _addButtonList = new List<GameObject>();
+    List<GameObject> _displayButtonList = new List<GameObject>();//gameObjectで持っている方が扱いやすい
     RectTransform _myPanel { get { return _MyUIBase._myPanel; } }
     ButtonController _myButtonController { get { return _MyUIBase._myButtonController; } }
 
@@ -109,37 +112,38 @@ public abstract class AbstractUIScript_button : AbstractUIScript
         {
             if (_buttonDataList.Count <= i + _buttonRangeStartIndex) break;
             var targetData = _buttonDataList[i + _buttonRangeStartIndex];
-            var bt = AddButton(targetData._buttonText);
 
-            if(targetData.isActive) bt.onClick.AddListener(() => targetData._onClickAction.Invoke());
-            else DisActive(bt);
+            var bt = CreateButton();
+            //if (targetData.isActive) bt.onClick.AddListener(() => targetData._onClickAction.Invoke());
+            //else DisActive(bt);
+            bt.SetDisplayData(targetData._buttonText, targetData._additonalText, targetData._buttonImage);
+            if (targetData.isActive) bt.SetOnClick(targetData._onClickAction);
+            else bt.SetButtonColors(targetData.isActive);
         }
     }
 
-    private void DisActive(Button bt)
-    {
-        var colors = bt.colors;
-        colors.normalColor = bt.colors.disabledColor;
-        colors.selectedColor = (colors.disabledColor + colors.selectedColor) / 2;
-        bt.colors = colors;
-    }
+    //private void DisActive(Button bt)
+    //{
+    //    var colors = bt.colors;
+    //    colors.normalColor = bt.colors.disabledColor;
+    //    colors.selectedColor = (colors.disabledColor + colors.selectedColor) / 2;
+    //    bt.colors = colors;
+    //}
 
-    Button AddButton(string text)
+    ButtonUnitDisplayer CreateButton()
     {
         var add = Instantiate(_buttonPrefab, _myPanel);
-        var addText = add.GetComponentInChildren<Text>();
-        addText.text = text;
-        _addButtonList.Add(add.gameObject);
+        _displayButtonList.Add(add.gameObject);
         return add;
     }
 
     void ResetButton()
     {
-        foreach (var bt in _addButtonList)
+        foreach (var bt in _displayButtonList)
         {
             Destroy(bt.gameObject);
         }
-        _addButtonList = new List<GameObject>();
+        _displayButtonList = new List<GameObject>();
     }
     #endregion
     #region index関連
@@ -147,7 +151,7 @@ public abstract class AbstractUIScript_button : AbstractUIScript
     void ButtonIndexUpdate()
     {
         _nowSelectButtonIndex = GetCurrentButtonIndex();
-        if (_addButtonList.Count <= 0 || !_myButtonController._InputEnable) return;
+        if (_displayButtonList.Count <= 0 || !_myButtonController._InputEnable) return;
 
         float tate = Input.GetAxisRaw("Vertical");
         if (tate == 0) return;
@@ -166,9 +170,9 @@ public abstract class AbstractUIScript_button : AbstractUIScript
     int GetCurrentButtonIndex()
     {
         var select = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
-        if (_addButtonList.Contains(select))
+        if (_displayButtonList.Contains(select))
         {
-            return _addButtonList.IndexOf(select);
+            return _displayButtonList.IndexOf(select);
         }
         return _nowSelectButtonIndex;
     }
@@ -176,15 +180,15 @@ public abstract class AbstractUIScript_button : AbstractUIScript
     void SetSelectButton()
     {
         //選択ボタンの設定
-        if (_addButtonList.Count > 0)
+        if (_displayButtonList.Count > 0)
         {
-            if (_nowSelectButtonIndex < _addButtonList.Count)
+            if (_nowSelectButtonIndex < _displayButtonList.Count)
             {
-                _myButtonController.SetSelectButton(_addButtonList[_nowSelectButtonIndex].gameObject);
+                _myButtonController.SetSelectButton(_displayButtonList[_nowSelectButtonIndex].gameObject);
             }
             else
             {
-                _myButtonController.SetSelectButton(_addButtonList[0].gameObject);
+                _myButtonController.SetSelectButton(_displayButtonList[0].gameObject);
             }
         }
     }
@@ -204,7 +208,7 @@ public abstract class AbstractUIScript_button : AbstractUIScript
 
     void CursorAction(GameObject cursor)
     {
-        var index = _addButtonList.IndexOf(cursor);
+        var index = _displayButtonList.IndexOf(cursor);
         if (index >= 0)
         {
             var targetIndex = _buttonRangeStartIndex+index;

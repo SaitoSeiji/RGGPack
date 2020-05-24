@@ -46,10 +46,11 @@ public class SelectSkillScript : AbstractUIScript_button
 
     void ClickNextUIEvent(SkillDBData data)
     {
-        var ct = BattleController_mono.Instance.battle.GetCommandTargetDicide(data._Data);
+        //var ct = BattleController_mono.Instance.battle.GetTargetPool(data._Data);
         //対象選択をする場合
-        if (ct.IsInputSelect())
-        {
+        //if (ct.IsInputSelect())
+        if (Battle_targetDicide.IsInputSelect(data._Data._target))
+            {
             UIController.Instance.SetFlashData("command", data);
             _MyUIBase.AddUI(_targetSelectUI);
         }
@@ -64,7 +65,7 @@ public class SelectSkillScript : AbstractUIScript_button
         Action ue = () =>
         {
             _textPannel.SetActive(true);
-            var information = BattleCommandDataFormatter.Format(data._Data);
+            var information = BattleCommandDataFormatter.Format(data._Data,data._Data._skillName);
             setumeiText.text =information;
         };
         return ue;

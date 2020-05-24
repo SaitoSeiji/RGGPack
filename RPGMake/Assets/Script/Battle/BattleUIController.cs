@@ -236,9 +236,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         battle._battleAction_waitInput = () =>{_uiActionQueue.Enqueue(()=> ChengeUIState(BattleUIState.WaitInput));};
         battle._battleAction_command = CommandAction;
         battle._battleAction_item = ItemAction;
-        battle._battleAction_damage = DamageAction;
-        battle._battleAction_cure = CureAction;
-        battle._battleAction_defeat = DefeatAction;
+        battle._battleAction_attack = AttackAction;
         battle._battleAction_endTurn = EndTurnAction;
         battle._battleAction_end = EndBattleAction;
     }
@@ -277,58 +275,26 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         });
     }
 
-
-    void DamageAction(SavedDBData_char chars, int damage)
+    void AttackAction(bool isCure,bool isDefeat,SavedDBData_char target, int damage)
     {
         _uiActionQueue.Enqueue(() =>
         {
-            _battlelogText += string.Format("{0}は{1}のダメージ<{0}0>を受けた\n", chars._name, damage);
-            string charname = chars._name.Clone().ToString();
-            _battleTextDisplayer.AddTextAction(chars._name + "0", () =>
-              {
-                  //対象のcharにdamageActionするだけ
-                  var target = GetParamDisplayer(chars);
-                  if (target != null)
-                  {
+            //テキストの追加
+            if (isCure) _battlelogText += $"{target._name}は{damage}回復<{target._name}0>\n";
+            else _battlelogText += $"{target._name}は{damage}のダメージ<{target._name}0>を受けた\n";
+            if(isDefeat) _battlelogText += $"{target._name}は倒れた<{target._name}1>\n";
 
-                      target.SyncDisply();
-                      target.DamageAction();
-                  }
-              });
-
-        });
-    }
-
-    void CureAction(SavedDBData_char chars, int damage)
-    {
-        _uiActionQueue.Enqueue(() =>
-        {
-            _battlelogText += string.Format("{0}は{1}回復<{0}1>\n", chars._name, damage);
-            _battleTextDisplayer.AddTextAction(chars._name + "1", () =>
-            {
-                var target = GetParamDisplayer(chars);
-                if(target!=null) target.SyncDisply();
+            //表示の更新
+            var targetDisp = GetParamDisplayer(target);
+            if (targetDisp == null) return;
+            _battleTextDisplayer.AddTextAction(target._name + "0",()=> {
+                targetDisp.SyncDisply();
+                if (!isCure) targetDisp.DamageAction();
             });
-        });
-    }
-
-    void DefeatAction(SavedDBData_char chars)
-    {
-        _uiActionQueue.Enqueue(() =>
-        {
-            if (chars == null) return;
-            _battlelogText += string.Format("{0}は倒れた<{0}2>\n", chars._name);
-            _battleTextDisplayer.AddTextAction(chars._name + "2", () =>
-              {
-            //対象のcharにDeadActionするだけ
-            if (chars._name == _playerParam._mycharData._myCharData._name) _playerParam.DeadAction();
-                  else
-                  {
-                      var target = _enemyParams.Where(x => x._mycharData != null
-                      && chars.Equals(x._mycharData._myCharData)).FirstOrDefault();
-                      if (target != null) target.DeadAction();
-                  }
-              });
+            _battleTextDisplayer.AddTextAction(target._name + "1", () =>
+            {
+                targetDisp.DeadAction();
+            });
         });
     }
 

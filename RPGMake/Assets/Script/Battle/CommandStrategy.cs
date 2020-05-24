@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DBDInterface;
+using RPGEnums;
+using System;
 
 public abstract class CommandStrategy
 {
@@ -19,21 +21,26 @@ public abstract class CommandStrategy
         return null;
     }
 
-    public void TurnAction(BattleChar user,BattleChar inputTarget, ICommandData icommand, BattleController bt)
+    //引数多すぎてよくわからなくなる
+    public void TurnAction(BattleChar user,BattleChar inputTarget, ICommandData icommand
+        , Action<bool, bool, SavedDBData_char, int> damageAction=null
+        , List<BattleChar> friends=null,List<BattleChar> enemys=null)
     {
         var command = icommand.GetCommandData();
         UseResource(user, icommand);
 
         var effectNum = CalcEffectNum(user, command);
-        var btd = bt.GetCommandTargetDicide(icommand);
-        var targetPool = btd.GetTargetPool();
-        var targetList = btd.SelectTarget(targetPool, inputTarget);
-
-        TrrigerEffect(effectNum, command, targetList, btd._IsCure, bt);
+        var targetPool = Battle_targetDicide.GetTargetPool(command._target,user,friends,enemys);
+        var targetList = Battle_targetDicide.SelectTarget(command._target,targetPool, inputTarget);
+        
+        TrrigerEffect(effectNum, command, targetList,
+            CommandEnumAction.IsCure(command._target)
+            , damageAction);
     }
 
     protected abstract void UseResource(BattleChar user, ICommandData command);
-    protected abstract void TrrigerEffect(int attack, CommandData command, List<BattleChar> targetList, bool isCure, BattleController bt);
+    protected abstract void TrrigerEffect(int attack, CommandData command, List<BattleChar> targetList, bool isCure,
+        Action<bool, bool, SavedDBData_char, int> damageAction);
     protected abstract int CalcEffectNum(BattleChar user, CommandData command);
 }
 
@@ -53,7 +60,7 @@ public class SkillStrategy : CommandStrategy
         }
     }
 
-    protected override void TrrigerEffect(int attack, CommandData command, List<BattleChar> targetList, bool isCure, BattleController bt)
+    protected override void TrrigerEffect(int attack, CommandData command, List<BattleChar> targetList, bool isCure, Action<bool, bool, SavedDBData_char, int> damageAction)
     {
         foreach (var target in targetList)
         {
@@ -61,9 +68,7 @@ public class SkillStrategy : CommandStrategy
             var actNum = btr.Action();
 
             //コールバックをこっちで呼んでるのはよくなさそう
-            if (isCure) bt._battleAction_cure?.Invoke(target._myCharData, actNum);
-            else bt._battleAction_damage?.Invoke(target._myCharData, actNum);
-            if (!target.IsAlive()) bt._battleAction_defeat?.Invoke(target._myCharData);
+            damageAction?.Invoke(isCure,!target.IsAlive(),target._myCharData,actNum);
         }
     }
 
@@ -87,17 +92,13 @@ public class ItemStrategy : CommandStrategy
         return (int) command._effectNum;
     }
 
-    protected override void TrrigerEffect(int attack, CommandData command, List<BattleChar> targetList, bool isCure, BattleController bt)
+    protected override void TrrigerEffect(int attack, CommandData command, List<BattleChar> targetList, bool isCure, Action<bool, bool, SavedDBData_char, int> damageAction)
     {
         foreach (var target in targetList)
         {
             var btr = new Battle_targetResource(command._targetResourceType, attack, target, isCure);
             var actNum = btr.Action();
-
-            //コールバックをこっちで呼んでるのはよくなさそう
-            if (isCure) bt._battleAction_cure?.Invoke(target._myCharData, actNum);
-            else bt._battleAction_damage?.Invoke(target._myCharData, actNum);
-            if (!target.IsAlive()) bt._battleAction_defeat?.Invoke(target._myCharData);
+            damageAction?.Invoke(isCure, !target.IsAlive(), target._myCharData, actNum);
         }
     }
 }

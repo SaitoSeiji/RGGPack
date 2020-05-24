@@ -30,13 +30,10 @@ public class BattleController
     public Action _battleAction_waitInput;
     public Action<SavedDBData_char, SkillCommandData> _battleAction_command;
     public Action<SavedDBData_char, ItemData> _battleAction_item;
-    public Action<SavedDBData_char,int> _battleAction_damage;
-    public Action<SavedDBData_char,int> _battleAction_cure;
-    public Action<SavedDBData_char> _battleAction_defeat;
+    public Action<bool, bool, SavedDBData_char, int> _battleAction_attack;//(isCure,isDefeat,target,actNum)
     public Action _battleAction_endTurn;
     public Action<bool> _battleAction_end;
     #endregion
-
 
     public BattleController(SavedDBData_player player,List<SavedDBData_char> enemy)
     {
@@ -134,7 +131,8 @@ public class BattleController
         var next = _battleCharQueue.Peek();
         CommandCallBack(_charInput.command, next);
         var strategy = CommandStrategy.GetStrategy(_charInput.command);
-        strategy.TurnAction(next, _charInput.target, _charInput.command, this);
+        strategy.TurnAction(next, _charInput.target, _charInput.command, _battleAction_attack,
+            GetFriend(next),GetEnemy(next));
 
         _battleAction_endTurn?.Invoke();
         _battleCharQueue.Dequeue();
@@ -178,6 +176,11 @@ public class BattleController
         if (target == _player) return _enemys.Select(x => (BattleChar)x).ToList();
         else return new List<BattleChar>() { _player };
     }
+
+    BattleChar GetNext()
+    {
+        return _battleCharQueue.Peek();
+    }
     //スキルの対象を決める
     //BattleChar GetInputCommandTarget(BattleChar user, Battle_targetDicide ct)
     //{
@@ -208,11 +211,11 @@ public class BattleController
         }
         return true;
     }
-    public Battle_targetDicide GetCommandTargetDicide(ICommandData targetIntarface)
+    public List<BattleChar> GetTargetPool(ICommandData targetIntarface)
     {
         var next = _battleCharQueue.Peek();
         var commandData = targetIntarface.GetCommandData();
-        return new Battle_targetDicide(commandData._target, next, GetFriend(next), GetEnemy(next));
+        return Battle_targetDicide.GetTargetPool(commandData._target, next, GetFriend(next), GetEnemy(next));
     }
 
     public bool CommandUseable(string commandName)

@@ -25,7 +25,8 @@ public class SelectItemTargetScript : AbstractUIScript_button
 
     protected override List<ButtonData> CreateMyButtonData()
     {
-        var targetPool = BattleController_mono.Instance.battle.GetCommandTargetDicide(GetMyItemData()._data).GetTargetPool();
+        //var targetPool = BattleController_mono.Instance.battle.GetTargetPool(GetMyItemData()._data).GetTargetPool();
+        var targetPool = BattleController_mono.Instance.battle.GetTargetPool(GetMyItemData()._data);
         var result = new List<ButtonData>();
         foreach (var target in targetPool)
         {

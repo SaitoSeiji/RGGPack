@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using RPGEnums;
+using DBDInterface;
 
 public static class BattleCommandDataFormatter
 {
-    public static string Format(SkillCommandData data)
+    public static string Format(ICommandData idata,string beforeText)
     {
+        var data = idata.GetCommandData();
         string result = "";
-        result = $"{data._skillName}\n" +
+        result = $"{beforeText}\n" +
             $"対象:{CommandEnumAction.Target2String(data._target)}\n" +
             $"消費:{CommandEnumAction.Resource2String(data._useResourceType)} {ConverUseNum(data._useNum)}\n" +
             $"効果:{ConvertEffect(data)}";
@@ -21,10 +23,10 @@ public static class BattleCommandDataFormatter
         return "-";
     }
 
-    static string ConvertEffect(SkillCommandData data)
+    static string ConvertEffect(CommandData data)
     {
         bool iscure = CommandEnumAction.IsCure(data._target);
-        switch (data._TargetResourceType)
+        switch (data._targetResourceType)
         {
             case ResourceType.HP:
                 if (iscure)  return "対象を回復";

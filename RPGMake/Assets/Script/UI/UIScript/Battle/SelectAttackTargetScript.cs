@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class SelectAttackTargetScript : AbstractUIScript_button
 {
     
-    SkillCommandData GetSkillName()
+    SkillCommandData GetSkillData()
     {
         //使用するスキル名を取得
         var data = UIController.Instance.GetFlashData_static("command") as SkillDBData;
@@ -19,8 +19,9 @@ public class SelectAttackTargetScript : AbstractUIScript_button
 
     protected override List<ButtonData> CreateMyButtonData()
     {
-        var commandData = GetSkillName();
-        var dataList = BattleController_mono.Instance.battle.GetCommandTargetDicide(commandData).GetTargetPool();
+        var commandData = GetSkillData();
+        //var dataList = BattleController_mono.Instance.battle.GetCommandTargetDicide(commandData).GetTargetPool();
+        var dataList = BattleController_mono.Instance.battle.GetTargetPool(commandData);
         var resultList = new List<ButtonData>();
         foreach(var data in dataList)
         {

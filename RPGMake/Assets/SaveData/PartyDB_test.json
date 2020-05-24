@@ -52,22 +52,6 @@
                         "$id": "13"
                     },
                     "haveNum": 1
-                },
-                {
-                    "_itemData": {
-                        "_data": {
-                            "_displayName": "ボム＿テスト",
-                            "_explanation": "敵全体に小ダメージ",
-                            "_targetType": "ENEMY_ALL",
-                            "_targetResource": "HP",
-                            "_effectNum": 20,
-                            "_itemImage": {
-                                
-                            }
-                        },
-                        "_serchId": "attackTest"
-                    },
-                    "haveNum": 0
                 }
             ],
             "_serchId": "default",
