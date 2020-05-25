@@ -36,8 +36,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     [SerializeField] UIBase _textUI;
     [SerializeField] TextDisplayer _battleTextDisplayer;
 
-    [SerializeField,Space] PlayerParamDisplay _playerParam;
-    [SerializeField] List<EnemyParamDisplay> _enemyParams;
+    [SerializeField, Space(10)] ChracterFieldDisplayer _charParamDisplyer;
     public UIBase _BaseUI
     {
         get
@@ -221,14 +220,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     public void SetUpCharData()
     {
         _nowUIState = BattleUIState.NoUI;
-        _playerParam.SetChar( BattleController_mono.Instance.battle._player);
-        _playerParam.Activate();
-        var enemys = BattleController_mono.Instance.battle._enemys;
-        for (int i = 0; i < enemys.Count; i++)
-        {
-            _enemyParams[i].SetChar(enemys[i]);
-            _enemyParams[i].Activate();
-        }
+        _charParamDisplyer.SetData(BattleController_mono.Instance.battle._charcterField);
     }
     public void SetUpBattleDelegate(BattleController battle)
     {
@@ -263,7 +255,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         _uiActionQueue.Enqueue(() =>
         {
             _battlelogText = string.Format("{0}の{1}\n", user._name, skilldata._skillName);
-            var target = GetParamDisplayer(user);
+            var target = _charParamDisplyer.GetParamDisplayer(user);
             target.SyncDisply();
         });
     }
@@ -285,7 +277,8 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
             if(isDefeat) _battlelogText += $"{target._name}は倒れた<{target._name}1>\n";
 
             //表示の更新
-            var targetDisp = GetParamDisplayer(target);
+            var targetDisp = _charParamDisplyer.GetParamDisplayer(target);
+
             if (targetDisp == null) return;
             _battleTextDisplayer.AddTextAction(target._name + "0",()=> {
                 targetDisp.SyncDisply();
@@ -327,21 +320,5 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         });
     }
     #endregion
-
-    AbstractParamDisplay GetParamDisplayer(SavedDBData_char chars)
-    {
-        string charname = chars._name;
-        if (charname == _playerParam._mycharData._myCharData._name)
-        {
-            return _playerParam;
-        }
-        else
-        {
-            var target = _enemyParams.Where(
-                x => x._mycharData != null
-                && charname == x._mycharData._myCharData._name).FirstOrDefault();
-
-            return target;
-        }
-    }
+    
 }

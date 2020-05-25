@@ -23,13 +23,15 @@ public class SelectSkillScript : AbstractUIScript_button
     
     protected override List<ButtonData> CreateMyButtonData()
     {
-        var useAbleSkillList = BattleController_mono.Instance.GetSkillList();
+        //var useAbleSkillList = BattleController_mono.Instance.GetSkillList();
+        var pl = BattleController_mono.Instance.battle._charcterField._playerList[0];
+        var useAbleSkillList = pl._myCharData._mySkillList;
         var resultList = new List<ButtonData>();
         foreach (var data in useAbleSkillList)
         {
             var add = new ButtonData(data._Data._skillName, CreateClickEvent(data), CreateCursorEvent(data));
             resultList.Add(add);
-            var btr =new Battle_useResource(data._Data._useResourceType,data._Data._useNum,BattleController_mono.Instance.battle._player);
+            var btr =new Battle_useResource(data._Data._useResourceType,data._Data._useNum,pl);
             add.SetIsActive(btr.IsUseable());
         }
         return resultList;
