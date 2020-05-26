@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using DBDInterface;
 
 public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
 {
@@ -35,8 +36,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     [SerializeField] UIBase _textUI;
     [SerializeField] TextDisplayer _battleTextDisplayer;
 
-    [SerializeField,Space] PlayerParamDisplay _playerParam;
-    [SerializeField] List<EnemyParamDisplay> _enemyParams;
+    [SerializeField, Space(10)] ChracterFieldDisplayer _charParamDisplyer;
     public UIBase _BaseUI
     {
         get
@@ -48,7 +48,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     List<string> _displayText;
     BattleController _battle { get {return BattleController_mono.Instance.battle; } }
 
-    string temp_command;
+    ICommandData temp_command;
     string temp_target;
     Queue<Action> _uiActionQueue=new Queue<Action>();
     
@@ -162,7 +162,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         }
     }
     
-    public void EndCommand(string command,string target,UIBase coalSelf)
+    public void EndCommand(ICommandData command,string target,UIBase coalSelf)
     {
         temp_command = command;
         temp_target = target;
@@ -220,23 +220,15 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     public void SetUpCharData()
     {
         _nowUIState = BattleUIState.NoUI;
-        _playerParam.SetChar( BattleController_mono.Instance.battle._player);
-        _playerParam.Activate();
-        var enemys = BattleController_mono.Instance.battle._enemys;
-        for (int i = 0; i < enemys.Count; i++)
-        {
-            _enemyParams[i].SetChar(enemys[i]);
-            _enemyParams[i].Activate();
-        }
+        _charParamDisplyer.SetData(BattleController_mono.Instance.battle._charcterField);
     }
     public void SetUpBattleDelegate(BattleController battle)
     {
         battle._battleAction_encount = EncountAction;
         battle._battleAction_waitInput = () =>{_uiActionQueue.Enqueue(()=> ChengeUIState(BattleUIState.WaitInput));};
         battle._battleAction_command = CommandAction;
-        battle._battleAction_damage = DamageAction;
-        battle._battleAction_cure = CureAction;
-        battle._battleAction_defeat = DefeatAction;
+        battle._battleAction_item = ItemAction;
+        battle._battleAction_attack = AttackAction;
         battle._battleAction_endTurn = EndTurnAction;
         battle._battleAction_end = EndBattleAction;
     }
@@ -263,63 +255,39 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         _uiActionQueue.Enqueue(() =>
         {
             _battlelogText = string.Format("{0}の{1}\n", user._name, skilldata._skillName);
-            var target = GetParamDisplayer(user);
+            var target = _charParamDisplyer.GetParamDisplayer(user);
             target.SyncDisply();
         });
     }
-
-
-    void DamageAction(SavedDBData_char chars, int damage)
+    void ItemAction(SavedDBData_char user, ItemData itemdata)
     {
         _uiActionQueue.Enqueue(() =>
         {
-            _battlelogText += string.Format("{0}は{1}のダメージ<{0}0>を受けた\n", chars._name, damage);
-            string charname = chars._name.Clone().ToString();
-            _battleTextDisplayer.AddTextAction(chars._name + "0", () =>
-              {
-                  //対象のcharにdamageActionするだけ
-                  var target = GetParamDisplayer(chars);
-                  if (target != null)
-                  {
-
-                      target.SyncDisply();
-                      target.DamageAction();
-                  }
-              });
-
+            _battlelogText = string.Format("{0}は{1}を使った\n", user._name, itemdata._displayName);
         });
     }
 
-    void CureAction(SavedDBData_char chars, int damage)
+    void AttackAction(bool isCure,bool isDefeat,SavedDBData_char target, int damage)
     {
         _uiActionQueue.Enqueue(() =>
         {
-            _battlelogText += string.Format("{0}は{1}回復<{0}1>\n", chars._name, damage);
-            _battleTextDisplayer.AddTextAction(chars._name + "1", () =>
-            {
-                var target = GetParamDisplayer(chars);
-                if(target!=null) target.SyncDisply();
+            //テキストの追加
+            if (isCure) _battlelogText += $"{target._name}は{damage}回復<{target._name}0>\n";
+            else _battlelogText += $"{target._name}は{damage}のダメージ<{target._name}0>を受けた\n";
+            if(isDefeat) _battlelogText += $"{target._name}は倒れた<{target._name}1>\n";
+
+            //表示の更新
+            var targetDisp = _charParamDisplyer.GetParamDisplayer(target);
+
+            if (targetDisp == null) return;
+            _battleTextDisplayer.AddTextAction(target._name + "0",()=> {
+                targetDisp.SyncDisply();
+                if (!isCure) targetDisp.DamageAction();
             });
-        });
-    }
-
-    void DefeatAction(SavedDBData_char chars)
-    {
-        _uiActionQueue.Enqueue(() =>
-        {
-            if (chars == null) return;
-            _battlelogText += string.Format("{0}は倒れた<{0}2>\n", chars._name);
-            _battleTextDisplayer.AddTextAction(chars._name + "2", () =>
-              {
-            //対象のcharにDeadActionするだけ
-            if (chars._name == _playerParam._mycharData._myCharData._name) _playerParam.DeadAction();
-                  else
-                  {
-                      var target = _enemyParams.Where(x => x._mycharData != null
-                      && chars.Equals(x._mycharData._myCharData)).FirstOrDefault();
-                      if (target != null) target.DeadAction();
-                  }
-              });
+            _battleTextDisplayer.AddTextAction(target._name + "1", () =>
+            {
+                targetDisp.DeadAction();
+            });
         });
     }
 
@@ -352,21 +320,5 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         });
     }
     #endregion
-
-    AbstractParamDisplay GetParamDisplayer(SavedDBData_char chars)
-    {
-        string charname = chars._name;
-        if (charname == _playerParam._mycharData._myCharData._name)
-        {
-            return _playerParam;
-        }
-        else
-        {
-            var target = _enemyParams.Where(
-                x => x._mycharData != null
-                && charname == x._mycharData._myCharData._name).FirstOrDefault();
-
-            return target;
-        }
-    }
+    
 }

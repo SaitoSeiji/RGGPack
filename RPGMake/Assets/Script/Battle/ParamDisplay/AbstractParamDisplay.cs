@@ -15,6 +15,12 @@ public abstract class AbstractParamDisplay : MonoBehaviour
     int _beforeHp;//ダメージを食らったかどうかを自動で判定するためのもの
     protected bool _active;
     BattleChar _chardata;
+
+    private void OnDisable()
+    {
+        gameObject.SetActive(false);
+    }
+
     void Init()
     {
         anim = GetComponent<Animator>();

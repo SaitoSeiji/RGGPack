@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //コマンドなどで使用される列挙型
-namespace CommandEnums
+namespace RPGEnums
 {
     //key は　target
     public enum TargetType

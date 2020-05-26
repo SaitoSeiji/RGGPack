@@ -4,9 +4,9 @@ using UnityEngine;
 using System.Linq;
 
 [CreateAssetMenu(fileName = "ItemDB", menuName = "DataBases/DataBase/ItemDB", order = 0)]
-public class ItemDB : VariableDB
+public class ItemDB : StaticDB
 {
-    [SerializeField] List<ItemDBData> _dataList;
+    [SerializeField]public List<ItemDBData> _dataList;
     
     public override List<AbstractDBData> GetDataList(IEnable_initDB enable)
     {

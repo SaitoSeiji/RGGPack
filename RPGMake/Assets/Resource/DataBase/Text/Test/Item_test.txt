@@ -2,6 +2,42 @@
 id: test1
 	displayName テスト1
 	explanation データの登録テストです
-	maxNum 20
-	haveNum 1
-end
+	targetType 4
+	targetResource 0
+	effectNum 50
+id: cureTest
+	displayName 薬草_テスト
+	explanation 体力を２０回復する
+	targetType 1
+	targetResource 2
+	effectNum 20
+id: cureSpTest
+	displayName 聖水_テスト
+	explanation spを２０回復する
+	targetType 1
+	targetResource 1
+	effectNum 20
+id: attackTest
+	displayName ボム＿テスト
+	explanation 敵全体に小ダメージ
+	targetType 5
+	targetResource 2
+	effectNum 20
+
+
+==================
+NONE =-1,
+SELF=0,
+FRIEND_SOLO=1,
+FRIEND_ALL=2,
+FRIEND_RANDOM=3,
+
+ENEMY_SOLO=4,
+ENEMY_ALL=5,
+ENEMY_RANDOM=6
+==================
+NONE = 0,
+SP = 1,
+HP = 2,
+===================
+

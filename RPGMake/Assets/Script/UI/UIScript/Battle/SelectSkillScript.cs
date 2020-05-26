@@ -23,14 +23,18 @@ public class SelectSkillScript : AbstractUIScript_button
     
     protected override List<ButtonData> CreateMyButtonData()
     {
-        var useAbleSkillList = BattleController_mono.Instance.GetSkillList();
+        //var useAbleSkillList = BattleController_mono.Instance.GetSkillList();
+        var pl = BattleController_mono.Instance.battle._charcterField._playerList[0];
+        var useAbleSkillList = pl._myCharData._mySkillList;
         var resultList = new List<ButtonData>();
         foreach (var data in useAbleSkillList)
         {
-            var add = new ButtonData(data._Data._skillName, CreateClickEvent(data), CreateCursorEvent(data));
+            var btr = new Battle_useResource(data._Data._useResourceType, data._Data._useNum, pl);
+            var btType = (btr.IsUseable()) ? ButtonData.ButtonType.Selectable : ButtonData.ButtonType.Unselectable;
+            var add = new ButtonData(data._Data._skillName, CreateClickEvent(data), 
+                                     CreateCursorEvent(data),
+                                     btType);
             resultList.Add(add);
-            var btr =new Battle_useResource(data._Data._useResourceType,data._Data._useNum,BattleController_mono.Instance.battle._player);
-            add.SetIsActive(btr.IsUseable());
         }
         return resultList;
     }
@@ -46,17 +50,9 @@ public class SelectSkillScript : AbstractUIScript_button
 
     void ClickNextUIEvent(SkillDBData data)
     {
-        var ct = BattleController_mono.Instance.battle.GetCommantTarget(data._Data._skillName);
-        //対象選択をする場合
-        if (ct.IsInputSelect())
-        {
-            UIController.Instance.SetFlashData("command", data);
-            _MyUIBase.AddUI(_targetSelectUI);
-        }
-        else//しない場合
-        {
-            BattleUIController.Instance.EndCommand(data._Data._skillName, null, _MyUIBase);
-        }
+
+        UIController.Instance.SetFlashData("command", data);
+        _MyUIBase.AddUI(_targetSelectUI);
     }
 
     private Action CreateCursorEvent(SkillDBData data)
@@ -64,7 +60,7 @@ public class SelectSkillScript : AbstractUIScript_button
         Action ue = () =>
         {
             _textPannel.SetActive(true);
-            var information = BattleCommandDataFormatter.Format(data._Data);
+            var information = BattleCommandDataFormatter.Format(data._Data,data._Data._skillName);
             setumeiText.text =information;
         };
         return ue;

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CommandEnums;
+using RPGEnums;
 
 //攻撃するときに使用するものについての処理
 public class Battle_useResource

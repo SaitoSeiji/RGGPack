@@ -1,0 +1,85 @@
+{
+    "saveList": [
+        {
+            "_haveItemList": [
+                {
+                    "_itemData": {
+                        "_data": {
+                            "_displayName": "薬草_テスト",
+                            "_explanation": "体力を２０回復する",
+                            "_targetType": "FRIEND_SOLO",
+                            "_targetResource": "HP",
+                            "_effectNum": 20,
+                            "_itemImage": {
+                                
+                            }
+                        },
+                        "_serchId": "cureTest",
+                        "$id": "5"
+                    },
+                    "haveNum": 10
+                },
+                {
+                    "_itemData": {
+                        "_data": {
+                            "_displayName": "聖水_テスト",
+                            "_explanation": "spを２０回復する",
+                            "_targetType": "FRIEND_SOLO",
+                            "_targetResource": "SP",
+                            "_effectNum": 20,
+                            "_itemImage": {
+                                
+                            }
+                        },
+                        "_serchId": "cureSpTest",
+                        "$id": "9"
+                    },
+                    "haveNum": 1
+                },
+                {
+                    "_itemData": {
+                        "_data": {
+                            "_displayName": "ボム＿テスト",
+                            "_explanation": "敵全体に小ダメージ",
+                            "_targetType": "ENEMY_ALL",
+                            "_targetResource": "HP",
+                            "_effectNum": 20,
+                            "_itemImage": {
+                                
+                            }
+                        },
+                        "_serchId": "attackTest",
+                        "$id": "13"
+                    },
+                    "haveNum": 1
+                }
+            ],
+            "_serchId": "default",
+            "$type": "SavedDBData_party"
+        },
+        {
+            "_haveItemList": [
+                {
+                    "_itemData": {
+                        "$ref": "5"
+                    },
+                    "haveNum": 5
+                },
+                {
+                    "_itemData": {
+                        "$ref": "9"
+                    },
+                    "haveNum": 5
+                },
+                {
+                    "_itemData": {
+                        "$ref": "13"
+                    },
+                    "haveNum": 5
+                }
+            ],
+            "_serchId": "itemTest",
+            "$type": "SavedDBData_party"
+        }
+    ]
+}

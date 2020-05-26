@@ -2,50 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using CommandEnums;
+using RPGEnums;
 
-public class Battle_targetDicide
+public static class Battle_targetDicide
 {
-    
-    TargetType _myTargetType;
-    
-    BattleChar _user;
-    List<BattleChar> _friendList = new List<BattleChar>();
-    List<BattleChar> _enemyList = new List<BattleChar>();
-
-    public bool _IsCure
-    {
-        get
-        {
-            return CommandEnumAction.IsCure(_myTargetType);
-        }
-    }
-    
-    public Battle_targetDicide(TargetType target, BattleChar user, List<BattleChar> friends, List<BattleChar> enemys)
-    {
-        _myTargetType = target;
-        _user = user;
-        _friendList = friends;
-        _enemyList = enemys;
-    }
-    //対象となりうるもののリストを返す
-    public List<BattleChar> GetTargetPool()
+    public static List<BattleChar> GetTargetPool(TargetType target, BattleChar user, List<BattleChar> friends, List<BattleChar> enemys)
     {
         var result= new List<BattleChar>();
-        switch (_myTargetType)
+        switch (target)
         {
             case TargetType.SELF:
-                result.Add(_user);
+                result.Add(user);
                 break;
             case TargetType.FRIEND_SOLO:
             case TargetType.FRIEND_ALL:
             case TargetType.FRIEND_RANDOM:
-                result.AddRange(_friendList);
+                if (friends == null) return result;
+                result.AddRange(friends);
                 break;
             case TargetType.ENEMY_SOLO:
             case TargetType.ENEMY_ALL:
             case TargetType.ENEMY_RANDOM:
-                result.AddRange(_enemyList);
+                if (enemys == null) return result;
+                result.AddRange(enemys);
                 break;
         }
 
@@ -53,9 +32,9 @@ public class Battle_targetDicide
     }
 
     //対象選択を入力でするかどうか
-    public bool IsInputSelect()
+    public static bool IsInputSelect(TargetType target)
     {
-        switch (_myTargetType)
+        switch (target)
         {
             case TargetType.SELF:
             case TargetType.FRIEND_SOLO:
@@ -72,9 +51,9 @@ public class Battle_targetDicide
         }
     }
     //対象となる売るものを受け取って対象を選ぶ
-    public List<BattleChar> SelectTarget(List<BattleChar> targetPool, BattleChar input=null)
+    public static List<BattleChar> SelectTarget(TargetType target, List<BattleChar> targetPool, BattleChar input=null)
     {
-        if (IsInputSelect())//入力を受け取るもの
+        if (IsInputSelect(target))//入力を受け取るもの
         {
             if (targetPool.Contains(input)) return new List<BattleChar>() { input};
             else//入力がないならエラー処理
@@ -85,7 +64,7 @@ public class Battle_targetDicide
         }
         var result = new List<BattleChar>();
         //入力を受け取らないもの
-        switch (_myTargetType)
+        switch (target)
         {
             case TargetType.FRIEND_RANDOM:
             case TargetType.ENEMY_RANDOM:

@@ -43,18 +43,8 @@ public class BattleChar
     }
     #endregion
     #region attack
-    public int SelectAttack(string name)
+    public int CalcurateAttack(float rate)
     {
-        float rate = -1;
-        var targetSkill = _myCharData._mySkillList.Where(x => x._Data._skillName == name).FirstOrDefault();
-        if (targetSkill != null)
-        {
-            rate = targetSkill._Data._AttackRate;
-        }
-        else
-        {
-            rate = 1.0f;
-        }
         return (int)(_myCharData._attack * rate);
     }
 
@@ -93,7 +83,7 @@ public class BattleChar
         return result;
     }
 
-    public void SetCure(int cure)
+    public virtual void SetCure(int cure)
     {
         _nowHp += cure;
         if (_maxHp < _nowHp) _nowHp = _maxHp;
@@ -114,7 +104,6 @@ public class PlayerChar : BattleChar
     {
         get
         {
-            SyncData();
             return _charData;
         }
     }
@@ -147,7 +136,18 @@ public class PlayerChar : BattleChar
         _nowSP = Mathf.Clamp(_nowSP, 0, _maxSP);
         SyncData();
     }
-    
+
+    public override void SetCure(int cure)
+    {
+        base.SetCure(cure);
+        SyncData();
+    }
+
+    public override void SetDamage(int damage)
+    {
+        base.SetDamage(damage);
+        SyncData();
+    }
 }
 public class EnemyChar : BattleChar
 {

@@ -86,9 +86,9 @@ public class TextDisplayer:MonoBehaviour
                 case "getItem":
                     var key= EventCodeReadController.Instance.GetFlashData(data)[0];
                     EventCodeReadController.Instance.RemoveFlashData(data);
-                    var target = SaveDataController.Instance.GetDB_var<ItemDB,SavedDBData_item>().Where(x => x._serchId == key).FirstOrDefault();
+                    var target = SaveDataController.Instance.GetDB_static<ItemDB>()._dataList.Where(x => x._serchId == key).FirstOrDefault();
                     if (target == null) return "";
-                    return target._displayName;
+                    return target._data._displayName;
                     //return SaveDataController.Instance.GetText<ItemDB>(key.ToString(), "displayName");
             }
             return "";

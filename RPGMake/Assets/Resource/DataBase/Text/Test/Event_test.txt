@@ -28,7 +28,7 @@ id: testBattle_addSKill
 	text{
 		$
 		戦闘テスト
-		$#Battle[testset]
+		$#Battle[akuma3]
 		
 	}
 	next{

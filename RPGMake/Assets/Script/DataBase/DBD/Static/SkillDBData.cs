@@ -2,14 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using CommandEnums;
+using RPGEnums;
+using DBDInterface;
+
+//戦闘で使用するもののデータ
+public class CommandData
+{
+    [SerializeField] public TargetType _target;//効果対象
+    [SerializeField] public ResourceType _useResourceType;//使用するリソース(hpなど)
+    [SerializeField] public int _useNum;//使用量
+    [SerializeField] public ResourceType _targetResourceType;//ダメージ（回復）を行う対象のリソース
+    [SerializeField] public float _effectNum;//効果量
+}
 
 [System.Serializable]
-public class SkillCommandData
+public class SkillCommandData:ICommandData
 {
     [SerializeField] public string _skillName;
-    [SerializeField] public TargetType _target;//効果対象
 
+    [SerializeField]public TargetType _target;//効果対象
     [SerializeField] public ResourceType _useResourceType;//使用するリソース(hpなど)
     [SerializeField] public int _useNum;//使用量
     [SerializeField] ResourceType _targetResourceType;//ダメージ（回復）を行う対象のリソース
@@ -29,6 +40,17 @@ public class SkillCommandData
             if (add == ResourceType.NONE) add = ResourceType.HP;//デフォルト値をhpに設定
             _targetResourceType = add;
         }
+    }
+
+    CommandData ICommandData.GetCommandData()
+    {
+        var result = new CommandData();
+        result._target = _target;
+        result._useResourceType = _useResourceType;
+        result._useNum = _useNum;
+        result._targetResourceType =_targetResourceType;
+        result._effectNum = _attackRate;
+        return result;
     }
 }
 

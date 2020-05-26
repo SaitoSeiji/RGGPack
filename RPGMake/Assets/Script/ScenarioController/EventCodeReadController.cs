@@ -205,14 +205,19 @@ public class ItemCode : CodeData
     public override void CodeAction()
     {
         string dispTxt = "";
-        var db = SaveDataController.Instance.GetDB_var<ItemDB, SavedDBData_item>();
+        var targetData = SaveDataController.Instance.GetDB_var<PartyDB,SavedDBData_party>()[0];
         foreach (var d in _itemSet)
         {
-            var data = db.Where(x => x._serchId == d.Key).First();
-            data._haveNum += d.Value;
-            SaveDataController.Instance.SetData<ItemDB, SavedDBData_item>(data);
+            targetData.ChengeItemNum(d.Key, d.Value);
+
             EventCodeReadController.Instance.SetFlashData("getItem", d.Key);
+
+            //var data = db.Where(x => x._serchId == d.Key).First();
+            //data._haveNum += d.Value;
+            //SaveDataController.Instance.SetData<ItemDB, ItemData>(data);
+            //EventCodeReadController.Instance.SetFlashData("getItem", d.Key);
         }
+        SaveDataController.Instance.SetData<PartyDB, SavedDBData_party>(targetData);
     }
 
     public override bool IsEndCode()

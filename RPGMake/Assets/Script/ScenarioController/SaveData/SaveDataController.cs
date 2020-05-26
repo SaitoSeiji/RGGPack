@@ -18,7 +18,6 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
         {
             _saveDataList.Add(db.name, db.GetSavedDataList());
         }
-        SaveAction();
     }
     string GetDBName<T>()
         where T : VariableDB
@@ -84,6 +83,7 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
         {
             JsonSaver.SaveAction<SavedDBData>(data.Value,data.Key);
         }
+        Debug.Log("saved");
     }
 
     public void LoadAction()

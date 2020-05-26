@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: testBattle_addSKill
   m_EditorClassIdentifier: 
   _codeData:
-    _text: "$\n\u6226\u95D8\u30C6\u30B9\u30C8\n$#Battle[testset]"
+    _text: "$\n\u6226\u95D8\u30C6\u30B9\u30C8\n$#Battle[akuma3]"
     _nextEventName: testAddSkill
     _nextEventCode: {fileID: 11400000, guid: 5a9892be6e4368d49bc57671b1ee4145, type: 2}
     coalTerm:
