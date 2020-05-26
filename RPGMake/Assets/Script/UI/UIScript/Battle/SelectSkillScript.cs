@@ -29,10 +29,12 @@ public class SelectSkillScript : AbstractUIScript_button
         var resultList = new List<ButtonData>();
         foreach (var data in useAbleSkillList)
         {
-            var add = new ButtonData(data._Data._skillName, CreateClickEvent(data), CreateCursorEvent(data));
+            var btr = new Battle_useResource(data._Data._useResourceType, data._Data._useNum, pl);
+            var btType = (btr.IsUseable()) ? ButtonData.ButtonType.Selectable : ButtonData.ButtonType.Unselectable;
+            var add = new ButtonData(data._Data._skillName, CreateClickEvent(data), 
+                                     CreateCursorEvent(data),
+                                     btType);
             resultList.Add(add);
-            var btr =new Battle_useResource(data._Data._useResourceType,data._Data._useNum,pl);
-            add.SetIsActive(btr.IsUseable());
         }
         return resultList;
     }
@@ -48,18 +50,9 @@ public class SelectSkillScript : AbstractUIScript_button
 
     void ClickNextUIEvent(SkillDBData data)
     {
-        //var ct = BattleController_mono.Instance.battle.GetTargetPool(data._Data);
-        //対象選択をする場合
-        //if (ct.IsInputSelect())
-        if (Battle_targetDicide.IsInputSelect(data._Data._target))
-            {
-            UIController.Instance.SetFlashData("command", data);
-            _MyUIBase.AddUI(_targetSelectUI);
-        }
-        else//しない場合
-        {
-            BattleUIController.Instance.EndCommand(data._Data, null, _MyUIBase);
-        }
+
+        UIController.Instance.SetFlashData("command", data);
+        _MyUIBase.AddUI(_targetSelectUI);
     }
 
     private Action CreateCursorEvent(SkillDBData data)

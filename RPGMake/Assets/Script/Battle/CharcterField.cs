@@ -91,4 +91,10 @@ public class CharcterField
         return "";
     }
     #endregion
+
+    public static List<PlayerChar> GetParty()
+    {
+        var db=SaveDataController.Instance.GetDB_var<PlayerDB, SavedDBData_player>();
+        return db.Select(x => new PlayerChar(x)).ToList();
+    }
 }

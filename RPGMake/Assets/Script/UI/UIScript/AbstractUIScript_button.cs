@@ -9,33 +9,37 @@ using System;
 [System.Serializable]
 public class ButtonData
 {
+    public enum ButtonType
+    {
+        Selectable,//選択可能
+        Unselectable,//選択不可能
+        Selected//選択済み
+    }
+    public ButtonType _buttonType;
+
     public string _buttonText;
     public UnityEvent _onClickAction = new UnityEvent();
     public Action _cursorAction;//選択肢にカーソルがあった時のアクション
-    public bool isActive=true;
 
     public Sprite _buttonImage;
     public string _additonalText;
 
-    public ButtonData(string _text, UnityEvent _onclick)
+    public ButtonData(string _text, UnityEvent _onclick, ButtonType buttonType)
     {
         _buttonText = _text;
         _onClickAction = _onclick;
+        _buttonType = buttonType;
     }
-    public ButtonData(string _text, UnityEvent _onclick,Action _cursor)
+    public ButtonData(string _text, UnityEvent _onclick,Action _cursor, ButtonType buttonType)
     {
         _buttonText = _text;
         _onClickAction = _onclick;
         _cursorAction = _cursor;
+        _buttonType = buttonType;
     }
     public ButtonData(string _text)
     {
         _buttonText = _text;
-    }
-
-    public void SetIsActive(bool flag)
-    {
-        isActive = flag;
     }
 }
 public abstract class AbstractUIScript_button : AbstractUIScript
@@ -116,9 +120,8 @@ public abstract class AbstractUIScript_button : AbstractUIScript
             var bt = CreateButton();
             //if (targetData.isActive) bt.onClick.AddListener(() => targetData._onClickAction.Invoke());
             //else DisActive(bt);
-            bt.SetDisplayData(targetData._buttonText, targetData._additonalText, targetData._buttonImage);
-            if (targetData.isActive) bt.SetOnClick(targetData._onClickAction);
-            else bt.SetButtonColors(targetData.isActive);
+            bt.SetDisplayData(targetData._buttonText, targetData._additonalText, targetData._buttonImage,targetData._buttonType);
+            bt.SetOnClick(targetData._onClickAction);
         }
     }
 

@@ -31,7 +31,9 @@ public class SelectItemScript : AbstractUIScript_button
         {
             //partyDBにあるアイテムデータは個数はあるがimage等を保存できていないので、生のアイテムデータを取りに行っている
             var itemDBData = itemDB.Where(x => x._serchId == partyItemData._itemData._serchId).First();
-            var data = new ButtonData(itemDBData._data._displayName,CreateClickEvent(itemDBData),CreatCursorEvent(itemDBData));
+            var data = new ButtonData(itemDBData._data._displayName,CreateClickEvent(itemDBData),
+                                      CreatCursorEvent(itemDBData),
+                                      ButtonData.ButtonType.Selectable);
             data._additonalText =$"×{partyItemData.haveNum}" ;
            
             data._buttonImage = itemDBData._data._itemImage;
@@ -44,22 +46,31 @@ public class SelectItemScript : AbstractUIScript_button
     {
 
         //var ct = BattleController_mono.Instance.battle.GetTargetPool(itemData._data);
-        UnityEvent ue = new UnityEvent();
-        //if (ct.IsInputSelect())
-        if (Battle_targetDicide.IsInputSelect(itemData._data._targetType))
-            {
-            ue.AddListener(() => {
+        //UnityEvent ue = new UnityEvent();
+        ////if (ct.IsInputSelect())
+        //if (Battle_targetDicide.IsInputSelect(itemData._data._targetType))
+        //    {
+        //    ue.AddListener(() => {
+        //        UIController.Instance.SetFlashData("item", itemData);
+        //        _MyUIBase.AddUI(_targetSelectUI);
+        //    });
+        //}
+        //else
+        //{
+        //    ue.AddListener(()=> {
+        //        BattleUIController.Instance.EndCommand(itemData._data, null, _MyUIBase);
+        //    });
+        //}
+        //return ue;
+
+
+        UnityEvent ue = new UnityEvent()
+            ; ue.AddListener(() => {
                 UIController.Instance.SetFlashData("item", itemData);
                 _MyUIBase.AddUI(_targetSelectUI);
             });
-        }
-        else
-        {
-            ue.AddListener(()=> {
-                BattleUIController.Instance.EndCommand(itemData._data, null, _MyUIBase);
-            });
-        }
         return ue;
+
     }
 
     Action CreatCursorEvent(ItemDBData itemData)

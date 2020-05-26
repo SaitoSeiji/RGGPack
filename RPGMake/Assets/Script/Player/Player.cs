@@ -130,8 +130,8 @@ public class Player : SingletonMonoBehaviour<Player>
         }
         else if (Mathf.Abs(yoko) > _setting._inputIgnore)
         {
-            if (yoko > 0) return DIRECTION.LEFT;
-            else return DIRECTION.RIGHT;
+            if (yoko > 0) return DIRECTION.RIGHT;
+            else return DIRECTION.LEFT;
         }
         return _nowDirection;
     }

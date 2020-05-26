@@ -23,10 +23,15 @@ public class SelectAttackTargetScript : AbstractUIScript_button
         //var dataList = BattleController_mono.Instance.battle.GetCommandTargetDicide(commandData).GetTargetPool();
         var dataList = BattleController_mono.Instance.battle.GetTargetPool(commandData);
         var resultList = new List<ButtonData>();
-        foreach(var data in dataList)
+
+        bool allSelect = !Battle_targetDicide.IsInputSelect(commandData._target);
+        var btType = (allSelect) ? ButtonData.ButtonType.Selected : ButtonData.ButtonType.Selectable;
+        foreach (var data in dataList)
         {
             if (!data.IsAlive()) continue;
-            resultList.Add(new ButtonData(data._myCharData._name,CreateClickEvent(data,commandData)));
+            resultList.Add(new ButtonData(data._myCharData._name,
+                                          CreateClickEvent(data,commandData),
+                                          btType));
         }
         return resultList;
     }

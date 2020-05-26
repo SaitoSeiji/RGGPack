@@ -83,7 +83,7 @@ public class BattleChar
         return result;
     }
 
-    public void SetCure(int cure)
+    public virtual void SetCure(int cure)
     {
         _nowHp += cure;
         if (_maxHp < _nowHp) _nowHp = _maxHp;
@@ -104,7 +104,6 @@ public class PlayerChar : BattleChar
     {
         get
         {
-            SyncData();
             return _charData;
         }
     }
@@ -137,7 +136,18 @@ public class PlayerChar : BattleChar
         _nowSP = Mathf.Clamp(_nowSP, 0, _maxSP);
         SyncData();
     }
-    
+
+    public override void SetCure(int cure)
+    {
+        base.SetCure(cure);
+        SyncData();
+    }
+
+    public override void SetDamage(int damage)
+    {
+        base.SetDamage(damage);
+        SyncData();
+    }
 }
 public class EnemyChar : BattleChar
 {

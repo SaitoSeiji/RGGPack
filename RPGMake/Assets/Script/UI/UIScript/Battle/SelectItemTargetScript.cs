@@ -28,9 +28,13 @@ public class SelectItemTargetScript : AbstractUIScript_button
         //var targetPool = BattleController_mono.Instance.battle.GetTargetPool(GetMyItemData()._data).GetTargetPool();
         var targetPool = BattleController_mono.Instance.battle.GetTargetPool(GetMyItemData()._data);
         var result = new List<ButtonData>();
+        bool allSelect = !Battle_targetDicide.IsInputSelect(GetMyItemData()._data._targetType);
+        var btType = (allSelect) ? ButtonData.ButtonType.Selected : ButtonData.ButtonType.Selectable;
         foreach (var target in targetPool)
         {
-            result.Add(new ButtonData(target._myCharData._name,CreateClickEvent(GetMyItemData()._data,target)));
+            result.Add(new ButtonData(target._myCharData._name,
+                                      CreateClickEvent(GetMyItemData()._data,target),
+                                      btType));
         }
         return result;
     }
