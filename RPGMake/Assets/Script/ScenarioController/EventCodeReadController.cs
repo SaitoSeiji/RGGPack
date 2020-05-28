@@ -668,6 +668,7 @@ public class EventCodeReadController : SingletonMonoBehaviour<EventCodeReadContr
             _nowCodeData = new EndCode();
         }
     }
+    
     void EndEvent()
     {
         _readNow = false;
@@ -712,4 +713,10 @@ public class EventCodeReadController : SingletonMonoBehaviour<EventCodeReadContr
     }
     #endregion
 
+    //イベントの中断に使う
+    public void RetireEvent()
+    {
+        EndEvent();
+        ResetFlashData();
+    }
 }

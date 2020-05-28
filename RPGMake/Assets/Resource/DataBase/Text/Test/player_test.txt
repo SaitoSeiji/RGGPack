@@ -2,7 +2,7 @@
 id: kou
 	name コウ
 	hpMax 40
-	hpNow 40
+	hpNow 10
 	spMax 20
 	spNow 20
 	attack 5
