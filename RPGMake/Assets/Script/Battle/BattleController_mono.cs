@@ -12,7 +12,8 @@ public class BattleController
         WaitInput,
         TurnAction,
         PrepareNextTurn,
-        BattleEnd
+        BattleEnd,
+        BattleEnd_public//戦闘終了処理も終わったことを示す
     }
     BattleState _battleState;
     
@@ -74,7 +75,7 @@ public class BattleController
     //戦闘ロジックの実行
     void TurnAct()
     {
-        if (_waitInput || IsEnd()) return;
+        if (_waitInput || IsBattleEnd_local()) return;
         //次に動くキャラを決める
         var next = _battleCharQueue.Peek();
         CommandCallBack(_charInput.command, next);
@@ -88,7 +89,7 @@ public class BattleController
     }
     void PrepareNextTurn()
     {
-        if (IsEnd())
+        if (IsBattleEnd_local())
         {
             return;
         }
@@ -126,11 +127,16 @@ public class BattleController
     }
     #endregion
     #region public
-    public bool IsEnd()
+    bool IsBattleEnd_local()
     {
         var plDead= _charcterField.AllDead(_charcterField._playerList.Select(x => (BattleChar)x).ToList());
         var eneDead=_charcterField.AllDead(_charcterField._enemyList.Select(x => (BattleChar)x).ToList());
         return plDead || eneDead;
+    }
+
+    public bool IsBattleEnd_public()
+    {
+        return _battleState == BattleState.BattleEnd_public;
     }
     public List<BattleChar> GetTargetPool(ICommandData targetIntarface)
     {
@@ -156,7 +162,7 @@ public class BattleController
 
     public void Battle()
     {
-        if(IsEnd()) _battleState = BattleState.BattleEnd;
+        if(IsBattleEnd_local()) _battleState = BattleState.BattleEnd;
         switch (_battleState)
         {
             case BattleState.WaitInput:
@@ -172,8 +178,13 @@ public class BattleController
                 _battleState = BattleState.WaitInput;
                 break;
             case BattleState.BattleEnd:
-                bool allDead = _charcterField.AllDead(_charcterField._playerList.Select(x => (BattleChar)x).ToList());
-                _battleAction_end?.Invoke(allDead);
+                bool losePl = _charcterField.AllDead(_charcterField._playerList.Select(x => (BattleChar)x).ToList());
+                if (losePl)
+                {
+                    EventCodeReadController.Instance.RetireEvent();
+                }
+                _battleAction_end?.Invoke(losePl);
+                _battleState = BattleState.BattleEnd_public;
                 break;
         }
     }
@@ -208,14 +219,9 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
     }
     #region get
 
-    public bool IsEnd()
-    {
-        return battle.IsEnd();
-    }
-
     public bool IsBattleEnd()
     {
-        return IsEnd() && !BattleUIController.Instance.IsBattleNow();
+        return battle.IsBattleEnd_public() && !BattleUIController.Instance.IsBattleNow();
     }
     #endregion
     void StartBattle(SavedDBData_player player,EnemySetData enemys)

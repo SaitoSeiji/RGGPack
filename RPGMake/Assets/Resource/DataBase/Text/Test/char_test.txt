@@ -15,7 +15,7 @@ id: maou
 	attack 3
 	guard 5
 	skill{
-		attack
+		darkmagic
 	}
 id: akuma
 	name 悪魔

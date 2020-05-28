@@ -21,6 +21,6 @@ MonoBehaviour:
     _guard: 5
     _charImage: {fileID: 0}
     _mySkillList:
-    - {fileID: 11400000, guid: b269507fd9cf3da4d92c2a8d2fd9e09e, type: 2}
+    - {fileID: 11400000, guid: dec13bcbaa4613948a4c69f6b4fada85, type: 2}
   _skillNameSet:
-  - attack
+  - darkmagic

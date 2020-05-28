@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc4ef72bf658a6f4f821d8c79c8c104c, type: 3}
-  m_Name: moveToClass
+  m_Name: test_eventStop
   m_EditorClassIdentifier: 
   _codeData:
-    _text: $#map[class]
-    _nextEventName: test_eventStop
-    _nextEventCode: {fileID: 11400000, guid: 87491a3a1d46dd84896c9a40318c3672, type: 2}
+    _text: "$\n\u30A4\u30D9\u30F3\u30C8\u3092\u9014\u4E2D\u3067\u3084\u3081\u308B\u30C6\u30B9\u30C8\u3067\u3059\n$\n\u3084\u3081\u308C\u307E\u3057\u305F\u304B\uFF1F\n$\n\u3084\u3081\u308C\u307Ery)\n$\n\u3084ry)\n$"
+    _nextEventName: 
+    _nextEventCode: {fileID: 0}
     coalTerm:
       _termList: []
       _orMode: 0

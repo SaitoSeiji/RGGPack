@@ -28,7 +28,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ee3cb058932b4014dbb5eb499b09cc54, type: 2}
     _spMax: 20
     _spNow: 20
-    _hpNow: 40
+    _hpNow: 10
   _skillNameSet:
   - superAttack
   - allAtack_test
