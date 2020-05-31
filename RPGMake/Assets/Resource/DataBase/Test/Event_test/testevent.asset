@@ -44,5 +44,5 @@ MonoBehaviour:
   - moveToClass
   - door_class
   _nextEventList:
-  - {fileID: 11400000, guid: 33d8b3918253a9c428e8182644cdb3b0, type: 2}
-  - {fileID: 11400000, guid: 53345ed66502dc84b9278d0a05de8139, type: 2}
+  - {fileID: 11400000, guid: e47221fa183185f45b7c74c42f5da144, type: 2}
+  - {fileID: 11400000, guid: abb63e0eed41d0a449faa0550017401b, type: 2}

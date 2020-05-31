@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09de42f74aa14774fbdb110cef712673, type: 3}
-  m_Name: EnemySetDB
+  m_Name: EnemySetDB_test
   m_EditorClassIdentifier: 
   _dataList:
-  - {fileID: 11400000, guid: bb25098637b154c469fc8a3037da5017, type: 2}
-  - {fileID: 11400000, guid: b43b682e9b93ffe4aa30787426ba625e, type: 2}
-  - {fileID: 11400000, guid: d7ed4753a4ba03f478fa7be107c18296, type: 2}
+  - {fileID: 11400000, guid: e47859165c4eb4c4b8c6bdae5b55007a, type: 2}
+  - {fileID: 11400000, guid: 07d77a7c6ffbf134d8982c342f90c0a5, type: 2}
+  - {fileID: 11400000, guid: c38dc8126c9fc914da141f357e45ab6d, type: 2}

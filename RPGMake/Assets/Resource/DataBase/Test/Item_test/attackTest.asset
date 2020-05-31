@@ -19,5 +19,4 @@ MonoBehaviour:
     _targetType: 5
     _targetResource: 2
     _effectNum: 20
-    _itemImage: {fileID: -6155997769173100304, guid: efe4411c929ef1649ae60df8c1d5fa53,
-      type: 3}
+    _itemImage: {fileID: 0}

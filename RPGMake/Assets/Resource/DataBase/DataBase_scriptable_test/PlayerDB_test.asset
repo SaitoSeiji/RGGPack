@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerDB_test
   m_EditorClassIdentifier: 
   _dataList:
-  - {fileID: 11400000, guid: 5c0e79c3c2ff7e54ba649b2f976ba92a, type: 2}
+  - {fileID: 11400000, guid: 60bfca7c80b607147a0c89b120997831, type: 2}

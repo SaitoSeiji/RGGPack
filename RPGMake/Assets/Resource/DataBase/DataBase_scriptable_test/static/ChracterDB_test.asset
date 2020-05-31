@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c346fa180a4af464087237253b187fb9, type: 3}
-  m_Name: ChracterDB
+  m_Name: ChracterDB_test
   m_EditorClassIdentifier: 
   _dataList:
-  - {fileID: 11400000, guid: d3b4de947aa61ae48a501cf035b08165, type: 2}
-  - {fileID: 11400000, guid: d5ff01a27d8855241a1eb6949a6e4b07, type: 2}
-  - {fileID: 11400000, guid: 35b2da7589eb2d74b9f8037fdf79a1dd, type: 2}
+  - {fileID: 11400000, guid: 6d7b71367893e654fb98173b52c65bca, type: 2}
+  - {fileID: 11400000, guid: 43dcb0e4e930c124898ccc86fb54fc1c, type: 2}
+  - {fileID: 11400000, guid: 35ab51890a10b7f42b364aa15b135749, type: 2}

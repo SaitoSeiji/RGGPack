@@ -21,6 +21,6 @@ MonoBehaviour:
     _guard: 2
     _charImage: {fileID: 0}
     _mySkillList:
-    - {fileID: 11400000, guid: b269507fd9cf3da4d92c2a8d2fd9e09e, type: 2}
+    - {fileID: 11400000, guid: 4be48047a4b19f44b9c1de7daa1d2f62, type: 2}
   _skillNameSet:
   - attack

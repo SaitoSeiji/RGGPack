@@ -10,9 +10,7 @@
                             "_targetType": "FRIEND_SOLO",
                             "_targetResource": "HP",
                             "_effectNum": 20,
-                            "_itemImage": {
-                                
-                            }
+                            "_itemImage": null
                         },
                         "_serchId": "cureTest",
                         "$id": "5"
@@ -27,12 +25,10 @@
                             "_targetType": "FRIEND_SOLO",
                             "_targetResource": "SP",
                             "_effectNum": 20,
-                            "_itemImage": {
-                                
-                            }
+                            "_itemImage": null
                         },
                         "_serchId": "cureSpTest",
-                        "$id": "9"
+                        "$id": "8"
                     },
                     "haveNum": 1
                 },
@@ -44,12 +40,10 @@
                             "_targetType": "ENEMY_ALL",
                             "_targetResource": "HP",
                             "_effectNum": 20,
-                            "_itemImage": {
-                                
-                            }
+                            "_itemImage": null
                         },
                         "_serchId": "attackTest",
-                        "$id": "13"
+                        "$id": "11"
                     },
                     "haveNum": 1
                 }
@@ -67,13 +61,13 @@
                 },
                 {
                     "_itemData": {
-                        "$ref": "9"
+                        "$ref": "8"
                     },
                     "haveNum": 5
                 },
                 {
                     "_itemData": {
-                        "$ref": "13"
+                        "$ref": "11"
                     },
                     "haveNum": 5
                 }
