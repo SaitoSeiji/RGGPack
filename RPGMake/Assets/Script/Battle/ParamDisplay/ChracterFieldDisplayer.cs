@@ -26,17 +26,17 @@ public class ChracterFieldDisplayer : MonoBehaviour
         }
     }
 
-    public AbstractParamDisplay GetParamDisplayer(SavedDBData_char chars)
+    public AbstractParamDisplay GetParamDisplayer(BattleChar chars)
     {
-        string charname = chars._name;
-        var plNameList = _playerDisplayers.Select(x => x._mycharData._myCharData._name);
-        var eneNameList = _enemyDisplays.Select(x => x._mycharData._myCharData._name);
+        string charname = chars._displayName;
+        var plNameList = _playerDisplayers.Select(x => x._mycharData._displayName);
+        var eneNameList = _enemyDisplays.Select(x => x._mycharData._displayName);
         if (plNameList.Contains(charname))
         {
-            return _playerDisplayers.Where(x => x._mycharData._myCharData._name == charname).First();
+            return _playerDisplayers.Where(x => x._mycharData._displayName == charname).First();
         }else if (eneNameList.Contains(charname))
         {
-            return _enemyDisplays.Where(x => x._mycharData._myCharData._name == charname).First();
+            return _enemyDisplays.Where(x => x._mycharData._displayName == charname).First();
         }
         else
         {
@@ -60,7 +60,7 @@ public class ChracterFieldDisplayer : MonoBehaviour
         var user = new PlayerChar(SaveDataController.Instance.GetDB_var<PlayerDB, SavedDBData_player>()[0]);
 
         strtegy.TurnAction(user, target,item, friends: friends);
-        SaveDataController.Instance.SetData<PlayerDB, SavedDBData_player>(target._myCharData);
+        SaveDataController.Instance.SetData<PlayerDB, SavedDBData_player>(target._PlayerData);
     }
 
     public List<PlayerChar> GetTargetPool(ICommandData targetIntarface)

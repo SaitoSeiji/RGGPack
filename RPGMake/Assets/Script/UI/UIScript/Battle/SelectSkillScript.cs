@@ -25,7 +25,7 @@ public class SelectSkillScript : AbstractUIScript_button
     {
         //var useAbleSkillList = BattleController_mono.Instance.GetSkillList();
         var pl = BattleController_mono.Instance.battle._charcterField._playerList[0];
-        var useAbleSkillList = pl._myCharData._mySkillList;
+        var useAbleSkillList = pl._PlayerData._mySkillList;
         var resultList = new List<ButtonData>();
         foreach (var data in useAbleSkillList)
         {

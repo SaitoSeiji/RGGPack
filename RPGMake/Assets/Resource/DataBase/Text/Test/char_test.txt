@@ -1,14 +1,4 @@
 ﻿Type(Charcter)
-id: player
-	name コ
-	hpMax 40
-	attack 5
-	guard 5
-	skill{
-		superAttack
-		allAtack_test
-		self_test
-	}
 id: maou
 	name 魔王2
 	hpMax 20
@@ -17,6 +7,8 @@ id: maou
 	skill{
 		darkmagic
 	}
+	money 100
+	exp 50
 id: akuma
 	name 悪魔
 	hpMax 5
@@ -25,3 +17,5 @@ id: akuma
 	skill{
 		attack
 	}
+	money 100
+	exp 50

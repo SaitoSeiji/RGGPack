@@ -5,16 +5,24 @@ using System.Linq;
 
 public class BattleChar
 {
-    public SavedDBData_char _myCharData { get; protected set; }
+    protected SavedDBData_char _myCharData { get; protected private set; }
+    public string _displayName;
     public int _maxHp { get; protected set; }
     public int _nowHp { get; protected set; }
     protected List<BattleChar> _enemyTargets = new List<BattleChar>();
+
+    #region _myCharDataへのアクセス
+    public int _money { get { return _myCharData._money; } }
+    public int _exp { get { return _myCharData._exp; } }
+    public Sprite _image { get { return _myCharData._charImage; } }
+    #endregion
 
     public BattleChar(SavedDBData_char charData)
     {
         _myCharData = charData;
         _nowHp = _myCharData._HpMax;
         _maxHp = _myCharData._HpMax;
+        _displayName = _myCharData._Name;
     }
 
     public void AddRaival(BattleChar enemy)
@@ -100,13 +108,12 @@ public class PlayerChar : BattleChar
     SavedDBData_player _charData;
     public int _maxSP { get; private set; }
     public int _nowSP { get; private set; }
-    public new SavedDBData_player _myCharData
+
+    public SavedDBData_player _PlayerData
     {
-        get
-        {
-            return _charData;
-        }
+        get { return SyncData(_charData); }
     }
+
     public PlayerChar(SavedDBData_player charData) : base(charData)
     {
         _charData = charData;
@@ -116,38 +123,27 @@ public class PlayerChar : BattleChar
     }
 
     //_charDataに反映
-    void SyncData()
+    SavedDBData_player SyncData(SavedDBData_player target)
     {
-        _charData = _charData.Copy(base._myCharData);
-        _charData._hpNow = _nowHp;
-        _charData._spNow = _nowSP;
+        target._hpNow = _nowHp;
+        target._spNow = _nowSP;
+        return target;
     }
 
     public void UseSP(int use)
     {
         _nowSP -= use;
         _nowSP = Mathf.Clamp(_nowSP,0,_maxSP);
-        SyncData();
+        //SyncData();
     }
 
     public void CureSP(int cure)
     {
         _nowSP += cure;
         _nowSP = Mathf.Clamp(_nowSP, 0, _maxSP);
-        SyncData();
+        //SyncData();
     }
-
-    public override void SetCure(int cure)
-    {
-        base.SetCure(cure);
-        SyncData();
-    }
-
-    public override void SetDamage(int damage)
-    {
-        base.SetDamage(damage);
-        SyncData();
-    }
+    
 }
 public class EnemyChar : BattleChar
 {

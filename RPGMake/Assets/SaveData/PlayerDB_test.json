@@ -8,7 +8,11 @@
             "_hpMax": 40,
             "_attack": 5,
             "_guard": 5,
-            "_charImage": null,
+            "_money": 0,
+            "_exp": 100,
+            "_charImage": {
+                
+            },
             "_mySkillList": [
                 {
                     "_data": {

@@ -45,7 +45,7 @@ public class MenuItemUseScript : AbstractUIScript_button
                 _menuCharctes.SyncParam_pl();
                 _successEvent?.Invoke();
             });
-            var add = new ButtonData(target._myCharData._name,ue,btType);
+            var add = new ButtonData(target._displayName,ue,btType);
             result.Add(add);
         }
         return result;

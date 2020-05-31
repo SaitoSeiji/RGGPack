@@ -31,8 +31,8 @@ public abstract class AbstractParamDisplay : MonoBehaviour
         Init();
         _chardata = GetChar();
         gameObject.SetActive(true);
-        _name.text = _chardata._myCharData._name;
-        _charImage.sprite = _chardata._myCharData._charImage;
+        _name.text = _chardata._displayName;
+        _charImage.sprite = _chardata._image;
         SyncDisply();
         _active = true;
         _beforeHp = _chardata._nowHp;//_beforeHp初期設定

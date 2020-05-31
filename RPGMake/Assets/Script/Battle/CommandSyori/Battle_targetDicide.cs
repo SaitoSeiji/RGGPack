@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+using System.Linq;
 using RPGEnums;
 
 public static class Battle_targetDicide
@@ -18,13 +18,17 @@ public static class Battle_targetDicide
             case TargetType.FRIEND_ALL:
             case TargetType.FRIEND_RANDOM:
                 if (friends == null) return result;
-                result.AddRange(friends);
+                var friends_alive = friends.Where(x =>x!=null&& x.IsAlive()).ToList();
+                if (friends_alive == null) return result;
+                result.AddRange(friends_alive);
                 break;
             case TargetType.ENEMY_SOLO:
             case TargetType.ENEMY_ALL:
             case TargetType.ENEMY_RANDOM:
                 if (enemys == null) return result;
-                result.AddRange(enemys);
+                var enemy_alive = enemys.Where(x => x != null && x.IsAlive()).ToList();
+                if (enemy_alive == null) return result;
+                result.AddRange(enemy_alive);
                 break;
         }
 

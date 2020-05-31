@@ -1,6 +1,7 @@
 {
     "saveList": [
         {
+            "_haveMoney": 100,
             "_haveItemList": [
                 {
                     "_itemData": {
@@ -10,7 +11,9 @@
                             "_targetType": "FRIEND_SOLO",
                             "_targetResource": "HP",
                             "_effectNum": 20,
-                            "_itemImage": null
+                            "_itemImage": {
+                                
+                            }
                         },
                         "_serchId": "cureTest",
                         "$id": "5"
@@ -25,10 +28,12 @@
                             "_targetType": "FRIEND_SOLO",
                             "_targetResource": "SP",
                             "_effectNum": 20,
-                            "_itemImage": null
+                            "_itemImage": {
+                                
+                            }
                         },
                         "_serchId": "cureSpTest",
-                        "$id": "8"
+                        "$id": "9"
                     },
                     "haveNum": 1
                 },
@@ -40,10 +45,12 @@
                             "_targetType": "ENEMY_ALL",
                             "_targetResource": "HP",
                             "_effectNum": 20,
-                            "_itemImage": null
+                            "_itemImage": {
+                                
+                            }
                         },
                         "_serchId": "attackTest",
-                        "$id": "11"
+                        "$id": "13"
                     },
                     "haveNum": 1
                 }
@@ -52,6 +59,7 @@
             "$type": "SavedDBData_party"
         },
         {
+            "_haveMoney": 100,
             "_haveItemList": [
                 {
                     "_itemData": {
@@ -61,13 +69,13 @@
                 },
                 {
                     "_itemData": {
-                        "$ref": "8"
+                        "$ref": "9"
                     },
                     "haveNum": 5
                 },
                 {
                     "_itemData": {
-                        "$ref": "11"
+                        "$ref": "13"
                     },
                     "haveNum": 5
                 }

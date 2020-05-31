@@ -717,6 +717,7 @@ public class EventCodeReadController : SingletonMonoBehaviour<EventCodeReadContr
     public void RetireEvent()
     {
         EndEvent();
+        _codeList = new Queue<CodeData>();
         ResetFlashData();
     }
 }

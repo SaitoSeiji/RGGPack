@@ -19,6 +19,8 @@ MonoBehaviour:
     _hpMax: 20
     _attack: 3
     _guard: 5
+    _money: 100
+    _exp: 50
     _charImage: {fileID: 0}
     _mySkillList:
     - {fileID: 11400000, guid: 9736a7a62d8a37b40ad7cc0e4103a7f5, type: 2}

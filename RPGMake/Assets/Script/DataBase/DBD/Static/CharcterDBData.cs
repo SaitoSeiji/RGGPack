@@ -8,11 +8,14 @@ using System;
 [System.Serializable]
 public class SavedDBData_char:SavedDBData
 {
-    [SerializeField] public string _name;
+    [SerializeField] string _name;
+    public string _Name { get { return _name; } }
     [SerializeField] public int _hpMax;
     public int _HpMax { get { return _hpMax; } }
     [SerializeField] public int _attack;
     [SerializeField] public int _guard;
+    [SerializeField] public int _money;
+    [SerializeField] public int _exp;
     [SerializeField] public Sprite _charImage;
     public List<SkillDBData> _mySkillList = new List<SkillDBData>();//重複を許さないのでハッシュセットにできるならいい　でもinspectorでいじれない？
 
@@ -32,9 +35,14 @@ public class SavedDBData_char:SavedDBData
         _charImage = data._charImage;
     }
 
-    public virtual SavedDBData_char Clone()
+    //public virtual SavedDBData_char Clone()
+    //{
+    //    return new SavedDBData_char(this);
+    //}
+
+    public void SetName(string name)
     {
-        return new SavedDBData_char(this);
+        _name = name;
     }
 }
 
@@ -46,8 +54,11 @@ public static class Partial_CharcterDBData
         charData._attack = dbData.GetData_int("attack");
         charData._guard = dbData.GetData_int("guard");
 
-        charData._name = dbData.GetData_st("name");
+        charData.SetName( dbData.GetData_st("name"));
+        charData._money = dbData.GetData_int("money");
+        charData._exp = dbData.GetData_int("exp");
         skillNameSet = dbData.GetData_list("skill");
+
     }
 
     public static void RateUpdateMemeber(ref SavedDBData_char charData, List<string> skillNameSet)
@@ -74,8 +85,7 @@ public static class Partial_CharcterDBData
 [CreateAssetMenu(fileName = "CharcterDBData", menuName = "DataBases/Data/CharcterDBData", order = 0)]
 public class CharcterDBData : StaticDBData
 {
-    [SerializeField] SavedDBData_char _charData=new SavedDBData_char();
-    public SavedDBData_char _CharData { get { return _charData.Clone(); } }
+    [SerializeField]public SavedDBData_char _charData=new SavedDBData_char();
 
     [SerializeField,NonEditable]List<string> _skillNameSet = new List<string>();
 
