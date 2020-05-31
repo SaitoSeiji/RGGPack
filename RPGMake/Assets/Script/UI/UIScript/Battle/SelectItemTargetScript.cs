@@ -32,6 +32,11 @@ public class SelectItemTargetScript : AbstractUIScript_button
         var btType = (allSelect) ? ButtonData.ButtonType.Selected : ButtonData.ButtonType.Selectable;
         foreach (var target in targetPool)
         {
+            //使用可能かどうかの判断
+
+            bool isuseable = Battle_targetResource.IsUseAble(GetMyItemData()._data._targetResource, true, target);
+            if (!isuseable) btType = ButtonData.ButtonType.Unselectable;
+
             result.Add(new ButtonData(target._displayName,
                                       CreateClickEvent(GetMyItemData()._data,target),
                                       btType));

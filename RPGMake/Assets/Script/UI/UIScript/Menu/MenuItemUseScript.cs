@@ -39,12 +39,17 @@ public class MenuItemUseScript : AbstractUIScript_button
         var result= new List<ButtonData>();
         foreach(var target in targetList)
         {
+            //クリックイベントの作成
             UnityEvent ue = new UnityEvent();
             ue.AddListener(() => {
                 _menuCharctes.UseItem_menu(GetMyItemData()._data,target);
                 _menuCharctes.SyncParam_pl();
                 _successEvent?.Invoke();
             });
+            //使用可能かどうかの判断
+            bool isuseable = Battle_targetResource.IsUseAble(GetMyItemData()._data._targetResource, true, target);
+            if (!isuseable) btType = ButtonData.ButtonType.Unselectable;
+            //作成
             var add = new ButtonData(target._displayName,ue,btType);
             result.Add(add);
         }
