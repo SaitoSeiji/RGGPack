@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PartyDB_test
   m_EditorClassIdentifier: 
   _dataList:
-  - {fileID: 11400000, guid: 7a07b1eab2b6c6d439246d22c8127845, type: 2}
-  - {fileID: 11400000, guid: 181acaf4654ccd744bcc402f9ad61bc8, type: 2}
+  - {fileID: 11400000, guid: 54698c5a461d64b4d96039a7500e4d45, type: 2}
+  - {fileID: 11400000, guid: 746ed6cda7e92b04e8ff417f6267523a, type: 2}

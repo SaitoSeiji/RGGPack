@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _codeData:
     _text: $#map[class]
-    _nextEventName: test_eventStop
-    _nextEventCode: {fileID: 11400000, guid: 87491a3a1d46dd84896c9a40318c3672, type: 2}
+    _nextEventName: firstEvent
+    _nextEventCode: {fileID: 11400000, guid: 58de70e881394524abab1418bae74b42, type: 2}
     coalTerm:
       _termList: []
       _orMode: 0

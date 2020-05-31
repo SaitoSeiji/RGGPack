@@ -21,9 +21,9 @@ MonoBehaviour:
     _guard: 5
     _charImage: {fileID: 0}
     _mySkillList:
-    - {fileID: 11400000, guid: a191c04c92deffa43b050521afc7a77e, type: 2}
-    - {fileID: 11400000, guid: 44397260edf7e4b4e8e37c31c2ce997a, type: 2}
-    - {fileID: 11400000, guid: 4f93cb9cef2ba6d42808cf590cecccb2, type: 2}
+    - {fileID: 11400000, guid: 34892ffd084736b4f85d5a3c3f4de027, type: 2}
+    - {fileID: 11400000, guid: bbc4033a4868ece409d99f6a7b3c9763, type: 2}
+    - {fileID: 11400000, guid: 80cd3f302787bb24a9486c677d175589, type: 2}
   _skillNameSet:
   - superAttack
   - allAtack_test

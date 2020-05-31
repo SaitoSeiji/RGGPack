@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d27a1673321e69d40b3bd6ce16822883, type: 3}
+  m_Name: SkillDB_test
+  m_EditorClassIdentifier: 
+  _dataList:
+  - {fileID: 11400000, guid: 4be48047a4b19f44b9c1de7daa1d2f62, type: 2}
+  - {fileID: 11400000, guid: 34892ffd084736b4f85d5a3c3f4de027, type: 2}
+  - {fileID: 11400000, guid: 9736a7a62d8a37b40ad7cc0e4103a7f5, type: 2}
+  - {fileID: 11400000, guid: bbc4033a4868ece409d99f6a7b3c9763, type: 2}
+  - {fileID: 11400000, guid: 80cd3f302787bb24a9486c677d175589, type: 2}
+  - {fileID: 11400000, guid: dccde78c55953694f82c73c757b90f92, type: 2}
+  - {fileID: 11400000, guid: 3824a7edcb9827b46bdbe785e23e1e90, type: 2}
+  - {fileID: 11400000, guid: f689af8145aa9164fac4f50e829e537c, type: 2}

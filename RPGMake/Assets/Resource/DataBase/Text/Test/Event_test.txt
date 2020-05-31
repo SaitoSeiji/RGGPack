@@ -55,17 +55,11 @@ id: testAddSkill
 		スキルを習得した
 		$
 	}
-id: test_eventStop
+id: test_getItem
 	text{
 		$
-		イベントを途中でやめるテストです
-		$
-		やめれましたか？
-		$
-		やめれまry)
-		$
-		やry)
-		$
+		アイテム取得テスト
+		$#item[cureTest] 1
 	}
 ＝＝ここまでテスト＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 id: moveToClass
@@ -73,7 +67,7 @@ id: moveToClass
 		$#map[class]
 	}
 	next {
-		test_eventStop
+		firstEvent
 	}
 id: firstEvent
 	text{
