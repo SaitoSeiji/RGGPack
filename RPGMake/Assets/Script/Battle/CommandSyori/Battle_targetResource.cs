@@ -4,59 +4,62 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Battle_targetResource 
+public static class Battle_targetResource 
 {
-
-    ResourceType _myResourceType;
-    int _attackNum;
-    bool _isCure;
-    BattleChar _myChar;
-    public Battle_targetResource(ResourceType resource, int attack, BattleChar target,bool iscure)
-    {
-        _myResourceType = resource;
-        _attackNum = attack;
-        _myChar = target;
-        _isCure = iscure;
-    }
-
+    
     /// <summary>
     /// 対象に指定された数値の計算をする処理
     /// </summary>
     /// <returns>発生した効果の値</returns>
-    public int Action()
+    public static int Action(ResourceType resource, int attack, BattleChar target, bool iscure)
     {
-        switch (_myResourceType)
+        switch (resource)
         {
             case ResourceType.HP:
-                if (_isCure)
+                if (iscure)
                 {
-                    _myChar.SetCure(_attackNum);
-                    return _attackNum;
+                    target.SetCure(attack);
+                    return attack;
                 }
                 else
                 {
-                    var damage = _myChar.CalcDamage(_attackNum);
-                    _myChar.SetDamage(damage);
+                    var damage = target.CalcDamage(attack);
+                    target.SetDamage(damage);
                     return damage;
                 }
             case ResourceType.SP:
-                if (_myChar is PlayerChar)
+                if (target is PlayerChar)
                 {
-                    var target = (PlayerChar)_myChar;
-                    if (_isCure)
+                    var targetPl = (PlayerChar)target;
+                    if (iscure)
                     {
-                        target.CureSP(_attackNum);
-                        return _attackNum;
+                        targetPl.CureSP(attack);
+                        return attack;
                     }
                     else
                     {
-                        target.UseSP(_attackNum);
-                        return _attackNum;
+                        targetPl.UseSP(attack);
+                        return attack;
                     }
                 }
                 else return 0;
             default:
                 return 0;
+        }
+    }
+
+    public static bool IsUseAble(ResourceType resource, bool iscure, BattleChar target)
+    {
+        if (!iscure||!(target is PlayerChar)) return true;
+        var targetPl = (PlayerChar)target;
+        switch (resource)
+        {
+            case ResourceType.HP:
+                return target._nowHp < target._maxHp;
+            case ResourceType.SP:
+                return targetPl._nowSP < targetPl._maxSP;
+            default:
+                return true;
         }
     }
 }

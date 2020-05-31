@@ -21,16 +21,20 @@ public class SelectAttackTargetScript : AbstractUIScript_button
     {
         var commandData = GetSkillData();
         //var dataList = BattleController_mono.Instance.battle.GetCommandTargetDicide(commandData).GetTargetPool();
-        var dataList = BattleController_mono.Instance.battle.GetTargetPool(commandData);
+        var targetPool = BattleController_mono.Instance.battle.GetTargetPool(commandData);
         var resultList = new List<ButtonData>();
 
         bool allSelect = !Battle_targetDicide.IsInputSelect(commandData._target);
         var btType = (allSelect) ? ButtonData.ButtonType.Selected : ButtonData.ButtonType.Selectable;
-        foreach (var data in dataList)
+        foreach (var target in targetPool)
         {
-            if (!data.IsAlive()) continue;
-            resultList.Add(new ButtonData(data._displayName,
-                                          CreateClickEvent(data,commandData),
+            if (!target.IsAlive()) continue;
+            //使用可能かどうかの判断
+            bool isuseable = Battle_targetResource.IsUseAble(commandData._TargetResourceType, true, target);
+            if (!isuseable) btType = ButtonData.ButtonType.Unselectable;
+
+            resultList.Add(new ButtonData(target._displayName,
+                                          CreateClickEvent(target,commandData),
                                           btType));
         }
         return resultList;

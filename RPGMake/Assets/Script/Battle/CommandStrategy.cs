@@ -64,8 +64,7 @@ public class SkillStrategy : CommandStrategy
     {
         foreach (var target in targetList)
         {
-            var btr = new Battle_targetResource(command._targetResourceType, attack, target, isCure);
-            var actNum = btr.Action();
+            var actNum = Battle_targetResource.Action(command._targetResourceType, attack, target, isCure);
 
             //コールバックをこっちで呼んでるのはよくなさそう
             damageAction?.Invoke(isCure,!target.IsAlive(),target,actNum);
@@ -96,8 +95,8 @@ public class ItemStrategy : CommandStrategy
     {
         foreach (var target in targetList)
         {
-            var btr = new Battle_targetResource(command._targetResourceType, attack, target, isCure);
-            var actNum = btr.Action();
+            var actNum = Battle_targetResource.Action(command._targetResourceType, attack, target, isCure);
+
             damageAction?.Invoke(isCure, !target.IsAlive(), target, actNum);
         }
     }
