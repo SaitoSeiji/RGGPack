@@ -55,14 +55,15 @@ public class CharcterField
         while (temp.Count > 0)
         {
 
-            string targetName = temp[0]._myCharData._name;
-            var targets = temp.Where(x => x._myCharData._name == targetName).ToArray();
+            string targetName = temp[0]._displayName;
+            var targets = temp.Where(x => x._displayName == targetName).ToArray();
             //名前がかぶっているならユニークネームにする
             if (targets.Length > 1)
             {
                 for (int i = 0; i < targets.Length; i++)
                 {
-                    targets[i]._myCharData._name += ConvertNum(i);
+                    targets[i]._displayName += ConvertNum(i);
+
                 }
             }
             //変えた分を消す

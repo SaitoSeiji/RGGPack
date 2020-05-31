@@ -6,10 +6,10 @@ using System;
 
 
 
-[System.Serializable]
+[Serializable]
 public class SavedDBData_party : SavedDBData
 {
-    [System.Serializable]
+    [Serializable]
     public class PartyItemData
     {
         public ItemDBData _itemData;
@@ -22,8 +22,9 @@ public class SavedDBData_party : SavedDBData
         }
     }
 
+    [SerializeField] public int _haveMoney;
     [SerializeField] public List<PartyItemData> _haveItemList = new List<PartyItemData>();
-
+    #region item
     public void ChengeItemNum(string key, int num)
     {
         try
@@ -87,6 +88,7 @@ public class SavedDBData_party : SavedDBData
         });
         return result;
     }
+    #endregion
 }
 
 public class PartyDBData : VariableDBData
@@ -101,6 +103,8 @@ public class PartyDBData : VariableDBData
 
     protected override void UpdateMember_child(TempDBData data)
     {
+        _partyData._haveMoney = data.GetData_int("money");
+
         _haveItemKeyList = data.GetData_list("haveItem");
     }
 

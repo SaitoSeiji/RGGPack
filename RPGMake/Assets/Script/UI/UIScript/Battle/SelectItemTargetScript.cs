@@ -32,7 +32,7 @@ public class SelectItemTargetScript : AbstractUIScript_button
         var btType = (allSelect) ? ButtonData.ButtonType.Selected : ButtonData.ButtonType.Selectable;
         foreach (var target in targetPool)
         {
-            result.Add(new ButtonData(target._myCharData._name,
+            result.Add(new ButtonData(target._displayName,
                                       CreateClickEvent(GetMyItemData()._data,target),
                                       btType));
         }
@@ -42,7 +42,7 @@ public class SelectItemTargetScript : AbstractUIScript_button
     UnityEvent CreateClickEvent(ItemData data,BattleChar target)
     {
         UnityEvent ue = new UnityEvent();
-        ue.AddListener(() => BattleUIController.Instance.EndCommand(data, target._myCharData._name, _MyUIBase));
+        ue.AddListener(() => BattleUIController.Instance.EndCommand(data, target._displayName, _MyUIBase));
         return ue;
     }
 }

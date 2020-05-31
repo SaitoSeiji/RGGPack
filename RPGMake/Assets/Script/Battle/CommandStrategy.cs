@@ -23,7 +23,7 @@ public abstract class CommandStrategy
 
     //引数多すぎてよくわからなくなる
     public void TurnAction(BattleChar user,BattleChar inputTarget, ICommandData icommand
-        , Action<bool, bool, SavedDBData_char, int> damageAction=null
+        , Action<bool, bool, BattleChar, int> damageAction=null
         , List<BattleChar> friends=null,List<BattleChar> enemys=null)
     {
         var command = icommand.GetCommandData();
@@ -40,7 +40,7 @@ public abstract class CommandStrategy
 
     protected abstract void UseResource(BattleChar user, ICommandData command);
     protected abstract void TrrigerEffect(int attack, CommandData command, List<BattleChar> targetList, bool isCure,
-        Action<bool, bool, SavedDBData_char, int> damageAction);
+        Action<bool, bool, BattleChar, int> damageAction);
     protected abstract int CalcEffectNum(BattleChar user, CommandData command);
 }
 
@@ -60,7 +60,7 @@ public class SkillStrategy : CommandStrategy
         }
     }
 
-    protected override void TrrigerEffect(int attack, CommandData command, List<BattleChar> targetList, bool isCure, Action<bool, bool, SavedDBData_char, int> damageAction)
+    protected override void TrrigerEffect(int attack, CommandData command, List<BattleChar> targetList, bool isCure, Action<bool, bool, BattleChar, int> damageAction)
     {
         foreach (var target in targetList)
         {
@@ -68,7 +68,7 @@ public class SkillStrategy : CommandStrategy
             var actNum = btr.Action();
 
             //コールバックをこっちで呼んでるのはよくなさそう
-            damageAction?.Invoke(isCure,!target.IsAlive(),target._myCharData,actNum);
+            damageAction?.Invoke(isCure,!target.IsAlive(),target,actNum);
         }
     }
 
@@ -92,13 +92,13 @@ public class ItemStrategy : CommandStrategy
         return (int) command._effectNum;
     }
 
-    protected override void TrrigerEffect(int attack, CommandData command, List<BattleChar> targetList, bool isCure, Action<bool, bool, SavedDBData_char, int> damageAction)
+    protected override void TrrigerEffect(int attack, CommandData command, List<BattleChar> targetList, bool isCure, Action<bool, bool, BattleChar, int> damageAction)
     {
         foreach (var target in targetList)
         {
             var btr = new Battle_targetResource(command._targetResourceType, attack, target, isCure);
             var actNum = btr.Action();
-            damageAction?.Invoke(isCure, !target.IsAlive(), target._myCharData, actNum);
+            damageAction?.Invoke(isCure, !target.IsAlive(), target, actNum);
         }
     }
 }

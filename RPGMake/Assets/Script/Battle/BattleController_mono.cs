@@ -28,11 +28,11 @@ public class BattleController
     //_battleAction_command～battleAction_endTurnまでを一つにまとめたい
     public Action _battleAction_encount;
     public Action _battleAction_waitInput;
-    public Action<SavedDBData_char, SkillCommandData> _battleAction_command;
-    public Action<SavedDBData_char, ItemData> _battleAction_item;
-    public Action<bool, bool, SavedDBData_char, int> _battleAction_attack;//(isCure,isDefeat,target,actNum)
+    public Action<BattleChar, SkillCommandData> _battleAction_command;
+    public Action<BattleChar, ItemData> _battleAction_item;
+    public Action<bool, bool, BattleChar, int> _battleAction_attack;//(isCure,isDefeat,target,actNum)
     public Action _battleAction_endTurn;
-    public Action<bool> _battleAction_end;
+    public Action<bool,int,int> _battleAction_end;//islose,money,exp
     #endregion
 
     public BattleController(SavedDBData_player player,List<SavedDBData_char> enemy)
@@ -119,11 +119,23 @@ public class BattleController
     {
         if(icommand is SkillCommandData)
         {
-            _battleAction_command?.Invoke(target._myCharData,icommand as SkillCommandData);
+            _battleAction_command?.Invoke(target,icommand as SkillCommandData);
         }else if(icommand is ItemData)
         {
-            _battleAction_item?.Invoke(target._myCharData, icommand as ItemData);
+            _battleAction_item?.Invoke(target, icommand as ItemData);
         }
+    }
+
+    static (int money,int exp) CalcMoney_exp(List<EnemyChar> enemyList)
+    {
+        int money = 0;
+        int exp = 0;
+        enemyList.ForEach(x =>
+        {
+            money += x._money;
+            exp += x._exp;
+        });
+        return (money,exp);
     }
     #endregion
     #region public
@@ -155,7 +167,7 @@ public class BattleController
 
     public void SetCharInput(string charName,ICommandData command)
     {
-        var target = _battleCharQueue.Where(x => x._myCharData._name == charName).FirstOrDefault();
+        var target = _battleCharQueue.Where(x => x._displayName == charName).FirstOrDefault();
         _charInput = (command, target);
         _waitInput = false;
     }
@@ -183,7 +195,8 @@ public class BattleController
                 {
                     EventCodeReadController.Instance.RetireEvent();
                 }
-                _battleAction_end?.Invoke(losePl);
+                var resultData = CalcMoney_exp(_charcterField._enemyList);
+                _battleAction_end?.Invoke(losePl,resultData.money,resultData.exp);
                 _battleState = BattleState.BattleEnd_public;
                 break;
         }
@@ -227,10 +240,10 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
     void StartBattle(SavedDBData_player player,EnemySetData enemys)
     {
         UIController.Instance.AddUI(_battleUI._BaseUI,true);
-        battle = new BattleController(player, enemys._charList.Select(x => x._CharData).ToList());
+        battle = new BattleController(player, enemys._charList.Select(x => x._charData).ToList());
         _battleUI.SetUpCharData();
         _battleUI.SetUpBattleDelegate(battle);
-        battle._battleAction_end += EndAction;
+        battle._battleAction_end += BattleEndCallBack;
         battle.StartBattle();
     }
 
@@ -241,12 +254,19 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
         StartBattle(_playerSaveData, enemys);
     }
 
-    void EndAction(bool lose)
+    void BattleEndCallBack(bool lose,int money,int exp)
     {
         if (!lose)
         {
             var pl = battle._charcterField._playerList;
-            SaveDataController.Instance.SetData<PlayerDB, SavedDBData_player>(pl[0]._myCharData);
+            pl.ForEach(x => {
+                x._PlayerData._exp += exp;
+                SaveDataController.Instance.SetData<PlayerDB, SavedDBData_player>(x._PlayerData);
+            });
+
+            var party = SaveDataController.Instance.GetDB_var<PartyDB, SavedDBData_party>()[0];
+            party._haveMoney += money;
+            SaveDataController.Instance.SetData<PartyDB, SavedDBData_party>(party);
         }
     }
 }

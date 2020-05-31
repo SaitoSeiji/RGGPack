@@ -29,10 +29,10 @@ public class PlayerParamDisplay : AbstractParamDisplay
     }
     string GetHpText()
     {
-        return string.Format("Hp:{0}/{1}", _mycharData._nowHp, _mycharData._myCharData._HpMax);
+        return string.Format("Hp:{0}/{1}", _mycharData._nowHp, _mycharData._maxHp);
     }
     string GetSpText()
     {
-        return string.Format("Sp:{0}/{1}", _mycharData._nowSP, _mycharData._myCharData._spMax);
+        return string.Format("Sp:{0}/{1}", _mycharData._nowSP, _mycharData._maxSP);
     }
 }

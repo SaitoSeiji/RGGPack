@@ -29,7 +29,7 @@ public class SelectAttackTargetScript : AbstractUIScript_button
         foreach (var data in dataList)
         {
             if (!data.IsAlive()) continue;
-            resultList.Add(new ButtonData(data._myCharData._name,
+            resultList.Add(new ButtonData(data._displayName,
                                           CreateClickEvent(data,commandData),
                                           btType));
         }
@@ -39,7 +39,7 @@ public class SelectAttackTargetScript : AbstractUIScript_button
     UnityEvent CreateClickEvent(BattleChar target,SkillCommandData data)
     {
         UnityEvent ue = new UnityEvent();
-        ue.AddListener(()=>BattleUIController.Instance.EndCommand(data, target._myCharData._name,_MyUIBase));
+        ue.AddListener(()=>BattleUIController.Instance.EndCommand(data, target._displayName,_MyUIBase));
         return ue;
     }
 }

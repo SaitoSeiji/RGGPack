@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: ChracterDB_test
   m_EditorClassIdentifier: 
   _dataList:
-  - {fileID: 11400000, guid: 6d7b71367893e654fb98173b52c65bca, type: 2}
   - {fileID: 11400000, guid: 43dcb0e4e930c124898ccc86fb54fc1c, type: 2}
   - {fileID: 11400000, guid: 35ab51890a10b7f42b364aa15b135749, type: 2}
