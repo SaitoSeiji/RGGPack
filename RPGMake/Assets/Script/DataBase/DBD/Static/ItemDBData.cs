@@ -15,6 +15,7 @@ public class ItemData:ICommandData
     [SerializeField] public TargetType _targetType;
     [SerializeField] public ResourceType _targetResource;
     [SerializeField] public int _effectNum;
+    [SerializeField] public int _price;
 
     [SerializeField]public Sprite _itemImage;
     
@@ -44,5 +45,6 @@ public class ItemDBData : StaticDBData
         _data._targetType = (TargetType)Enum.ToObject(typeof(TargetType), data.GetData_int("targetType"));
         _data._targetResource = (ResourceType)Enum.ToObject(typeof(ResourceType), data.GetData_int("targetResource"));
         _data._effectNum = data.GetData_int("effectNum");
+        _data._price = data.GetData_int("price");
     }
 }

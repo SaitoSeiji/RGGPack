@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61bd23d69832b514d9d6305f52db08df, type: 3}
+  m_Name: test2
+  m_EditorClassIdentifier: 
+  _serchId: test2
+  _itemList:
+  - {fileID: 11400000, guid: f8e982c4da0a49541ab4445479a3728c, type: 2}
+  _itemNameList:
+  - cureTest

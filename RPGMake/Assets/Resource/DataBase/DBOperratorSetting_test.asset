@@ -21,6 +21,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 84f2e903fd19e2f4eaac96855024af62, type: 3}
   - {fileID: 4900000, guid: 70a120b6187d4c340839c180616570a5, type: 3}
   - {fileID: 4900000, guid: f07b87dc7dd6c714486cc1c985fdcd16, type: 3}
+  - {fileID: 4900000, guid: 1dc81d0100fb285409d559fcb21a62ce, type: 3}
   _eventDataText: {fileID: 4900000, guid: 5f7ad3af02a7d6f4fa8847ec56ba0805, type: 3}
   _dataBaseList:
   - {fileID: 11400000, guid: 374bc57b483dd5248bcc4d62cbb99b8c, type: 2}
@@ -30,6 +31,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 89ca1c374992c1b468534aca36be8370, type: 2}
   - {fileID: 11400000, guid: c44e2068d1133ee4f9507936f567d6be, type: 2}
   - {fileID: 11400000, guid: d2a53ba54fe3d0d4ba6f1a64b3ecff2d, type: 2}
+  - {fileID: 11400000, guid: beadf1518de0bc54cbeba3d21000bd45, type: 2}
   _eventDb: {fileID: 11400000, guid: c32eff852fba8844397d0fcf0176a52e, type: 2}
   _audioDB: {fileID: 11400000, guid: 78ff3e1c24abf274e908ca9fdafb1d7c, type: 2}
   _imageDB: {fileID: 11400000, guid: 3ccff83e355da8f47b6350789227b79e, type: 2}

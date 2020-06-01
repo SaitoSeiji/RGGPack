@@ -19,4 +19,5 @@ MonoBehaviour:
     _targetType: 4
     _targetResource: 0
     _effectNum: 50
+    _price: 10
     _itemImage: {fileID: 0}
