@@ -1,0 +1,7 @@
+﻿Type(Shop)
+id: test
+	item
+	{
+		cureTest
+		cureSpTest
+	}

@@ -28,6 +28,8 @@ public class DBOperater_mono : MonoBehaviour
                 return typeof(PartyDB);
             case "Item":
                 return typeof(ItemDB);
+            case "Shop":
+                return typeof(ShopDB);
             case "Skill":
                 return typeof(SkillDB);
             case "Charcter":
@@ -136,6 +138,11 @@ public class DBOperater_mono : MonoBehaviour
             var op = new DBOperater<ItemDBData, ItemDB>(db as ItemDB);
             op.SyncDataByTxt(_readFile, GetDirPath());
         }
+        else if (type == typeof(ShopDB))
+        {
+            var op = new DBOperater<ShopDBData, ShopDB>(db as ShopDB);
+            op.SyncDataByTxt(_readFile, GetDirPath());
+        }
         else if (type == typeof(FlagDB))
         {
             var op = new DBOperater<FlagDBData, FlagDB>(db as FlagDB);
@@ -176,6 +183,11 @@ public class DBOperater_mono : MonoBehaviour
         if (type == typeof(ItemDB))
         {
             var op = new DBOperater<ItemDBData, ItemDB>(db as ItemDB);
+            op.RateUpdate();
+        }
+        else if (type == typeof(ShopDB))
+        {
+            var op = new DBOperater<ShopDBData, ShopDB>(db as ShopDB);
             op.RateUpdate();
         }
         else if (type == typeof(FlagDB))

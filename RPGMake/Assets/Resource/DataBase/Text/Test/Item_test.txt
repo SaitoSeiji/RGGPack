@@ -5,24 +5,28 @@ id: test1
 	targetType 4
 	targetResource 0
 	effectNum 50
+	price 10
 id: cureTest
 	displayName 薬草_テスト
 	explanation 体力を２０回復する
 	targetType 1
 	targetResource 2
 	effectNum 20
+	price 10
 id: cureSpTest
 	displayName 聖水_テスト
 	explanation spを２０回復する
 	targetType 1
 	targetResource 1
 	effectNum 20
+	price 50
 id: attackTest
 	displayName ボム＿テスト
 	explanation 敵全体に小ダメージ
 	targetType 5
 	targetResource 2
 	effectNum 20
+	price 100
 
 
 ==================

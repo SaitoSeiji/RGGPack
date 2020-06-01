@@ -11,6 +11,7 @@
                             "_targetType": "FRIEND_SOLO",
                             "_targetResource": "HP",
                             "_effectNum": 20,
+                            "_price": 10,
                             "_itemImage": {
                                 
                             }
@@ -28,6 +29,7 @@
                             "_targetType": "FRIEND_SOLO",
                             "_targetResource": "SP",
                             "_effectNum": 20,
+                            "_price": 50,
                             "_itemImage": {
                                 
                             }
@@ -45,6 +47,7 @@
                             "_targetType": "ENEMY_ALL",
                             "_targetResource": "HP",
                             "_effectNum": 20,
+                            "_price": 100,
                             "_itemImage": {
                                 
                             }
