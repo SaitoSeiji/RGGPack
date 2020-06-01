@@ -45,6 +45,9 @@ public abstract class CodeData
             case "item"://item[itemName] 1
                 result = new ItemCode(data);
                 break;
+            case "shop"://shop[shopName]
+                result = new ShopCode(data);
+                break;
             case "skill"://skill[playerName,skillname]
                 result = new SkillCode(data);
                 break;
@@ -225,7 +228,33 @@ public class ItemCode : CodeData
         return true;
     }
 }
+ class ShopCode : CodeData
+{
+    ShopDBData myShopData;
 
+    public ShopCode(TextCovertedData data)
+    {
+        var db=SaveDataController.Instance.GetDB_static<ShopDB>()._dataList;
+        try
+        {
+            myShopData = db.Where(x => x._serchId == data._data).First();
+        }catch(System.NullReferenceException e)
+        {
+            Debug.LogError($"shop name is not exist:key={data._data}\n{e}");
+        }
+    }
+
+    public override void CodeAction()
+    {
+        ResourceDB_mono.Instance._nowShopData = myShopData;
+        UISeveralAction.Instance.OpenShop();
+    }
+
+    public override bool IsEndCode()
+    {
+        return !UISeveralAction.Instance.IsOpenShop();
+    }
+}
 internal class SkillCode : CodeData
 {
     SavedDBData_player targetPlayer;

@@ -24,7 +24,9 @@ public class ShopDB : StaticDB
     {
         var db = SaveDataController.Instance.GetDB_var<PartyDB, SavedDBData_party>()[0];
         db._haveMoney -= item._data._price * buyCount;
+        db.ChengeItemNum(item._serchId,buyCount);
         SaveDataController.Instance.SetData<PartyDB, SavedDBData_party>(db);
+        
     }
 
     public static int GetBuyableCount(ItemDBData item)

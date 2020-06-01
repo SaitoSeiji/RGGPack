@@ -5,3 +5,8 @@ id: test
 		cureTest
 		cureSpTest
 	}
+id: test2
+	item
+	{
+		cureTest
+	}

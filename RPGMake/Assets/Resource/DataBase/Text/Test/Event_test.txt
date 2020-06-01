@@ -61,6 +61,26 @@ id: test_getItem
 		アイテム取得テスト
 		$#item[cureTest] 1
 	}
+id: test_openShop
+	text{
+		$
+		いらっしゃい
+		ゆっくりしていってください
+		$#shop[test]
+		$
+		またどうぞ
+		$
+	}
+id: test_openShop2
+	text{
+		$
+		いらっしゃい
+		ゆっくりしていってください
+		$#shop[test2]
+		$
+		またどうぞ
+		$
+	}
 ＝＝ここまでテスト＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 id: moveToClass
 	text{
