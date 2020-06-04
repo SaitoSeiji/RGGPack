@@ -20,7 +20,7 @@ MonoBehaviour:
     _attack: 3
     _guard: 2
     _money: 100
-    _exp: 50
+    _exp: 20
     _charImage: {fileID: 0}
     _mySkillList:
     - {fileID: 11400000, guid: 4be48047a4b19f44b9c1de7daa1d2f62, type: 2}
