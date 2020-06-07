@@ -9,6 +9,7 @@ public class PlayerParamDisplay : AbstractParamDisplay
     public PlayerChar _mycharData { get; private set; }
     [SerializeField] TextMeshProUGUI _hpText;
     [SerializeField] TextMeshProUGUI _spText;
+    [SerializeField] TextMeshProUGUI _levelText;
     public void SetChar(PlayerChar data)
     {
         _mycharData = data;
@@ -26,6 +27,7 @@ public class PlayerParamDisplay : AbstractParamDisplay
     {
         _hpText.text = GetHpText();
         _spText.text = GetSpText();
+        _levelText.text =$"Lv{_mycharData._PlayerData._level}" ;
     }
     string GetHpText()
     {
@@ -35,4 +37,5 @@ public class PlayerParamDisplay : AbstractParamDisplay
     {
         return string.Format("Sp:{0}/{1}", _mycharData._nowSP, _mycharData._maxSP);
     }
+    
 }

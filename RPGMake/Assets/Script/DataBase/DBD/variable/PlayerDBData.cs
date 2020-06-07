@@ -130,6 +130,11 @@ public class SavedDBData_player : SavedDBData_char
         }
         return result;
     }
+
+    public int CalcNextLevelExp()
+    {
+        return GetTargetLevelExp_sum(_level) - _exp;
+    }
     #endregion
 }
 
