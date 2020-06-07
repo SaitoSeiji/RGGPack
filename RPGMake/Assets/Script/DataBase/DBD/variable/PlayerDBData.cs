@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using System;
+using System.Linq;
 
 [System.Serializable]
 public class NeedExpList
@@ -74,9 +75,29 @@ public class SavedDBData_player : SavedDBData_char
 
     [SerializeField] public int _level=1;
     [SerializeField]public NeedExpList _needExpList;
+
+    [Serializable]
+    public class LevelSkillData
+    {
+        public int _level;
+        public SkillDBData _targetSkill;
+        public LevelSkillData(int level,SkillDBData targetSkill)
+        {
+            _level = level;
+            _targetSkill = targetSkill;
+        }
+
+        public bool EqualLevel(LevelSkillData check)
+        {
+            return _level == check._level;
+        }
+    }
+    [SerializeField] public List<LevelSkillData> _levelSkillData = new List<LevelSkillData>();
+
     #endregion
-    //ここからデータへの変更をするもの
-    public void Init()
+
+    #region データの操作
+    public void InitNeedExpList()
     {
         _needExpList = new NeedExpList(99, _firstExp, ExpRate);
     }
@@ -86,7 +107,6 @@ public class SavedDBData_player : SavedDBData_char
         if (_mySkillList.Contains(data)) return;
         _mySkillList.Add(data);
     }
-
     //レベルの更新と上昇レベルの取得
     public int UpdateLevel()
     {
@@ -100,6 +120,7 @@ public class SavedDBData_player : SavedDBData_char
         }
         _level += up;
         UpdateParam(up);
+        UpdateSkill(_level-up,_level);
         return up;
     }
 
@@ -115,7 +136,14 @@ public class SavedDBData_player : SavedDBData_char
             _spNow = _spMax;
         }
     }
-    #region データへの参照をするもの
+    
+    void UpdateSkill(int fromlevel,int nowlevel)
+    {
+        var addlist=GetBetweenSkill(fromlevel, nowlevel);
+        addlist.ForEach(x => AddSkill(x));
+    }
+    #endregion
+    #region 加工後データの取得
     //checkLevelで必要な経験値
     public int GetTargetLevelExp_raw(int checkLevel)
     {
@@ -135,6 +163,13 @@ public class SavedDBData_player : SavedDBData_char
     {
         return GetTargetLevelExp_sum(_level) - _exp;
     }
+
+
+    public List<SkillDBData> GetBetweenSkill(int fromlevel, int nowlevel)
+    {
+        var result = _levelSkillData.Where(x => fromlevel < x._level && x._level < nowlevel).Select(x => x._targetSkill).ToList();
+        return result;
+    }
     #endregion
 }
 
@@ -143,7 +178,8 @@ public class PlayerDBData : VariableDBData
 {
     [SerializeField] SavedDBData_player _charData = new SavedDBData_player();
     [SerializeField, NonEditable] List<string> _skillNameSet = new List<string>();
-    
+    [SerializeField, NonEditable] List<string> _levelSkillNameSet = new List<string>();
+
     protected override SavedDBData GetSavedDBData_child()
     {
         return _charData;
@@ -160,15 +196,36 @@ public class PlayerDBData : VariableDBData
         _charData.ExpRate = data.GetData_int("expRate");
         _charData._firstExp = data.GetData_int("expFirst");
         _charData._paramGrowData=UpdateMember_growData(data.GetData_list("paramGrow"));
-        _charData.Init();
+        _charData.InitNeedExpList();
+        _levelSkillNameSet = data.GetData_list("levelSkill");
     }
 
     public override void RateUpdateMemeber()
     {
         base.RateUpdateMemeber();
-
         var temp = (SavedDBData_char)_charData;
         Partial_CharcterDBData.RateUpdateMemeber(ref temp, _skillNameSet);
+
+        //レベルとスキルの対応データの追加
+        _charData._levelSkillData = new List<SavedDBData_player.LevelSkillData>();
+        var skillDB = SaveDataController.Instance.GetDB_static<SkillDB>()._dataList;
+        foreach (var data in _levelSkillNameSet)
+        {
+            try
+            {
+                var input = data.Split(' ');
+                var levelData = int.Parse(input[0]);
+                var skillData = skillDB.Where(x => x._serchId == input[1]).First();
+                var add = new SavedDBData_player.LevelSkillData(levelData, skillData);
+                _charData._levelSkillData.Add(add);
+            }catch(Exception e)when(e is FormatException||
+                                    e is NullReferenceException)
+            {
+                Debug.LogError($"playerDBData-levelSkillを正常に読み込めませんでした:data={data}\n{e}");
+            }
+        }
+        //同名スキルを覚えた時のエラー表示が欲しい
+
         EditorUtility.SetDirty(this);
     }
     //growDataについてのupdateMember

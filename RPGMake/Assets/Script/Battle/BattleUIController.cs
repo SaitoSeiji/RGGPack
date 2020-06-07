@@ -306,11 +306,21 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         });
     }
 
-    void LevelUpAction(PlayerChar target,int up)
+    void LevelUpAction(PlayerChar target,int up,List<SkillDBData> addSkillList)
     {
         if (up <= 0) return;
-        var manyUp = (up > 1) ? "いっきに" : "";//複数上がった時の表現
-        var log = $"{target._displayName}はレベルが{manyUp}{target._PlayerData._level}に上がった<{target._displayName}0>！";
+
+        var plName = target._displayName;
+        var nowlevel = target._PlayerData._level;
+        var beforelevel = nowlevel- up;
+
+        var log = "";
+        if (up == 1) log += $"{plName}はレベルが{nowlevel}に上がった<{plName}0>！\n";
+        else if (up > 1)log += $"{plName}はレベルが{beforelevel}から{nowlevel}に上がった<{plName}0>！\n";
+        foreach (var skill in addSkillList)
+        {
+            log += $"{plName}は{skill._Data._skillName}を習得した\n";
+        }
         AddDisplayText(log);
         //表示の更新
         var targetDisp = _charParamDisplyer.GetParamDisplayer(target);

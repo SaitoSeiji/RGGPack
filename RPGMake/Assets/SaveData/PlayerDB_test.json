@@ -120,6 +120,22 @@
                     113889
                 ]
             },
+            "_levelSkillData": [
+                {
+                    "_level": 2,
+                    "_targetSkill": {
+                        "_data": {
+                            "_skillName": "闇の魔法",
+                            "_target": "ENEMY_SOLO",
+                            "_useResourceType": "SP",
+                            "_useNum": 5,
+                            "_targetResourceType": "HP",
+                            "_attackRate": 3.0
+                        },
+                        "_serchId": "darkmagic"
+                    }
+                }
+            ],
             "_name": "コウ",
             "_hpMax": 40,
             "_attack": 5,
