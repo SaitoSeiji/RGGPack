@@ -105,43 +105,46 @@ public class BattleChar
 }
 public class PlayerChar : BattleChar
 {
-    SavedDBData_player _charData;
     public int _maxSP { get; private set; }
     public int _nowSP { get; private set; }
 
     public SavedDBData_player _PlayerData
     {
-        get { return SyncData(_charData); }
+        get;private set;
     }
 
     public PlayerChar(SavedDBData_player charData) : base(charData)
     {
-        _charData = charData;
-        _nowHp = _charData._hpNow;
+        _PlayerData = charData;
+        _nowHp = charData._hpNow;
         _maxSP = charData._spMax;
         _nowSP = charData._spNow;
     }
 
     //_charDataに反映
-    SavedDBData_player SyncData(SavedDBData_player target)
+    public void SyncData_This2Data()
     {
-        target._hpNow = _nowHp;
-        target._spNow = _nowSP;
-        return target;
+        _PlayerData._hpNow = _nowHp;
+        _PlayerData._spNow = _nowSP;
+    }
+    public void SyncData_Data2This()
+    {
+        _maxHp = _PlayerData._hpMax;
+        _nowHp = _PlayerData._hpNow;
+        _maxSP = _PlayerData._spMax;
+        _nowSP = _PlayerData._spNow;
     }
 
     public void UseSP(int use)
     {
         _nowSP -= use;
         _nowSP = Mathf.Clamp(_nowSP,0,_maxSP);
-        //SyncData();
     }
 
     public void CureSP(int cure)
     {
         _nowSP += cure;
         _nowSP = Mathf.Clamp(_nowSP, 0, _maxSP);
-        //SyncData();
     }
     
 }

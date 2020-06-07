@@ -14,6 +14,7 @@ public class SetInspectorSkillScript : AbstractUIScript_onclick
 
     public override void OnclickAction()
     {
-        throw new System.NotImplementedException();
+        var data=ResourceDB_mono.Instance._attackData;
+        UIController.Instance.SetFlashData("command", data);
     }
 }

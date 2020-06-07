@@ -60,6 +60,7 @@ public class ChracterFieldDisplayer : MonoBehaviour
         var user = new PlayerChar(SaveDataController.Instance.GetDB_var<PlayerDB, SavedDBData_player>()[0]);
 
         strtegy.TurnAction(user, target,item, friends: friends);
+        target.SyncData_This2Data();
         SaveDataController.Instance.SetData<PlayerDB, SavedDBData_player>(target._PlayerData);
     }
 

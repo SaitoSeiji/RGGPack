@@ -184,12 +184,12 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     void AddDisplayText(string text)
     {
         if (string.IsNullOrEmpty(text)) return;
-        if (_displayText == null)
-        {
-            _displayText = new List<string>();
-        }
-        var splited = text.Split('$');
-        _displayText.AddRange(splited);
+        if (_displayText == null)_displayText = new List<string>();
+        //すべての文字列を結合して分けなおす
+        //_displayTextが使用されるまでの間にAddDisplayTextしたものは1つの塊として扱いたかった
+        var fullText = string.Join("", _displayText)+text;
+        var splited = fullText.Split('$');
+        _displayText = splited.ToList();
     }
 
     #region uistate
@@ -229,8 +229,8 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         battle._battleAction_command = CommandAction;
         battle._battleAction_item = ItemAction;
         battle._battleAction_attack = AttackAction;
-        battle._battleAction_endTurn = EndTurnAction;
         battle._battleAction_end = EndBattleAction;
+        battle._battleAction_levelUp = LevelUpAction;
     }
 
     public bool IsBattleNow()
@@ -246,78 +246,78 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
             AddDisplayText(log);
             ChengeUIState(BattleUIState.DisplayText);
             _battleState = BattleState.Battle;
-        }
-        );
+        });
     }
-    string _battlelogText = "";
+    //string _battlelogText = "";
     void CommandAction(BattleChar user, SkillCommandData skilldata)
     {
+        AddDisplayText($"{user._displayName}の{skilldata._skillName}\n");
         _uiActionQueue.Enqueue(() =>
         {
-            _battlelogText = string.Format("{0}の{1}\n", user._displayName, skilldata._skillName);
             var target = _charParamDisplyer.GetParamDisplayer(user);
             target.SyncDisply();
+            ChengeUIState(BattleUIState.DisplayText);
         });
     }
     void ItemAction(BattleChar user, ItemData itemdata)
     {
-        _uiActionQueue.Enqueue(() =>
-        {
-            _battlelogText = string.Format("{0}は{1}を使った\n", user._displayName, itemdata._displayName);
-        });
+        AddDisplayText($"{user._displayName}は{itemdata._displayName}を使った\n");
     }
 
     void AttackAction(bool isCure,bool isDefeat,BattleChar target, int damage)
     {
-        _uiActionQueue.Enqueue(() =>
-        {
-            //テキストの追加
-            if (isCure) _battlelogText += $"{target._displayName}は{damage}回復<{target._displayName}0>\n";
-            else _battlelogText += $"{target._displayName}は{damage}のダメージ<{target._displayName}0>を受けた\n";
-            if(isDefeat) _battlelogText += $"{target._displayName}は倒れた<{target._displayName}1>\n";
-
-            //表示の更新
-            var targetDisp = _charParamDisplyer.GetParamDisplayer(target);
-
-            if (targetDisp == null) return;
-            _battleTextDisplayer.AddTextAction(target._displayName + "0",()=> {
-                targetDisp.SyncDisply();
-                if (!isCure) targetDisp.DamageAction();
-            });
-            _battleTextDisplayer.AddTextAction(target._displayName + "1", () =>
-            {
-                targetDisp.DeadAction();
-            });
+        var log = "";
+        if (isCure) log += $"{target._displayName}は{damage}回復<{target._displayName}0>\n";
+        else log += $"{target._displayName}は{damage}のダメージ<{target._displayName}0>を受けた\n";
+        if (isDefeat) log += $"{target._displayName}は倒れた<{target._displayName}1>\n";
+        AddDisplayText(log);
+        //表示の更新
+        var targetDisp = _charParamDisplyer.GetParamDisplayer(target);
+        if (targetDisp == null) return;
+        _battleTextDisplayer.AddTextAction(target._displayName + "0", () => {
+            targetDisp.SyncDisply();
+            if (!isCure) targetDisp.DamageAction();
         });
-    }
-
-    void EndTurnAction()
-    {
-        _uiActionQueue.Enqueue(() =>
+        _battleTextDisplayer.AddTextAction(target._displayName + "1", () =>
         {
-            AddDisplayText(_battlelogText);
-            ChengeUIState(BattleUIState.DisplayText);
+            targetDisp.DeadAction();
         });
     }
     void EndBattleAction(bool plDead,int money,int exp)
     {
+        string log = "";
+        if (plDead)
+        {
+            log += string.Format("コウたちは全滅した<w>\n");
+            log += string.Format("目の前が真っ暗になった");
+        }
+        else
+        {
+            log += string.Format("コウは戦闘に勝利した！<w>\n");
+            log += string.Format($"{money}G手に入れた\n");
+            log += string.Format($"経験値を{exp}手に入れた\n");
+        }
+        AddDisplayText(log);
+
         _uiActionQueue.Enqueue(() =>
         {
-            string log = "";
-            if (plDead)
-            {
-                log += string.Format("コウたちは全滅した<w>\n");
-                log += string.Format("目の前が真っ暗になった");
-            }
-            else
-            {
-                log += string.Format("コウは戦闘に勝利した！<w>\n");
-                log += string.Format($"{money}G手に入れた\n");
-                log += string.Format($"経験値を{exp}手に入れた\n");
-            }
-            AddDisplayText(log);
             ChengeUIState(BattleUIState.DisplayText);
             _battleState = BattleState.Close;
+        });
+    }
+
+    void LevelUpAction(PlayerChar target,int up)
+    {
+        if (up <= 0) return;
+        var manyUp = (up > 1) ? "いっきに" : "";//複数上がった時の表現
+        var log = $"{target._displayName}はレベルが{manyUp}{target._PlayerData._level}に上がった<{target._displayName}0>！";
+        AddDisplayText(log);
+        //表示の更新
+        var targetDisp = _charParamDisplyer.GetParamDisplayer(target);
+        if (targetDisp == null) return;
+        _battleTextDisplayer.AddTextAction(target._displayName + "0", () => {
+            target.SyncData_Data2This();
+            targetDisp.SyncDisply();
         });
     }
     #endregion

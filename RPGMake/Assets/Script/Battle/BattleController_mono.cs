@@ -33,6 +33,7 @@ public class BattleController
     public Action<bool, bool, BattleChar, int> _battleAction_attack;//(isCure,isDefeat,target,actNum)
     public Action _battleAction_endTurn;
     public Action<bool,int,int> _battleAction_end;//islose,money,exp
+    public Action<PlayerChar, int> _battleAction_levelUp;//name,uplevel
     #endregion
 
     public BattleController(SavedDBData_player player,List<SavedDBData_char> enemy)
@@ -111,6 +112,35 @@ public class BattleController
         {
             _waitInput = true;
             _battleAction_waitInput?.Invoke();
+        }
+    }
+
+    void BattleEndAction(bool lose, int money, int exp)
+    {
+        var levelData = new Dictionary<PlayerChar, int>();
+        if (!lose)
+        {
+            //plデータの更新
+            var pl = _charcterField._playerList;
+            pl.ForEach(x => {
+                x.SyncData_This2Data();
+                x._PlayerData._exp += exp;
+                var up = x._PlayerData.UpdateLevel();
+                levelData.Add(x, up);
+                SaveDataController.Instance.SetData<PlayerDB, SavedDBData_player>(x._PlayerData);
+            });
+
+            //パーティデータの更新
+            var party = SaveDataController.Instance.GetDB_var<PartyDB, SavedDBData_party>()[0];
+            party._haveMoney += money;
+            SaveDataController.Instance.SetData<PartyDB, SavedDBData_party>(party);
+        }
+
+        //コールバックの呼び出し
+        _battleAction_end?.Invoke(lose, money, exp);
+        foreach (var data in levelData)
+        {
+            _battleAction_levelUp?.Invoke(data.Key, data.Value);
         }
     }
     #endregion
@@ -196,12 +226,13 @@ public class BattleController
                     EventCodeReadController.Instance.RetireEvent();
                 }
                 var resultData = CalcMoney_exp(_charcterField._enemyList);
-                _battleAction_end?.Invoke(losePl,resultData.money,resultData.exp);
+                BattleEndAction(losePl, resultData.money, resultData.exp);
                 _battleState = BattleState.BattleEnd_public;
                 break;
         }
     }
     #endregion
+
 }
 
 public class BattleController_mono : SingletonMonoBehaviour<BattleController_mono>
@@ -243,7 +274,6 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
         battle = new BattleController(player, enemys._charList.Select(x => x._charData).ToList());
         _battleUI.SetUpCharData();
         _battleUI.SetUpBattleDelegate(battle);
-        battle._battleAction_end += BattleEndCallBack;
         battle.StartBattle();
     }
 
@@ -252,21 +282,5 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
         var dblist= SaveDataController.Instance.GetDB_var<PlayerDB, SavedDBData_player>();
         var _playerSaveData = dblist[0];
         StartBattle(_playerSaveData, enemys);
-    }
-
-    void BattleEndCallBack(bool lose,int money,int exp)
-    {
-        if (!lose)
-        {
-            var pl = battle._charcterField._playerList;
-            pl.ForEach(x => {
-                x._PlayerData._exp += exp;
-                SaveDataController.Instance.SetData<PlayerDB, SavedDBData_player>(x._PlayerData);
-            });
-
-            var party = SaveDataController.Instance.GetDB_var<PartyDB, SavedDBData_party>()[0];
-            party._haveMoney += money;
-            SaveDataController.Instance.SetData<PartyDB, SavedDBData_party>(party);
-        }
     }
 }

@@ -8,6 +8,6 @@ public class ResourceDB_mono : SingletonMonoBehaviour<ResourceDB_mono>
     public SpriteDataBase _imageDB;
     public MapDataBase _mapDB;
 
-    public ShopDBData _nowShopData;
+    [Space(10)]public ShopDBData _nowShopData;
     public SkillDBData _attackData;
 }
