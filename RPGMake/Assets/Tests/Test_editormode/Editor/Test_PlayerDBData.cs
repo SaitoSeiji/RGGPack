@@ -23,7 +23,7 @@ namespace Tests
         {
             _myPlData.ExpRate = 1100;
             _myPlData._firstExp = 10;
-            _myPlData.Init();
+            _myPlData.InitNeedExpList();
             var next = _myPlData.GetTargetLevelExp_raw(level);
             Assert.AreEqual(exp, next);
         }
@@ -34,7 +34,7 @@ namespace Tests
         {
             _myPlData.ExpRate = 1100;
             _myPlData._firstExp = 10;
-            _myPlData.Init();
+            _myPlData.InitNeedExpList();
             var next = _myPlData.GetTargetLevelExp_sum(level);
             Assert.AreEqual(exp, next);
         }
@@ -47,10 +47,22 @@ namespace Tests
             _myPlData._firstExp = 10;
             _myPlData._exp = haveexp;
             _myPlData._level = firstlevel;
-            _myPlData.Init();
+            _myPlData.InitNeedExpList();
             var up = _myPlData.UpdateLevel();
             Assert.AreEqual(resultlevel, _myPlData._level);
             Assert.AreEqual(resultlevel-firstlevel, up);
+        }
+
+        //そのうち核
+        public void Test_UpdateSkill(int firstlevel, int resultlevel)
+        {
+            //_myPlData.ExpRate = 1100;
+            //_myPlData._firstExp = 10;
+            //_myPlData._level = firstlevel;
+            //_myPlData.InitNeedExpList();
+            //var up = _myPlData.UpdateLevel();
+            //Assert.AreEqual(resultlevel, _myPlData._level);
+            //Assert.AreEqual(resultlevel - firstlevel, up);
         }
     }
 }

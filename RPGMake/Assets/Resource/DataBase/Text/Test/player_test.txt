@@ -20,3 +20,6 @@ id: kou
 		attack 2
 		guard 1
 	}
+	levelSkill{
+		2 darkmagic
+	}

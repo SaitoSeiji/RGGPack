@@ -33,7 +33,7 @@ public class BattleController
     public Action<bool, bool, BattleChar, int> _battleAction_attack;//(isCure,isDefeat,target,actNum)
     public Action _battleAction_endTurn;
     public Action<bool,int,int> _battleAction_end;//islose,money,exp
-    public Action<PlayerChar, int> _battleAction_levelUp;//name,uplevel
+    public Action<PlayerChar, int,List<SkillDBData>> _battleAction_levelUp;//name,uplevel,習得したスキル
     #endregion
 
     public BattleController(SavedDBData_player player,List<SavedDBData_char> enemy)
@@ -118,6 +118,7 @@ public class BattleController
     void BattleEndAction(bool lose, int money, int exp)
     {
         var levelData = new Dictionary<PlayerChar, int>();
+        var addSkillData = new Dictionary<PlayerChar, List<SkillDBData>>();
         if (!lose)
         {
             //plデータの更新
@@ -127,6 +128,7 @@ public class BattleController
                 x._PlayerData._exp += exp;
                 var up = x._PlayerData.UpdateLevel();
                 levelData.Add(x, up);
+                addSkillData.Add(x, x._PlayerData.GetBetweenSkill(x._PlayerData._level - up, x._PlayerData._level));
                 SaveDataController.Instance.SetData<PlayerDB, SavedDBData_player>(x._PlayerData);
             });
 
@@ -140,7 +142,8 @@ public class BattleController
         _battleAction_end?.Invoke(lose, money, exp);
         foreach (var data in levelData)
         {
-            _battleAction_levelUp?.Invoke(data.Key, data.Value);
+            var addskillList = addSkillData.Where(x => x.Key.Equals(data.Key)).First().Value;
+            _battleAction_levelUp?.Invoke(data.Key, data.Value,addskillList);
         }
     }
     #endregion
