@@ -39,7 +39,7 @@ public static class TextConverter
             string head = "";
             string data = "";
             string text = "";
-            if (CheckIsSeparate(d))
+            if (CheckSeparateEnable(d))
             {
                 var d2 = SepareteHead(d);
                 head = d2.action;
@@ -78,7 +78,7 @@ public static class TextConverter
         return head.Success;
     }
 
-    static bool CheckIsSeparate(string input)
+    static bool CheckSeparateEnable(string input)
     {
         var result = new Regex(_checkHaveDataRGX).Match(input);
         return result.Success;

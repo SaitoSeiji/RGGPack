@@ -23,23 +23,8 @@ MonoBehaviour:
     _nextEventName: 
     _nextEventCode: {fileID: 0}
     coalTerm:
-      _termList:
-      - _id: id
-        _memberSet:
-        - memberName: memeber
-          data: 1
-          _hikaku: 2
-      - _id: flagId
-        _memberSet:
-        - memberName: flagNum
-          data: 0
-          _hikaku: 3
-      - _id: itemId
-        _memberSet:
-        - memberName: haveNum
-          data: 1
-          _hikaku: 1
-      _orMode: 1
+      _termList: []
+      _orMode: 0
   _nextEventNameList:
   - moveToClass
   - door_class

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 //text->dbの変換の際に使用するデータ
 [System.Serializable]
@@ -48,9 +49,11 @@ public class TempDBData
 public abstract class AbstractDBData : ScriptableObject
 {
     public string _serchId;
-    public void UpdateMember(TempDBData data)
+    public string _fileName { get; private set; }
+    public void UpdateMember(TempDBData data,string fileName)
     {
         _serchId = data._serchId;
+        _fileName = fileName;
         UpdateMember_child(data);
     }
     protected abstract void UpdateMember_child(TempDBData data);
@@ -61,4 +64,19 @@ public abstract class AbstractDBData : ScriptableObject
     {
         return CreateInstance<T>();
     }
+    #region errorlog
+    protected void ThrowErrorLog(Exception e, string information, string errorCode)
+    {
+        ThrowErrorLog(e, _fileName, errorCode, _serchId, information);
+    }
+    public static void ThrowErrorLog(Exception e, string filename, string errorCode, string serchid, string information)
+    {
+        Debug.LogError($"{filename}に{errorCode}:発生個所 id:{serchid} info:{information}\n" +
+                       $"エラー内容:{e}");
+    }
+
+    public static string ErrorCode_uncollectName { get { return "名前の間違いがあります"; } }
+    public static string ErrorCode_format { get { return "文法の間違いがあります"; } }
+    public static string ErrorCode_default { get { return "異常があります"; } }
+    #endregion
 }

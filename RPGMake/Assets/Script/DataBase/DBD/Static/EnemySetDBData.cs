@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using System;
 
 
 [System.Serializable]
@@ -31,8 +32,15 @@ public class EnemySetDBData : StaticDBData
         _enemySetData._charList = new List<CharcterDBData>();
         foreach (var names in _enemyNameList)
         {
-            var data = db.Where(x => x.name == names).First();
-            _enemySetData._charList.Add(data as CharcterDBData);
+            try
+            {
+                var data = db.Where(x => x.name == names).First();
+                _enemySetData._charList.Add(data as CharcterDBData);
+            }
+            catch(InvalidOperationException e)
+            {
+                ThrowErrorLog(e, names,ErrorCode_uncollectName);
+            }
         }
         EditorUtility.SetDirty(this);
     }

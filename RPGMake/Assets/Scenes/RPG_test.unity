@@ -430,8 +430,7 @@ PrefabInstance:
     - target: {fileID: 1168554703, guid: fd2c1dd96ab564442bac0e48be0b722d, type: 3}
       propertyPath: _nowShopData
       value: 
-      objectReference: {fileID: 11400000, guid: e85859e087eeba84f8f6e12a1c921d3c,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 1168554703, guid: fd2c1dd96ab564442bac0e48be0b722d, type: 3}
       propertyPath: _attackData
       value: 

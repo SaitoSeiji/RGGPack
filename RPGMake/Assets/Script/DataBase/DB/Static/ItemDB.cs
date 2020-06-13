@@ -13,7 +13,7 @@ public class ItemDB : StaticDB
         return _dataList.Select(x => (AbstractDBData)x).ToList();
     }
 
-    public override void SetDataList(List<AbstractDBData> list, IEnable_initDB enable)
+    protected override void SetDataList_child(List<AbstractDBData> list, IEnable_initDB enable)
     {
         _dataList = list.Select(x => x as ItemDBData).ToList();
     }

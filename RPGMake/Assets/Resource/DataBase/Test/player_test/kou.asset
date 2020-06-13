@@ -27,7 +27,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: bbc4033a4868ece409d99f6a7b3c9763, type: 2}
     - {fileID: 11400000, guid: 80cd3f302787bb24a9486c677d175589, type: 2}
     - {fileID: 11400000, guid: dccde78c55953694f82c73c757b90f92, type: 2}
-    - {fileID: 11400000, guid: f689af8145aa9164fac4f50e829e537c, type: 2}
     _spMax: 20
     _spNow: 20
     _hpNow: 40
@@ -52,6 +51,6 @@ MonoBehaviour:
   - allAtack_test
   - self_test
   - spTest
-  - cureSP
+  - darkmagic
   _levelSkillNameSet:
   - 2 darkmagic

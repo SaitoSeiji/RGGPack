@@ -19,8 +19,22 @@ MonoBehaviour:
     coalTerm:
       _termList:
       - _id: preEvent
+        _datatype: 0
         _memberSet:
-        - memberName: flagNum
-          data: 0
+        - data: 0
+          _hikaku: 3
+        - data: 2
+          _hikaku: 2
+      - _id: preEvent
+        _datatype: 0
+        _memberSet:
+        - data: 0
+          _hikaku: 3
+        - data: 2
+          _hikaku: 2
+      - _id: cureTest
+        _datatype: 1
+        _memberSet:
+        - data: 1
           _hikaku: 1
-      _orMode: 0
+      _orMode: 1

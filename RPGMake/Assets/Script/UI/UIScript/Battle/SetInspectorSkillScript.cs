@@ -14,7 +14,7 @@ public class SetInspectorSkillScript : AbstractUIScript_onclick
 
     public override void OnclickAction()
     {
-        var data=ResourceDB_mono.Instance._attackData;
+        var data=ResourceDB_mono.Instance._AttackData;
         UIController.Instance.SetFlashData("command", data);
     }
 }

@@ -10,7 +10,6 @@ id: kou
 		allAtack_test
 		self_test
 		spTest
-		cureSP
 	}
 	expRate 1100
 	expFirst 10

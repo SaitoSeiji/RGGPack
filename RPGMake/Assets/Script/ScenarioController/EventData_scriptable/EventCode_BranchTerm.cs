@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 [CreateAssetMenu(menuName = "EventData/Create BranchTerm", fileName = "BranchTerm")]
 public class EventCode_BranchTerm : EventCodeScriptable
@@ -49,8 +50,15 @@ public class EventCode_BranchTerm : EventCodeScriptable
         _nextEventList = new List<EventCodeScriptable>();
         foreach(var n in _nextEventNameList)
         {
-            var next= database.Where(x => x.name == n).FirstOrDefault();
-            _nextEventList.Add(next);
+            try
+            {
+                var next = database.Where(x => x.name == n).First();
+                _nextEventList.Add(next);
+            }
+            catch (InvalidOperationException e)
+            {
+                ThrowErrorLog(e, "", "存在しないイベント名です", name, "next,"+n);
+            }
         }
     }
 }

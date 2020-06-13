@@ -104,7 +104,7 @@ public class EventDataOperater
     //=====================================
 
 
-    public static void SyncDataByTxt(EventDB _database,string text,string dirName)
+    public static void SyncDataByTxt(EventDB _database,string text,string dirName,string fileName="")
     {
         if (!DBIO.CheckDir(DBIO.CreateAssetDirectoryPath(dirName)))
         {
@@ -113,6 +113,13 @@ public class EventDataOperater
 
         var txtlist = GetConverted(text);
         var assetDBList = _database._scriptableList;
+
+        var doublelist = DBIO.CheckIdIsUnique(txtlist.Select(x => x.id).ToList());
+        if (doublelist != null)
+        {
+            AbstractDBData.ThrowErrorLog(null, fileName, "重複したidがあります", string.Join(",", doublelist), "");
+        }
+
         //txtに書いてないものを削除
         for (int i = assetDBList.Count - 1; i >= 0; i--)
         {
@@ -132,7 +139,6 @@ public class EventDataOperater
             }
         }
         //txtに書いてあるけどデータがないものを追加
-        
         foreach (var data in txtlist)
         {
             var target = assetDBList.Where(x => x.name == data.id).FirstOrDefault();
@@ -150,6 +156,7 @@ public class EventDataOperater
                 assetDBList.Add(target);
             }
             target.UpdateData(data.id,data.dataSet);
+            target.SyntaxCheck(fileName);//更新したものだけ行いたい
             EditorUtility.SetDirty(target);
         }
         _database.UpdateNextEvent();
@@ -164,4 +171,5 @@ public class EventDataOperater
         if (nextData._content.Length <= 1) return ScriptableObject.CreateInstance<EventCodeScriptable>();
         else return ScriptableObject.CreateInstance<EventCode_BranchTerm>();
     }
+    
 }

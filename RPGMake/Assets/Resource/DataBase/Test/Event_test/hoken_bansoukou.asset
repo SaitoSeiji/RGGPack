@@ -20,8 +20,8 @@ MonoBehaviour:
     coalTerm:
       _termList:
       - _id: goHosousitu_hoken
+        _datatype: 0
         _memberSet:
-        - memberName: flagNum
-          data: 0
+        - data: 0
           _hikaku: 1
       _orMode: 0

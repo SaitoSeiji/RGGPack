@@ -61,7 +61,7 @@ public static class Partial_CharcterDBData
 
     }
 
-    public static void RateUpdateMemeber(ref SavedDBData_char charData, List<string> skillNameSet)
+    public static void RateUpdateMemeber(ref SavedDBData_char charData, List<string> skillNameSet,AbstractDBData dbData)
     {
         var db = SaveDataController.Instance.GetDB_static<SkillDB>();
         charData._mySkillList = new List<SkillDBData>();
@@ -72,12 +72,17 @@ public static class Partial_CharcterDBData
                 var data = db._dataList.Where(x => x.name == skill).First();
                 charData._mySkillList.Add(data);
             }
-            catch(Exception e)
+            catch(InvalidOperationException e)
             {
-                Debug.LogError($"charName is {charData._serchId}\n" +
-                    $"skillName is {skill}:\n" +
-                    $"{e}");
+                AbstractDBData.ThrowErrorLog(e, dbData._fileName, AbstractDBData.ErrorCode_uncollectName, dbData._serchId, skill);
             }
+        }
+
+        //重複があるかどうか
+        var distinctList = skillNameSet.Distinct().ToArray();
+        if (distinctList.Length != skillNameSet.Count)
+        {
+            AbstractDBData.ThrowErrorLog(null,dbData._fileName,"スキルに重複があります",dbData._serchId,"skill");
         }
     }
 }
@@ -97,8 +102,8 @@ public class CharcterDBData : StaticDBData
     public override void RateUpdateMemeber()
     {
         base.RateUpdateMemeber();
-        
-        Partial_CharcterDBData.RateUpdateMemeber(ref _charData, _skillNameSet);
+
+        Partial_CharcterDBData.RateUpdateMemeber(ref _charData, _skillNameSet,this);
         EditorUtility.SetDirty(this);
     }
 }
