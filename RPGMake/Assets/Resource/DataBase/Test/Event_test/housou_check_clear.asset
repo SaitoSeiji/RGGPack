@@ -20,18 +20,18 @@ MonoBehaviour:
     coalTerm:
       _termList:
       - _id: goHosousitu_kyokasyo
+        _datatype: 0
         _memberSet:
-        - memberName: flagNum
-          data: 1
+        - data: 1
           _hikaku: 1
       - _id: goHosousitu_hon
+        _datatype: 0
         _memberSet:
-        - memberName: flagNum
-          data: 1
+        - data: 1
           _hikaku: 1
       - _id: goHosousitu_hoken
+        _datatype: 0
         _memberSet:
-        - memberName: flagNum
-          data: 1
+        - data: 1
           _hikaku: 1
       _orMode: 0

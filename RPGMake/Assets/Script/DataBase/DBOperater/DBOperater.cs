@@ -170,6 +170,18 @@ public static class DBIO
     //        sw.WriteLine(data);
     //    }
     //}
+
+
+    public static List<string> CheckIdIsUnique(List<string> orginalList)
+    {
+        var idList = orginalList.Distinct().ToList();
+        if (idList.Count != orginalList.Count)
+        {
+            var doubleList = orginalList.GroupBy(name => name).Where(name => name.Count() > 1).Select(group => group.Key).ToList();
+            return doubleList;
+        }
+        return null;
+    }
 }
 
 //データベースの操作を行うクラス
@@ -269,6 +281,13 @@ public class DBOperater<T,K>:IEnable_initDB
 
         var textDataList = DBListCreator.CreateDBListBytxt(DBIO.TrimType(textAsset.text).replaced);
         var assetDBList = _database.GetDataList(this);
+
+        //重複チェック
+        var doublelist= DBIO.CheckIdIsUnique(textDataList.Select(x=>x._serchId).ToList());
+        if (doublelist != null)
+        {
+            AbstractDBData.ThrowErrorLog(null, textAsset.name, "重複したidがあります", string.Join(",", doublelist), "");
+        }
         //txtに書いてないものを削除
         for(int i=assetDBList.Count-1;i>=0;i--)
         {
@@ -288,7 +307,7 @@ public class DBOperater<T,K>:IEnable_initDB
                 AssetDatabase.CreateAsset(target,DBIO.CreateSavePath_asset(path,data._serchId));
                 assetDBList.Add(target);
             }
-            target.UpdateMember(data);
+            target.UpdateMember(data,textAsset.name);
             EditorUtility.SetDirty(target);
         }
         _database.SetDataList(assetDBList,this);

@@ -75,13 +75,13 @@ public class SavedDBData_party : SavedDBData
     public int GetHaveItemNum(string key)
     {
         var target = SaveDataController.Instance.GetDB_static<ItemDB>()._dataList.Where(x => x._serchId == key).First();
-        if (_haveItemList.Where(x => x._itemData == target).FirstOrDefault() == null)
+        if (_haveItemList.Where(x => x._itemData._serchId == target._serchId).FirstOrDefault() == null)
         {
             return 0;
         }
         var result = 0;
         _haveItemList.ForEach(x => {
-            if (x._itemData == target)
+            if (x._itemData._serchId == target._serchId)
             {
                 result = x.haveNum;
             }
@@ -116,11 +116,11 @@ public class PartyDBData : VariableDBData
         var db = SaveDataController.Instance.GetDB_static<ItemDB>()._dataList;
         foreach(var st in _haveItemKeyList)
         {
-            var input = SplitItemKey(st);
-            var itemName = input[0];
-            var itemNum =int.Parse(input[1]);
             try
             {
+                var input = SplitItemKey(st);
+                var itemName = input[0];
+                var itemNum = int.Parse(input[1]);
                 _partyData.ChengeItemNum(itemName,itemNum);
             }
             catch (Exception e)

@@ -24,5 +24,7 @@ MonoBehaviour:
     _charImage: {fileID: 0}
     _mySkillList:
     - {fileID: 11400000, guid: 9736a7a62d8a37b40ad7cc0e4103a7f5, type: 2}
+    - {fileID: 11400000, guid: 80cd3f302787bb24a9486c677d175589, type: 2}
   _skillNameSet:
   - darkmagic
+  - self_test

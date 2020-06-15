@@ -16,7 +16,7 @@ public class EventDataOperater_mono : MonoBehaviour
     {
         var txt = DBIO.TrimType(_readText.text);
         var path =(isTest)? $"Test/{_readText.name}":$"Product/{_readText.name}";
-        EventDataOperater.SyncDataByTxt(_EventDb, txt.replaced,path );
+        EventDataOperater.SyncDataByTxt(_EventDb, txt.replaced,path ,_readText.name);
     }
 
     //public void SetReadFileName(string fileName)

@@ -180,6 +180,7 @@ public class PlayerDBData : VariableDBData
     [SerializeField, NonEditable] List<string> _skillNameSet = new List<string>();
     [SerializeField, NonEditable] List<string> _levelSkillNameSet = new List<string>();
 
+
     protected override SavedDBData GetSavedDBData_child()
     {
         return _charData;
@@ -195,7 +196,7 @@ public class PlayerDBData : VariableDBData
         _charData._spNow = _charData._spMax;
         _charData.ExpRate = data.GetData_int("expRate");
         _charData._firstExp = data.GetData_int("expFirst");
-        _charData._paramGrowData=UpdateMember_growData(data.GetData_list("paramGrow"));
+        _charData._paramGrowData = UpdateMember_growData(data.GetData_list("paramGrow"));
         _charData.InitNeedExpList();
         _levelSkillNameSet = data.GetData_list("levelSkill");
     }
@@ -204,8 +205,8 @@ public class PlayerDBData : VariableDBData
     {
         base.RateUpdateMemeber();
         var temp = (SavedDBData_char)_charData;
-        Partial_CharcterDBData.RateUpdateMemeber(ref temp, _skillNameSet);
-
+        Partial_CharcterDBData.RateUpdateMemeber(ref temp, _skillNameSet,this);
+        List<string> addedSkillName = _skillNameSet;//重複スキルのチェック
         //レベルとスキルの対応データの追加
         _charData._levelSkillData = new List<SavedDBData_player.LevelSkillData>();
         var skillDB = SaveDataController.Instance.GetDB_static<SkillDB>()._dataList;
@@ -217,14 +218,29 @@ public class PlayerDBData : VariableDBData
                 var levelData = int.Parse(input[0]);
                 var skillData = skillDB.Where(x => x._serchId == input[1]).First();
                 var add = new SavedDBData_player.LevelSkillData(levelData, skillData);
-                _charData._levelSkillData.Add(add);
-            }catch(Exception e)when(e is FormatException||
-                                    e is NullReferenceException)
+
+                if (!addedSkillName.Contains(input[1]))
+                {
+                    _charData._levelSkillData.Add(add);
+                    addedSkillName.Add(input[1]);
+                }
+                else
+                {
+                    ThrowErrorLog(null, data, "スキルの重複があります");
+                }
+            }
+            catch (Exception e) when (e is FormatException ||
+                                      e is IndexOutOfRangeException)
             {
-                Debug.LogError($"playerDBData-levelSkillを正常に読み込めませんでした:data={data}\n{e}");
+                ThrowErrorLog(e, data, ErrorCode_format);
+            }
+            catch (InvalidOperationException e)
+            {
+                ThrowErrorLog(e, data, ErrorCode_uncollectName);
             }
         }
         //同名スキルを覚えた時のエラー表示が欲しい
+
 
         EditorUtility.SetDirty(this);
     }

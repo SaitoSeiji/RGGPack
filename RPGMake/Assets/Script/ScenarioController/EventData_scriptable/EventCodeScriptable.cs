@@ -58,19 +58,46 @@ public class EventCodeScriptable : ScriptableObject
                         var temp = con.Split(' ');
                         if (temp[0].Equals("ormode", StringComparison.OrdinalIgnoreCase))//ormodeの設定
                         {
-                            bool flag = temp[1].Equals("true", StringComparison.OrdinalIgnoreCase);
-                            _codeData.coalTerm._orMode = flag;
+                            try
+                            {
+                                bool flag = temp[1].Equals("true", StringComparison.OrdinalIgnoreCase);
+                                _codeData.coalTerm._orMode = flag;
+                                if (!flag && !temp[1].Equals("false", StringComparison.OrdinalIgnoreCase))//falseを明示したとき以外のfalse
+                                {
+                                    ThrowErrorLog(null, "", "データ内容に誤りがあります", name, $"term,<{con}>");
+                                }
+                            }catch(IndexOutOfRangeException e)
+                            {
+                                ThrowErrorLog(e, "", "文法に誤りがあります", name, $"term,<{con}>");
+                            }
                         }
                         else
                         {
-                            int num = int.Parse(temp[2]);
-                            var hikaku = DataMemberInspector.CreateHikaku(temp[3]);
-                            _codeData.coalTerm.AddTerm(temp[0], temp[1], num, hikaku);
+                            try
+                            {
+                                int num = int.Parse(temp[2]);
+                                var datatype = DataMemberInspector.CreateDataType(temp[0]);
+                                var hikaku = DataMemberInspector.CreateHikaku(temp[3]);
+                                _codeData.coalTerm.AddTerm(temp[1], num, datatype, hikaku);
+                            }
+                            catch (Exception e) when (e is IndexOutOfRangeException ||
+                                           e is InvalidOperationException ||
+                                           e is FormatException)
+                            {
+                                ThrowErrorLog(e, "", "文法に誤りがあります", name, $"term,<{con}>");
+                            }
+                            catch (Exception e) when (e is ArgumentException)
+                            {
+                                ThrowErrorLog(e, "", "データ内容に誤りがあります", name, $"term,<{con}>");
+                            }
                         }
                     }
                     break;
                 case "next":
                     UpdateData_next(id, data);
+                    break;
+                default:
+                    ThrowErrorLog(null,"","括弧の前のやつが不正な値です",name,data._head);
                     break;
             }
         }
@@ -83,8 +110,41 @@ public class EventCodeScriptable : ScriptableObject
 
     public virtual void UpdateNextEvent(List<EventCodeScriptable> database)
     {
-        var nextevent = database.Where(x => x.name == _codeData._nextEventName).FirstOrDefault();
-        _codeData._nextEventCode = nextevent;
+        if (string.IsNullOrEmpty(_codeData._nextEventName)) return;
+        try
+        {
+            var nextevent = database.Where(x => x.name == _codeData._nextEventName).First();
+            _codeData._nextEventCode = nextevent;
+        }
+        catch(InvalidOperationException e)
+        {
+            ThrowErrorLog(e, "", "存在しないイベント名です", name, "next,"+ _codeData._nextEventName);
+        }
     }
+
+
+    public void SyntaxCheck(string fileName)
+    {
+        var codeList = TextConverter.Convert(GetData()).ToList();
+        CodeData tempcode = new EndCode();
+        foreach (var code in codeList)
+        {
+            var codeData = tempcode.CreateCodeData(code, this);
+            if (codeData == null)
+            {
+                ThrowErrorLog(null, fileName, "ヘッダーが不正な値です", name, code._head);
+                break;
+            }
+            else tempcode = codeData;
+        }
+    }
+
+    protected static void ThrowErrorLog(Exception e, string filename, string errorCode, string serchid, string information)
+    {
+        if (string.IsNullOrEmpty(filename)) filename = "eventData";
+        Debug.LogError($"{filename}:{errorCode}:発生個所 id:{serchid} info:{information}\n" +
+                       $"エラー内容:{e}");
+    }
+
 }
 

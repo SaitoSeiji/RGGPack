@@ -27,9 +27,9 @@ public class ShopDBData : StaticDBData
                 _itemList.Add(target);
                 EditorUtility.SetDirty(this);
             }
-            catch(NullReferenceException e)
+            catch(InvalidOperationException e)
             {
-                Debug.LogError($"itemKey is not exist:key={itemKey}\n{e}");
+                ThrowErrorLog(e, itemKey, ErrorCode_uncollectName);
             }
 
         }

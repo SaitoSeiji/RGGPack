@@ -52,6 +52,7 @@ public class SkillCommandData:ICommandData
         result._effectNum = _attackRate;
         return result;
     }
+    
 }
 
 [CreateAssetMenu(fileName = "SkillDBData", menuName = "DataBases/Data/SkillDBData", order = 0)]

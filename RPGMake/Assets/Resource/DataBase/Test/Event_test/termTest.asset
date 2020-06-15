@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc4ef72bf658a6f4f821d8c79c8c104c, type: 3}
-  m_Name: class_kyoukasyo
+  m_Name: termTest
   m_EditorClassIdentifier: 
   _codeData:
-    _text: "$#name[\u305F\u304B\u3057]\n\u3048\u30FC\u3063\u3068...\u5FC5\u8981\u306A\u6559\u79D1\u66F8\u306F\u3063\u3068\n$#name[\u305F\u304B\u3057]\n...\n$#name[\u305F\u304B\u3057]\n\u3088\u3057\u3001\u6559\u79D1\u66F8\u3092\u56DE\u53CE\u3057\u305F\u305E\uFF01\n$#flag[goHosousitu_kyokasyo]
-      1"
+    _text: aa
     _nextEventName: 
     _nextEventCode: {fileID: 0}
     coalTerm:
       _termList:
-      - _id: goHosousitu_kyokasyo
-        _datatype: 0
+      - _id: test1
+        _datatype: 1
         _memberSet:
         - data: 0
-          _hikaku: 1
+          _hikaku: 2
       _orMode: 0

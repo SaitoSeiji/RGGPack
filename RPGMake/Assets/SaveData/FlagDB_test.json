@@ -29,6 +29,11 @@
             "flagNum": 0,
             "_serchId": "doorOpened",
             "$type": "SavedDBData_flag"
+        },
+        {
+            "flagNum": 0,
+            "_serchId": "preEvent2",
+            "$type": "SavedDBData_flag"
         }
     ]
 }

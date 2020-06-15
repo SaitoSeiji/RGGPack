@@ -68,7 +68,8 @@ public class BattleController
         {
             var next = _battleCharQueue.Peek();
             var command = next.SelectCommand_auto() as ICommandData;
-            var target = next.SelectTargetAuto();
+            var targetPool = GetTargetPool(command.GetCommandData(),next);
+            var target = next.SelectTargetAuto(targetPool);
             _charInput = (command, target);
         }
     }
@@ -169,6 +170,13 @@ public class BattleController
             exp += x._exp;
         });
         return (money,exp);
+    }
+
+    List<BattleChar> GetTargetPool(CommandData command, BattleChar user)
+    {
+        var friends = _charcterField.GetFriend(user);
+        var enemys = _charcterField.GetEnemy(user);
+        return Battle_targetDicide.GetTargetPool(command._target, user, friends, enemys);
     }
     #endregion
     #region public

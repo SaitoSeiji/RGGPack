@@ -3,6 +3,8 @@ id: testFlag
 	flagNum 0
 id: preEvent
 	flagNum 0
+id: preEvent2
+	flagNum 0
 id: goHosousitu_kyokasyo
 	flagNum 0
 id: goHosousitu_hon

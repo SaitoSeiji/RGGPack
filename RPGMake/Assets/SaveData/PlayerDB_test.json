@@ -132,6 +132,7 @@
                             "_targetResourceType": "HP",
                             "_attackRate": 3.0
                         },
+                        "_fileName": "skill_test",
                         "_serchId": "darkmagic"
                     }
                 }
@@ -155,6 +156,7 @@
                         "_targetResourceType": "HP",
                         "_attackRate": 3.0
                     },
+                    "_fileName": "skill_test",
                     "_serchId": "superAttack"
                 },
                 {
@@ -166,6 +168,7 @@
                         "_targetResourceType": "HP",
                         "_attackRate": 10.0
                     },
+                    "_fileName": "skill_test",
                     "_serchId": "allAtack_test"
                 },
                 {
@@ -177,6 +180,7 @@
                         "_targetResourceType": "HP",
                         "_attackRate": 5.0
                     },
+                    "_fileName": "skill_test",
                     "_serchId": "self_test"
                 },
                 {
@@ -188,18 +192,8 @@
                         "_targetResourceType": "HP",
                         "_attackRate": 10.0
                     },
+                    "_fileName": "skill_test",
                     "_serchId": "spTest"
-                },
-                {
-                    "_data": {
-                        "_skillName": "SP回復テスト",
-                        "_target": "SELF",
-                        "_useResourceType": "NONE",
-                        "_useNum": 0,
-                        "_targetResourceType": "SP",
-                        "_attackRate": 0.5
-                    },
-                    "_serchId": "cureSP"
                 }
             ],
             "_serchId": "kou",

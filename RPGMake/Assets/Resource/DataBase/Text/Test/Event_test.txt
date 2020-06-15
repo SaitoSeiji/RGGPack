@@ -7,14 +7,21 @@ id:testevent
 		$
 	}
 	term{
-		ormode true
-		id memeber 1 less
-		flagId flagNum 0 more
-		itemId haveNum 1 equal
+		ormode false
+		type id 0 more
+		flag flagId 0 more
+		item itemId 1 equal
 	}
 	next{
 		moveToClass
 		door_class
+	}
+id: termTest
+	text{
+		aa
+	}
+	term{
+		item test1 0 less
 	}
 id: testBattle
 	text{
@@ -94,7 +101,10 @@ id: firstEvent
 		$#name[たかし]
 		用事を済ませたら放送室に向かおう！
 	}term{
-		preEvent flagNum 0 equal
+		ormode true
+		flag preEvent 0 more
+		flag preEvent 2 less
+		item cureTest 1 equal
 	}
 id: class_kyoukasyo
 	text{
@@ -107,7 +117,7 @@ id: class_kyoukasyo
 		$#flag[goHosousitu_kyokasyo] 1
 	}
 	term{
-		goHosousitu_kyokasyo flagNum 0 equal
+		flag goHosousitu_kyokasyo 0 equal
 	}
 id: tosyo_hongaesi
 	text{
@@ -120,7 +130,7 @@ id: tosyo_hongaesi
 		$#flag[goHosousitu_hon] 1
 	}
 	term{
-		goHosousitu_hon flagNum 0 equal
+		flag goHosousitu_hon 0 equal
 	}
 id: hoken_bansoukou
 	text{
@@ -133,7 +143,7 @@ id: hoken_bansoukou
 		絆創膏を手に入れたぞ！
 		$#flag[goHosousitu_hoken] 1
 	}term{
-		goHosousitu_hoken flagNum 0 equal
+		flag goHosousitu_hoken 0 equal
 	}
 //=======================================
 id: housou_check
@@ -147,7 +157,7 @@ id: housou_check_opened
 		$#map[housou]
 	}
 	term{
-		doorOpened flagNum 1 equal
+		flag doorOpened 1 equal
 	}
 id: housou_check_clear
 	text{
@@ -156,9 +166,9 @@ id: housou_check_clear
 		$#flag[doorOpened] 1
 		$#map[housou]
 	}term{
-		goHosousitu_kyokasyo flagNum 1 equal
-		goHosousitu_hon flagNum 1 equal
-		goHosousitu_hoken flagNum 1 equal
+		flag goHosousitu_kyokasyo 1 equal
+		flag goHosousitu_hon 1 equal
+		flag goHosousitu_hoken 1 equal
 	}
 id: housou_check_miss
 	text{

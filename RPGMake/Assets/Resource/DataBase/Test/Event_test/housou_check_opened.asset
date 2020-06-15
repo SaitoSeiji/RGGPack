@@ -19,8 +19,8 @@ MonoBehaviour:
     coalTerm:
       _termList:
       - _id: doorOpened
+        _datatype: 0
         _memberSet:
-        - memberName: flagNum
-          data: 1
+        - data: 1
           _hikaku: 1
       _orMode: 0

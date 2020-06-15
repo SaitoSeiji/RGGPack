@@ -37,16 +37,16 @@ public class BattleChar
     }
     #region selctTarget
 
-    public BattleChar SelectTargetAuto()
+    public BattleChar SelectTargetAuto(List<BattleChar> targetPool)
     {
-        return SelectTargetAI();
+        return SelectTargetAI(targetPool);
     }
 
-    protected virtual BattleChar SelectTargetAI()
+    protected virtual BattleChar SelectTargetAI(List<BattleChar> targetPool)
     {
         BattleChar result = null;
-        var targetIndex = UnityEngine.Random.Range(0, _enemyTargets.Count);
-        result = _enemyTargets[targetIndex];
+        var targetIndex = UnityEngine.Random.Range(0, targetPool.Count);
+        result = targetPool[targetIndex];
         return result;
     }
     #endregion
