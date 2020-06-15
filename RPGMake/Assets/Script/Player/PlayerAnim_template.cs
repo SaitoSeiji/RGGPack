@@ -37,7 +37,7 @@ public class PlayerAnim_template : MonoBehaviour
         //    else MoveStop();
         //}
         //_moveNow = nowMoving;
-        //if (_moveNow) Moving() 
+        //if (_moveNow) Moving()
         var nowDirection = _player._NowDirection;
         if (nowDirection != _beforeDirection) _callback_swichDirection?.Invoke( nowDirection);
         _beforeDirection = nowDirection;

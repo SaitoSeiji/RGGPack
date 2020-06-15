@@ -6,10 +6,10 @@ using RPGEnums;
 
 public static class Battle_targetDicide
 {
-    public static List<BattleChar> GetTargetPool(TargetType target, BattleChar user, List<BattleChar> friends, List<BattleChar> enemys)
+    public static List<BattleChar> GetTargetPool(TargetType targetType, BattleChar user, List<BattleChar> friends, List<BattleChar> enemys)
     {
         var result= new List<BattleChar>();
-        switch (target)
+        switch (targetType)
         {
             case TargetType.SELF:
                 result.Add(user);
@@ -21,6 +21,11 @@ public static class Battle_targetDicide
                 var friends_alive = friends.Where(x =>x!=null&& x.IsAlive()).ToList();
                 if (friends_alive == null) return result;
                 result.AddRange(friends_alive);
+                //エラーを出すタイミングが微妙。AIを実装したらそこで出したい
+                if(user is EnemyChar)
+                {
+                    Debug.LogError("敵の回復コマンドの使用は想定されていません");
+                }
                 break;
             case TargetType.ENEMY_SOLO:
             case TargetType.ENEMY_ALL:
@@ -36,6 +41,7 @@ public static class Battle_targetDicide
     }
 
     //対象選択を入力でするかどうか
+    //リファクタで消せそう.flagとして扱いたい
     public static bool IsInputSelect(TargetType target)
     {
         switch (target)
@@ -62,7 +68,8 @@ public static class Battle_targetDicide
             if (targetPool.Contains(input)) return new List<BattleChar>() { input};
             else//入力がないならエラー処理
             {
-                Debug.Log("target is unselected");
+                Debug.LogError("攻撃対象が入力されていないか、不正な入力です");
+
                 return null;
             }
         }

@@ -6,6 +6,7 @@ id: maou
 	guard 5
 	skill{
 		darkmagic
+		self_test
 	}
 	money 100
 	exp 5

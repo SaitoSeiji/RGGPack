@@ -127,9 +127,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _staticDbList:
   - {fileID: 11400000, guid: ac3c42e6064ff244f971701bf4c10548, type: 2}
-  - {fileID: 11400000, guid: 971aaf577dec9064b8a5cab7803eaaa5, type: 2}
+  - {fileID: 11400000, guid: 3abc229e1f1c71e4a83920d1ce61fc2a, type: 2}
   - {fileID: 11400000, guid: 89ca1c374992c1b468534aca36be8370, type: 2}
   - {fileID: 11400000, guid: c44e2068d1133ee4f9507936f567d6be, type: 2}
+  - {fileID: 11400000, guid: beadf1518de0bc54cbeba3d21000bd45, type: 2}
   _variableDbList:
   - {fileID: 11400000, guid: 374bc57b483dd5248bcc4d62cbb99b8c, type: 2}
   - {fileID: 11400000, guid: 52a826e3df6265845936553a43e61b4d, type: 2}
@@ -149,6 +150,8 @@ MonoBehaviour:
   _audioDB: {fileID: 11400000, guid: 78ff3e1c24abf274e908ca9fdafb1d7c, type: 2}
   _imageDB: {fileID: 11400000, guid: 3ccff83e355da8f47b6350789227b79e, type: 2}
   _mapDB: {fileID: 11400000, guid: 4146192bd1ebe9c418b875287389bb70, type: 2}
+  _nowShopData: {fileID: 0}
+  _attackData: {fileID: 11400000, guid: 4be48047a4b19f44b9c1de7daa1d2f62, type: 2}
 --- !u!114 &1168554710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +168,7 @@ MonoBehaviour:
   _savedata_flag: []
   _savedata_party:
     _serchId: 
+    _haveMoney: 0
     _haveItemList: []
 --- !u!114 &221977414699323479
 MonoBehaviour:
@@ -708,6 +712,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3631386594125780546, guid: 3008399e896d22d48a27755b776e825a,
         type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3631386594125780546, guid: 3008399e896d22d48a27755b776e825a,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3631386594125780546, guid: 3008399e896d22d48a27755b776e825a,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3631386594125780546, guid: 3008399e896d22d48a27755b776e825a,
+        type: 3}
       propertyPath: m_Text
       value: "\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
       objectReference: {fileID: 0}
@@ -730,6 +749,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 119.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3631386594573225221, guid: 3008399e896d22d48a27755b776e825a,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3631386594573225221, guid: 3008399e896d22d48a27755b776e825a,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.26748753
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3008399e896d22d48a27755b776e825a, type: 3}
