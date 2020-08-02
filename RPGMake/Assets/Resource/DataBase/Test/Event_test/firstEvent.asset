@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: firstEvent
   m_EditorClassIdentifier: 
   _codeData:
-    _text: "$#name[\u305F\u304B\u3057]\n\u7528\u4E8B\u3092\u6E08\u307E\u305B\u305F\u3089\u653E\u9001\u5BA4\u306B\u5411\u304B\u304A\u3046\uFF01"
+    _text: "$#name[\u305F\u304B\u3057]\n\u7528\u4E8B\u3092\u6E08\u307E\u305B\u305F\u3089\u653E\u9001\u5BA4\u306B\u5411\u304B\u304A\u3046\uFF01\n$#flag[preEvent]
+      1"
     _nextEventName: 
     _nextEventCode: {fileID: 0}
     coalTerm:
@@ -22,19 +23,5 @@ MonoBehaviour:
         _datatype: 0
         _memberSet:
         - data: 0
-          _hikaku: 3
-        - data: 2
-          _hikaku: 2
-      - _id: preEvent
-        _datatype: 0
-        _memberSet:
-        - data: 0
-          _hikaku: 3
-        - data: 2
-          _hikaku: 2
-      - _id: cureTest
-        _datatype: 1
-        _memberSet:
-        - data: 1
           _hikaku: 1
       _orMode: 1

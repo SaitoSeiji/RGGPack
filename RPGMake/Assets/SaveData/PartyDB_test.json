@@ -61,6 +61,14 @@
                     "haveNum": 1
                 }
             ],
+            "_postionData": {
+                "_pos": {
+                    "x": 3.022242,
+                    "y": -2.194864
+                },
+                "_direction": "UP",
+                "_mapName": "class"
+            },
             "_serchId": "default",
             "$type": "SavedDBData_party"
         },
@@ -86,6 +94,14 @@
                     "haveNum": 5
                 }
             ],
+            "_postionData": {
+                "_pos": {
+                    "x": 20.0,
+                    "y": 30.0
+                },
+                "_direction": "DOWN",
+                "_mapName": "class"
+            },
             "_serchId": "itemTest",
             "$type": "SavedDBData_party"
         }

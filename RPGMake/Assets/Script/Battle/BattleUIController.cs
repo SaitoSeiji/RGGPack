@@ -25,7 +25,8 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
 
         WaitInput,
         DisplayText,
-        Process
+        Process,
+        
     }
     [SerializeField,NonEditable]BattleUIState _nowUIState;
     BattleUIState _nextUIState;
@@ -50,6 +51,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
 
     ICommandData temp_command;
     string temp_target;
+    bool temp_win;
     Queue<Action> _uiActionQueue=new Queue<Action>();
     
 
@@ -120,10 +122,16 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
                             EndChengeUIState();
                         }
                         break;
-                    case BattleUIState.None:
+                    case BattleUIState.None://戦闘終了後
                         if (_BaseUI._NowUIState == UIBase.UIState.ACTIVE)
                         {
-                            _BaseUI.CloseUI(_BaseUI);
+                            bool win=temp_win;
+                            LoadCanvas.Instance.StartBlack(auto:win);
+                            LoadCanvas.Instance._callback_blackend += () =>
+                              {
+                                  _BaseUI.CloseUI(_BaseUI);
+                                  if (!win) SaveDataController.Instance.LoadAction();
+                              };
                         }
                         else EndChengeUIState();
                         break;
@@ -298,7 +306,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
             log += string.Format($"経験値を{exp}手に入れた\n");
         }
         AddDisplayText(log);
-
+        temp_win = !plDead;
         _uiActionQueue.Enqueue(() =>
         {
             ChengeUIState(BattleUIState.DisplayText);

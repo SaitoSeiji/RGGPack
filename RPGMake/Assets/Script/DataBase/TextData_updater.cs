@@ -35,7 +35,7 @@ public class TextData_updater : MonoBehaviour
             _dbOperater.SetReadFile(data);
             _dbOperater.RateUpdate();
         }
-        SaveDataController.Instance.SaveAction();
+        SaveDataController.Instance.SaveAction(false);
     }
     
     void Init()
