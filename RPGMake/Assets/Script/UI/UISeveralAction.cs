@@ -10,7 +10,8 @@ public class UISeveralAction : SingletonMonoBehaviour<UISeveralAction>
     public void OpenShop()
     {
         if (IsOpenShop()) return;
-        UIController.Instance.AddUI(_shopUI, true);
+        //UIController.Instance.AddUI(_shopUI, true);
+        UIController.AddUI(_shopUI).Register();
     }
 
     public bool IsOpenShop()

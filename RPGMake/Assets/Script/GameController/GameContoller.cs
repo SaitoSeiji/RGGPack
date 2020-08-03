@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Linq;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -20,13 +22,11 @@ public class GameController_setting
     }
 #endif
 }
-
 //仮実装
 public class GameContoller : SingletonMonoBehaviour<GameContoller>
 {
     [SerializeField] EventDataMonoBehaviour firstEvent_debug;
-    [SerializeField]public bool coalFirstEvent_debug;//trueならfirstEventを呼ぶ
-
+    [SerializeField] public bool coalFirstEvent_debug;//trueならfirstEventを呼ぶ
     public bool _AnyOperate
     {
         get
@@ -39,6 +39,7 @@ public class GameContoller : SingletonMonoBehaviour<GameContoller>
             return result;
         }
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +53,13 @@ public class GameContoller : SingletonMonoBehaviour<GameContoller>
     // Update is called once per frame
     void Update()
     {
+        if (_AnyOperate||!LoadCanvas.Instance.IsClearNow)
+        {
+            Player.Instance.DisActivate();
+        }
+        else
+        {
+            Player.Instance.Activate();
+        }
     }
-    
 }

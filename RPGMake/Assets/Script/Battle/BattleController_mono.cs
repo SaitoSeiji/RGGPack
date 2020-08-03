@@ -281,7 +281,9 @@ public class BattleController_mono : SingletonMonoBehaviour<BattleController_mon
     #endregion
     void StartBattle(SavedDBData_player player,EnemySetData enemys)
     {
-        UIController.Instance.AddUI(_battleUI._BaseUI,true);
+        //UIController.Instance.AddUI(_battleUI._BaseUI,true);
+        //UIController.Instance.AddUI(_battleUI._BaseUI);
+        UIController.AddUI(_battleUI._BaseUI).Register();
         battle = new BattleController(player, enemys._charList.Select(x => x._charData).ToList());
         _battleUI.SetUpCharData();
         _battleUI.SetUpBattleDelegate(battle);

@@ -78,25 +78,28 @@ public class UIBase : MonoBehaviour
     }
     #endregion
     #region ボタンで設定する操作
-    //ボタンに設定するときにこれを一番上にしてしまうと不具合が起こるのでそれの対策
-    //scriptで操作を行ったときに同じ不具合が起きるかもしれない？いい対策があれば変更したい
     public void AddUI(UIBase next)
     {
         if (_nowUIstate != UIState.ACTIVE) return;
-        WaitAction.Instance.CoalWaitAction_frame(()=>UIController.Instance.AddUI(next),1);
-        
+        UIController.AddUI(next).Register();
+        //UIController.Instance.AddUI(next);//処理準問題が再発生したらしたのにする
+        //WaitAction.Instance.CoalWaitAction_frame(()=>UIController.Instance.AddUI(next),1);
     }
 
     public void CloseUI(UIBase target)
     {
         if (_nowUIstate != UIState.ACTIVE) return;
-        WaitAction.Instance.CoalWaitAction_frame(() => UIController.Instance.CloseUI(target), 1);
+        UIController.CloseUI(target).Register();
+        //UIController.Instance.CloseUI(target);
+        //WaitAction.Instance.CoalWaitAction_frame(() => UIController.Instance.CloseUI(target), 1);
     }
 
     public void CloseToUI(UIBase next)
     {
         if (_nowUIstate != UIState.ACTIVE) return;
-        WaitAction.Instance.CoalWaitAction_frame(() => UIController.Instance.CloseToUI(next), 1);
+        UIController.CloseToUI(next).Register();
+        //UIController.Instance.CloseToUI(next);
+        //WaitAction.Instance.CoalWaitAction_frame(() => UIController.Instance.CloseToUI(next), 1);
     }
     #endregion
 

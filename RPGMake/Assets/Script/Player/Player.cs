@@ -20,7 +20,7 @@ public class Player : SingletonMonoBehaviour<Player>
     [SerializeField] Sprite checkSprite;
 
     bool _actEnable = true;
-    ChengeFlag _gmCheckFlag = new ChengeFlag();
+    //ChengeFlag _gmCheckFlag = new ChengeFlag();
 
     bool _inited = false;
 
@@ -32,14 +32,14 @@ public class Player : SingletonMonoBehaviour<Player>
         _frontCollier.Init(transform);
         _bodyCollider.AddTag("HitEvent");
         _bodyCollider.Init(transform);
-        SetPlayerMoveFlag();
+        //SetPlayerMoveFlag();
 
         _inited = true;
     }
     void Update()
     {
         if (!_inited) return;
-        MoveFlagUpdate();
+        //MoveFlagUpdate();
         if (!_actEnable)
         {
             return;
@@ -59,25 +59,34 @@ public class Player : SingletonMonoBehaviour<Player>
     {
         MoveUpdate(0, 0);
         _headIcon.sprite = null;
+    }
+
+    //void StartMove()
+    //{
+    //    WaitAction.Instance.CoalWaitAction(() => _actEnable = true, 0.1f);
+    //}
+
+    //void SetPlayerMoveFlag()
+    //{
+    //    _gmCheckFlag.SetFlag(GameContoller.Instance._AnyOperate);
+    //    _gmCheckFlag.SetAction(true, () => StopMove());
+    //    //_gmCheckFlag.SetAction(false, () => StartMove());
+    //}
+
+    //void MoveFlagUpdate()
+    //{
+
+    //    _gmCheckFlag.CheckFlag(GameContoller.Instance._AnyOperate);
+    //}
+
+    public void Activate()
+    {
+        _actEnable = true;
+    }
+    public void DisActivate()
+    {
+        if(_actEnable)StopMove();
         _actEnable = false;
-    }
-
-    void StartMove()
-    {
-        WaitAction.Instance.CoalWaitAction(() => _actEnable = true, 0.1f);
-    }
-
-    void SetPlayerMoveFlag()
-    {
-        _gmCheckFlag.SetFlag(GameContoller.Instance._AnyOperate);
-        _gmCheckFlag.SetAction(true, () => StopMove());
-        _gmCheckFlag.SetAction(false, () => StartMove());
-    }
-
-    void MoveFlagUpdate()
-    {
-
-        _gmCheckFlag.CheckFlag(GameContoller.Instance._AnyOperate);
     }
     #endregion
     #region 移動

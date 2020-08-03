@@ -29,11 +29,11 @@ public class ChengeFlag
         {
             if (target)
             {
-                ChengeTrueAction.Invoke();
+                ChengeTrueAction?.Invoke();
             }
             else
             {
-                ChengeFalseAction.Invoke();
+                ChengeFalseAction?.Invoke();
             }
         }
     }

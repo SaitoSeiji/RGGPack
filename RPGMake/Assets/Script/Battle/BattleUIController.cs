@@ -15,26 +15,21 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     }
     [SerializeField, NonEditable] BattleState _battleState;
 
-    public enum BattleUIState
+    public enum UIState_b
     {
         None,
-        NoUI,
-
-        StateStart,
-        StateEnd,
-
+        NoUI,//UIでやることがない状態
+        Wait,//処理の完了待ち
         WaitInput,
         DisplayText,
-        Process,
         
     }
-    [SerializeField,NonEditable]BattleUIState _nowUIState;
-    BattleUIState _nextUIState;
+    [SerializeField,NonEditable]UIState_b _nowUIState;
 
     //キャッシュ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-    [SerializeField] UIBase _baseUI;
-    [SerializeField] UIBase _commandUI;
-    [SerializeField] UIBase _textUI;
+    [SerializeField] UIBase _baseUI;//バトルのUIの親
+    [SerializeField] UIBase _commandUI;//コマンド入力を管理するUI
+    [SerializeField] UIBase _textUI;//テキスト表示用のUI
     [SerializeField] TextDisplayer _battleTextDisplayer;
 
     [SerializeField, Space(10)] ChracterFieldDisplayer _charParamDisplyer;
@@ -51,14 +46,14 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
 
     ICommandData temp_command;
     string temp_target;
-    bool temp_win;
+    bool _temp_win;
     Queue<Action> _uiActionQueue=new Queue<Action>();
     
 
     private void OnDisable()
     {
-        _nextUIState = BattleUIState.None;
-        _nowUIState = BattleUIState.None;
+        //_nextUIState = UIState_b.None;
+        _nowUIState = UIState_b.None;
         _battleState = BattleState.None;
     }
     protected override void Awake()
@@ -67,18 +62,31 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     }
     private void Update()
     {
-        BattleStateUpdate();
-        UIStateUpdate();
-    }
-    void BattleStateUpdate()
-    {
-        if (_nowUIState != BattleUIState.NoUI) return;
-        if (_uiActionQueue.Count > 0)
+        bool exsistUIAction = _nowUIState != UIState_b.NoUI;
+        if (!exsistUIAction)
         {
-            _uiActionQueue.Dequeue().Invoke();
-            return;
+            if (_uiActionQueue.Count > 0)
+            {
+                _uiActionQueue.Dequeue().Invoke();
+                exsistUIAction = _nowUIState != UIState_b.NoUI;
+            }
         }
-        switch (_battleState)
+
+
+        if (exsistUIAction)
+        {
+            UIStateUpdate();
+        }
+        else
+        {
+            BattleStateUpdate(_battleState);
+        }
+        
+    }
+    //戦闘処理の進行
+    void BattleStateUpdate(BattleState battleState)
+    {
+        switch (battleState)
         {
             case BattleState.Battle:
                 {
@@ -87,84 +95,29 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
                 break;
             case BattleState.Close:
                 {
-                    ChengeUIState(BattleUIState.None);
+                    ChengeUIState(UIState_b.None);
                     _battleState = BattleState.None;
                 }
                 break;
         }
     }
+
+    //戦闘UIの制御
     void UIStateUpdate()
     {
         switch (_nowUIState)
         {
-            case BattleUIState.NoUI:
-                break;
-            //切り替え時にUIのAdd等が入る場合、一回でうまくいかない場合があるので、成功するまで繰り返した後
-            //stateの遷移を行っている
-            case BattleUIState.StateStart:
-                switch (_nextUIState)
-                {
-                    case BattleUIState.WaitInput:
-                        if (_commandUI._NowUIState == UIBase.UIState.CLOSE)
-                        {
-                            _BaseUI.AddUI(_commandUI);
-                        }
-                        else EndChengeUIState();
-                        break;
-                    case BattleUIState.DisplayText:
-                        if (_textUI._NowUIState == UIBase.UIState.CLOSE)
-                        {
-                            _BaseUI.AddUI(_textUI);
-                        }
-                        else
-                        {
-                            DisplayText(_displayText);
-                            EndChengeUIState();
-                        }
-                        break;
-                    case BattleUIState.None://戦闘終了後
-                        if (_BaseUI._NowUIState == UIBase.UIState.ACTIVE)
-                        {
-                            bool win=temp_win;
-                            LoadCanvas.Instance.StartBlack(auto:win);
-                            LoadCanvas.Instance._callback_blackend += () =>
-                              {
-                                  _BaseUI.CloseUI(_BaseUI);
-                                  if (!win) SaveDataController.Instance.LoadAction();
-                              };
-                        }
-                        else EndChengeUIState();
-                        break;
-                    default:
-                        EndChengeUIState();
-                        break;
-                }
-                break;
-            case BattleUIState.StateEnd://閉じるまで閉じ続ける
-                switch (_nextUIState)
-                {
-                    case BattleUIState.DisplayText:
-                        if (_textUI._NowUIState == UIBase.UIState.ACTIVE)
-                        {
-                            CloseText();
-                        }else EndEndUIState();
-                        break;
-                    default:
-                        EndEndUIState();
-                        break;
-                }
-                break;
-            case BattleUIState.WaitInput:
+            case UIState_b.WaitInput:
                 if (_BaseUI._NowUIState == UIBase.UIState.ACTIVE)
                 {
                     BattleController_mono.Instance.SetCharInput(temp_target, temp_command);
-                    EndUIState(BattleUIState.WaitInput);
+                    EndUIState(UIState_b.WaitInput);
                 }
                 break;
-            case BattleUIState.DisplayText:
+            case UIState_b.DisplayText:
                 if (!_battleTextDisplayer._readNow)
                 {
-                    EndUIState(BattleUIState.DisplayText);
+                    EndUIState(UIState_b.DisplayText);
                 }
                 break;
         }
@@ -201,39 +154,62 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     }
 
     #region uistate
-    void ChengeUIState(BattleUIState state)
+    //UIの状態を変更する
+    //入力は_nextUIStateに保持しワンクッション挟んでいる
+    void ChengeUIState(UIState_b state)
     {
-        _nextUIState = state;
-        _nowUIState = BattleUIState.StateStart;
+        _nowUIState = UIState_b.Wait;
+        switch (state)
+        {
+            case UIState_b.DisplayText:
+                UIController.AddUI(_textUI).Repeat().Register().AddEndAction(succsess => {
+                    DisplayText(_displayText);
+                    _nowUIState = UIState_b.DisplayText;
+                });
+                break;
+            case UIState_b.WaitInput:
+                UIController.AddUI(_commandUI).Repeat().Register().AddEndAction((suc) => _nowUIState = UIState_b.WaitInput);
+                break;
+            case UIState_b.None:
+                bool win = _temp_win;
+                LoadCanvas.Instance.StartBlack(auto: win);
+                LoadCanvas.Instance._callback_blackend += () =>
+                {
+                    //_BaseUI.CloseUI(_BaseUI);
+                    UIController.CloseUI(_BaseUI).Repeat().Register();
+                    if (!win) SaveDataController.Instance.LoadAction();
+                };
+                LoadCanvas.Instance._callback_clearend +=()=>_nowUIState = UIState_b.None;
+                break;
+        }
     }
-
-    void EndChengeUIState()
+    void EndUIState(UIState_b state)
     {
-        _nowUIState = _nextUIState;
-        _nextUIState = BattleUIState.None;
-    }
-
-    void EndUIState(BattleUIState state)
-    {
-        _nextUIState = state;
-        _nowUIState = BattleUIState.StateEnd;
-    }
-
-    void EndEndUIState()
-    {
-        _nowUIState = BattleUIState.NoUI;
-        _nextUIState = BattleUIState.None;
+        switch (state)
+        {
+            case UIState_b.DisplayText:
+                _displayText = null;
+                UIController.CloseToUI(_BaseUI).Repeat().Register().AddEndAction((suc)=>_nowUIState= UIState_b.NoUI);
+                break;
+            default:
+                _nowUIState = UIState_b.NoUI;
+                break;
+        }
     }
     #endregion
     public void SetUpCharData()
     {
-        _nowUIState = BattleUIState.NoUI;
+        _nowUIState = UIState_b.NoUI;
         _charParamDisplyer.SetData(BattleController_mono.Instance.battle._charcterField);
     }
     public void SetUpBattleDelegate(BattleController battle)
     {
         battle._battleAction_encount = EncountAction;
-        battle._battleAction_waitInput = () =>{_uiActionQueue.Enqueue(()=> ChengeUIState(BattleUIState.WaitInput));};
+        battle._battleAction_waitInput = () => _uiActionQueue.Enqueue(() =>
+        {
+            //UIController.AddUI(_commandUI).Repeat().Register().AddEndAction((suc) => _nowUIState = UIState_b.WaitInput);
+            ChengeUIState(UIState_b.WaitInput);
+        });
         battle._battleAction_command = CommandAction;
         battle._battleAction_item = ItemAction;
         battle._battleAction_attack = AttackAction;
@@ -243,7 +219,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
 
     public bool IsBattleNow()
     {
-        return _nowUIState != BattleUIState.None;
+        return _nowUIState != UIState_b.None;
     }
     #region battleActionのデリゲート登録用関数
     void EncountAction()
@@ -252,7 +228,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         {
             string log = "魔物が現れた";
             AddDisplayText(log);
-            ChengeUIState(BattleUIState.DisplayText);
+            ChengeUIState(UIState_b.DisplayText);
             _battleState = BattleState.Battle;
         });
     }
@@ -264,7 +240,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         {
             var target = _charParamDisplyer.GetParamDisplayer(user);
             target.SyncDisply();
-            ChengeUIState(BattleUIState.DisplayText);
+            ChengeUIState(UIState_b.DisplayText);
         });
     }
     void ItemAction(BattleChar user, ItemData itemdata)
@@ -306,10 +282,10 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
             log += string.Format($"経験値を{exp}手に入れた\n");
         }
         AddDisplayText(log);
-        temp_win = !plDead;
+        _temp_win = !plDead;
         _uiActionQueue.Enqueue(() =>
         {
-            ChengeUIState(BattleUIState.DisplayText);
+            ChengeUIState(UIState_b.DisplayText);
             _battleState = BattleState.Close;
         });
     }

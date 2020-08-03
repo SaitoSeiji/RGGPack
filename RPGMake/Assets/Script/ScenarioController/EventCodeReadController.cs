@@ -248,12 +248,18 @@ public class ItemCode : CodeData
     public override void CodeAction()
     {
         ResourceDB_mono.Instance._nowShopData = myShopData;
+        EventCodeReadController._pauseRead = true;
         UISeveralAction.Instance.OpenShop();
     }
 
     public override bool IsEndCode()
     {
-        return !UISeveralAction.Instance.IsOpenShop();
+        bool result= !UISeveralAction.Instance.IsOpenShop();
+        if (result)
+        {
+            EventCodeReadController._pauseRead = false;
+        }
+        return result;
     }
 }
 internal class SkillCode : CodeData
@@ -375,12 +381,16 @@ public class BattleCode:CodeData
 
     public override void CodeAction()
     {
+        EventCodeReadController._pauseRead = true;
         BattleController_mono.Instance.StartBattle(_targetEnemySet);
+
     }
 
     public override bool IsEndCode()
     {
-        return BattleController_mono.Instance.IsBattleEnd();
+        var result= BattleController_mono.Instance.IsBattleEnd();
+        if (result) EventCodeReadController._pauseRead = false;
+        return result;
     }
 }
 
@@ -605,7 +615,8 @@ public class EndCode : CodeData
 public class EventCodeReadController : SingletonMonoBehaviour<EventCodeReadController>
 {
     static bool _readNow = false;
-    public static bool _getIsReadNow { get { return _readNow; } }
+    public static bool _getIsReadNow { get { return _readNow&&!_pauseRead; } }
+    public static bool _pauseRead;//一時停止 後で使い方修正
     Queue<CodeData> _codeList = new Queue<CodeData>();
     CodeData _nowCodeData;
     EventCodeScriptable _nowScriptable;
@@ -617,6 +628,7 @@ public class EventCodeReadController : SingletonMonoBehaviour<EventCodeReadContr
     private void Start()
     {
     }
+    
 
     // Update is called once per frame
     void Update()
