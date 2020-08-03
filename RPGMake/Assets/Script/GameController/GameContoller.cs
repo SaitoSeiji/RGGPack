@@ -24,7 +24,8 @@ public class GameController_setting
 //仮実装
 public class GameContoller : SingletonMonoBehaviour<GameContoller>
 {
-    [SerializeField] EventDataMonoBehaviour firstEvent;
+    [SerializeField] EventDataMonoBehaviour firstEvent_debug;
+    [SerializeField]public bool coalFirstEvent_debug;//trueならfirstEventを呼ぶ
 
     public bool _AnyOperate
     {
@@ -43,13 +44,14 @@ public class GameContoller : SingletonMonoBehaviour<GameContoller>
     {
         SaveDataController.Instance.LoadAction();
         Player.Instance.Init();
-        if(firstEvent!=null) EventController.Instance.CoalEvent(firstEvent);
+#if UNITY_EDITOR
+        if(coalFirstEvent_debug&&firstEvent_debug!=null) EventController.Instance.CoalEvent(firstEvent_debug);
+#endif
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
     
 }

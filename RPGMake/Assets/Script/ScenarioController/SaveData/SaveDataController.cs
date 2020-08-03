@@ -76,9 +76,34 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
         return null;
     }
     #endregion
-    #region IO
-    public void SaveAction()
+    #region セーブデータとmonobehaviourをつなぐもの
+    public void Bridge_mono2data()
     {
+        //パーティデータへの更新
+        var target_party = GetDB_var<PartyDB, SavedDBData_party>()[0];
+        target_party._PostionData = new SavedDBData_party.PostionData(Player.Instance.transform.position,Player.Instance._NowDirection,MapController.Instance._NowMapName);
+    }
+
+    public void Bridge_data2mono()
+    {
+        var target_party = GetDB_var<PartyDB, SavedDBData_party>()[0];
+#if UNITY_EDITOR
+        if (!GameContoller.Instance.coalFirstEvent_debug)
+        {
+            MapController.Instance.ChengeMap(target_party._PostionData._mapName,true,LoadCanvas.Instance.IsBlackNow);
+            Player.Instance.SetPosition(target_party._PostionData._pos, target_party._PostionData._direction);
+        }
+#else
+            MapController.Instance.ChengeMap(target_party._PostionData._mapName,true,LoadCanvas.Instance.IsBlackNow);
+            Player.Instance.SetPosition(target_party._PostionData._pos, target_party._PostionData._direction);
+#endif
+
+    }
+    #endregion
+    #region IO
+    public void SaveAction(bool actBridge=true)
+    {
+        if(actBridge)Bridge_mono2data();
         foreach(var data in _saveDataList)
         {
             JsonSaver.SaveAction<SavedDBData>(data.Value,data.Key);
@@ -86,12 +111,13 @@ public class SaveDataController : SingletonMonoBehaviour<SaveDataController>
         Debug.Log("saved");
     }
 
-    public void LoadAction()
+    public void LoadAction(bool actBridge = true)
     {
         foreach(var db in _variableDbList)
         {
             _saveDataList[db.name]= JsonSaver.LoadAction_list<SavedDBData>(db.name);
         }
+        if (actBridge) WaitAction.Instance.CoalWaitAction(()=> Bridge_data2mono(),0.5f);
     }
     #endregion
     #region test

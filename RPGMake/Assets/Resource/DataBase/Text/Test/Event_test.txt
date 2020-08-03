@@ -100,11 +100,9 @@ id: firstEvent
 	text{
 		$#name[たかし]
 		用事を済ませたら放送室に向かおう！
+		$#flag[preEvent] 1
 	}term{
-		ormode true
-		flag preEvent 0 more
-		flag preEvent 2 less
-		item cureTest 1 equal
+		flag preEvent 0 equal
 	}
 id: class_kyoukasyo
 	text{

@@ -1,6 +1,11 @@
 ﻿Type(Party)
 id: default
 	money 100
+	firstPos{
+		pos 0 0
+		dir 2
+		mapName class
+	}
 	haveItem{
 		cureTest 1
 		cureSpTest 1
@@ -8,6 +13,11 @@ id: default
 	}
 id: itemTest
 	money 100
+	firstPos{
+		pos 20 30
+		dir 2
+		mapName class
+	}
 	haveItem{
 		cureTest 5
 		cureSpTest 5

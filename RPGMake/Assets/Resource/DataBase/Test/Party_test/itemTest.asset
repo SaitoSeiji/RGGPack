@@ -23,7 +23,15 @@ MonoBehaviour:
       haveNum: 5
     - _itemData: {fileID: 11400000, guid: 91089184f1072d84fba456375b3b4911, type: 2}
       haveNum: 5
-  _haveItemKeyList:
+    _postionData:
+      _pos: {x: 20, y: 30}
+      _direction: 2
+      _mapName: class
+  _firstHaveItemKeyList:
   - cureTest 5
   - cureSpTest 5
   - attackTest 5
+  _firstPosData:
+  - pos 20 30
+  - dir 2
+  - mapName class

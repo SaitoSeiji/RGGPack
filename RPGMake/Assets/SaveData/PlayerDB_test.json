@@ -3,7 +3,7 @@
         {
             "_spMax": 20,
             "_spNow": 20,
-            "_hpNow": 40,
+            "_hpNow": 1,
             "_expRate": 1.1,
             "_firstExp": 10,
             "_paramGrowData": {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 
 public class LoadCanvas : SingletonMonoBehaviour<LoadCanvas>
 {
@@ -23,6 +24,9 @@ public class LoadCanvas : SingletonMonoBehaviour<LoadCanvas>
     float _loadAlpha;
     float _fadeSpeed = 1.0f;
 
+    public Action _callback_blackend;
+    public Action _callback_clearend;
+
     private void Start()
     {
         _loadState = LOADSTATE.CLEAR;
@@ -35,10 +39,17 @@ public class LoadCanvas : SingletonMonoBehaviour<LoadCanvas>
     }
 
     [ContextMenu("toBlack")]
-    public void StartBlack()
+    public void StartBlack(bool auto=true)
     {
         if (!IsClearNow) return;
-        DOTween.To(()=>_loadAlpha,num=> _loadAlpha=num,1,_fadeSpeed);
+        var sec=DOTween.To(()=>_loadAlpha,num=> _loadAlpha=num,1,_fadeSpeed);
+        sec.onComplete = () =>
+        {
+            _loadState = LOADSTATE.BLACK;
+            _callback_blackend?.Invoke();
+              _callback_blackend = null;
+            if (auto) StartClear();
+          };
         _loadState = LOADSTATE.TOBLACK;
     }
 
@@ -46,7 +57,13 @@ public class LoadCanvas : SingletonMonoBehaviour<LoadCanvas>
     public void StartClear()
     {
         if (!IsBlackNow) return;
-        DOTween.To(() => _loadAlpha, num => _loadAlpha = num, 0, _fadeSpeed);
+        var sec=DOTween.To(() => _loadAlpha, num => _loadAlpha = num, 0, _fadeSpeed);
+        sec.onComplete = () =>
+        {
+            _loadState = LOADSTATE.CLEAR;
+            _callback_clearend?.Invoke();
+            _callback_clearend = null;
+        };
         _loadState = LOADSTATE.TOCLEAR;
     }
 
@@ -57,13 +74,12 @@ public class LoadCanvas : SingletonMonoBehaviour<LoadCanvas>
             var cl = _fadePanel.color;
             cl.a = _loadAlpha;
             _fadePanel.color = cl;
-            if (_loadState == LOADSTATE.TOBLACK&&cl.a==1.0f)
-            {
-                _loadState = LOADSTATE.BLACK;
-            }else if (_loadState == LOADSTATE.TOCLEAR && cl.a == 0.0f)
-            {
-                _loadState = LOADSTATE.CLEAR;
-            }
+            //if (_loadState == LOADSTATE.TOBLACK&&cl.a==1.0f)
+            //{
+            //}else if (_loadState == LOADSTATE.TOCLEAR && cl.a == 0.0f)
+            //{
+            //    _loadState = LOADSTATE.CLEAR;
+            //}
         }
     }
 }
