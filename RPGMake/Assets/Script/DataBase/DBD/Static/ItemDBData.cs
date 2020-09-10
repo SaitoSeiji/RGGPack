@@ -31,9 +31,10 @@ public class ItemData:ICommandData
         result._useNum = 0;
         return result;
     }
+
 }
 [CreateAssetMenu(fileName = "ItemDBD",menuName = "DataBases/Data/ItemDBData",order = 0)]
-public class ItemDBData : StaticDBData
+public class ItemDBData : StaticDBData,IShopContent
 {
     [SerializeField] public ItemData _data;
     
@@ -46,5 +47,11 @@ public class ItemDBData : StaticDBData
         _data._targetResource = (ResourceType)Enum.ToObject(typeof(ResourceType), data.GetData_int("targetResource"));
         _data._effectNum = data.GetData_int("effectNum");
         _data._price = data.GetData_int("price");
+    }
+
+
+    (string id, string name, int price, Sprite image) IShopContent.GetShopContentData()
+    {
+        return (_serchId, _data._displayName, _data._price, _data._itemImage);
     }
 }

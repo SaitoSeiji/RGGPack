@@ -27,6 +27,8 @@ public class GameContoller : SingletonMonoBehaviour<GameContoller>
 {
     [SerializeField] EventDataMonoBehaviour firstEvent_debug;
     [SerializeField] public bool coalFirstEvent_debug;//trueならfirstEventを呼ぶ
+    //ここの構造を改善する必要あり
+    //stackやら優先順位やら許可フラグやらを作る
     public bool _AnyOperate
     {
         get

@@ -18,7 +18,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     public enum UIState_b
     {
         None,
-        NoUI,//UIでやることがない状態
+        EmptyUIAction,//UIでやることがない状態
         Wait,//処理の完了待ち
         WaitInput,
         DisplayText,
@@ -47,8 +47,7 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     ICommandData temp_command;
     string temp_target;
     bool _temp_win;
-    Queue<Action> _uiActionQueue=new Queue<Action>();
-    
+    Queue<Action> _uiActionQueue = new Queue<Action>();
 
     private void OnDisable()
     {
@@ -62,18 +61,17 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
     }
     private void Update()
     {
-        bool exsistUIAction = _nowUIState != UIState_b.NoUI;
-        if (!exsistUIAction)
+        bool isEmptyUIAction = (_nowUIState == UIState_b.EmptyUIAction);
+        if (isEmptyUIAction)
         {
             if (_uiActionQueue.Count > 0)
             {
                 _uiActionQueue.Dequeue().Invoke();
-                exsistUIAction = _nowUIState != UIState_b.NoUI;
+                isEmptyUIAction = (_nowUIState == UIState_b.EmptyUIAction);
             }
         }
-
-
-        if (exsistUIAction)
+        
+        if (!isEmptyUIAction)
         {
             UIStateUpdate();
         }
@@ -189,17 +187,17 @@ public class BattleUIController : SingletonMonoBehaviour<BattleUIController>
         {
             case UIState_b.DisplayText:
                 _displayText = null;
-                UIController.CloseToUI(_BaseUI).Repeat().Register().AddEndAction((suc)=>_nowUIState= UIState_b.NoUI);
+                UIController.CloseToUI(_BaseUI).Repeat().Register().AddEndAction((suc)=>_nowUIState= UIState_b.EmptyUIAction);
                 break;
             default:
-                _nowUIState = UIState_b.NoUI;
+                _nowUIState = UIState_b.EmptyUIAction;
                 break;
         }
     }
     #endregion
     public void SetUpCharData()
     {
-        _nowUIState = UIState_b.NoUI;
+        _nowUIState = UIState_b.EmptyUIAction;
         _charParamDisplyer.SetData(BattleController_mono.Instance.battle._charcterField);
     }
     public void SetUpBattleDelegate(BattleController battle)

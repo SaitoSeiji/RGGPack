@@ -23,6 +23,7 @@ public class TextCovertedData
         result += "Text:" + _text;
         return result;
     }
+
 }
 
 public static class TextConverter

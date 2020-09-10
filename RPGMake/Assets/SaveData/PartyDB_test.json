@@ -63,10 +63,10 @@
             ],
             "_postionData": {
                 "_pos": {
-                    "x": 3.022242,
-                    "y": -2.194864
+                    "x": 0.8622419,
+                    "y": -2.994863
                 },
-                "_direction": "UP",
+                "_direction": "DOWN",
                 "_mapName": "class"
             },
             "_serchId": "default",

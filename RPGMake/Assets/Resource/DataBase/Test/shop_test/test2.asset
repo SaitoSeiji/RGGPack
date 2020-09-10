@@ -15,5 +15,7 @@ MonoBehaviour:
   _serchId: test2
   _itemList:
   - {fileID: 11400000, guid: f8e982c4da0a49541ab4445479a3728c, type: 2}
+  _equipList: []
   _itemNameList:
   - cureTest
+  _equipNameList: []

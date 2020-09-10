@@ -14,6 +14,7 @@ public class UISeveralAction : SingletonMonoBehaviour<UISeveralAction>
         UIController.AddUI(_shopUI).Register();
     }
 
+    //uiで判断するのは微妙　内部のデータで管理したい
     public bool IsOpenShop()
     {
         return _shopUI.gameObject.activeInHierarchy;

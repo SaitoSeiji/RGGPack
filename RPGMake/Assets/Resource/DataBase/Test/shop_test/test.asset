@@ -16,6 +16,8 @@ MonoBehaviour:
   _itemList:
   - {fileID: 11400000, guid: f8e982c4da0a49541ab4445479a3728c, type: 2}
   - {fileID: 11400000, guid: 5fd861320dbc7c142aaf1aa585c2c1e4, type: 2}
+  _equipList: []
   _itemNameList:
   - cureTest
   - cureSpTest
+  _equipNameList: []

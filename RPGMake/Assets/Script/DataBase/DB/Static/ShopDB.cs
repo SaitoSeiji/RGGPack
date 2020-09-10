@@ -29,11 +29,12 @@ public class ShopDB : StaticDB
         
     }
 
-    public static int GetBuyableCount(ItemDBData item)
+    //場所がわかりにくい　そのうち治したい
+    public static int GetBuyableCount(IShopContent item)
     {
-        var db = SaveDataController.Instance.GetDB_var<PartyDB, SavedDBData_party>()[0];
-        int num = db._haveMoney / item._data._price;
-        return num;
+        var haveMoney = SaveDataController.Instance.GetDB_var<PartyDB, SavedDBData_party>()[0]._haveMoney;
+        int buyAbleCount = haveMoney / item.GetShopContentData().price;
+        return buyAbleCount;
     }
     #endregion
 }

@@ -616,7 +616,7 @@ public class EventCodeReadController : SingletonMonoBehaviour<EventCodeReadContr
 {
     static bool _readNow = false;
     public static bool _getIsReadNow { get { return _readNow&&!_pauseRead; } }
-    public static bool _pauseRead;//一時停止 後で使い方修正
+    public static bool _pauseRead;//一時停止 後で使い方修正 
     Queue<CodeData> _codeList = new Queue<CodeData>();
     CodeData _nowCodeData;
     EventCodeScriptable _nowScriptable;

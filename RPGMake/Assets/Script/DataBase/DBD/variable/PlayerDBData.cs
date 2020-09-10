@@ -55,7 +55,7 @@ public class SavedDBData_player : SavedDBData_char
     [SerializeField] public int _spNow;
     [SerializeField] public int _hpNow;
 
-    [SerializeField] float _expRate;//経験値の増加量　とりあえず仮でa*ExpRate^levelの指数関数を採用
+    [SerializeField] float _expRate;//必要経験値の増加量　とりあえず仮でa*ExpRate^levelの指数関数を採用
     public float ExpRate
     {
         get { return _expRate; }
@@ -107,30 +107,31 @@ public class SavedDBData_player : SavedDBData_char
         if (_mySkillList.Contains(data)) return;
         _mySkillList.Add(data);
     }
+    #region update
     //レベルの更新と上昇レベルの取得
     public int UpdateLevel()
     {
-        int up;
+        int uplevel;
         int templevel = _level;
-        for( up =0; true; up++)
+        for( uplevel =0; true; uplevel++)
         {
             var targetexp = GetTargetLevelExp_sum(templevel);
             if (targetexp < _exp)templevel++;
             else break;
         }
-        _level += up;
-        UpdateParam(up);
-        UpdateSkill(_level-up,_level);
-        return up;
+        _level += uplevel;
+        UpdateParam(uplevel);
+        UpdateSkill(_level-uplevel,_level);
+        return uplevel;
     }
 
-    void UpdateParam(int up)
+    void UpdateParam(int upLevel)
     {
-        _hpMax += up * _paramGrowData.hp;
-        _spMax += up * _paramGrowData.sp;
-        _attack += up * _paramGrowData.attack;
-        _guard += up * _paramGrowData.guard;
-        if (up > 0)
+        _hpMax += upLevel * _paramGrowData.hp;
+        _spMax += upLevel * _paramGrowData.sp;
+        _attack += upLevel * _paramGrowData.attack;
+        _guard += upLevel * _paramGrowData.guard;
+        if (upLevel > 0)
         {
             _hpNow = _hpMax;
             _spNow = _spMax;
@@ -142,6 +143,7 @@ public class SavedDBData_player : SavedDBData_char
         var addlist=GetBetweenSkill(fromlevel, nowlevel);
         addlist.ForEach(x => AddSkill(x));
     }
+    #endregion
     #endregion
     #region 加工後データの取得
     //checkLevelで必要な経験値
