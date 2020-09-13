@@ -138,7 +138,7 @@ public static class DBIO
     //    return rawdata;
     //}
 
-    public static (string type,string replaced) TrimType(string txt)
+    public static (string type,string replaced) TrimTypeText(string txt)
     {
         string type="";
         string replaced="";
@@ -184,8 +184,14 @@ public static class DBIO
     }
 }
 
+
+public interface IDBOerater
+{
+    void SyncDataByTxt(TextAsset textAsset, string parentDir);
+    void RateUpdate();
+}
 //データベースの操作を行うクラス
-public class DBOperater<T,K>:IEnable_initDB
+public class DBOperater<T,K>:IEnable_initDB,IDBOerater
     where T:AbstractDBData
     where K:AbstractDB
 {
@@ -279,7 +285,7 @@ public class DBOperater<T,K>:IEnable_initDB
         }
         
 
-        var textDataList = DBListCreator.CreateDBListBytxt(DBIO.TrimType(textAsset.text).replaced);
+        var textDataList = DBListCreator.CreateDBListBytxt(DBIO.TrimTypeText(textAsset.text).replaced);
         var assetDBList = _database.GetDataList(this);
 
         //重複チェック

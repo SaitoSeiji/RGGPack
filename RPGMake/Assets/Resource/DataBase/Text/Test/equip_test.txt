@@ -1,0 +1,19 @@
+﻿Type(Equip)
+id: test_weapon
+	displayName テスト武器
+	explanation テスト用の武器です
+	effectNum 10
+	price 150
+	equipPosition 0
+id: test_guard
+	displayName テスト防具
+	explanation テスト用の防具です
+	effectNum 5
+	price 150
+	equipPosition 1
+
+//=============
+EquipPosition
+    WEPON=0,
+    GUARD=1,
+//===================-

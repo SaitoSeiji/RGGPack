@@ -54,7 +54,7 @@ public class SavedDBData_player : SavedDBData_char
     [SerializeField,Space] public int _spMax;
     [SerializeField] public int _spNow;
     [SerializeField] public int _hpNow;
-
+    
     [SerializeField] float _expRate;//必要経験値の増加量　とりあえず仮でa*ExpRate^levelの指数関数を採用
     public float ExpRate
     {
@@ -94,8 +94,29 @@ public class SavedDBData_player : SavedDBData_char
     }
     [SerializeField] public List<LevelSkillData> _levelSkillData = new List<LevelSkillData>();
 
+    [Serializable]
+    public class EquipSaveData
+    {
+        [SerializeField]public EquipData.EquipPosition pos;
+        [SerializeField]public EquipData equipData;
+    }
+    [SerializeField]public List<EquipSaveData> _equipList = new List<EquipSaveData>();//各部位1つしか装備できない
     #endregion
+    #region 継承関数
+    protected override int GetAddAttack()
+    {
+        var target = _equipList.Where(x => x.pos == EquipData.EquipPosition.WEPON).FirstOrDefault();
+        if (target == null) return base.GetAddAttack();
+        else                return base.GetAddAttack() + target.equipData._effectNum;
+    }
 
+    protected override int GetAddGuard()
+    {
+        var target = _equipList.Where(x => x.pos == EquipData.EquipPosition.GUARD).FirstOrDefault();
+        if (target == null) return base.GetAddGuard();
+        else                return base.GetAddGuard() + target.equipData._effectNum;
+    }
+    #endregion
     #region データの操作
     public void InitNeedExpList()
     {
@@ -107,6 +128,7 @@ public class SavedDBData_player : SavedDBData_char
         if (_mySkillList.Contains(data)) return;
         _mySkillList.Add(data);
     }
+
     #region update
     //レベルの更新と上昇レベルの取得
     public int UpdateLevel()
@@ -142,6 +164,17 @@ public class SavedDBData_player : SavedDBData_char
     {
         var addlist=GetBetweenSkill(fromlevel, nowlevel);
         addlist.ForEach(x => AddSkill(x));
+    }
+    public void UpdateEquip(EquipData equip)
+    {
+        var target=_equipList.Where(x => x.pos == equip._equipPosition).FirstOrDefault();
+        if (target == null)
+        {
+            target = new EquipSaveData();
+            target.pos = equip._equipPosition;
+            _equipList.Add(target);
+        }
+        target.equipData = equip;
     }
     #endregion
     #endregion

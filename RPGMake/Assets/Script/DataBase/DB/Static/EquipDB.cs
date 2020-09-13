@@ -6,7 +6,7 @@ using System.Linq;
 [CreateAssetMenu(fileName = "EquipDB", menuName = "DataBases/DataBase/EquipDB", order = 0)]
 public class EquipDB : StaticDB
 {
-    [SerializeField] public List<EquipDBData> _dataList;
+    [SerializeField] public List<EquipDBData> _dataList=new List<EquipDBData>();
 
     public override List<AbstractDBData> GetDataList(IEnable_initDB enable)
     {

@@ -53,7 +53,7 @@ public class BattleChar
     #region attack
     public int CalcurateAttack(float rate)
     {
-        return (int)(_myCharData._attack * rate);
+        return (int)(_myCharData._Attack_withAdd * rate);
     }
 
     public SkillCommandData SelectCommand(int index)
@@ -86,7 +86,7 @@ public class BattleChar
     }
     public int CalcDamage(int attack)
     {
-        var result = attack - _myCharData._guard;
+        var result = attack - _myCharData._Guard_withAdd;
         if (result <= 0) result = 1;
         return result;
     }

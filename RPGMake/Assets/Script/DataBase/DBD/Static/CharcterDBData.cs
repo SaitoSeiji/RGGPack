@@ -13,7 +13,9 @@ public class SavedDBData_char:SavedDBData
     [SerializeField] public int _hpMax;
     public int _HpMax { get { return _hpMax; } }
     [SerializeField] public int _attack;
+    public int _Attack_withAdd { get { return _attack+GetAddAttack(); } }//能力上昇を含めた攻撃力
     [SerializeField] public int _guard;
+    public int _Guard_withAdd { get { return _guard+GetAddGuard(); } }//能力上昇を含めた防御力
     [SerializeField] public int _money;
     [SerializeField] public int _exp;
     [SerializeField] public Sprite _charImage;
@@ -44,6 +46,10 @@ public class SavedDBData_char:SavedDBData
     {
         _name = name;
     }
+
+    //パラメータ増加分を返す
+    protected virtual int GetAddAttack() { return 0; }
+    protected virtual int GetAddGuard() { return 0; }
 }
 
 public static class Partial_CharcterDBData

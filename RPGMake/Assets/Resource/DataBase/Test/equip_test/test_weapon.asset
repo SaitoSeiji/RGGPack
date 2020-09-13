@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08e4a90cc791ed9469da56881099c06a, type: 3}
+  m_Name: test_weapon
+  m_EditorClassIdentifier: 
+  _serchId: test_weapon
+  _data:
+    _equipPosition: 0
+    _displayName: "\u30C6\u30B9\u30C8\u6B66\u5668"
+    _explanation: "\u30C6\u30B9\u30C8\u7528\u306E\u6B66\u5668\u3067\u3059"
+    _effectNum: 10
+    _price: 150
+    _itemImage: {fileID: 0}

@@ -14,7 +14,7 @@ public class EventDataOperater_mono : MonoBehaviour
     [ContextMenu("SyncDatabyTxt")]
     public void SyncDatabyTxt()
     {
-        var txt = DBIO.TrimType(_readText.text);
+        var txt = DBIO.TrimTypeText(_readText.text);
         var path =(isTest)? $"Test/{_readText.name}":$"Product/{_readText.name}";
         EventDataOperater.SyncDataByTxt(_EventDb, txt.replaced,path ,_readText.name);
     }

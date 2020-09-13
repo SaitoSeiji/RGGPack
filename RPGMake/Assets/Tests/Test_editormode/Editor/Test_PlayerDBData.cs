@@ -53,6 +53,37 @@ namespace Tests
             Assert.AreEqual(resultlevel-firstlevel, up);
         }
 
+        [Test]
+        public void UpdateEquip()
+        {
+            var weaponData = new EquipData();
+            weaponData._equipPosition = EquipData.EquipPosition.WEPON;
+            _myPlData.UpdateEquip(weaponData);
+            var guardData = new EquipData();
+            guardData._equipPosition = EquipData.EquipPosition.GUARD;
+            _myPlData.UpdateEquip(guardData);
+
+            Assert.AreEqual(2, _myPlData._equipList.Count);
+            Assert.AreEqual(EquipData.EquipPosition.WEPON, _myPlData._equipList[0].pos);
+            Assert.AreEqual(EquipData.EquipPosition.GUARD, _myPlData._equipList[1].pos);
+        }
+
+        //パラメータが装備で上昇するかどうか
+        [Test]
+        public void EquipParam()
+        {
+            var weaponData = new EquipData();
+            weaponData._equipPosition = EquipData.EquipPosition.WEPON;
+            weaponData._effectNum = 10;
+            _myPlData.UpdateEquip(weaponData);
+            var guardData = new EquipData();
+            guardData._equipPosition = EquipData.EquipPosition.GUARD;
+            guardData._effectNum = 10;
+            _myPlData.UpdateEquip(guardData);
+
+            Assert.AreEqual(_myPlData._attack+weaponData._effectNum, _myPlData._Attack_withAdd);
+            Assert.AreEqual(_myPlData._guard +guardData ._effectNum, _myPlData._Guard_withAdd );
+        }
         //そのうち核
         public void Test_UpdateSkill(int firstlevel, int resultlevel)
         {

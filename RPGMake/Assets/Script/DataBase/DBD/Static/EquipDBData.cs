@@ -14,7 +14,7 @@ public class EquipData
     {
         WEPON=0,
         GUARD=1,
-        ACCESSARY=2
+        //ACCESSARY=2//現状攻撃と防御しかないので装備する意味がないのでカット
     }
     [SerializeField]public EquipPosition _equipPosition;
 

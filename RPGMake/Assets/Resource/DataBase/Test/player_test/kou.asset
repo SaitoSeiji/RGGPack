@@ -46,6 +46,7 @@ MonoBehaviour:
     _levelSkillData:
     - _level: 2
       _targetSkill: {fileID: 11400000, guid: 9736a7a62d8a37b40ad7cc0e4103a7f5, type: 2}
+    _equipList: []
   _skillNameSet:
   - superAttack
   - allAtack_test

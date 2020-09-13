@@ -6,7 +6,7 @@
             "$type": "SavedDBData_flag"
         },
         {
-            "flagNum": 1,
+            "flagNum": 0,
             "_serchId": "preEvent",
             "$type": "SavedDBData_flag"
         },
